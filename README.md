@@ -6,6 +6,25 @@
 3. Doe `ng serve` in je console
 4. Nu kan je hem bereiken op http://localhost:4200 in je browser
 
+## Git Guide for Beginners
+If you are new to Git, here are the basic commands to help you work on this project:
+
+Je moet het repository eerst "clonen" naar je pc: https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository 
+
+1. **Get the latest changes** from the repository:
+   ```bash
+   git pull
+   ```
+2. **Save your changes** locally:
+   ```bash
+   git add .
+   git commit -m "Describe what you changed"
+   ```
+3. **Send your changes** to the repository:
+   ```bash
+   git push
+   ```
+
 ## Development server
 
 To start a local development server, run:
