@@ -1,4 +1,191 @@
+/* ══════════════════════════════════════
+   VARIABELEN — pas hier kleuren, fonts
+   en maten aan voor de hele website
+   ══════════════════════════════════════ */
+:root {
+  /* ── Groen — lente/mos palet ── */
+  --lentegroen:      #938E3B;  /* lentegroen        — hero achtergrond     */
+  --lentegroen-mid:  #777431;  /* lentegroen midden — accenten op groen    */
+  --mos-donker:      #515731;  /* mos donker        — donkere vlakken      */
+
+  /* ── Terra — oranje/bruin palet ── */
+  --terra-donker:    #9C4818;  /* terra donker      — knoppen, CTA's       */
+  --terra-licht:     #CC6024;  /* terra licht       — hover, accenten      */
+
+  /* ── Teal — blauw/groen palet ── */
+  --teal-licht:      #6E9F88;  /* teal licht        — subtiele accenten    */
+  --matt-teal:       #57866C;  /* matt teal         — secties, vlakken     */
+  --teal-mid:        #579688;  /* teal mid          — accenten             */
+  --teal-diep:       #3B7E6A;  /* teal diep         — donkere accenten     */
+
+  /* ── Geel ── */
+  --amber:           #F5AB00;  /* amber honey       — highlights, tags     */
+
+  /* ── Backwards compatible (oude namen blijven werken) ── */
+  --groen-donker:    var(--mos-donker);
+  --groen-mos:       var(--lentegroen-mid);
+  --groen-licht:     var(--lentegroen);
+  --autumn-leaf:     var(--terra-donker);
+  --teal-donker:     var(--mos-donker);
+  --teal-zacht:      var(--lentegroen-mid);
+
+  /* ── Papier — witte tinten ── */
+  --papier-licht:    #F5F5F5;  /* papier licht      — achtergrond pagina   */
+  --papier-creme:    #EFEFEE;  /* papier crème      — kaarten, subtiele vlakken */
+
+  /* ── Algemeen ── */
+  --kleur-achtergrond: var(--papier-licht);
+  --kleur-wit:         var(--papier-licht);
+  --kleur-tekst:       #261C15;  /* inkt             — hoofdtekst          */
+  --kleur-tekst-licht: #4A3530;  /* inkt licht       — subtekst            */
+  --kleur-hero:        var(--lentegroen);
+  --kleur-accent:      var(--terra-donker);
+
+  /* ── Fonts ── */
+  --font-heading: 'Fraunces', serif;
+  --font-accent:  'Bebas Neue', sans-serif;
+  --font:         'DM Sans', sans-serif;
+
+  /* ── Afmetingen ── */
+  --max-breedte:    1315px;
+  --padding-zij:    20px;
+  --afgerond:       16px;
+  --afgerond-groot: 24px;
+}
+
+/* ─── Reset & basis ─── */
 html, body {
   height: 100%;
   margin: 0;
+  font-family: var(--font);
+  color: var(--kleur-tekst);
+  background: var(--kleur-achtergrond);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  padding: 0 0 6rem;
+  overflow-x: hidden;
+}
+
+/* ─── Gedeelde pagina-wrapper ─── */
+.page {
+  max-width: var(--max-breedte);
+  margin: 0 auto;
+  padding: 0 var(--padding-zij);
+}
+
+/* ─── Hero sectie ─── */
+.hero-section {
+  position: relative;
+  width: 100%;
+  margin: 0 0 2rem;
+  background: var(--kleur-hero);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 100px 80px;
+  gap: 48px;
+}
+
+/* Grain overlay */
+.hero-section::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 300 300' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='grain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23grain)'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+  opacity: 0.45;
+  pointer-events: none;
+  mix-blend-mode: overlay;
+  z-index: 2;
+}
+
+/* Hero titel */
+.hero-title {
+  font-size: 80px;
+  font-weight: 700;
+  line-height: 110%;
+  margin: 0;
+  text-align: center;
+  z-index: 1;
+}
+
+/* Hero body tekst */
+.hero-body {
+  font-size: 20px;
+  font-weight: 200;
+  line-height: 120%;
+  margin: 0;
+  text-align: center;
+  max-width: 800px;
+  z-index: 1;
+}
+
+/* Hero afbeelding — langwerpig */
+.hero-wide-image {
+  width: 100%;
+  height: 480px;
+  border-radius: var(--afgerond);
+  overflow: hidden;
+  z-index: 1;
+}
+
+.hero-wide-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ─── Algemene typografie ─── */
+h1 {
+  font-family: var(--font-heading);
+  font-size: 70px;
+  font-weight: 700;
+  line-height: 90%;
+  margin: 0;
+}
+
+h2 {
+  font-family: var(--font-heading);
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 90%;
+  margin: 1rem 0 1rem 0;
+}
+
+/* Accenttekst — gebruik class="accent" */
+.accent {
+  font-family: var(--font-accent);
+  letter-spacing: 0.05em;
+}
+
+p {
+  font-family: var(--font);
+  font-size: 20px;
+  font-weight: 300;
+  line-height: 120%;
+  color: var(--kleur-tekst-licht);
+  margin: 0 0 1rem;
+}
+
+.btn-download {
+  display: inline-block;
+  align-self: flex-start;
+  background: var(--amber);
+  color: var(--groen-donker);
+  font-family: var(--font-accent);
+  font-size: 20px;
+  letter-spacing: 0.1em;
+  padding: 14px 32px;
+  border-radius: 100px;
+  text-decoration: none;
+}
+
+.btn-download:hover {
+  background: var(--papier-creme);
 }

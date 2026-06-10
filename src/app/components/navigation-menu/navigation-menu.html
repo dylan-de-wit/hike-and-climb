@@ -1,1 +1,51 @@
-<span>Navigatie menutje die onderin plakt</span>
+<nav class="dock">
+
+  <!-- Uitgeklapte sectie -->
+  <div class="dock-panel">
+    <div class="dock-col dock-col--home">
+      <a routerLink="/home" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="dock-col-titel">Home</a>
+    </div>
+
+    <div class="dock-col">
+      <a routerLink="/klimmen" routerLinkActive="active" [routerLinkActiveOptions]="{exact: false}" class="dock-col-titel">Klimmen</a>
+      <a routerLink="/klimmen/toprope-lead" routerLinkActive="active" class="subnav-item">Toprope & lead</a>
+      <a routerLink="/klimmen/multi-pitch" routerLinkActive="active" class="subnav-item">Multi-pitch</a>
+      <a routerLink="/klimmen/materiaal" routerLinkActive="active" class="subnav-item">Materiaal</a>
+      <a routerLink="/klimmen/klimgebieden" routerLinkActive="active" class="subnav-item">Klimgebieden</a>
+    </div>
+
+    <div class="dock-col">
+      <a routerLink="/hiken" routerLinkActive="active" [routerLinkActiveOptions]="{exact: false}" class="dock-col-titel">Hiken</a>
+      <a routerLink="/hiken/routes-gebieden" routerLinkActive="active" class="subnav-item">Routes & gebieden</a>
+      <a routerLink="/hiken/navigatie-planning" routerLinkActive="active" class="subnav-item">Navigatie & planning</a>
+      <a routerLink="/hiken/uitrusting" routerLinkActive="active" class="subnav-item">Uitrusting</a>
+      <a routerLink="/hiken/multiday-hikes" routerLinkActive="active" class="subnav-item">Multiday hikes</a>
+    </div>
+
+    <div class="dock-col">
+      <a routerLink="/boulderen" routerLinkActive="active" [routerLinkActiveOptions]="{exact: false}" class="dock-col-titel">Boulderen</a>
+      <a routerLink="/boulderen/techniek" routerLinkActive="active" class="subnav-item">Techniek</a>
+      <a routerLink="/boulderen/boulderlocaties" routerLinkActive="active" class="subnav-item">Boulderlocaties</a>
+      <a routerLink="/boulderen/materiaal" routerLinkActive="active" class="subnav-item">Materiaal</a>
+      <a routerLink="/boulderen/training" routerLinkActive="active" class="subnav-item">Training & progressie</a>
+    </div>
+
+    <div class="dock-col">
+      <a routerLink="/kennis" routerLinkActive="active" [routerLinkActiveOptions]="{exact: false}" class="dock-col-titel">Kennis</a>
+      <a routerLink="/kennis/knopen" routerLinkActive="active" class="subnav-item">Knopen</a>
+      <a routerLink="/kennis/technieken" routerLinkActive="active" class="subnav-item">Technieken</a>
+      <a routerLink="/kennis/artikelen" routerLinkActive="active" class="subnav-item">Artikelen</a>
+      <a routerLink="/kennis/gidsen" routerLinkActive="active" class="subnav-item">Gidsen & downloads</a>
+    </div>
+  </div>
+
+  <!-- Altijd zichtbare balk (verdwijnt bij hover) -->
+  <div class="dock-bar">
+    <a routerLink="/home" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="dock-item">Home</a>
+    <a routerLink="/klimmen" routerLinkActive="active" [routerLinkActiveOptions]="{exact: false}" class="dock-item">Klimmen</a>
+    <a routerLink="/hiken" routerLinkActive="active" [routerLinkActiveOptions]="{exact: false}" class="dock-item">Hiken</a>
+    <a routerLink="/boulderen" routerLinkActive="active" [routerLinkActiveOptions]="{exact: false}" class="dock-item">Boulderen</a>
+    <a routerLink="/kennis" routerLinkActive="active" [routerLinkActiveOptions]="{exact: false}" class="dock-item">Kennis</a>
+  </div>
+
+</nav>
