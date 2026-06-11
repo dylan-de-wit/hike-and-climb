@@ -189,3 +189,39 @@ p {
 .btn-download:hover {
   background: var(--papier-creme);
 }
+
+/* ══════════════════════════════════════
+   RESPONSIVE
+   ══════════════════════════════════════ */
+
+@media (max-width: 1024px) {
+  .hero-section {
+    padding: 80px 40px;
+    gap: 32px;
+  }
+
+  .hero-title { font-size: 56px; }
+
+  h1 { font-size: 52px; }
+  h2 { font-size: 32px; }
+}
+
+@media (max-width: 768px) {
+  body { padding: 0 0 5rem; }
+
+  .hero-section {
+    padding: 60px 20px;
+    gap: 24px;
+    min-height: 80vh;
+  }
+
+  .hero-title { font-size: 48px; }
+  .hero-body  { font-size: 16px; }
+
+  h1 { font-size: 40px; }
+  h2 { font-size: 26px; }
+
+  p  { font-size: 16px; }
+
+  .btn-download { font-size: 16px; padding: 12px 24px; }
+}

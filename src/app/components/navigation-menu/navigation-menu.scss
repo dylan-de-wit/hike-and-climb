@@ -4,6 +4,7 @@
   left: 50%;
   transform: translateX(-50%);
   z-index: 100;
+  max-width: calc(100vw - 2rem);
 }
 
 /* ─── Hele container ─── */
@@ -114,6 +115,37 @@
 }
 
 /* ─── Hoofdnavigatie items ─── */
+/* ── Responsive ── */
+@media (max-width: 1024px) {
+  .dock-panel {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .dock-col:nth-child(4),
+  .dock-col:nth-child(5) {
+    border-top: 1px solid rgba(0, 0, 0, 0.07);
+  }
+  .dock:hover .dock-panel {
+    max-height: 360px;
+  }
+}
+
+@media (max-width: 768px) {
+  .dock-col--home { display: none; }
+
+  .dock-panel {
+    grid-template-columns: repeat(2, 1fr);
+    overflow-y: auto;
+  }
+  .dock:hover .dock-panel {
+    max-height: 55vh;
+  }
+  .subnav-item { white-space: normal; font-size: 0.82rem; }
+  .dock-col { padding: 14px 14px 12px; }
+  .dock-col-titel { font-size: 12px; }
+  .dock-bar { padding: 0.5rem 0.5rem; }
+  .dock-item { font-size: 0.85rem; padding: 0.35rem 0.5rem; }
+}
+
 .dock-item {
   text-decoration: none;
   color: #444;
