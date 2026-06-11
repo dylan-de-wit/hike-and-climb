@@ -1,34 +1,6 @@
-/*Blok lijst*/
-.blok-lijst {
-  background: var(--kleur-wit);
-  padding: 100px 80px;
-}
-.blok-items {
-  flex: 1;
-  list-style: none;
-  padding: 10px;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 40px;
-}
-.blok-item {
-  display: flex;
-  gap: 32px;
-  align-items: flex-start;
-  border-top: 1px solid var(--papier-creme);
-  padding-top: 24px;
-}
-.item-nummer {
-  font-family: var(--font-accent);
-  font-size: 32px;
-  color: var(--kleur-accent);
-  min-width: 48px;
-}
-.blok-item strong {
-  font-family: var(--font-heading);
-  font-size: 22px;
-  display: block;
-  margin-bottom: 4px;
-  color: var(--groen-donker);
-}
+
+// .blok-inner{
+//   background: color-mix(in srgb, var(--kleur-hero) 80%, transparent);
+//   border-radius: 8px;
+//   padding: 40px;
+// }

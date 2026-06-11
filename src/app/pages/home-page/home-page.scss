@@ -8,6 +8,7 @@
   min-height: 85vh;
   justify-content: center;
   gap: 32px;
+  margin: 0;          /* geen ondermarge → oranje blok sluit flush aan */
 }
 
 /* ─── Retro patch / badge — jaren 70, mat ─── */
@@ -205,10 +206,13 @@
   align-items: flex-end;
   gap: 80px;
   padding: 100px 80px;
+  width: 100%;
+  max-width: 100%;
 }
 
 .statement-left {
   flex: 1;
+  min-width: 0;
 }
 
 .statement-label {
@@ -232,6 +236,7 @@
 
 .statement-right {
   flex: 1;
+  min-width: 0;
   display: flex;
   flex-direction: column;
   gap: 40px;
@@ -257,6 +262,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 100%;
+  max-width: 100%;
 }
 
 .content-inner {
@@ -265,10 +272,12 @@
   gap: 80px;
   max-width: 1315px;
   width: 100%;
+  min-width: 0;
 }
 
 .content-image {
   flex: 1;
+  min-width: 0;
   height: 600px;
   border-radius: var(--afgerond);
   overflow: hidden;
@@ -282,6 +291,7 @@
 
 .content-text {
   flex: 1;
+  min-width: 0;
   display: flex;
   flex-direction: column;
   gap: 24px;
@@ -350,15 +360,19 @@
 .kaarten-blok {
   background: var(--groen-donker);
   padding: 100px 80px;
+  width: 100%;
+  max-width: 100%;
 }
 .kaarten-inner {
   display: flex;
   gap: 32px;
   max-width: 1315px;
   margin: 0 auto;
+  min-width: 0;
 }
 .kaart {
   flex: 1;
+  min-width: 0;
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -431,14 +445,25 @@
 
 @media (max-width: 768px) {
   .hero-section .hero-title { font-size: 52px; }
-  .hero-section { min-height: 80vh; }
+  .hero-section {
+    min-height: auto;        /* hero past nu om de inhoud */
+    padding: 60px 20px 0;    /* geen padding onderaan → foto sluit flush aan */
+    gap: 28px;
+  }
 
-  .hero-deco       { display: none; }
-  .hero-foto-frame { width: 100%; border-radius: 8px 8px 0 0; }
-  .hero-tree--links  { width: 130px; }
-  .hero-tree--rechts { width: 115px; }
-  .hero-tree--links-mid,
-  .hero-tree--rechts-mid { display: none; }   /* op mobiel rustiger houden */
+  .hero-deco { display: none; }
+  .hero-tree { display: none; }   /* alle inschuivende bomen uit op mobiel */
+
+  /* Foto terug in de normale flow → schaalt netjes mee op volle breedte */
+  .hero-foto-frame {
+    position: static;
+    transform: none;
+    width: 100%;
+    max-width: 100%;
+    margin-top: 4px;
+    border-radius: 8px 8px 0 0;
+    animation: none;
+  }
 
   .statement-block {
     flex-direction: column;
@@ -464,4 +489,3 @@
   .quote-block      { padding: 60px 20px; }
   .quote-text       { font-size: 40px; }
 }
-
