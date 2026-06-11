@@ -40,6 +40,7 @@
   --kleur-tekst-licht: #4A3530;  /* inkt licht       — subtekst            */
   --kleur-hero:        var(--lentegroen);
   --kleur-accent:      var(--terra-donker);
+  --kleur-hero-ink:    var(--papier-licht);  /* hero titel/tekst — licht of donker per thema */
 
   /* ── Fonts ── */
   --font-heading: 'Fraunces', serif;
@@ -51,6 +52,32 @@
   --padding-zij:    20px;
   --afgerond:       16px;
   --afgerond-groot: 24px;
+}
+
+/* ══════════════════════════════════════
+   KLEURTHEMA'S PER SECTIE
+   Pas hier een heel thema in één keer aan.
+   De klasse hangt aan elke pagina (zie .ts → host).
+   ══════════════════════════════════════ */
+.thema-klimmen {
+  --kleur-hero:     var(--lentegroen);   /* groen  */
+  --kleur-accent:   var(--terra-licht);  /* oranje */
+  --kleur-hero-ink: var(--papier-licht); /* witte titel */
+}
+.thema-hiken {
+  --kleur-hero:     var(--teal-diep);    /* blauw/teal */
+  --kleur-accent:   var(--amber);        /* geel accent */
+  --kleur-hero-ink: var(--papier-licht);
+}
+.thema-boulderen {
+  --kleur-hero:     var(--amber);        /* geel */
+  --kleur-accent:   var(--teal-diep);    /* teal accent */
+  --kleur-hero-ink: var(--kleur-tekst);  /* donkere titel (leesbaar op geel) */
+}
+.thema-kennis {
+  --kleur-hero:     var(--mos-donker);   /* donker olijf */
+  --kleur-accent:   var(--amber);        /* amber accent */
+  --kleur-hero-ink: var(--papier-licht);
 }
 
 /* ─── Reset & basis ─── */
@@ -90,6 +117,7 @@ body {
   align-items: center;
   padding: 100px 80px;
   gap: 48px;
+  min-height: 85vh;
 }
 
 /* Grain overlay */
@@ -112,6 +140,7 @@ body {
   line-height: 110%;
   margin: 0;
   text-align: center;
+  color: var(--kleur-hero-ink);
   z-index: 1;
 }
 
@@ -123,13 +152,22 @@ body {
   margin: 0;
   text-align: center;
   max-width: 800px;
+  color: var(--kleur-hero-ink);
   z-index: 1;
+}
+
+/* Eyebrow — kleine accenttekst boven koppen (per thema gekleurd) */
+.content-eyebrow {
+  font-family: var(--font-accent);
+  font-size: 18px;
+  letter-spacing: 0.2em;
+  color: var(--kleur-accent);
 }
 
 /* Hero afbeelding — langwerpig */
 .hero-wide-image {
   width: 100%;
-  height: 480px;
+  height: 340px;
   border-radius: var(--afgerond);
   overflow: hidden;
   z-index: 1;
