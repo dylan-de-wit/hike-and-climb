@@ -1,3 +1,12 @@
-<section class="hero-section">
-  <h1 class="hero-title">Knopen</h1>
+<section class="subhero subhero--met-veldstrip">
+  <div class="subhero__media">
+    <img src="images/treeroot.jpeg" alt="Detail van wortels en textuur in de natuur" />
+  </div>
+  <div class="subhero__content">
+    <span class="subhero__eyebrow">Kennis</span>
+    <h1>Knopen</h1>
+    <p>Leer betrouwbare knopen herkennen, leggen en controleren in duidelijke stappen.</p>
+  </div>
+  <app-veldstrip [items]="veldgegevens" meta="touwwerk" />
+  <app-route-divider class="subhero__route" variant="overlay" [stops]="etappes" [actief]="actief" />
 </section>

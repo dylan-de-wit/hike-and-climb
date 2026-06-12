@@ -1,4 +1,4 @@
-<section class="hero-overlap">
+<section class="hero-overlap hero-overlap--met-route">
   <div class="hero-overlap__media">
     <img src="images/rockclimbing.jpeg" alt="Klimmer op een rotswand" />
   </div>
@@ -8,6 +8,12 @@
     <h1>Klimmen</h1>
     <p>Ontdek de mooiste klimroutes en technieken voor elk niveau.</p>
   </div>
+  <app-veldstrip [items]="veldgegevens" meta="24° · NW 3" />
+  <app-route-divider
+    class="hero-overlap__route"
+    variant="overlay"
+    [stops]="etappes"
+    [actief]="actief" />
 </section>
 
 <section class="blok-lijst">
@@ -39,5 +45,131 @@
         </div>
       </li>
     </ul>
+  </div>
+</section>
+
+<section class="sectie klim-badges klim-badges--galerij">
+  <div class="sectie-inner tekst-blok">
+    <span class="content-eyebrow">Wat je nodig hebt</span>
+    <h2>Essentieel materiaal</h2>
+    <p>De basisset voor een veilige klimdag.</p>
+  </div>
+  <div class="sectie-inner">
+    <ul class="badge-galerij">
+      <li class="badge-tegel">
+        <img src="pictogrammen/harnass.svg" alt="Klimgordel" />
+        <span>Klimgordel</span>
+      </li>
+      <li class="badge-tegel">
+        <img src="pictogrammen/helm.svg" alt="Helm" />
+        <span>Helm</span>
+      </li>
+      <li class="badge-tegel">
+        <img src="pictogrammen/ropesetje.svg" alt="Touw" />
+        <span>Touw</span>
+      </li>
+      <li class="badge-tegel">
+        <img src="pictogrammen/karabiners.svg" alt="Karabiners" />
+        <span>Karabiners</span>
+      </li>
+      <li class="badge-tegel">
+        <img src="pictogrammen/slinge1.svg" alt="Slinges" />
+        <span>Slinges</span>
+      </li>
+      <li class="badge-tegel">
+        <img src="pictogrammen/pofzak.svg" alt="Chalkbag" />
+        <span>Chalkbag</span>
+      </li>
+    </ul>
+  </div>
+</section>
+
+
+<section class="sectie klim-badges klim-badges--kaarten">
+  <div class="sectie-inner tekst-blok">
+    <span class="content-eyebrow">Essentieel</span>
+    <h2>De basis-set</h2>
+  </div>
+  <div class="sectie-inner">
+    <div class="badge-kaarten">
+      <article class="badge-kaart">
+        <img class="badge-kaart__beeld" src="pictogrammen/helm.svg" alt="" />
+        <h3>Helm</h3>
+        <p>Beschermt je hoofd tegen steenslag en stoten bij een val.</p>
+      </article>
+      <article class="badge-kaart">
+        <img class="badge-kaart__beeld" src="pictogrammen/harnass.svg" alt="" />
+        <h3>Klimgordel</h3>
+        <p>Je verbinding met het touw — comfortabel en goed afgesteld.</p>
+      </article>
+      <article class="badge-kaart">
+        <img class="badge-kaart__beeld" src="pictogrammen/ehbo.svg" alt="" />
+        <h3>EHBO</h3>
+        <p>Een compacte set voor schaafwonden en blessures onderweg.</p>
+      </article>
+      <article class="badge-kaart">
+        <img class="badge-kaart__beeld" src="pictogrammen/karabiners.svg" alt="" />
+        <h3>Karabiners</h3>
+        <p>HMS voor zekering, ovale voor de rack — minimaal 6 stuks.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="sectie klim-badges klim-badges--check">
+  <div class="sectie-inner tekst-blok">
+    <span class="content-eyebrow">Gearcheck</span>
+    <h2>Voor vertrek</h2>
+    <p>Loop deze lijst door vóórdat je aan de route begint.</p>
+  </div>
+  <div class="sectie-inner">
+    <ul class="badge-lijst">
+      <li class="badge-lijst__item">
+        <img src="pictogrammen/harnass.svg" alt="" />
+        <div>
+          <h4>Klimgordel</h4>
+          <p>Gespen dichtgedraaid, beenwikkelingen dubbel teruggevoerd.</p>
+        </div>
+      </li>
+      <li class="badge-lijst__item">
+        <img src="pictogrammen/ropesetje.svg" alt="" />
+        <div>
+          <h4>Touw</h4>
+          <p>60 m enkeltouw, droogbehandeld — controleer op slijtage.</p>
+        </div>
+      </li>
+      <li class="badge-lijst__item">
+        <img src="pictogrammen/karabiners.svg" alt="" />
+        <div>
+          <h4>Karabiners</h4>
+          <p>Vergrendeling functioneel, geen zichtbare deuken of barsten.</p>
+        </div>
+      </li>
+      <li class="badge-lijst__item">
+        <img src="pictogrammen/ehbo.svg" alt="" />
+        <div>
+          <h4>EHBO</h4>
+          <p>Verband, tape, ontsmetting — compacte set in de rugzak.</p>
+        </div>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section class="sectie klim-badges klim-badges--strip">
+  <div class="sectie-inner tekst-blok">
+    <span class="content-eyebrow">Verzamel je set</span>
+    <h2>Alles op een rij</h2>
+  </div>
+  <div class="sectie-inner">
+    <div class="badge-strip">
+      <img src="pictogrammen/helm.svg" alt="Helm" />
+      <img src="pictogrammen/harnass.svg" alt="Gordel" />
+      <img src="pictogrammen/ropesetje.svg" alt="Touw" />
+      <img src="pictogrammen/karabiners.svg" alt="Karabiners" />
+      <img src="pictogrammen/slinge1.svg" alt="Slinges" />
+      <img src="pictogrammen/pofzak.svg" alt="Chalkbag" />
+      <img src="pictogrammen/ehbo.svg" alt="EHBO" />
+    </div>
   </div>
 </section>

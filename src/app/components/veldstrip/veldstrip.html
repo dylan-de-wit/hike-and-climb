@@ -1,0 +1,18 @@
+<aside class="veldstrip">
+  @if (kicker()) {
+    <span class="veldstrip__kicker">{{ kicker() }}</span>
+  }
+
+  <div class="veldstrip__items">
+    @for (item of items(); track item.label) {
+      <div class="veldstrip__rij">
+        <span class="veldstrip__label">{{ item.label }}</span>
+        <span class="veldstrip__waarde">{{ item.waarde }}</span>
+      </div>
+    }
+  </div>
+
+  @if (meta()) {
+    <div class="veldstrip__meta">{{ meta() }}</div>
+  }
+</aside>

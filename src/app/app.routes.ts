@@ -4,6 +4,7 @@ import { KlimmenPage } from './pages/klimmen-page/klimmen-page';
 import { HikenPage } from './pages/hiken-page/hiken-page';
 import { BoulderenPage } from './pages/boulderen-page/boulderen-page';
 import { KennisPage } from './pages/kennis-page/kennis-page';
+import { NatuurPage } from './pages/natuur-page/natuur-page';
 
 // Klimmen sub-pagina's
 import { TopropeLead } from './pages/klimmen-page/toprope-lead/toprope-lead';
@@ -26,8 +27,14 @@ import { BoulderenTraining } from './pages/boulderen-page/training/training';
 // Kennis sub-pagina's
 import { KennisKnopen } from './pages/kennis-page/knopen/knopen';
 import { KennisTechnieken } from './pages/kennis-page/technieken/technieken';
-import { KennisArtikelen } from './pages/kennis-page/artikelen/artikelen';
+import { KennisReisverhalen } from './pages/kennis-page/artikelen/artikelen';
 import { KennisGidsen } from './pages/kennis-page/gidsen/gidsen';
+
+// Natuur sub-pagina's
+import { Astronavigatie } from './pages/natuur-page/astronavigatie/astronavigatie';
+import { Wildplukken } from './pages/natuur-page/wildplukken/wildplukken';
+import { Bushcraft } from './pages/natuur-page/bushcraft/bushcraft';
+import { GesteentenGeologie } from './pages/natuur-page/gesteenten-geologie/gesteenten-geologie';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -41,7 +48,8 @@ export const routes: Routes = [
 
   { path: 'hiken', component: HikenPage },
   { path: 'hiken/routes-gebieden', component: RoutesGebieden },
-  { path: 'hiken/navigatie-planning', component: NavigatiePlanning },
+  { path: 'hiken/navigatie-planning', redirectTo: 'hiken/planning', pathMatch: 'full' },
+  { path: 'hiken/planning', component: NavigatiePlanning },
   { path: 'hiken/uitrusting', component: HikenUitrusting },
   { path: 'hiken/multiday-hikes', component: MultidayHikes },
 
@@ -54,6 +62,13 @@ export const routes: Routes = [
   { path: 'kennis', component: KennisPage },
   { path: 'kennis/knopen', component: KennisKnopen },
   { path: 'kennis/technieken', component: KennisTechnieken },
-  { path: 'kennis/artikelen', component: KennisArtikelen },
+  { path: 'kennis/artikelen', redirectTo: 'kennis/reisverhalen', pathMatch: 'full' },
+  { path: 'kennis/reisverhalen', component: KennisReisverhalen },
   { path: 'kennis/gidsen', component: KennisGidsen },
+
+  { path: 'natuur', component: NatuurPage },
+  { path: 'natuur/astronavigatie', component: Astronavigatie },
+  { path: 'natuur/wildplukken', component: Wildplukken },
+  { path: 'natuur/bushcraft', component: Bushcraft },
+  { path: 'natuur/gesteenten-geologie', component: GesteentenGeologie },
 ];

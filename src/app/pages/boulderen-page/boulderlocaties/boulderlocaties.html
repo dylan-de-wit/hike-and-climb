@@ -1,3 +1,12 @@
-<section class="hero-section">
-  <h1 class="hero-title">Boulderlocaties</h1>
+<section class="subhero subhero--met-veldstrip">
+  <div class="subhero__media">
+    <img src="images/bouldering2.png" alt="Boulderblok in de natuur" />
+  </div>
+  <div class="subhero__content">
+    <span class="subhero__eyebrow">Boulderen</span>
+    <h1>Boulderlocaties</h1>
+    <p>Vind plekken met het juiste gesteente, landingen en niveau voor je sessie.</p>
+  </div>
+  <app-veldstrip [items]="veldgegevens" meta="spotkaart" />
+  <app-route-divider class="subhero__route" variant="overlay" [stops]="etappes" [actief]="actief" />
 </section>

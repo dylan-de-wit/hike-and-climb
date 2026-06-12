@@ -1,5 +1,14 @@
-<section class="hero-section">
-  <h1 class="hero-title">Materiaal</h1>
+<section class="subhero subhero--met-veldstrip">
+  <div class="subhero__media">
+    <img src="images/boulderinghero.png" alt="Boulderaar op een rots" />
+  </div>
+  <div class="subhero__content">
+    <span class="subhero__eyebrow">Boulderen</span>
+    <h1>Materiaal</h1>
+    <p>Houd je set simpel: pads, schoenen, chalk en borstels die passen bij buiten boulderen.</p>
+  </div>
+  <app-veldstrip [items]="veldgegevens" meta="gear" />
+  <app-route-divider class="subhero__route" variant="overlay" [stops]="etappes" [actief]="actief" />
 </section>
 
 <section class="sectie">

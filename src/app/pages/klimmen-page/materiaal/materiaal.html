@@ -1,15 +1,71 @@
-<section class="hero-section">
-  <h1 class="hero-title">Materiaal &<br>voorbereiding</h1>
+<section class="subhero subhero--met-veldstrip">
+  <div class="subhero__media">
+    <img src="images/rockclimbing.jpeg" alt="Klimmer op een rotswand" />
+  </div>
+  <div class="subhero__content">
+    <span class="subhero__eyebrow">Klimmen</span>
+    <h1>Materiaal &<br>voorbereiding</h1>
+    <p>Stel je klimset samen en check materiaal, route en partner voordat je instapt.</p>
+  </div>
+  <app-veldstrip [items]="veldgegevens" meta="gearcheck" />
+  <app-route-divider class="subhero__route" variant="overlay" [stops]="etappes" [actief]="actief" />
 </section>
 
 <section class="sectie">
   <div class="sectie-inner tekst-blok">
     <span class="content-eyebrow">Op een rij</span>
     <h2>Wat je nodig hebt</h2>
-    <ul class="lijst">
-      <li>Eerste punt in je opsomming</li>
-      <li>Tweede punt met wat meer uitleg erbij</li>
-      <li>Derde punt</li>
+  </div>
+  <div class="sectie-inner">
+    <ul class="badge-galerij">
+      <li class="badge-tegel">
+        <img src="pictogrammen/harnass.svg" alt="Klimgordel" />
+        <span>Klimgordel</span>
+      </li>
+      <li class="badge-tegel">
+        <img src="pictogrammen/helm.svg" alt="Helm" />
+        <span>Helm</span>
+      </li>
+      <li class="badge-tegel">
+        <img src="pictogrammen/ropesetje.svg" alt="Touw" />
+        <span>Touw</span>
+      </li>
+      <li class="badge-tegel">
+        <img src="pictogrammen/karabiners.svg" alt="Karabiners" />
+        <span>Karabiners</span>
+      </li>
+      <li class="badge-tegel">
+        <img src="pictogrammen/slinge1.svg" alt="Slinges" />
+        <span>Slinges</span>
+      </li>
+      <li class="badge-tegel">
+        <img src="pictogrammen/pofzak.svg" alt="Chalkbag" />
+        <span>Chalkbag</span>
+      </li>
     </ul>
+  </div>
+</section>
+
+<section class="sectie sectie--creme">
+  <div class="sectie-inner">
+    <span class="content-eyebrow">Essentieel</span>
+    <h2>De basis-set</h2>
+    <div class="badge-kaarten">
+      <article class="badge-kaart">
+        <img class="badge-kaart__beeld" src="pictogrammen/helm.svg" alt="" />
+        <h3>Helm</h3>
+        <p>Beschermt je hoofd tegen steenslag en stoten bij een val.</p>
+      </article>
+      <article class="badge-kaart">
+        <img class="badge-kaart__beeld" src="pictogrammen/harnass.svg" alt="" />
+        <h3>Klimgordel</h3>
+        <p>Je verbinding met het touw — comfortabel en goed afgesteld.</p>
+      </article>
+      <article class="badge-kaart">
+        <img class="badge-kaart__beeld" src="pictogrammen/ehbo.svg" alt="" />
+        <h3>EHBO</h3>
+        <p>Een compacte set voor schaafwonden en blessures onderweg.</p>
+      </article>
+    </div>
   </div>
 </section>

@@ -1,3 +1,12 @@
-<section class="hero-section">
-  <h1 class="hero-title">Toprope<br>& lead</h1>
+<section class="subhero subhero--met-veldstrip">
+  <div class="subhero__media">
+    <img src="images/climbing1.jpeg" alt="Klimmer op een rotswand" />
+  </div>
+  <div class="subhero__content">
+    <span class="subhero__eyebrow">Klimmen</span>
+    <h1>Toprope<br>& lead</h1>
+    <p>Leer de basis van zekeren, touwverloop en efficiënt klimmen op single-pitch routes.</p>
+  </div>
+  <app-veldstrip [items]="veldgegevens" meta="single-pitch" />
+  <app-route-divider class="subhero__route" variant="overlay" [stops]="etappes" [actief]="actief" />
 </section>

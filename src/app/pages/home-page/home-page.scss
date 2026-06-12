@@ -16,8 +16,7 @@
   font-family: var(--font-accent);
   font-size: 18px;
   letter-spacing: 0.2em;
-  color: var(--kleur-tekst);                   /* donkerbruine inkt */
-  /* vlak, gedempt caramel-bruin — geen glans */
+  color: var(--kleur-tekst);                  
   background:
     linear-gradient(rgba(110, 62, 24, 0.5), rgba(110, 62, 24, 0.5)),
     var(--amber);
@@ -121,37 +120,6 @@
   animation-delay: 0s;
 }
 
-/* Kleine bloemen — links, iets hoger */
-.deco-flowers {
-  left: 8%;
-  bottom: 22%;
-  width: 85px;
-  transform: rotate(-8deg);
-  animation-name: van-links;
-  animation-delay: 0.2s;
-}
-
-/* Takken — rechts bovenin */
-.deco-branches {
-  right: 4%;
-  top: 6%;
-  width: 155px;
-  transform: rotate(10deg);
-  animation-name: van-rechts;
-  animation-delay: 0.1s;
-}
-
-/* Paddenstoel — rechts, voor de foto */
-.deco-mushroom {
-  right: 7%;
-  bottom: 28%;
-  width: 72px;
-  transform: rotate(-15deg);
-  z-index: 2;
-  animation-name: van-rechts;
-  animation-delay: 0.45s;
-}
-
 /* ─── Hero foto — volledige afbeelding, verankerd onderaan ─── */
 .hero-foto-frame {
   position: absolute;
@@ -201,17 +169,22 @@
 
 /* ─── STATEMENT BLOK ─── */
 .statement-block {
-  background: var(--autumn-leaf);
+  background: var(--terra-donker);
+  width: 100%; /* Achtergrond loopt altijd over de volle breedte */
+}
+
+.statement-inner {
   display: flex;
-  align-items: flex-end;
-  gap: 80px;
-  padding: 100px 80px;
+  align-items: center;
+  gap: 100px;
+  padding: 80px 50px;
   width: 100%;
-  max-width: 100%;
+  max-width: 1300px;
+  margin: 0 auto; 
 }
 
 .statement-left {
-  flex: 1;
+  flex: 0 0 45%;
   min-width: 0;
 }
 
@@ -225,7 +198,7 @@
 }
 
 .statement-title {
-  font-family: var(--font-accent);
+  font-family: var(--font-display);
   font-size: 100px;
   font-weight: 400;
   line-height: 85%;
@@ -244,7 +217,7 @@
 
 .statement-right p {
   color: rgba(255, 255, 255, 0.85);
-  font-size: 22px;
+  font-size: 25px;
   margin: 0;
 }
 
@@ -404,12 +377,15 @@
 }
 .kaart-label {
   font-family: var(--font-accent);
+  padding-left: 8px;
   font-size: 16px;
   letter-spacing: 0.2em;
   color: var(--amber);
 }
-.kaart-titel { color: var(--papier-licht); font-size: 32px; }
-.kaart p { color: rgba(255,255,255,0.7); font-size: 18px; }
+.kaart-titel { color: var(--papier-licht); font-size: 32px; 
+  padding-left: 8px}
+.kaart p { color: rgba(255,255,255,0.7); font-size: 18px; 
+  padding-left: 8px}
 
 /* ══════════════════════════════════════
    RESPONSIVE

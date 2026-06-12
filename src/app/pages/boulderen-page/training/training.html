@@ -1,3 +1,12 @@
-<section class="hero-section">
-  <h1 class="hero-title">Training &<br>progressie</h1>
+<section class="subhero subhero--met-veldstrip">
+  <div class="subhero__media">
+    <img src="images/overhangwater.png" alt="Overhangende rots bij water" />
+  </div>
+  <div class="subhero__content">
+    <span class="subhero__eyebrow">Boulderen</span>
+    <h1>Training &<br>progressie</h1>
+    <p>Bouw kracht, mobiliteit en techniek op zonder herstel uit het oog te verliezen.</p>
+  </div>
+  <app-veldstrip [items]="veldgegevens" meta="trainingsblok" />
+  <app-route-divider class="subhero__route" variant="overlay" [stops]="etappes" [actief]="actief" />
 </section>

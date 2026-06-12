@@ -1,3 +1,12 @@
-<section class="hero-section">
-  <h1 class="hero-title">Multi-pitch</h1>
+<section class="subhero subhero--met-veldstrip">
+  <div class="subhero__media">
+    <img src="images/climbingoverhang.png" alt="Klimroute op een hoge rotswand" />
+  </div>
+  <div class="subhero__content">
+    <span class="subhero__eyebrow">Klimmen</span>
+    <h1>Multi-pitch</h1>
+    <p>Bereid langere routes voor met standplaatsen, routefinding en duidelijke communicatie.</p>
+  </div>
+  <app-veldstrip [items]="veldgegevens" meta="topo · dagroute" />
+  <app-route-divider class="subhero__route" variant="overlay" [stops]="etappes" [actief]="actief" />
 </section>

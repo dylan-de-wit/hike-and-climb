@@ -1,0 +1,243 @@
+:host {
+  display: block;
+}
+
+.route-divider {
+  position: relative;
+  background: var(--papier-creme);
+  border-radius: var(--afgerond);
+  padding: 24px 34px 24px;
+  box-shadow: inset 0 0 0 1px rgba(66, 70, 54, 0.08);
+}
+
+/* Subtiele hoogtelijnen op de achtergrond */
+.route-divider::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 160' preserveAspectRatio='none'%3E%3Cg fill='none' stroke='%23a9b4ab' stroke-width='1'%3E%3Cpath d='M0 30 C150 4 300 60 450 28 S620 52 600 34'/%3E%3Cpath d='M0 72 C150 46 300 102 450 70 S620 94 600 76'/%3E%3Cpath d='M0 116 C150 90 300 146 450 114 S620 138 600 118'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: cover;
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+.route-divider__top {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-family: var(--font-accent);
+  font-size: 13px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.route-divider__coord {
+  color: var(--kleur-tekst-licht);
+  opacity: 0.65;
+}
+
+.route-divider__baan {
+  position: relative;
+  height: 128px;
+}
+
+.route-divider__baan::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 18px;
+  background-image:
+    linear-gradient(rgba(80, 89, 76, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(80, 89, 76, 0.08) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: linear-gradient(to bottom, transparent, #000 22%, #000 78%, transparent);
+  opacity: 0.42;
+  pointer-events: none;
+}
+
+.route-divider__lijn {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  overflow: visible;
+}
+
+.route-divider__lijn path {
+  stroke: var(--lentegroen-mid);
+  stroke-width: 1.5;
+  stroke-dasharray: 1 7;
+  stroke-linecap: round;
+  opacity: 0.7;
+}
+
+.route-divider__punt {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: transparent; /* doorzichtig — je ziet de foto/het vlak erachter */
+  border: 2px solid var(--kleur-hero);
+  padding: 0;
+  cursor: pointer;
+  transition: width 0.18s ease, height 0.18s ease, background 0.18s ease,
+    border-color 0.18s ease, transform 0.18s ease;
+}
+
+/* Groter worden bij hover */
+.route-divider__punt:hover {
+  transform: translate(-50%, -50%) scale(1.3);
+}
+
+.route-divider__punt.is-actief {
+  width: 26px;
+  height: 26px;
+  background: var(--kleur-accent); /* actief = accentkleur van het thema */
+  border-color: var(--papier-creme);
+}
+
+/* Zacht pulserende ring achter de actieve stip */
+.route-divider__punt.is-actief::after {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  background: var(--kleur-accent);
+  z-index: -1;
+  pointer-events: none;
+  animation: route-divider-puls 1.8s ease-out infinite;
+}
+
+.route-divider__punt.is-actief:hover {
+  transform: translate(-50%, -50%) scale(1.18);
+}
+
+@keyframes route-divider-puls {
+  0% {
+    transform: scale(1);
+    opacity: 0.55;
+  }
+  70% {
+    transform: scale(2.5);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(2.5);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .route-divider__punt.is-actief::after {
+    animation: none;
+    opacity: 0;
+  }
+}
+
+.route-divider__stop {
+  position: absolute;
+  top: 74px;
+  transform: translateX(-50%);
+  width: 146px;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  color: inherit;
+}
+
+.route-divider__naam {
+  display: block;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1.08;
+  color: #9aa093;
+  transition: color 0.18s ease;
+}
+
+.route-divider__index {
+  display: block;
+  font-family: var(--font-accent);
+  font-size: 20px;
+  letter-spacing: 0.12em;
+  color: #9aa093;
+  margin-top: 1px;
+}
+
+.route-divider__stop.is-actief .route-divider__naam {
+  color: var(--kleur-tekst);
+}
+
+.route-divider__stop.is-actief .route-divider__index {
+  color: var(--kleur-accent);
+}
+
+@media (max-width: 768px) {
+  .route-divider__stop {
+    width: 96px;
+  }
+
+  .route-divider__naam {
+    font-size: 14px;
+  }
+}
+
+/* ── Overlay-variant: transparant, voor op een hero-foto ── */
+.route-divider--overlay {
+  background: transparent;
+  border-radius: 0;
+  padding: 0;
+  box-shadow: none;
+}
+
+.route-divider--overlay::before {
+  display: none;
+}
+
+.route-divider--overlay .route-divider__baan::before {
+  background-image:
+    linear-gradient(rgba(245, 245, 245, 0.12) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(245, 245, 245, 0.1) 1px, transparent 1px);
+  opacity: 0.28;
+}
+
+.route-divider--overlay .route-divider__coord {
+  color: var(--papier-licht);
+  opacity: 0.75;
+}
+
+.route-divider--overlay .route-divider__lijn path {
+  stroke: var(--papier-licht);
+  opacity: 0.8;
+}
+
+.route-divider--overlay .route-divider__punt {
+  border-color: var(--papier-licht);
+}
+
+.route-divider--overlay .route-divider__punt.is-actief {
+  border-color: var(--papier-licht);
+}
+
+.route-divider--overlay .route-divider__naam {
+  color: rgba(245, 245, 245, 0.62);
+}
+
+.route-divider--overlay .route-divider__index {
+  color: rgba(245, 245, 245, 0.55);
+}
+
+.route-divider--overlay .route-divider__stop.is-actief .route-divider__naam {
+  color: var(--papier-licht);
+}
+
+.route-divider--overlay .route-divider__stop.is-actief .route-divider__index {
+  color: var(--kleur-accent);
+}

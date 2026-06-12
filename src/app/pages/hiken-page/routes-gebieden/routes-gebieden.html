@@ -1,3 +1,12 @@
-<section class="hero-section">
-  <h1 class="hero-title">Routes &<br>gebieden</h1>
+<section class="subhero subhero--met-veldstrip">
+  <div class="subhero__media">
+    <img src="images/hikingwideshot.png" alt="Bergpad met wijds uitzicht" />
+  </div>
+  <div class="subhero__content">
+    <span class="subhero__eyebrow">Hiken</span>
+    <h1>Routes &<br>gebieden</h1>
+    <p>Kies routes op afstand, terrein, seizoen en het soort landschap dat je zoekt.</p>
+  </div>
+  <app-veldstrip [items]="veldgegevens" meta="kaart · trail" />
+  <app-route-divider class="subhero__route" variant="overlay" [stops]="etappes" [actief]="actief" />
 </section>

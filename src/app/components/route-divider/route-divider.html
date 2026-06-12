@@ -1,0 +1,61 @@
+<div class="route-divider" [class.route-divider--overlay]="variant() === 'overlay'">
+  <div class="route-divider__top">
+    @if (coordinaat()) {
+      <span class="route-divider__coord">{{ coordinaat() }}</span>
+    }
+  </div>
+
+  <div class="route-divider__baan">
+    <svg
+      class="route-divider__lijn"
+      [attr.viewBox]="'0 0 ' + vbW + ' ' + vbH"
+      preserveAspectRatio="none"
+      aria-hidden="true">
+      <path [attr.d]="pad()" fill="none" />
+    </svg>
+
+    @for (p of punten(); track p.i) {
+      @if (p.link) {
+        <a
+          class="route-divider__punt"
+          [class.is-actief]="p.i === actief()"
+          [style.left.%]="pct(p.x)"
+          [style.top.px]="p.y"
+          [routerLink]="p.link"
+          [attr.aria-label]="p.naam"></a>
+
+        <a
+          class="route-divider__stop"
+          [class.is-actief]="p.i === actief()"
+          [style.left.%]="pct(p.x)"
+          [routerLink]="p.link">
+          <span class="route-divider__naam">{{ p.naam }}</span>
+          <span class="route-divider__index">
+            {{ p.i === actief() && p.label ? p.label : p.nummer }}
+          </span>
+        </a>
+      } @else {
+        <button
+          type="button"
+          class="route-divider__punt"
+          [class.is-actief]="p.i === actief()"
+          [style.left.%]="pct(p.x)"
+          [style.top.px]="p.y"
+          (click)="kies(p.i, p.anchor)"
+          [attr.aria-label]="p.naam"></button>
+
+        <button
+          type="button"
+          class="route-divider__stop"
+          [class.is-actief]="p.i === actief()"
+          [style.left.%]="pct(p.x)"
+          (click)="kies(p.i, p.anchor)">
+          <span class="route-divider__naam">{{ p.naam }}</span>
+          <span class="route-divider__index">
+            {{ p.i === actief() && p.label ? p.label : p.nummer }}
+          </span>
+        </button>
+      }
+    }
+  </div>
+</div>

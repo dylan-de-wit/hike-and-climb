@@ -1,0 +1,12 @@
+<section class="subhero subhero--met-veldstrip">
+  <div class="subhero__media">
+    <img src="images/talldusk.jpeg" alt="Donker landschap bij schemering" />
+  </div>
+  <div class="subhero__content">
+    <span class="subhero__eyebrow">Natuur</span>
+    <h1>Astronavigatie</h1>
+    <p>Gebruik zon, maan en sterren als oriëntatiepunten wanneer markeringen ontbreken.</p>
+  </div>
+  <app-veldstrip [items]="veldgegevens" meta="nachtkaart" />
+  <app-route-divider class="subhero__route" variant="overlay" [stops]="etappes" [actief]="actief" />
+</section>

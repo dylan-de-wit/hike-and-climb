@@ -1,4 +1,4 @@
-<section class="hero-overlap">
+<section class="hero-overlap hero-overlap--met-route">
   <div class="hero-overlap__media">
     <img src="images/hikenhero.png" alt="Wandelaar op een bergpad met besneeuwde bergtoppen op de achtergrond" />
   </div>
@@ -8,6 +8,12 @@
     <h1>Hiken</h1>
     <p>Ontdek de beste hikes en multi-day trails op de wereld.</p>
   </div>
+  <app-veldstrip [items]="veldgegevens" meta="12° · ZW 2" />
+  <app-route-divider
+    class="hero-overlap__route"
+    variant="overlay"
+    [stops]="etappes"
+    [actief]="actief" />
 </section>
 
 <section class="blok-lijst">
@@ -27,7 +33,7 @@
       <li class="blok-item">
         <span class="item-nummer">02</span>
         <div>
-          <h3>Navigatie & planning</h3>
+          <h3>Planning</h3>
           <p>Hier komt ook meer tekst</p>
         </div>
       </li>

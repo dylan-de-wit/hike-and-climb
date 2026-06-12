@@ -1,0 +1,56 @@
+<section class="hero-overlap hero-overlap--met-route">
+  <div class="hero-overlap__media">
+    <img src="images/mountainslandscape.jpg" alt="Natuur hero" />
+  </div>
+  <div class="hero-overlap__kaart">
+    <span class="hero-overlap__kicker">Sterren · Planten · Bushcraft</span>
+    <span class="hero-overlap__lijn"></span>
+    <h1>Natuur</h1>
+    <p>Verdiep je in navigeren aan de hand van de sterren, wildplukken, bushcraft en de geologie.</p>
+  </div>
+  <app-veldstrip [items]="veldgegevens" meta="veldnotitie" />
+  <app-route-divider
+    class="hero-overlap__route"
+    variant="overlay"
+    [stops]="etappes"
+    [actief]="actief" />
+</section>
+
+<section class="blok-lijst">
+  <div class="blok-inner">
+    <div class="blok-tekst">
+      <span class="content-eyebrow">Wat je hier vindt</span>
+      <h2>Alles over natuurkennis buiten</h2>
+    </div>
+    <ul class="blok-items">
+      <li class="blok-item">
+        <span class="item-nummer">01</span>
+        <div>
+          <h3>Astronavigatie</h3>
+          <p>Navigeren met zon, maan en sterren.</p>
+        </div>
+      </li>
+      <li class="blok-item">
+        <span class="item-nummer">02</span>
+        <div>
+          <h3>Wildplukken</h3>
+          <p>Eetbare planten herkennen en verantwoord verzamelen.</p>
+        </div>
+      </li>
+      <li class="blok-item">
+        <span class="item-nummer">03</span>
+        <div>
+          <h3>Bushcraft</h3>
+          <p>Praktische vaardigheden voor buiten zijn.</p>
+        </div>
+      </li>
+      <li class="blok-item">
+        <span class="item-nummer">04</span>
+        <div>
+          <h3>Gesteenten & geologie</h3>
+          <p>Lees het landschap via steen, bodem en reliëf.</p>
+        </div>
+      </li>
+    </ul>
+  </div>
+</section>

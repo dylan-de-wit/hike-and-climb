@@ -1,5 +1,14 @@
-<section class="hero-section">
-  <h1 class="hero-title">Uitrusting</h1>
+<section class="subhero subhero--met-veldstrip">
+  <div class="subhero__media">
+    <img src="images/mountainforest.jpeg" alt="Bergbos en wandelterrein" />
+  </div>
+  <div class="subhero__content">
+    <span class="subhero__eyebrow">Hiken</span>
+    <h1>Uitrusting</h1>
+    <p>Neem mee wat je nodig hebt, zonder je rugzak onnodig zwaar te maken.</p>
+  </div>
+  <app-veldstrip [items]="veldgegevens" meta="paklijst" />
+  <app-route-divider class="subhero__route" variant="overlay" [stops]="etappes" [actief]="actief" />
 </section>
 
 <section class="sectie">

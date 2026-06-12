@@ -1,0 +1,12 @@
+<section class="subhero subhero--met-veldstrip">
+  <div class="subhero__media">
+    <img src="images/mountainpeak.png" alt="Bergtop en rotsformatie" />
+  </div>
+  <div class="subhero__content">
+    <span class="subhero__eyebrow">Natuur</span>
+    <h1>Gesteenten &<br>geologie</h1>
+    <p>Lees het landschap via gesteente, lagen, erosie en de vorm van het terrein.</p>
+  </div>
+  <app-veldstrip [items]="veldgegevens" meta="veldsteen" />
+  <app-route-divider class="subhero__route" variant="overlay" [stops]="etappes" [actief]="actief" />
+</section>

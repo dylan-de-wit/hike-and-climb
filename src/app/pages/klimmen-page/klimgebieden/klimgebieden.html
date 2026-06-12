@@ -1,3 +1,53 @@
-<section class="hero-section">
-  <h1 class="hero-title">Klimgebieden</h1>
+<section class="subhero subhero--met-veldstrip">
+  <div class="subhero__media">
+    <img src="images/overhangwater2.png" alt="" />
+  </div>
+
+  <div class="subhero__content">
+    <span class="subhero__eyebrow">Klimmen</span>
+    <h1>Klimgebieden</h1>
+    <p>Korte introzin over deze subpagina.</p>
+  </div>
+
+  <app-veldstrip [items]="veldgegevens" meta="gebiedskaart" />
+  <app-route-divider
+    class="subhero__route"
+    variant="overlay"
+    [stops]="secties"
+    [(actief)]="actieveSectie" />
+</section>
+
+<section class="sectie" id="overzicht">
+  <div class="sectie-inner tekst-blok">
+    <span class="content-eyebrow">Overzicht</span>
+    <h2>De mooiste klimgebieden</h2>
+    <p>
+      Een korte introductie op de gebieden die we behandelen — van kalksteen aan
+      zee tot graniet in de bergen.
+    </p>
+  </div>
+</section>
+
+<section class="sectie sectie--creme" id="gebieden">
+  <div class="sectie-inner tekst-blok">
+    <span class="content-eyebrow">Gebieden</span>
+    <h2>Per regio</h2>
+    <p>Beschrijving van de afzonderlijke gebieden, met hun karakter en routes.</p>
+  </div>
+</section>
+
+<section class="sectie" id="seizoen">
+  <div class="sectie-inner tekst-blok">
+    <span class="content-eyebrow">Seizoen</span>
+    <h2>Wanneer ga je?</h2>
+    <p>Het beste seizoen, het weer en de ideale omstandigheden per gebied.</p>
+  </div>
+</section>
+
+<section class="sectie sectie--creme" id="tips">
+  <div class="sectie-inner tekst-blok">
+    <span class="content-eyebrow">Tips</span>
+    <h2>Goed om te weten</h2>
+    <p>Praktische tips: toegang, lokale regels en respect voor de natuur.</p>
+  </div>
 </section>

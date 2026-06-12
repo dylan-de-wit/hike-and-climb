@@ -1,4 +1,4 @@
-<section class="hero-overlap">
+<section class="hero-overlap hero-overlap--met-route">
   <div class="hero-overlap__media">
     <img src="images/boulderinghero.png" alt="Bouldering on a rock" />
   </div>
@@ -8,6 +8,12 @@
     <h1>Boulderen</h1>
     <p>Ontdek de mooiste boulderproblemen voor beginners en gevorderden.</p>
   </div>
+  <app-veldstrip [items]="veldgegevens" meta="18° · droog" />
+  <app-route-divider
+    class="hero-overlap__route"
+    variant="overlay"
+    [stops]="etappes"
+    [actief]="actief" />
 </section>
 
 <section class="blok-lijst">

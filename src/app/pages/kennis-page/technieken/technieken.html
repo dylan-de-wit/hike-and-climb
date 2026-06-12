@@ -1,3 +1,12 @@
-<section class="hero-section">
-  <h1 class="hero-title">Technieken</h1>
+<section class="subhero subhero--met-veldstrip">
+  <div class="subhero__media">
+    <img src="images/climbing1.jpeg" alt="Klimtechniek op een rotswand" />
+  </div>
+  <div class="subhero__content">
+    <span class="subhero__eyebrow">Kennis</span>
+    <h1>Technieken</h1>
+    <p>Praktische technieken voor beter bewegen, plannen en handelen buiten.</p>
+  </div>
+  <app-veldstrip [items]="veldgegevens" meta="skills" />
+  <app-route-divider class="subhero__route" variant="overlay" [stops]="etappes" [actief]="actief" />
 </section>

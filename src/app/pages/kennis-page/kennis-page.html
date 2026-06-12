@@ -1,4 +1,4 @@
-<section class="hero-overlap">
+<section class="hero-overlap hero-overlap--met-route">
   <div class="hero-overlap__media">
     <img src="images/mountainhero.jpg" alt="Mountain ridge and a lake" />
   </div>
@@ -8,6 +8,12 @@
     <h1>Kennis</h1>
     <p>Leer de belangrijkste knopen voor klimmen, hiken en overleven in de natuur.</p>
   </div>
+  <app-veldstrip [items]="veldgegevens" meta="offline · gids" />
+  <app-route-divider
+    class="hero-overlap__route"
+    variant="overlay"
+    [stops]="etappes"
+    [actief]="actief" />
 </section>
 
 <section class="blok-lijst">

@@ -1,3 +1,12 @@
-<section class="hero-section">
-  <h1 class="hero-title">Gidsen &<br>downloads</h1>
+<section class="subhero subhero--met-veldstrip">
+  <div class="subhero__media">
+    <img src="images/mountainpeak.png" alt="Bergtop in helder licht" />
+  </div>
+  <div class="subhero__content">
+    <span class="subhero__eyebrow">Kennis</span>
+    <h1>Gidsen &<br>downloads</h1>
+    <p>Verzamel praktische gidsen die je kunt bewaren, printen of offline meenemen.</p>
+  </div>
+  <app-veldstrip [items]="veldgegevens" meta="download" />
+  <app-route-divider class="subhero__route" variant="overlay" [stops]="etappes" [actief]="actief" />
 </section>

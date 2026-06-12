@@ -1,0 +1,96 @@
+:host {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: var(--veldstrip-bottom, 0); /* pagina kan inkorten zodat de divider eronder past */
+  width: 210px;
+  display: flex;
+  z-index: 3;
+}
+
+.veldstrip {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 28px 26px;
+  text-align: right;
+  border-left: 1px solid rgba(245, 245, 245, 0.22);
+  background: rgba(16, 18, 16, 0.26);
+  color: var(--kleur-hero-ink);
+}
+
+.veldstrip__kicker {
+  font-family: var(--font-accent);
+  font-size: 23px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--kleur-hero);
+  margin-bottom: 22px;
+}
+
+.veldstrip__items {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.veldstrip__label {
+  display: block;
+  font-family: var(--font-accent);
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  opacity: 0.62;
+}
+
+.veldstrip__waarde {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 1.15;
+  margin-top: 2px;
+}
+
+.veldstrip__meta {
+  margin-top: auto;
+  padding-top: 18px;
+  font-family: var(--font-display);
+  font-size: 15px;
+  opacity: 0.9;
+}
+
+/* Op smal scherm: geen rail meer, maar een strip onder de titel */
+@media (max-width: 900px) {
+  :host {
+    position: static;
+    width: 100%;
+  }
+
+  .veldstrip {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    gap: 16px 24px;
+    text-align: left;
+    border-left: none;
+    border-top: 3px solid var(--kleur-accent);
+    background: var(--kleur-hero);
+  }
+
+  .veldstrip__kicker {
+    width: 100%;
+    margin-bottom: 0;
+  }
+
+  .veldstrip__items {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 16px 24px;
+  }
+
+  .veldstrip__meta {
+    margin-top: 0;
+    padding-top: 0;
+  }
+}
