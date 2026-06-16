@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
-import { RouteDivider } from '../../../components/route-divider/route-divider';
+import { RouteDivider, RouteStop } from '../../../components/route-divider/route-divider';
 import { VeldItem, Veldstrip } from '../../../components/veldstrip/veldstrip';
-import { KLIMMEN_ETAPPES } from '../klimmen-etappes';
 
 @Component({
   selector: 'app-klimmen-materiaal',
@@ -12,12 +11,18 @@ import { KLIMMEN_ETAPPES } from '../klimmen-etappes';
 })
 export class KlimmenMateriaal {
   readonly veldgegevens: VeldItem[] = [
-    { label: 'Set', waarde: 'helm · gordel' },
-    { label: 'Touw', waarde: 'dynamisch' },
-    { label: 'Rack', waarde: 'setjes' },
+    { label: 'Basis gear', waarde: '8 items' },
+    { label: 'Touw', waarde: 'minstens 1' },
+    { label: 'Budget', waarde: '€€+' },
     { label: 'Check', waarde: 'partner' },
   ];
 
-  readonly etappes = KLIMMEN_ETAPPES;
-  readonly actief = 2;
+  readonly secties: RouteStop[] = [
+    { naam: 'Touwen', anchor: 'touwen' },
+    { naam: 'Zekering', anchor: 'zekering' },
+    { naam: 'Persoonlijk', anchor: 'persoonlijk' },
+    { naam: 'Starten', anchor: 'starten' },
+  ];
+
+  actieveSectie = 0;
 }

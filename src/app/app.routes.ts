@@ -7,7 +7,7 @@ import { KennisPage } from './pages/kennis-page/kennis-page';
 import { NatuurPage } from './pages/natuur-page/natuur-page';
 
 // Klimmen sub-pagina's
-import { TopropeLead } from './pages/klimmen-page/toprope-lead/toprope-lead';
+import { SinglePitch } from './pages/klimmen-page/single-pitch/single-pitch';
 import { MultiPitch } from './pages/klimmen-page/multi-pitch/multi-pitch';
 import { KlimmenMateriaal } from './pages/klimmen-page/materiaal/materiaal';
 import { Klimgebieden } from './pages/klimmen-page/klimgebieden/klimgebieden';
@@ -41,7 +41,7 @@ export const routes: Routes = [
   { path: 'home', component: HomePage },
 
   { path: 'klimmen', component: KlimmenPage },
-  { path: 'klimmen/toprope-lead', component: TopropeLead },
+  { path: 'klimmen/single-pitch', component: SinglePitch },
   { path: 'klimmen/multi-pitch', component: MultiPitch },
   { path: 'klimmen/materiaal', component: KlimmenMateriaal },
   { path: 'klimmen/klimgebieden', component: Klimgebieden },

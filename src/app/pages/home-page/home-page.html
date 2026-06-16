@@ -1,7 +1,9 @@
 <!-- ═══ HERO ═══ -->
 <section class="hero-section">
-  <span class="hero-badge">Klimmen · Hiken · Boulderen</span>
-  <h1 class="hero-title">Hike<br>& Climb</h1>
+  <div class="hero-kop">
+    <h1 class="hero-title">Hike & climb</h1>
+    <span class="kop-script__sub hero-sub">Klimmen · Hiken · Boulderen</span>
+  </div>
 
   <!-- Brede hero-foto — schuift van links in -->
   <div class="hero-foto-frame" aria-hidden="true">
@@ -14,19 +16,54 @@
   <img src="illustrations/redwoodtree.svg" alt="" aria-hidden="true" class="hero-tree hero-tree--rechts" />
 </section>
 
-<!-- ═══ STATEMENT BLOK — gids ═══ -->
-<section class="statement-block">
-  <div class="statement-inner"> 
-    <div class="statement-left">
-      <span class="statement-label">Download de gids</span>
-      <h2 class="statement-title">voor single-pitch & multi-pitch</h2>
-    </div>
-    <div class="statement-right">
-      <p>Lees alles over de techniek <br> rondom buiten klimmen.</p>
-      <a href="downloads/June 2026 Climbing Guide Single & Multi-pitch.pdf" download class="btn-download">
-        Download de gids →
-      </a>
-    </div>
+<!--Vier kaarten met hoofdpagina's -->
+<section class="kaarten-blok">
+  <div class="kaarten-kop">
+    <h2 class="kaarten-kop__titel">Kies je terrein</h2>
+  </div>
+  <div class="kaarten-inner">
+    <a class="kaart" routerLink="/klimmen">
+      <div class="kaart-afbeelding">
+        <img src="images/climbingretro.jpg" alt="Klimmer op een rotswand" />
+      </div>
+      <span class="kaart-label">Klimmen</span>
+      <h2 class="kaart-titel">Single-pitch<br>& multi-pitch</h2>
+      <p>Lees hier alles wat je moet weten over sportklimmen en wat je nodig hebt om je eerste pitch te halen.</p>
+    </a>
+    <a class="kaart" routerLink="/hiken">
+      <div class="kaart-afbeelding">
+        <img src="images/hikingheroo.jpg" alt="Wandelaar op een bergpad met besneeuwde bergtoppen op de achtergrond" />
+      </div>
+      <span class="kaart-label">Hiken</span>
+      <h2 class="kaart-titel">Trails, gear<br>& planning</h2>
+      <p>Kies je volgende single-day of multi-day hike, en ga goed voorbereid op pad.</p>
+    </a>
+    <a class="kaart" routerLink="/boulderen">
+      <div class="kaart-afbeelding">
+        <img src="images/boulderheroo.jpg" alt="Bouldering on a rock" />
+      </div>
+      <span class="kaart-label">Boulderen</span>
+      <h2 class="kaart-titel">Buiten & binnen<br>boulderen</h2>
+      <p>Ontdek hier alles over grades, training, techniek & locaties.</p>
+    </a>
+    <a class="kaart" routerLink="/natuur">
+      <div class="kaart-afbeelding">
+        <img src="images/natuurheroo.jpg" alt="Natuurlandschap met bos en bergen" />
+      </div>
+      <span class="kaart-label">Natuur</span>
+      <h2 class="kaart-titel">Flora, geologie & navigatie</h2>
+      <p>Algemene kennis voor wie het liefst buiten leeftFlora, fauna en de geologie van het landschap.</p>
+    </a>
+  </div>
+</section>
+
+<!--Floral banner//-->
+<section class="floral-banner">
+  <div class="floral-banner__paneel">
+    <span class="floral-banner__kicker">✦ Klimgids · Juni 2026 ✦</span>
+    <h2 class="floral-banner__titel">Single- &<br>multi-pitch</h2>
+    <p class="floral-banner__tekst">Lees alles over de techniek rondom buiten klimmen.</p>
+    <a href="downloads/June 2026 Climbing Guide Single & Multi-pitch.pdf" class="floral-banner__knop">Download de gids →</a>
   </div>
 </section>
 
@@ -34,42 +71,69 @@
 <section class="content-section">
   <div class="content-inner">
     <div class="content-image">
-      <img src="images/bouldering2.png" alt="Bouldering nature moss" />
+      <img src="images/overhang2.jpg" alt="Overhang klimmen" />
     </div>
     <div class="content-text">
-      <span class="content-eyebrow">Hier komt tekst</span>
-      <h2>Tekst en titel</h2>
-      <p>Hier komt een tekst over de missie van Hike & Climb en waarom dit platform bestaat voor iedereen die buiten wil zijn.</p>
+      <span class="content-eyebrow">Wie zijn wij?</span>
+      <h2>Klim & hike <br> fanatics</h2>
+      <p>Dit is een website gemaakt door en voor mensen met <br> een passie voor klimmen, hiken en natuur!</p>
     </div>
   </div>
 </section>
 
-<section class="kaarten-blok">
-  <div class="kaarten-inner">
-    <a class="kaart" routerLink="/klimmen">
-      <div class="kaart-afbeelding">
-        <img src="images/rockclimbing.jpeg" alt="Klimmer op een rotswand" />
-      </div>
-      <span class="kaart-label">Klimmen</span>
-      <h2 class="kaart-titel">Singlepitch<br>voor beginners</h2>
-      <p>Alles wat je nodig hebt om je eerste pitch te klimmen.</p>
-    </a>
-    <a class="kaart" routerLink="/hiken">
-      <div class="kaart-afbeelding">
-        <img src="images/hikenhero.png" alt="Wandelaar op een bergpad met besneeuwde bergtoppen op de achtergrond" />
-      </div>
-      <span class="kaart-label">Hiken</span>
-      <h2 class="kaart-titel">Dagtochten<br>in de Alpen</h2>
-      <p>Drie routes met spectaculaire uitzichten.</p>
-    </a>
-    <a class="kaart" routerLink="/boulderen">
-      <div class="kaart-afbeelding">
-        <img src="images/boulderinghero.png" alt="Bouldering on a rock" />
-      </div>
-      <span class="kaart-label">Boulderen</span>
-      <h2 class="kaart-titel">Buiten boulderen<br>in Fontainebleau</h2>
-      <p>De beste grades om te trainen.</p>
-    </a>
+<!-- ═══ POSTER-KAARTGRID (Anderson-richting) ═══ -->
+<section class="poster-sectie">
+  <div class="poster-sectie__inner">
+    <div class="poster-sectie__kop">
+      <span class="poster-sectie__kicker">Veldgids</span>
+      <h2>Klimmen en hiken door de seizoenen</h2>
+    </div>
+
+    <div class="poster-grid">
+      <a class="poster-kaart" routerLink="/hiken">
+        <div class="poster-kaart__beeld">
+          <span class="poster-kaart__merk">Winter</span>
+          <img src="illustrations/posters/raindeersnow.png" alt="Rendieren in een besneeuwd dennenbos" />
+        </div>
+        <div class="poster-kaart__banner">
+          <h3 class="poster-kaart__titel">Wintertochten</h3>
+          <p class="poster-kaart__sub">Hiken door sneeuw en stilte.</p>
+        </div>
+      </a>
+
+      <a class="poster-kaart" routerLink="/hiken/routes-gebieden">
+        <div class="poster-kaart__beeld">
+          <span class="poster-kaart__merk">Herfst</span>
+          <img src="illustrations/posters/birchtree.png" alt="Berken in herfstkleuren met een hert" />
+        </div>
+        <div class="poster-kaart__banner">
+          <h3 class="poster-kaart__titel">Herfstroutes</h3>
+          <p class="poster-kaart__sub">Gouden berken en lange paden.</p>
+        </div>
+      </a>
+
+      <a class="poster-kaart" routerLink="/natuur">
+        <div class="poster-kaart__beeld">
+          <span class="poster-kaart__merk">Bos</span>
+          <img src="illustrations/posters/dearwaterfall.png" alt="Hert bij een waterval in een schemerig bos" />
+        </div>
+        <div class="poster-kaart__banner">
+          <h3 class="poster-kaart__titel">Bosgebieden</h3>
+          <p class="poster-kaart__sub">Leven langs het water.</p>
+        </div>
+      </a>
+
+      <a class="poster-kaart" routerLink="/natuur/wildplukken">
+        <div class="poster-kaart__beeld">
+          <span class="poster-kaart__merk">Zomer</span>
+          <img src="illustrations/posters/flowerfield.png" alt="Bloemenveld in de zomer" />
+        </div>
+        <div class="poster-kaart__banner">
+          <h3 class="poster-kaart__titel">Wildplukken</h3>
+          <p class="poster-kaart__sub">Velden vol kleur en kruiden.</p>
+        </div>
+      </a>
+    </div>
   </div>
 </section>
 
@@ -85,17 +149,17 @@
         </span>
         <div>
           <h3>Wildkamperen</h3>
-          <p>Korte uitleg bij dit onderwerp.</p>
+          <p>Waar het mag en hoe je geen sporen achterlaat.</p>
         </div>
       </div>
 
       <div class="icon-kaart">
         <span class="icon-kaart__icon icon-kaart__icon--beeld">
-          <img src="pictogrammen/bouldershoe2.svg" alt="" aria-hidden="true" />
+          <img src="pictogrammen/grepen.svg" alt="" aria-hidden="true" />
         </span>
         <div>
           <h3>Bouldertechnieken</h3>
-          <p>Korte uitleg bij dit onderwerp.</p>
+          <p>Voetwerk, balans en lichaamsspanning op de muur.</p>
         </div>
       </div>
 
@@ -105,7 +169,7 @@
         </span>
         <div>
           <h3>Inpaklijst voor multi-day hiken</h3>
-          <p>Korte uitleg bij dit onderwerp.</p>
+          <p>Alles wat mee moet, niets te veel.</p>
         </div>
       </div>
 
@@ -115,7 +179,7 @@
         </span>
         <div>
           <h3>Klimmer's essentials</h3>
-          <p>Korte uitleg bij dit onderwerp.</p>
+          <p>De basisset die je bij elke klim nodig hebt.</p>
         </div>
       </div>
 
@@ -125,7 +189,7 @@
         </span>
         <div>
           <h3>Plannen en navigeren</h3>
-          <p>Korte uitleg bij dit onderwerp.</p>
+          <p>Route uitstippelen met kaart en kompas.</p>
         </div>
       </div>
 
@@ -135,85 +199,9 @@
         </span>
         <div>
           <h3>Klimtechnieken</h3>
-          <p>Korte uitleg bij dit onderwerp.</p>
+          <p>Grip, balans en efficiënt omhoog komen.</p>
         </div>
       </div>
     </div>
-  </div>
-</section>
-
-<section class="sectie">
-  <div class="sectie-inner">
-    <div class="split">
-      <div class="split__paneel split__paneel--kleur">
-        <span class="content-eyebrow">Links</span>
-        <h2>Gekleurd paneel</h2>
-        <p>Tekst op het themavlak.</p>
-      </div>
-      <div class="split__paneel split__paneel--creme">
-        <h2>Rechter paneel</h2>
-        <p>Tekst op vlak ernaast.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="sectie">
-  <div class="sectie-inner asym">
-    <div class="asym__groot">
-      <span class="content-eyebrow">Uitgelicht</span>
-      <h2>Het grote onderwerp</h2>
-      <p>Hier komt je belangrijkste of langste tekst, in het brede vlak links.</p>
-    </div>
-    <div class="asym__kolom">
-      <div class="asym__klein">
-        <h3>Klein punt</h3>
-        <p>Een korte toelichting.</p>
-      </div>
-      <div class="asym__klein">
-        <h3>Nog een punt</h3>
-        <p>Een korte toelichting.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="sectie">
-  <div class="sectie-inner tekst-blok">
-    <span class="content-eyebrow">Introductie</span>
-    <h2>Kop van je sectie</h2>
-    <p>Je eerste alinea met uitleg. Hier vertel je waar deze pagina over gaat.</p>
-    <p>Een tweede alinea voor extra context of details.</p>
-  </div>
-</section>
-
-<section class="sectie sectie--creme">
-  <div class="media-blok media-blok--flip">
-    <div class="media-blok__media">
-      <img src="images/bomen.jpeg" alt="Beschrijving" />
-    </div>
-    <div class="media-blok__tekst">
-      <span class="content-eyebrow">Onderwerp</span>
-      <h2>Titel naast de foto</h2>
-      <p>Tekst die de afbeelding toelicht.</p>
-    </div>
-  </div>
-</section>
-
-<section class="uitgelicht">
-  <div class="uitgelicht__inner">
-    <p>"Een krachtige uitspraak of belangrijk inzicht dat je wilt benadrukken."</p>
-  </div>
-</section>
-
-<section class="sectie">
-  <div class="sectie-inner tekst-blok">
-    <span class="content-eyebrow">Op een rij</span>
-    <h2>Wat je nodig hebt</h2>
-    <ul class="lijst">
-      <li>Eerste punt in je opsomming</li>
-      <li>Tweede punt met wat meer uitleg erbij</li>
-      <li>Derde punt</li>
-    </ul>
   </div>
 </section>

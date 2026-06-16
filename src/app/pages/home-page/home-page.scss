@@ -4,45 +4,36 @@
 
 /* ─── HERO ─── */
 .hero-section {
-  background: var(--lentegroen);
+  background: var(--mos-donker);
   min-height: 85vh;
   justify-content: center;
   gap: 32px;
   margin: 0;          /* geen ondermarge → oranje blok sluit flush aan */
 }
-
-/* ─── Retro patch / badge — jaren 70, mat ─── */
-.hero-badge {
-  font-family: var(--font-accent);
-  font-size: 18px;
-  letter-spacing: 0.2em;
-  color: var(--kleur-tekst);                  
-  background:
-    linear-gradient(rgba(110, 62, 24, 0.5), rgba(110, 62, 24, 0.5)),
-    var(--amber);
-  padding: 11px 30px;
-  border-radius: 8px;                          /* rond rechthoekje = patch */
-  border: 3px solid var(--terra-donker);       /* dikke merrow-rand        */
-  box-shadow: 0 3px 10px rgba(38, 28, 21, 0.18);
-}
-
-/* Gestikte binnenrand — embroidery-effect */
-.hero-badge::before {
-  content: '';
-  position: absolute;
-  inset: 4px;
-  border: 1.5px dashed rgba(38, 28, 21, 0.4);
-  border-radius: 4px;
-  pointer-events: none;
-}
-
 .hero-section .hero-title {
-  color: var(--papier-licht);
-  font-size: 120px;
-  line-height: 90%;
+  font-family: 'Yellowtail', cursive;          /* script-opmaak (Adventure bound) */
+  font-size: clamp(180px, 9vw, 92px)!important;  /* hero-titel = groot, maar niet te groot */
+  line-height: 0.95;
+  font-weight:550;
+  color: var(--terra-licht);
   text-align: center;
-  text-shadow: 0 2px 30px rgba(38, 28, 21, 0.5),
-               0 1px 4px  rgba(38, 28, 21, 0.35);
+  transform: rotate(-5deg);
+  margin: 0 0 4px;
+}
+
+/* Hero-kop = titel + sub strak onder elkaar, boven de bomen */
+.hero-kop {
+  position: relative;
+  z-index: 3;
+  text-align: center;
+}
+.hero-sub {
+  position: relative;
+  z-index: 3;
+  animation: fade-omhoog 0.6s ease-out 0.28s both;
+  color: white;
+  text-shadow: 0 1px 3px rgba(20, 24, 16, 0.55),
+               0 2px 12px rgba(20, 24, 16, 0.4);
 }
 
 .hero-section .hero-body {
@@ -112,7 +103,7 @@
 /* Grote boom — links onderin */
 .deco-pinetree {
   left: 2%;
-  bottom: 0;
+  bottom: 0px;
   width: 210px;
   transform: rotate(4deg);
   transform-origin: bottom center;
@@ -149,7 +140,7 @@
 /* ─── Hero bomen — schuiven van onderaf in ─── */
 .hero-tree {
   position: absolute;
-  bottom: 0;
+  bottom: -10px;
   height: auto;                  /* volledige afbeelding, niet bijgesneden */
   z-index: 2;                    /* vóór de foto */
   pointer-events: none;
@@ -252,8 +243,10 @@
   flex: 1;
   min-width: 0;
   height: 600px;
-  border-radius: var(--afgerond);
+  border-radius: 5px;                          /* subtiele ronding */
   overflow: hidden;
+  border: 8px solid #F0E9D1;                   /* poster-frame om de buitenkant */
+  box-shadow: 0 0 0 1px rgba(38, 28, 21, 0.16); /* dunne rand zodat het frame altijd afsteekt */
 }
 
 .content-image img {
@@ -331,26 +324,69 @@
 }
 /*Kaarten blok*/
 .kaarten-blok {
+  position: relative;
   background: var(--groen-donker);
-  padding: 100px 80px;
+  padding: 96px 80px;
   width: 100%;
   max-width: 100%;
+  overflow: hidden;
 }
+/* Drukkorrel over de groene band — gedrukt veldgids-gevoel */
+.kaarten-blok::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 240 240' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='k'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23k)'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+  opacity: 0.07;
+  mix-blend-mode: overlay;
+}
+
+/* Veldgids-kop boven de kaarten */
+.kaarten-kop {
+  position: relative;
+  z-index: 1;
+  max-width: 1315px;
+  margin: 0 auto 48px;
+  padding-bottom: 20px;
+  text-align: center;          /* centreert de kicker + titel binnen de brede kop */
+  border-bottom: 1px solid rgba(245, 245, 245, 0.18);
+}
+.kaarten-kop__kicker {
+  display: block;
+  font-family: var(--font-accent);
+  font-size: 17px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--amber);
+  margin-bottom: 10px;
+}
+.kaarten-kop__titel {
+  color: var(--papier-licht);
+  margin: 0;
+}
+
 .kaarten-inner {
+  position: relative;
+  z-index: 1;
   display: flex;
   gap: 32px;
   max-width: 1315px;
   margin: 0 auto;
   min-width: 0;
+  counter-reset: kaart;
 }
 .kaart {
+  position: relative;
   flex: 1;
   min-width: 0;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 14px;
   text-decoration: none;
   cursor: pointer;
+  counter-increment: kaart;
   transition: transform 0.3s ease;
 }
 
@@ -363,11 +399,14 @@
 }
 
 .kaart-afbeelding {
+  position: relative;
   width: 100%;
   height: 300px;
-  border-radius: var(--afgerond);
+  border-radius: 4px;                            /* strak/poster i.p.v. var(--afgerond) */
   overflow: hidden;
-  margin-bottom: 8px;
+  margin-bottom: 14px;
+  border: 8px solid #F0E9D1;                     /* cream poster-frame, als de content-foto's */
+  box-shadow: 0 8px 20px rgba(20, 24, 16, 0.38); /* tilt het 'ingelijste' poster los van de band */
 }
 .kaart-afbeelding img {
   width: 100%;
@@ -375,17 +414,40 @@
   object-fit: cover;
   transition: transform 0.4s ease;
 }
+/* Genummerd stempel (01–04) linksboven op de foto */
+.kaart::before {
+  content: counter(kaart, decimal-leading-zero);
+  position: absolute;
+  top: 22px;
+  left: 22px;
+  z-index: 2;
+  font-family: var(--font-accent);
+  font-size: 16px;
+  letter-spacing: 0.12em;
+  color: var(--groen-donker);
+  background: var(--amber);
+  padding: 3px 10px;
+  border-radius: 2px;
+}
 .kaart-label {
   font-family: var(--font-accent);
-  padding-left: 8px;
+  padding-left: 4px;
   font-size: 16px;
   letter-spacing: 0.2em;
+  text-transform: uppercase;
   color: var(--amber);
 }
-.kaart-titel { color: var(--papier-licht); font-size: 32px; 
-  padding-left: 8px}
-.kaart p { color: rgba(255,255,255,0.7); font-size: 18px; 
-  padding-left: 8px}
+.kaart-titel {
+  color: var(--papier-licht);
+  font-size: 30px;
+  margin: 0;
+  padding-left: 4px;
+}
+.kaart p {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 17px;
+  padding-left: 4px;
+}
 
 /* ══════════════════════════════════════
    RESPONSIVE
@@ -464,4 +526,86 @@
 
   .quote-block      { padding: 60px 20px; }
   .quote-text       { font-size: 40px; }
+}
+
+.floral-banner {
+  position: relative;
+  padding: 96px 20px;
+  background: url('/backgrounds/floralbackground.png') center / cover no-repeat;
+  overflow: hidden;
+}
+/* Warme retro-tint over de bloemen — bindt de kleuren samen */
+.floral-banner::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(rgba(156, 72, 24, 0.32), rgba(81, 87, 49, 0.40));
+  mix-blend-mode: multiply;
+  pointer-events: none;
+}
+
+/* Boogvormig cream paneel = de retro 'arch' */
+.floral-banner__paneel {
+  position: relative;
+  z-index: 1;
+  max-width: 620px;
+  margin: 0 auto;
+  text-align: center;
+  background: rgba(240, 235, 225, 0.93);
+  border: 2px solid var(--terra-donker);
+  border-radius: 240px 240px 24px 24px;     /* hoge boog boven */
+  padding: 70px 52px 54px;
+  box-shadow: 0 22px 55px rgba(38, 28, 21, 0.28);
+}
+/* Dubbele binnenrand — poster/patch-detail */
+.floral-banner__paneel::after {
+  content: '';
+  position: absolute;
+  inset: 11px;
+  border: 1.5px solid var(--terra-licht);
+  border-radius: 230px 230px 16px 16px;
+  pointer-events: none;
+}
+
+.floral-banner__kicker {
+  display: block;
+  font-family: var(--font-accent);
+  font-size: 16px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--terra-donker);
+  margin-bottom: 14px;
+}
+.floral-banner__titel {
+  font-family: var(--font-heading);          /* Limelight = retro display */
+  color: var(--mos-donker);
+  font-size: 50px;
+  line-height: 1.05;
+  margin: 0 0 18px;
+}
+.floral-banner__tekst {
+  color: var(--kleur-tekst-licht);
+  font-size: 18px;
+  max-width: 44ch;
+  margin: 0 auto 30px;
+}
+.floral-banner__knop {
+  display: inline-block;
+  font-family: var(--font-accent);
+  font-size: 19px;
+  letter-spacing: 0.08em;
+  background: var(--terra-donker);
+  color: var(--papier-licht);
+  padding: 14px 36px;
+  border-radius: 100px;
+  text-decoration: none;
+  transition: background 0.2s ease;
+}
+.floral-banner__knop:hover { background: var(--terra-licht); }
+
+@media (max-width: 600px) {
+  .floral-banner { padding: 60px 16px; }
+  .floral-banner__paneel { padding: 56px 28px 44px; border-radius: 160px 160px 18px 18px; }
+  .floral-banner__paneel::after { border-radius: 152px 152px 12px 12px; }
+  .floral-banner__titel { font-size: 38px; }
 }

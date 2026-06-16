@@ -1,0 +1,269 @@
+<section class="subhero subhero--met-veldstrip">
+  <div class="subhero__media">
+    <img src="images/klimmersunset.jpg" alt="Klimmer op rotswand" />
+  </div>
+  <div class="subhero__content">
+    <span class="subhero__eyebrow">Klimmen</span>
+    <h1>Single-pitch</h1>
+    <p>Leer de basis van zekeren, touwverloop en efficiënt klimmen op single-pitch routes.</p>
+  </div>
+  <app-veldstrip [items]="veldgegevens" meta="single-pitch" />
+  <app-route-divider
+    class="subhero__route"
+    variant="overlay"
+    [stops]="secties"
+    [(actief)]="actieveSectie" />
+</section>
+
+<!-- ═══ 1. HET VERSCHIL ═══ -->
+<section class="sectie" id="verschil">
+  <div class="sectie-inner">
+    <div class="media-blok">
+      <div class="media-blok__media">
+        <img src="images/redrock.jpg" alt="Klimmer red rock" />
+      </div>
+      <div class="media-blok__tekst">
+        <h2>Wat is single-pitch?</h2>
+        <p>Bij <strong>single-pitch</strong> klim je één touwlengte van de grond tot het ankerpunt bovenaan. Je zekeraar blijft beneden, waardoor communicatie en partnercheck overzichtelijk blijven.</p>
+        <p>Onderweg gebruik je de vaste tussenzekeringen of het bovenanker van de route. De kern blijft hetzelfde: veilig instappen, helder zekeren en bovenaan gecontroleerd ombouwen.</p>
+        <p>Een <strong>single-pitch</strong> route is een route die je in één touwlengte kunt klimmen, van de grond tot het ankerpunt bovenaan. Daarna bouw je om en laat je je zakken. Bij multi-pitch is de route langer en klim je meerdere standplaatsen na elkaar.</p>
+        <ul class="lijst">
+          <li>Een overzichtelijke route van de grond tot één ankerpunt</li>
+          <li>Duidelijke communicatie tussen klimmer en zekeraar</li>
+          <li>Single-pitch: een route die je in één touwlengte klimt, met één anker bovenin</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 2. STANDPLAATS MAKEN ═══ -->
+<section class="sectie sectie--creme" id="standplaats">
+  <div class="sectie-inner tekst-blok">
+    <span class="content-eyebrow">Techniek</span>
+    <h2>Standplaats maken</h2>
+    <p>Een goede standplaats is je veiligheidsanker bovenaan de route. Je maakt jezelf vast voordat je de naklimmer zevert.</p>
+  </div>
+  <div class="sectie-inner" style="margin-top: 48px;">
+    <div class="asym">
+      <div class="asym__groot">
+        <h3>Zelfzekering maken</h3>
+        <p>Verbind jezelf met een sling of kort touwstuk aan de ankerpunten. Zorg dat je niet verder kunt vallen dan de hoogte van de stand zelf. Gebruik altijd twee onafhankelijke verbindingen.</p>
+        <p>Controleer je verbinding: trekken aan het systeem mag niets los laten komen. Karabiners zijn gesloten en vergrendeld.</p>
+      </div>
+      <div class="asym__kolom">
+        <div class="asym__klein">
+          <h3>Altijd op minstens twee punten</h3>
+          <p>Eén haakverlies mag het systeem niet laten falen. Twee punten is de minimumnorm.</p>
+        </div>
+        <div class="asym__klein">
+          <h3>Haken verbinden: sling of twee quickdraws</h3>
+          <p>Met een sling en twee karabiners maak je een eenvoudige vaste stand. Quickdraws geven meer flexibiliteit bij haakafstand.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="kleurband">
+  <div class="kleurband__inner">
+    <div class="kleurband__tekst">
+      <span class="content-eyebrow content-eyebrow--licht">Over klimmen</span>
+      <h2>Meer dan alleen omhoog komen</h2>
+      <p>Klimmen is techniek, vertrouwen en samenspel. Van je eerste meters toprope tot lange routes in de bergen — het draait om bewust bewegen en op elkaar kunnen rekenen.</p>
+      <a href="/klimmen/toprope-lead" class="btn-licht">Begin bij de basis →</a>
+    </div>
+    <div class="kleurband__beeld">
+      <img src="images/rockclimbing.jpeg" alt="Klimmer op een rotswand" />
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ 3. OMBOUWEN AAN HET ANKER ═══ -->
+<section class="sectie" id="ombouwen">
+  <div class="sectie-inner tekst-blok">
+    <span class="content-eyebrow">Techniek</span>
+    <h2>Ombouwen aan het anker</h2>
+    <p>Bovenaan de route bouw je het systeem om zodat je veilig kunt laten zakken of afronden. Er zijn meerdere methodes — kies de situatie die past.</p>
+  </div>
+  <div class="sectie-inner" style="margin-top: 48px;">
+    <ul class="blok-items">
+      <li class="blok-item">
+        <span class="item-nummer">01</span>
+        <div>
+          <h3>Snel systeem zonder volledig ombouwen</h3>
+          <p>Hang een quickdraw of sling in het maillonrapide bovenaan. Leg het touw erdoorheen — klaar. Werkt alleen als de standring groot genoeg is en de naklimmer laag blijft.</p>
+        </div>
+      </li>
+      <li class="blok-item">
+        <span class="item-nummer">02</span>
+        <div>
+          <h3>Karabiner door bovenste maillon na ombouwen</h3>
+          <p>Hang een HMS-karabiner in het maillonrapide. Leg het touw erdoorheen met een mastworp. De standplaatskarabiner loopt mee als je het touw ophaalt.</p>
+        </div>
+      </li>
+      <li class="blok-item">
+        <span class="item-nummer">03</span>
+        <div>
+          <h3>Petzl-methode</h3>
+          <p>Gebruik een Reverso of ATC in geleidingsfunctie direct aan het maillonrapide. Handig als je wil zekeren vanuit de standplaats terwijl de naklimmer klimt.</p>
+        </div>
+      </li>
+      <li class="blok-item">
+        <span class="item-nummer">04</span>
+        <div>
+          <h3>Klassiek ombouwen</h3>
+          <p>Knoop jezelf los, leg het touw door de ringen, bind opnieuw vast. Wordt minder gebruikt maar is goed om te begrijpen als basis voor alle varianten.</p>
+        </div>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section class="uitgelicht">
+  <div class="uitgelicht__inner">
+    <p>"Screw down, so you don't screw up".</p>
+  </div>
+</section>
+
+<!-- ═══ 4. STANDPLAATS SCHOONMAKEN ═══ -->
+<section class="sectie sectie--creme" id="schoonmaken">
+  <div class="sectie-inner">
+    <div class="media-blok media-blok--flip">
+      <div class="media-blok__media">
+        <img src="images/rockclimbing.jpeg" alt="Klimmer maakt de standplaats schoon" />
+      </div>
+      <div class="media-blok__tekst">
+        <span class="content-eyebrow">Afronden</span>
+        <h2>Standplaats schoonmaken</h2>
+        <p>Als de naklimmer boven is, ruim je de stand op. Verwijder je zelfzekering pas als je partner goed vast staat en de stand gereed is voor afdalen.</p>
+        <ul class="lijst">
+          <li>Controleer of de naklimmer zichzelf heeft ingeknoopt</li>
+          <li>Verwijder quickdraws en slings van de stand</li>
+          <li>Bevestig het touw voor het afdalen voordat je je eigen zelfzekering verwijdert</li>
+          <li>Communiceer duidelijk: "Klaar om af te dalen?"</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 5. AFDALEN IN BIJZONDERE SITUATIES ═══ -->
+<section class="sectie" id="afdalen">
+  <div class="sectie-inner tekst-blok">
+    <span class="content-eyebrow">Veiligheid</span>
+    <h2>Afdalen in bijzondere situaties</h2>
+    <p>Niet elke afdaling verloopt standaard. Leer hoe je omgaat met een terugtrekking halverwege of een scherpe haak bovenaan.</p>
+  </div>
+  <div class="sectie-inner" style="margin-top: 48px;">
+    <div class="icon-grid">
+      <div class="icon-kaart">
+        <div class="icon-kaart__icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+        </div>
+        <div>
+          <h3>Terugtrekken halverwege de route</h3>
+          <p>Klip het touw in de hoogste quickdraw die je bereikt. Laat je zakken tot de grond. Haal dan de quickdraw op met een stok of trek de naklimmer omhoog om hem te halen.</p>
+        </div>
+      </div>
+      <div class="icon-kaart">
+        <div class="icon-kaart__icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+        </div>
+        <div>
+          <h3>Ombouwen op een scherpe haak</h3>
+          <p>Bij een scherpe of verroeste haak bovenaan gebruik je twee losse karabiners als buffer. Leg het touw nooit direct over metaal — gebruik altijd een karabiner of maillon.</p>
+        </div>
+      </div>
+      <div class="icon-kaart">
+        <div class="icon-kaart__icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8h1a4 4 0 010 8h-1M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8zM6 1v3M10 1v3M14 1v3"/></svg>
+        </div>
+        <div>
+          <h3>Abseilen op scherpe haak met hulptouwtje</h3>
+          <p>Gebruik een Prusik-lus of Klemheist als back-up bij het abseilen. Zo houd je controle als je loslaat, en bescherm je het touw tegen slijtage op de haak.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ BADGE STRIP — afsluiting ═══ -->
+<section class="uitgelicht">
+  <div class="uitgelicht__inner">
+    <p>Klaar met single-pitch? Ga verder met multi-pitch.</p>
+    <a href="/klimmen/multi-pitch" class="btn-download" style="margin-top: 28px; display: inline-block;">Multi-pitch →</a>
+  </div>
+</section>
+
+<section class="proces">
+  <div class="proces__inner">
+    <div class="proces__kop">
+      <h2>Zo bouw je het op</h2>
+      <a href="/klimmen/materiaal" class="btn-omlijnd">Bekijk materiaal</a>
+    </div>
+    <div class="proces__stappen">
+      <div class="proces__stap">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2v20M5 9l7-7 7 7"/></svg>
+        <span class="proces__nr">01</span>
+        <h3>Leer zekeren</h3>
+        <p>Begin met top-rope en de basis van veilig zekeren met een partner.</p>
+      </div>
+      <div class="proces__stap">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+        <span class="proces__nr">02</span>
+        <h3>Oefen techniek</h3>
+        <p>Voetwerk, balans en efficiënt klimmen op single-pitch routes.</p>
+      </div>
+      <div class="proces__stap">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 21l9-18 9 18M7 21l5-10 5 10"/></svg>
+        <span class="proces__nr">03</span>
+        <h3>Ga lead</h3>
+        <p>Klim met het touw onder je en leer quickdraws inwerpen.</p>
+      </div>
+      <div class="proces__stap">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 12h18M12 3v18" /><circle cx="12" cy="12" r="9"/></svg>
+        <span class="proces__nr">04</span>
+        <h3>Naar buiten</h3>
+        <p>Pak je eerste echte rotsen in de Ardennen of de bergen.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sectie">
+  <div class="sectie-inner">
+    <div class="kaart-grid__kop">
+      <span class="content-eyebrow">Overzicht</span>
+      <h2>Alles wat je moet weten</h2>
+    </div>
+    <div class="kaart-grid">
+      <article class="info-kaart">
+        <h3>Touwwerk</h3>
+        <p>Van achtknoop tot prusik — de knopen die je elke klim gebruikt.</p>
+      </article>
+      <article class="info-kaart">
+        <h3>Zekeren</h3>
+        <p>Top-rope, lead en de juiste apparaten om veilig te zekeren.</p>
+      </article>
+      <article class="info-kaart">
+        <h3>Standplaats</h3>
+        <p>Bouw een betrouwbaar ankerpunt aan twee of meer punten.</p>
+      </article>
+      <article class="info-kaart">
+        <h3>Materiaal</h3>
+        <p>Gordel, helm, schoenen en de rest van je basisset.</p>
+      </article>
+      <article class="info-kaart">
+        <h3>Afdalen</h3>
+        <p>Ombouwen, abseilen en veilig terug naar de grond komen.</p>
+      </article>
+      <article class="info-kaart">
+        <h3>Buiten klimmen</h3>
+        <p>Van lokale crag tot alpiene wand — vind je gebied.</p>
+      </article>
+    </div>
+  </div>
+</section>
+

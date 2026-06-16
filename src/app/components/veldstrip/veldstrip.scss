@@ -3,7 +3,7 @@
   top: 0;
   right: 0;
   bottom: var(--veldstrip-bottom, 0); /* pagina kan inkorten zodat de divider eronder past */
-  width: 210px;
+  width: 240px;
   display: flex;
   z-index: 3;
 }
@@ -12,55 +12,68 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  padding: 28px 26px;
+  padding: 40px 30px;
   text-align: right;
-  border-left: 1px solid rgba(245, 245, 245, 0.22);
-  background: rgba(16, 18, 16, 0.26);
-  color: var(--kleur-hero-ink);
+  color: var(--papier-licht);
+  /* Geen kader — alleen een zachte scrim naar de rechterrand voor leesbaarheid */
+  background: linear-gradient(to right, transparent, rgba(15, 10, 6, 0.42));
 }
 
+/* Titel — subtiel, in de accentkleur, geen lijn eronder */
 .veldstrip__kicker {
   font-family: var(--font-accent);
-  font-size: 23px;
-  letter-spacing: 0.22em;
+  font-size: 17px;
+  letter-spacing: 0.24em;
   text-transform: uppercase;
   color: var(--kleur-hero);
-  margin-bottom: 22px;
+  margin-bottom: 26px;
+  opacity: 0.95;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
 }
 
 .veldstrip__items {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 20px;
 }
 
+/* Label — klein, licht, ondergeschikt aan de waarde */
 .veldstrip__label {
   display: block;
   font-family: var(--font-accent);
   font-size: 12px;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-  opacity: 0.62;
+  color: var(--papier-licht);
+  opacity: 0.6;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
 }
 
+/* Waarde — helder wit, het accent ligt op de inhoud */
 .veldstrip__waarde {
   display: block;
   font-family: var(--font-display);
   font-weight: 500;
-  font-size: 18px;
-  line-height: 1.15;
-  margin-top: 2px;
+  font-size: 17px;
+  line-height: 1.3;
+  margin-top: 3px;
+  color: var(--papier-licht);
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.55);
 }
 
+/* Meta onderaan — heel subtiel */
 .veldstrip__meta {
   margin-top: auto;
-  padding-top: 18px;
-  font-family: var(--font-display);
-  font-size: 15px;
-  opacity: 0.9;
+  padding-top: 24px;
+  font-family: var(--font-accent);
+  font-size: 13px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  opacity: 0.7;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
 }
 
-/* Op smal scherm: geen rail meer, maar een strip onder de titel */
+/* Op smal scherm: geen rail, maar een luchtige strip onder de titel */
 @media (max-width: 900px) {
   :host {
     position: static;
@@ -71,10 +84,9 @@
     flex-direction: row;
     flex-wrap: wrap;
     align-items: flex-end;
-    gap: 16px 24px;
+    gap: 16px 28px;
+    padding: 24px 20px;
     text-align: left;
-    border-left: none;
-    border-top: 3px solid var(--kleur-accent);
     background: var(--kleur-hero);
   }
 
@@ -86,8 +98,10 @@
   .veldstrip__items {
     flex-direction: row;
     flex-wrap: wrap;
-    gap: 16px 24px;
+    gap: 16px 28px;
   }
+
+  .veldstrip__label { color: var(--kleur-hero-ink); }
 
   .veldstrip__meta {
     margin-top: 0;

@@ -96,7 +96,7 @@
 .route-divider__punt.is-actief {
   width: 26px;
   height: 26px;
-  background: var(--kleur-accent); /* actief = accentkleur van het thema */
+  background: var(--kleur-hero); /* actief = accentkleur van het thema */
   border-color: var(--papier-creme);
 }
 
@@ -106,7 +106,7 @@
   position: absolute;
   inset: -3px;
   border-radius: 50%;
-  background: var(--kleur-accent);
+  background: var(--kleur-hero);
   z-index: -1;
   pointer-events: none;
   animation: route-divider-puls 1.8s ease-out infinite;
@@ -164,7 +164,7 @@
 
 .route-divider__index {
   display: block;
-  font-family: var(--font-accent);
+  font-family: var(--font-hero);
   font-size: 20px;
   letter-spacing: 0.12em;
   color: #9aa093;
@@ -239,5 +239,5 @@
 }
 
 .route-divider--overlay .route-divider__stop.is-actief .route-divider__index {
-  color: var(--kleur-accent);
+  color: var(--kleur-hero);
 }

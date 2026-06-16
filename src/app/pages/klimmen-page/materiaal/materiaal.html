@@ -1,6 +1,6 @@
 <section class="subhero subhero--met-veldstrip">
-  <div class="subhero__media">
-    <img src="images/rockclimbing.jpeg" alt="Klimmer op een rotswand" />
+  <div class="subhero__media" style="--foto-pos: 75% center">
+    <img src="images/grandcanyonklimmen.jpg" alt="Klimmer op een rode wand" />
   </div>
   <div class="subhero__content">
     <span class="subhero__eyebrow">Klimmen</span>
@@ -8,15 +8,81 @@
     <p>Stel je klimset samen en check materiaal, route en partner voordat je instapt.</p>
   </div>
   <app-veldstrip [items]="veldgegevens" meta="gearcheck" />
-  <app-route-divider class="subhero__route" variant="overlay" [stops]="etappes" [actief]="actief" />
+  <app-route-divider
+    class="subhero__route"
+    variant="overlay"
+    [stops]="secties"
+    [(actief)]="actieveSectie" />
 </section>
 
-<section class="sectie">
+<!-- ═══ 1. TOUWEN ═══ -->
+<section class="sectie" id="touwen">
   <div class="sectie-inner tekst-blok">
-    <span class="content-eyebrow">Op een rij</span>
-    <h2>Wat je nodig hebt</h2>
+    <span class="content-eyebrow">Het belangrijkste</span>
+    <h2>Touwen</h2>
+    <p>Je touw is je levenslijn. Begrijp het verschil tussen de soorten voordat je er een koopt.</p>
   </div>
-  <div class="sectie-inner">
+  <div class="sectie-inner" style="margin-top: 48px;">
+    <div class="asym">
+      <div class="asym__groot">
+        <h3>Dynamisch vs. statisch</h3>
+        <p>Een <strong>dynamisch touw</strong> rekt mee bij een val en vangt de schok geleidelijk op — dat is wat je wil bij klimmen. Een <strong>statisch touw</strong> rekt nauwelijks en gebruik je voor abseilen, hijsen of via ferrata, nooit om in te vallen.</p>
+        <p>Voor sportklimmen en multi-pitch kies je altijd een dynamisch touw met de juiste diameter en lengte voor je gebied.</p>
+      </div>
+      <div class="asym__kolom">
+        <div class="asym__klein">
+          <h3>Enkeltouw</h3>
+          <p>Eén touw, standaard voor sportklimmen. Diameter 9–10 mm, 60–70 m lang.</p>
+        </div>
+        <div class="asym__klein">
+          <h3>Halftouw</h3>
+          <p>Twee dunnere touwen, los geklipt. Minder valfactor en betere afdaalopties op alpiene routes.</p>
+        </div>
+        <div class="asym__klein">
+          <h3>Tweelingtouw</h3>
+          <p>Twee touwen die je samen door elke karabiner klipt. Licht, voor lange alpiene routes.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 2. KARABINERS EN ZEKERINGSAPPARATEN ═══ -->
+<section class="sectie sectie--creme" id="zekering">
+  <div class="sectie-inner tekst-blok">
+    <span class="content-eyebrow">Hardware</span>
+    <h2>Karabiners en zekeringsapparaten</h2>
+    <p>Het metaal dat je touw met het systeem verbindt. Elk type heeft zijn eigen rol.</p>
+  </div>
+  <div class="sectie-inner" style="margin-top: 48px;">
+    <div class="badge-kaarten">
+      <article class="badge-kaart">
+        <img class="badge-kaart__beeld" src="pictogrammen/karabiners.svg" alt="" />
+        <h3>HMS-karabiner</h3>
+        <p>Peervormige vergrendelkarabiner, geschikt voor de halve mastworp en het zekeren met een tuber.</p>
+      </article>
+      <article class="badge-kaart">
+        <img class="badge-kaart__beeld" src="pictogrammen/karabiners.svg" alt="" />
+        <h3>Safebiner</h3>
+        <p>Vergrendelkarabiner met schroef- of automatische sluiting voor cruciale verbindingen in het systeem.</p>
+      </article>
+      <article class="badge-kaart">
+        <img class="badge-kaart__beeld" src="pictogrammen/ropesetje.svg" alt="" />
+        <h3>Tuber / ATC</h3>
+        <p>Het standaard zekerapparaat. In geleidingsmodus blokkeert het automatisch bij een naklimmer.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 3. PERSOONLIJKE UITRUSTING ═══ -->
+<section class="sectie" id="persoonlijk">
+  <div class="sectie-inner tekst-blok">
+    <span class="content-eyebrow">Aan je lijf</span>
+    <h2>Persoonlijke uitrusting</h2>
+    <p>Wat je zelf draagt tijdens elke klim — kies op pasvorm en comfort.</p>
+  </div>
+  <div class="sectie-inner" style="margin-top: 40px;">
     <ul class="badge-galerij">
       <li class="badge-tegel">
         <img src="pictogrammen/harnass.svg" alt="Klimgordel" />
@@ -27,45 +93,62 @@
         <span>Helm</span>
       </li>
       <li class="badge-tegel">
-        <img src="pictogrammen/ropesetje.svg" alt="Touw" />
-        <span>Touw</span>
+        <img src="pictogrammen/bouldershoe.svg" alt="Klimschoenen" />
+        <span>Klimschoenen</span>
       </li>
       <li class="badge-tegel">
-        <img src="pictogrammen/karabiners.svg" alt="Karabiners" />
-        <span>Karabiners</span>
-      </li>
-      <li class="badge-tegel">
-        <img src="pictogrammen/slinge1.svg" alt="Slinges" />
-        <span>Slinges</span>
-      </li>
-      <li class="badge-tegel">
-        <img src="pictogrammen/pofzak.svg" alt="Chalkbag" />
-        <span>Chalkbag</span>
+        <img src="pictogrammen/pofzak.svg" alt="Magnesium" />
+        <span>Magnesium</span>
       </li>
     </ul>
   </div>
 </section>
 
-<section class="sectie sectie--creme">
-  <div class="sectie-inner">
-    <span class="content-eyebrow">Essentieel</span>
-    <h2>De basis-set</h2>
-    <div class="badge-kaarten">
-      <article class="badge-kaart">
-        <img class="badge-kaart__beeld" src="pictogrammen/helm.svg" alt="" />
-        <h3>Helm</h3>
-        <p>Beschermt je hoofd tegen steenslag en stoten bij een val.</p>
-      </article>
-      <article class="badge-kaart">
-        <img class="badge-kaart__beeld" src="pictogrammen/harnass.svg" alt="" />
-        <h3>Klimgordel</h3>
-        <p>Je verbinding met het touw — comfortabel en goed afgesteld.</p>
-      </article>
-      <article class="badge-kaart">
-        <img class="badge-kaart__beeld" src="pictogrammen/ehbo.svg" alt="" />
-        <h3>EHBO</h3>
-        <p>Een compacte set voor schaafwonden en blessures onderweg.</p>
-      </article>
-    </div>
+<!-- ═══ 4. WAT HEB JE NODIG OM TE BEGINNEN ═══ -->
+<section class="sectie sectie--creme" id="starten">
+  <div class="sectie-inner tekst-blok">
+    <span class="content-eyebrow">Starterspakket</span>
+    <h2>Wat heb je nodig om te beginnen?</h2>
+    <p>Begin je net? Dit is de minimale set voor een veilige eerste klimdag — de rest bouw je later op.</p>
+  </div>
+  <div class="sectie-inner" style="margin-top: 48px;">
+    <ul class="badge-lijst">
+      <li class="badge-lijst__item">
+        <img src="pictogrammen/harnass.svg" alt="" />
+        <div>
+          <h4>Klimgordel</h4>
+          <p>Je verbinding met het touw — pas hem in de winkel op comfort.</p>
+        </div>
+      </li>
+      <li class="badge-lijst__item">
+        <img src="pictogrammen/helm.svg" alt="" />
+        <div>
+          <h4>Helm</h4>
+          <p>Beschermt tegen steenslag en stoten bij een val. Niet optioneel buiten.</p>
+        </div>
+      </li>
+      <li class="badge-lijst__item">
+        <img src="pictogrammen/ropesetje.svg" alt="" />
+        <div>
+          <h4>Zekerapparaat + HMS</h4>
+          <p>Een tuber en een vergrendelkarabiner om je partner mee te zekeren.</p>
+        </div>
+      </li>
+      <li class="badge-lijst__item">
+        <img src="pictogrammen/bouldershoe.svg" alt="" />
+        <div>
+          <h4>Klimschoenen</h4>
+          <p>Strak passend voor grip op kleine richels. Begin met een comfortabel model.</p>
+        </div>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- ═══ AFSLUITING ═══ -->
+<section class="uitgelicht">
+  <div class="uitgelicht__inner">
+    <p>Set compleet? Tijd om naar buiten te gaan.</p>
+    <a href="/klimmen/klimgebieden" class="btn-download" style="margin-top: 28px; display: inline-block;">Naar klimgebieden →</a>
   </div>
 </section>

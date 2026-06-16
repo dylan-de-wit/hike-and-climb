@@ -1,6 +1,6 @@
 <section class="subhero subhero--met-veldstrip">
   <div class="subhero__media">
-    <img src="images/climbingoverhang.png" alt="Klimroute op een hoge rotswand" />
+    <img src="images/intheclouds.jpg" alt="Klimroute op een hoge rotswand" />
   </div>
   <div class="subhero__content">
     <span class="subhero__eyebrow">Klimmen</span>
@@ -8,5 +8,152 @@
     <p>Bereid langere routes voor met standplaatsen, routefinding en duidelijke communicatie.</p>
   </div>
   <app-veldstrip [items]="veldgegevens" meta="topo · dagroute" />
-  <app-route-divider class="subhero__route" variant="overlay" [stops]="etappes" [actief]="actief" />
+  <app-route-divider
+    class="subhero__route"
+    variant="overlay"
+    [stops]="secties"
+    [(actief)]="actieveSectie" />
+</section>
+
+<!-- ═══ 1. WAT MULTI-PITCH ANDERS MAAKT ═══ -->
+<section class="sectie" id="anders">
+  <div class="sectie-inner">
+    <div class="media-blok">
+      <div class="media-blok__media">
+        <img src="images/climbingoverhang.png" alt="Klimmer hoog op een multi-pitch route" />
+      </div>
+      <div class="media-blok__tekst">
+        <span class="content-eyebrow">Concept</span>
+        <h2>Wat multi-pitch anders maakt</h2>
+        <p>Een multi-pitch route bestaat uit meerdere lengtes (pitches) die je achter elkaar klimt. Tussen elke lengte bouw je een standplaats waar je de naklimmer zekert voordat hij naar boven komt.</p>
+        <p>Het grote verschil met single-pitch: je komt niet meer makkelijk terug op de grond. Zelfredzaamheid, communicatie en efficiënt standplaatsbeheer worden cruciaal.</p>
+        <ul class="lijst">
+          <li>Meerdere lengtes — je klimt door tot de top</li>
+          <li>Standplaatsen onderweg waar je elkaar zekert</li>
+          <li>Voorklimmer en naklimmer wisselen of blokken</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 2. STANDPLAATS MAKEN ═══ -->
+<section class="sectie sectie--creme" id="standplaats">
+  <div class="sectie-inner tekst-blok">
+    <span class="content-eyebrow">Techniek</span>
+    <h2>Standplaats maken</h2>
+    <p>Op een multi-pitch route bouw je je eigen standplaats aan de aanwezige haken. De methode hangt af van wat de wand je biedt.</p>
+  </div>
+  <div class="sectie-inner" style="margin-top: 48px;">
+    <ul class="blok-items">
+      <li class="blok-item">
+        <span class="item-nummer">01</span>
+        <div>
+          <h3>Stand aan twee haken verbonden met ketting</h3>
+          <p>De comfortabelste situatie: twee haken die al met een ketting verbonden zijn. Klip een HMS-karabiner in de ketting en maak je zelfzekering. Het centrale punt is direct duidelijk.</p>
+        </div>
+      </li>
+      <li class="blok-item">
+        <span class="item-nummer">02</span>
+        <div>
+          <h3>Stand aan twee haken zonder ketting</h3>
+          <p>Twee losse haken verbind je met een sling tot één centraal punt. Gebruik een schuifknoop of geknoopte sling zodat de belasting over beide haken verdeeld blijft, ook als je beweegt.</p>
+        </div>
+      </li>
+      <li class="blok-item">
+        <span class="item-nummer">03</span>
+        <div>
+          <h3>Rijverankering met een sling</h3>
+          <p>Bij haken op verschillende hoogtes maak je een seriële (rij)verankering. Let op dat het hoofdgewicht op de bovenste haak komt en de tweede als back-up dient.</p>
+        </div>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- ═══ 3. ZEKEREN IN MULTI-PITCH ═══ -->
+<section class="sectie" id="zekeren">
+  <div class="sectie-inner tekst-blok">
+    <span class="content-eyebrow">Techniek</span>
+    <h2>Zekeren in multi-pitch</h2>
+    <p>Vanaf de standplaats zeker je de naklimmer omhoog. De methode bepaalt je controle en gemak bij een eventuele blokkade.</p>
+  </div>
+  <div class="sectie-inner" style="margin-top: 48px;">
+    <div class="asym">
+      <div class="asym__groot">
+        <h3>Zekeren met de halve mastworp</h3>
+        <p>De halve mastworp (HMS) is een knoop die je direct in een HMS-karabiner legt — geen apparaat nodig. Betrouwbaar als back-up of als je je tuber verliest. Nadeel: het touw kan iets meer kinken.</p>
+        <p>Ideaal om te beheersen als noodtechniek, ook al gebruik je normaal een apparaat.</p>
+      </div>
+      <div class="asym__kolom">
+        <div class="asym__klein">
+          <h3>Zekeren met een tuber</h3>
+          <p>In geleidingsmodus (Reverso / ATC-Guide) blokkeert het apparaat automatisch bij belasting — handig bij het zekeren van een naklimmer.</p>
+        </div>
+        <div class="asym__klein">
+          <h3>Naklimmer onder jou of boven jou</h3>
+          <p>Zeker je vanaf de stand naar beneden, of laat het apparaat aan het centrale punt hangen. Positie bepaalt je zicht en reactiesnelheid.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 4. OMHOOG PRUSIKEN ═══ -->
+<section class="sectie sectie--creme" id="prusiken">
+  <div class="sectie-inner">
+    <div class="media-blok media-blok--flip">
+      <div class="media-blok__media">
+        <img src="images/climbing1.jpeg" alt="Klimmer prusikt omhoog langs het touw" />
+      </div>
+      <div class="media-blok__tekst">
+        <span class="content-eyebrow">Touwtechniek</span>
+        <h2>Omhoog prusiken</h2>
+        <p>Als je vastloopt of langs het touw omhoog moet, gebruik je prusikknopen of een mechanische klem. Twee situaties komen het meest voor.</p>
+        <h3 style="margin-top: 28px;">Klassieke manier</h3>
+        <p>Met twee prusiklussen — één voor je voet, één voor je gordel — werk je jezelf afwisselend omhoog. Langzaam maar betrouwbaar met alleen wat je al bij je hebt.</p>
+        <h3 style="margin-top: 20px;">Met tuber na abseilen</h3>
+        <p>Ben je te ver afgedaald? Met een prusik als back-up en je tuber bouw je een klimsysteem om weer omhoog te komen langs het touw.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 5. NOODREDDINGEN OP DE STANDPLAATS ═══ -->
+<section class="sectie" id="noodredding">
+  <div class="sectie-inner tekst-blok">
+    <span class="content-eyebrow">Veiligheid</span>
+    <h2>Noodreddingen op de standplaats</h2>
+    <p>Als je partner gewond raakt of vastloopt, moet je kunnen handelen vanaf de stand. Twee basistechnieken die elke multi-pitch klimmer moet beheersen.</p>
+  </div>
+  <div class="sectie-inner" style="margin-top: 48px;">
+    <div class="icon-grid" style="grid-template-columns: repeat(2, 1fr);">
+      <div class="icon-kaart">
+        <div class="icon-kaart__icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M5 9l7 7 7-7"/></svg>
+        </div>
+        <div>
+          <h3>Klimmer laten zakken</h3>
+          <p>Blokkeer het zekerapparaat met een mule-knoop, neem de belasting over en laat de klimmer gecontroleerd zakken naar een veilig punt of de vorige stand.</p>
+        </div>
+      </div>
+      <div class="icon-kaart">
+        <div class="icon-kaart__icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22V2M5 9l7-7 7 7"/></svg>
+        </div>
+        <div>
+          <h3>Klimmer omhooghalen</h3>
+          <p>Bouw een katrolsysteem (bijvoorbeeld een Z-takel) met prusiks en karabiners om een vastgelopen naklimmer met minder kracht omhoog te trekken.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ AFSLUITING ═══ -->
+<section class="uitgelicht">
+  <div class="uitgelicht__inner">
+    <p>Multi-pitch onder de knie? Verdiep je in het juiste materiaal.</p>
+    <a href="/klimmen/materiaal" class="btn-download" style="margin-top: 28px; display: inline-block;">Naar materiaal →</a>
+  </div>
 </section>

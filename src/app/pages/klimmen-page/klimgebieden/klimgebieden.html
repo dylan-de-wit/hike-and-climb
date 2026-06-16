@@ -1,14 +1,14 @@
+
+<!-- ═══ SUBHERO ═══ -->
 <section class="subhero subhero--met-veldstrip">
   <div class="subhero__media">
-    <img src="images/overhangwater2.png" alt="" />
+    <img src="images/abovewater.jpg" alt="" />
   </div>
-
   <div class="subhero__content">
     <span class="subhero__eyebrow">Klimmen</span>
     <h1>Klimgebieden</h1>
-    <p>Korte introzin over deze subpagina.</p>
+    <p>Vind hier de beste gebieden om te klimmen.</p>
   </div>
-
   <app-veldstrip [items]="veldgegevens" meta="gebiedskaart" />
   <app-route-divider
     class="subhero__route"
@@ -17,37 +17,150 @@
     [(actief)]="actieveSectie" />
 </section>
 
-<section class="sectie" id="overzicht">
-  <div class="sectie-inner tekst-blok">
-    <span class="content-eyebrow">Overzicht</span>
-    <h2>De mooiste klimgebieden</h2>
-    <p>
-      Een korte introductie op de gebieden die we behandelen — van kalksteen aan
-      zee tot graniet in de bergen.
-    </p>
+<!-- ═══ 1. WAAR KUN JE KLIMMEN ═══ -->
+<section class="sectie" id="waar">
+  <div class="sectie-inner">
+    <div class="media-blok">
+      <div class="media-blok__media">
+        <img src="images/overhangwater2.png" alt="Rotswand boven het water" />
+      </div>
+      <div class="media-blok__tekst">
+        <span class="content-eyebrow">Oriëntatie</span>
+        <h2>Waar kun je klimmen?</h2>
+        <p>Buiten klimmen kan dichtbij huis of ver weg — de keuze bepaalt je dag. Een lokaal gebied in de Ardennen is een dagtrip, terwijl de Alpen of Zuid-Frankrijk een reis vragen maar langere, hogere routes bieden.</p>
+        <p>Ook het type rots maakt verschil voor je techniek en het materiaal dat je meeneemt.</p>
+        <ul class="lijst">
+          <li><strong>Kalksteen</strong> — stevige grepen en plooien, typisch voor de Ardennen en Zuid-Frankrijk</li>
+          <li><strong>Graniet</strong> — ruwe frictie en scheuren, vooral in de hooggebergtes</li>
+          <li><strong>Zandsteen</strong> — zacht en kwetsbaar, vraagt om voorzichtigheid</li>
+        </ul>
+      </div>
+    </div>
   </div>
 </section>
 
-<section class="sectie sectie--creme" id="gebieden">
-  <div class="sectie-inner tekst-blok">
-    <span class="content-eyebrow">Gebieden</span>
-    <h2>Per regio</h2>
-    <p>Beschrijving van de afzonderlijke gebieden, met hun karakter en routes.</p>
+<!-- ═══ 2. KLIMGEBIEDEN PER REGIO ═══ -->
+@for (regio of klimregios; track regio.anchor) {
+  <section class="sectie sectie--creme klimregio" [id]="regio.anchor">
+    <div class="sectie-inner klimregio__kop">
+      <div class="tekst-blok">
+        <span class="content-eyebrow">{{ regio.eyebrow }}</span>
+        <h2>{{ regio.titel }}</h2>
+        <p>{{ regio.intro }}</p>
+      </div>
+    </div>
+
+    <div class="sectie-inner klimregio__muren">
+      @for (muur of regio.muren; track muur.naam) {
+        <article class="klimmuur-kaart">
+          <div class="klimmuur-kaart__top">
+            <img src="pictogrammen/rock.svg" alt="" />
+            <div>
+              <h3>{{ muur.naam }}</h3>
+              <p>{{ muur.adres }}</p>
+            </div>
+          </div>
+
+          <ul class="klimmuur-kaart__kenmerken" aria-label="Kenmerken">
+            @for (kenmerk of muur.kenmerken; track kenmerk) {
+              <li>{{ kenmerk }}</li>
+            }
+          </ul>
+
+          <p class="klimmuur-kaart__tekst">{{ muur.omschrijving }}</p>
+
+          <div class="klimmuur-kaart__kaart" aria-label="Terrain kaart">
+            <iframe
+              [src]="muur.kaartUrl"
+              [title]="'Terrain kaart van ' + muur.naam"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <span class="klimmuur-kaart__marker" aria-hidden="true"></span>
+          </div>
+
+          <a class="klimmuur-kaart__link" [href]="muur.mapUrl" target="_blank" rel="noopener">
+            Open op kaart
+          </a>
+        </article>
+      }
+    </div>
+  </section>
+}
+
+<section class="statistiek">
+  <div class="statistiek__inner">
+    <div class="statistiek__item">
+      <span class="statistiek__getal">200+</span>
+      <span class="statistiek__label">Routes in de Ardennen</span>
+    </div>
+    <div class="statistiek__item">
+      <span class="statistiek__getal">4a–8a</span>
+      <span class="statistiek__label">Graden voor elk niveau</span>
+    </div>
+    <div class="statistiek__item">
+      <span class="statistiek__getal">2,5u</span>
+      <span class="statistiek__label">Rijden vanaf Utrecht</span>
+    </div>
+    <div class="statistiek__item">
+      <span class="statistiek__getal">12</span>
+      <span class="statistiek__label">Gebieden uitgelicht</span>
+    </div>
   </div>
 </section>
 
-<section class="sectie" id="seizoen">
+<!-- ═══ 3. WAT JE PER GEBIED MOET WETEN ═══ -->
+<section class="sectie" id="gebied-check">
   <div class="sectie-inner tekst-blok">
-    <span class="content-eyebrow">Seizoen</span>
-    <h2>Wanneer ga je?</h2>
-    <p>Het beste seizoen, het weer en de ideale omstandigheden per gebied.</p>
+    <span class="content-eyebrow">Goed voorbereid</span>
+    <h2>Wat je per gebied moet weten</h2>
+    <p>Voordat je vertrekt, check deze vier dingen — ze bepalen of je dag slaagt en of je de natuur respecteert.</p>
+  </div>
+  <div class="sectie-inner" style="margin-top: 48px;">
+    <div class="icon-grid" style="grid-template-columns: repeat(2, 1fr);">
+      <div class="icon-kaart">
+        <div class="icon-kaart__icon icon-kaart__icon--beeld">
+          <img src="pictogrammen/house.svg" alt="" />
+        </div>
+        <div>
+          <h3>Toegang</h3>
+          <p>Waar parkeer je, hoe lang is de aanloop en is het gebied vrij toegankelijk? Soms loopt de route over privéterrein.</p>
+        </div>
+      </div>
+      <div class="icon-kaart">
+        <div class="icon-kaart__icon icon-kaart__icon--beeld">
+          <img src="pictogrammen/paddestoel.svg" alt="" />
+        </div>
+        <div>
+          <h3>Seizoen</h3>
+          <p>Veel kalkgebieden zijn ideaal in voor- en najaar. 's Zomers te warm, 's winters nat — check de oriëntatie van de wand.</p>
+        </div>
+      </div>
+      <div class="icon-kaart">
+        <div class="icon-kaart__icon icon-kaart__icon--beeld">
+          <img src="pictogrammen/topoboekje.svg" alt="" />
+        </div>
+        <div>
+          <h3>Niveau</h3>
+          <p>Raadpleeg de topo voor de graden in het gebied. Zijn er genoeg routes binnen jouw niveau om de dag te vullen?</p>
+        </div>
+      </div>
+      <div class="icon-kaart">
+        <div class="icon-kaart__icon icon-kaart__icon--beeld">
+          <img src="pictogrammen/bird.svg" alt="" />
+        </div>
+        <div>
+          <h3>Lokale regels</h3>
+          <p>Broedseizoen-sluitingen, verboden zones en afspraken met grondeigenaren. Respecteer ze — ze houden gebieden open.</p>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
-<section class="sectie sectie--creme" id="tips">
-  <div class="sectie-inner tekst-blok">
-    <span class="content-eyebrow">Tips</span>
-    <h2>Goed om te weten</h2>
-    <p>Praktische tips: toegang, lokale regels en respect voor de natuur.</p>
+<!-- ═══ AFSLUITING ═══ -->
+<section class="uitgelicht">
+  <div class="uitgelicht__inner">
+    <p>Klaar om te gaan? Check eerst je materiaal en partner.</p>
+    <a href="/klimmen/materiaal" class="btn-download" style="margin-top: 28px; display: inline-block;">Naar materiaal →</a>
   </div>
 </section>

@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
-import { RouteDivider } from '../../../components/route-divider/route-divider';
+import { RouteDivider, RouteStop } from '../../../components/route-divider/route-divider';
 import { VeldItem, Veldstrip } from '../../../components/veldstrip/veldstrip';
-import { KLIMMEN_ETAPPES } from '../klimmen-etappes';
 
 @Component({
   selector: 'app-multi-pitch',
@@ -12,12 +11,19 @@ import { KLIMMEN_ETAPPES } from '../klimmen-etappes';
 })
 export class MultiPitch {
   readonly veldgegevens: VeldItem[] = [
-    { label: 'Lengte', waarde: '3-8 pitches' },
-    { label: 'Stand', waarde: 'bouwen' },
-    { label: 'Route', waarde: 'topo' },
-    { label: 'Tijd', waarde: 'dagtocht' },
+    { label: 'Route lengte', waarde: '1+ pitches' },
+    { label: 'Niveau', waarde: 'gevorderd' },
+    { label: 'Tijd', waarde: '½ – hele dag' },
+    { label: 'Focus', waarde: 'Ombouwen, abseilen & noodreddingen' },
   ];
 
-  readonly etappes = KLIMMEN_ETAPPES;
-  readonly actief = 1;
+  readonly secties: RouteStop[] = [
+    { naam: 'Anders', anchor: 'anders' },
+    { naam: 'Standplaats', anchor: 'standplaats' },
+    { naam: 'Zekeren', anchor: 'zekeren' },
+    { naam: 'Prusiken', anchor: 'prusiken' },
+    { naam: 'Noodredding', anchor: 'noodredding' },
+  ];
+
+  actieveSectie = 0;
 }

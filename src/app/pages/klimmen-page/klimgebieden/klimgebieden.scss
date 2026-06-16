@@ -76,10 +76,155 @@
   margin-top: 18px;
 }
 
+.klimregio__kop {
+  display: flex;
+  justify-content: space-between;
+  gap: 48px;
+}
+
+.klimregio__muren {
+  margin-top: 48px;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.klimmuur-kaart {
+  min-width: 0;
+  background: var(--kleur-wit);
+  border-radius: var(--afgerond);
+  padding: 24px;
+  display: grid;
+  grid-template-rows: 82px 42px minmax(96px, auto) 178px auto;
+  gap: 14px;
+  box-shadow: inset 0 0 0 1px rgba(66, 70, 54, 0.08);
+}
+
+.klimmuur-kaart__top {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.klimmuur-kaart__top img {
+  flex: none;
+  width: 54px;
+  height: 54px;
+}
+
+.klimmuur-kaart h3 {
+  margin: 0 0 6px;
+}
+
+.klimmuur-kaart__top p {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.25;
+}
+
+.klimmuur-kaart__tekst {
+  margin: 0;
+  font-size: 17px;
+}
+
+.klimmuur-kaart__kenmerken {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  align-items: flex-start;
+  gap: 7px;
+  overflow: hidden;
+}
+
+.klimmuur-kaart__kenmerken li {
+  font-family: var(--font-accent);
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--kleur-tekst);
+  background: var(--papier-creme);
+  border-radius: 999px;
+  padding: 6px 9px;
+}
+
+.klimmuur-kaart__kaart {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 178px;
+  border-radius: 12px;
+  background: var(--papier-creme);
+  box-shadow: inset 0 0 0 1px rgba(66, 70, 54, 0.12);
+}
+
+.klimmuur-kaart__kaart::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(rgba(147, 142, 59, 0.12), rgba(87, 134, 108, 0.14)),
+    radial-gradient(circle at 72% 20%, rgba(245, 171, 0, 0.08), transparent 42%);
+  mix-blend-mode: multiply;
+  pointer-events: none;
+}
+
+.klimmuur-kaart__kaart iframe {
+  display: block;
+  width: 100%;
+  height: calc(100% + 64px);
+  border: 0;
+  transform: translateY(-64px);
+  filter: sepia(0.12) hue-rotate(18deg) saturate(0.82) contrast(0.96);
+}
+
+.klimmuur-kaart__marker {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 24px;
+  height: 24px;
+  border-radius: 50% 50% 50% 0;
+  background: var(--terra-donker);
+  border: 3px solid var(--papier-licht);
+  transform: translate(-50%, -82%) rotate(-45deg);
+  box-shadow: 0 8px 16px rgba(38, 28, 21, 0.22);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.klimmuur-kaart__marker::after {
+  content: '';
+  position: absolute;
+  inset: 5px;
+  border-radius: 50%;
+  background: var(--amber);
+}
+
+.klimmuur-kaart__link {
+  align-self: flex-start;
+  font-family: var(--font-accent);
+  font-size: 16px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--kleur-accent);
+  text-decoration: none;
+}
+
+.klimmuur-kaart__link:hover {
+  color: var(--kleur-tekst);
+}
+
 @media (max-width: 900px) {
   .subhero--met-veldstrip .subhero__route {
     padding-right: 40px;
     padding-left: 40px;
+  }
+
+  .klimregio__muren {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
@@ -87,4 +232,54 @@
   .subhero--met-veldstrip .subhero__route {
     padding: 0 20px 28px;
   }
+
+  .klimregio__kop {
+    display: block;
+  }
+
+  .klimregio__muren {
+    grid-template-columns: 1fr;
+    margin-top: 32px;
+  }
+
+  .klimmuur-kaart {
+    grid-template-rows: none;
+    gap: 16px;
+  }
+}
+
+
+.statistiek {
+  background: var(--papier-creme);
+  padding: 64px 20px;
+}
+.statistiek__inner {
+  max-width: var(--max-breedte);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+  text-align: center;
+}
+.statistiek__item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.statistiek__getal {
+  font-family: var(--font-heading);
+  font-size: 52px;
+  line-height: 1;
+  color: var(--kleur-accent);     /* de kleur-pop */
+}
+.statistiek__label {
+  font-family: var(--font-accent);
+  font-size: 16px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--kleur-tekst-licht);
+}
+@media (max-width: 768px) {
+  .statistiek__inner { grid-template-columns: repeat(2, 1fr); gap: 28px; }
+  .statistiek__getal { font-size: 40px; }
 }
