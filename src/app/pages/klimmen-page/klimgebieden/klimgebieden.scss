@@ -92,7 +92,7 @@
 .klimmuur-kaart {
   min-width: 0;
   background: var(--kleur-wit);
-  border-radius: var(--afgerond);
+  border-radius: 0;
   padding: 24px;
   display: grid;
   grid-template-rows: 82px 42px minmax(96px, auto) 178px auto;
@@ -146,7 +146,7 @@
   text-transform: uppercase;
   color: var(--kleur-tekst);
   background: var(--papier-creme);
-  border-radius: 999px;
+  border-radius: 0;
   padding: 6px 9px;
 }
 
@@ -155,7 +155,7 @@
   overflow: hidden;
   width: 100%;
   height: 178px;
-  border-radius: 12px;
+  border-radius: 0;
   background: var(--papier-creme);
   box-shadow: inset 0 0 0 1px rgba(66, 70, 54, 0.12);
 }
@@ -186,7 +186,7 @@
   top: 50%;
   width: 24px;
   height: 24px;
-  border-radius: 50% 50% 50% 0;
+  border-radius: 0;
   background: var(--terra-donker);
   border: 3px solid var(--papier-licht);
   transform: translate(-50%, -82%) rotate(-45deg);
@@ -199,7 +199,7 @@
   content: '';
   position: absolute;
   inset: 5px;
-  border-radius: 50%;
+  border-radius: 0;
   background: var(--amber);
 }
 

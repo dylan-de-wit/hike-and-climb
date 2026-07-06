@@ -1,0 +1,76 @@
+.knopen-overzicht {
+  background: var(--kleur-achtergrond);
+}
+
+.knopen-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 28px;
+  align-items: start;
+}
+
+.knopen-grid app-knoop-viewer {
+  width: 100%;
+  max-width: none;
+}
+
+.knoop-placeholder {
+  min-height: 620px;
+  margin: 0;
+  padding: 24px;
+  border: 1px dashed rgba(66, 70, 54, 0.28);
+  border-radius: 0;
+  background:
+    linear-gradient(rgba(245, 245, 245, 0.82), rgba(245, 245, 245, 0.82)),
+    var(--papier-creme);
+  color: var(--kleur-tekst-licht);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.knoop-placeholder__nummer {
+  width: 44px;
+  height: 44px;
+  border-radius: 0;
+  background: rgba(66, 70, 54, 0.08);
+  color: var(--kleur-accent);
+  display: grid;
+  place-items: center;
+  font-family: var(--font-accent);
+  font-size: 20px;
+  letter-spacing: 0.08em;
+  margin-bottom: auto;
+}
+
+.knoop-placeholder h3 {
+  font-family: var(--font-heading);
+  font-size: 28px;
+  font-weight: 400;
+  line-height: 1;
+  color: var(--kleur-tekst);
+  margin: 0 0 10px;
+}
+
+.knoop-placeholder p {
+  max-width: 28ch;
+  margin: 0;
+  line-height: 1.45;
+}
+
+.knoop-placeholder code {
+  font-size: 0.95em;
+}
+
+@media (max-width: 1120px) {
+  .knopen-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 720px) {
+  .knopen-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}

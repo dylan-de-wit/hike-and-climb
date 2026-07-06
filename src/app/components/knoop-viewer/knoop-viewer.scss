@@ -1,0 +1,362 @@
+:host {
+  display: block;
+  max-width: 420px;
+}
+
+.knoop-viewer {
+  position: relative;
+  margin: 0;
+  --touw-kleur: var(--kleur-accent);
+  --touw-kleur-2: #ffd96a;
+  --touw-dikte: 30;
+  --touw-uitsparing: 33;
+  --touw-reveal: 52;
+  background: var(--papier-creme);
+  border-radius: 0;
+  padding: 22px 24px 26px;
+  box-shadow: inset 0 0 0 1px rgba(66, 70, 54, 0.08);
+  overflow: hidden;
+}
+
+/* Subtiele hoogtelijnen, net als de route-divider */
+.knoop-viewer > * {
+  position: relative;
+}
+
+.knoop-viewer__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-accent);
+  font-size: 13px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.knoop-viewer__tag {
+  background: var(--kleur-hero);
+  color: var(--kleur-hero-ink);
+  padding: 3px 10px;
+  border-radius: 0;
+}
+
+.knoop-viewer__naam {
+  font-family: var(--font-heading);
+  font-size: 30px;
+  line-height: 1;
+  margin: 16px 0 2px;
+  color: var(--kleur-tekst);
+}
+
+.knoop-viewer__ondertitel {
+  font-family: var(--font-accent);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 13px;
+  color: var(--kleur-accent);
+  margin: 0 0 10px;
+}
+
+.knoop-viewer__beschrijving {
+  font-size: 14.5px;
+  line-height: 1.5;
+  color: var(--kleur-tekst-licht);
+  margin: 0 0 14px;
+  white-space: normal;
+}
+
+/* ── Speelvlak ── */
+.knoop-viewer__stage {
+  position: relative;
+  border-radius: 0;
+  background: var(--papier-licht);
+  box-shadow: inset 0 0 0 1px rgba(66, 70, 54, 0.06);
+  overflow: hidden;
+}
+
+/* fijn raster, zoals een topo-kaart */
+.knoop-viewer__stage::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(80, 89, 76, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(80, 89, 76, 0.07) 1px, transparent 1px);
+  background-size: 28px 28px;
+  mask-image: radial-gradient(circle at 50% 45%, #000 55%, transparent 90%);
+  pointer-events: none;
+}
+
+/* Papierkorrel over het hele vlak — geeft de risograph/print-uitstraling */
+.knoop-viewer__stage::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  mix-blend-mode: multiply;
+  opacity: 0.22;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 160px 160px;
+}
+
+.knoop-viewer__svg {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 340px;
+}
+
+/* Touw: omhulsel maakt een dunne onderbreking bij kruisingen (geen dikke halo) */
+.knoop-viewer__omhulsel {
+  fill: none;
+  stroke: var(--papier-licht);
+  stroke-width: var(--touw-uitsparing);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Schaduwstreep uit voor een vlakke riso-look */
+.knoop-viewer__schaduw {
+  display: none;
+}
+
+.knoop-viewer__streng {
+  fill: none;
+  stroke: var(--touw-kleur);
+  stroke-width: var(--touw-dikte);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.knoop-viewer__vezel {
+  fill: none;
+  stroke: var(--touw-kleur-2);
+  stroke-width: var(--touw-dikte);
+  stroke-linecap: butt;
+  stroke-linejoin: round;
+  opacity: 0.76;
+}
+
+.patroon-dunne-strepen .knoop-viewer__vezel {
+  stroke-width: 5;
+  stroke-linecap: round;
+  stroke-dasharray: 0.018 0.034;
+}
+
+.patroon-ruitjes .knoop-viewer__vezel {
+  stroke-width: 16;
+  stroke-dasharray: 0.018 0.018;
+  opacity: 0.72;
+}
+
+.patroon-gestipt .knoop-viewer__vezel {
+  stroke-width: 9;
+  stroke-linecap: round;
+  stroke-dasharray: 0.001 0.032;
+  opacity: 0.9;
+}
+
+.patroon-dubbele-stippen .knoop-viewer__vezel {
+  stroke-width: 8;
+  stroke-linecap: round;
+  stroke-dasharray: 0.001 0.018 0.001 0.044;
+  opacity: 0.9;
+}
+
+.knoop-viewer__strenglijn--a {
+  transform: translate(-7px, 0);
+}
+
+.knoop-viewer__strenglijn--b {
+  transform: translate(7px, 0);
+}
+
+.is-dubbelstreng {
+  --touw-dikte: 17;
+  --touw-uitsparing: 21;
+  --touw-reveal: 64;
+}
+
+/* Matte riso-look: heel subtiele highlight, geen glossy glim */
+.knoop-viewer__glans {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.35);
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transform: translate(-3px, -3.5px);
+  opacity: 0.3;
+}
+
+.knoop-viewer__reveal {
+  fill: none;
+  stroke: #fff;
+  stroke-width: var(--touw-reveal);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 1 1;
+  stroke-dashoffset: calc(1 - var(--voortgang, 0));
+  transition: stroke-dashoffset 0.08s linear;
+}
+
+.knoop-viewer__eindlabel {
+  font-family: var(--font-accent);
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  fill: var(--kleur-tekst-licht);
+  opacity: 0.7;
+}
+
+/* ── Bediening ── */
+.knoop-viewer__bediening {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 16px 2px 4px;
+}
+
+.knoop-viewer__speel {
+  flex: none;
+  width: 42px;
+  height: 42px;
+  border: none;
+  border-radius: 0;
+  background: var(--kleur-accent);
+  color: var(--papier-licht);
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  transition: transform 0.15s ease, filter 0.15s ease;
+}
+
+.knoop-viewer__speel:hover {
+  transform: scale(1.06);
+  filter: brightness(1.05);
+}
+
+.knoop-viewer__speel svg {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+}
+
+/* Scrubber */
+.knoop-viewer__scrubber {
+  flex: 1;
+  -webkit-appearance: none;
+  appearance: none;
+  height: 6px;
+  border-radius: 0;
+  background: linear-gradient(
+    to right,
+    var(--kleur-hero) 0%,
+    var(--kleur-hero) calc(var(--vooruit, 0) * 100%),
+    rgba(66, 70, 54, 0.16) 0%
+  );
+  background: rgba(66, 70, 54, 0.16);
+  cursor: pointer;
+}
+
+.knoop-viewer__scrubber::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 0;
+  background: var(--kleur-hero);
+  border: 3px solid var(--papier-creme);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+}
+
+.knoop-viewer__scrubber::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 0;
+  background: var(--kleur-hero);
+  border: 3px solid var(--papier-creme);
+  cursor: pointer;
+}
+
+/* ── Stappen ── */
+.knoop-viewer__stappen {
+  list-style: none;
+  margin: 18px 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.knoop-viewer__stap-knop {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  width: 100%;
+  min-height: 86px;
+  text-align: left;
+  background: none;
+  border: none;
+  padding: 10px 10px;
+  border-radius: 0;
+  cursor: pointer;
+  transition: background 0.16s ease;
+}
+
+.knoop-viewer__stap.is-actief .knoop-viewer__stap-knop {
+  background: rgba(66, 70, 54, 0.06);
+}
+
+.knoop-viewer__stap-nr {
+  flex: none;
+  font-family: var(--font-hero, var(--font-accent));
+  font-size: 18px;
+  letter-spacing: 0.08em;
+  color: #9aa093;
+  line-height: 1.3;
+  transition: color 0.16s ease;
+}
+
+.knoop-viewer__stap.is-actief .knoop-viewer__stap-nr {
+  color: var(--kleur-accent);
+}
+
+.knoop-viewer__stap-titel {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 16px;
+  color: #8f958a;
+  transition: color 0.16s ease;
+}
+
+.knoop-viewer__stap.is-actief .knoop-viewer__stap-titel {
+  color: var(--kleur-tekst);
+}
+
+.knoop-viewer__stap-uitleg {
+  display: block;
+  font-size: 14px;
+  line-height: 1.45;
+  color: var(--kleur-tekst-licht);
+  opacity: 0;
+  max-height: 42px;
+  margin-top: 3px;
+  overflow: hidden;
+  transition: opacity 0.2s ease;
+}
+
+.knoop-viewer__stap.is-actief .knoop-viewer__stap-uitleg {
+  opacity: 0.9;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .knoop-viewer__reveal,
+  .knoop-viewer__brug,
+  .knoop-viewer__stap-uitleg {
+    transition: none;
+  }
+}

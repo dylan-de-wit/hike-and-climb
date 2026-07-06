@@ -8,20 +8,21 @@
   min-height: 85vh;
   justify-content: center;
   gap: 32px;
-  margin: 0;          /* geen ondermarge → oranje blok sluit flush aan */
+  margin: 0;
 }
 .hero-section .hero-title {
-  font-family: 'Yellowtail', cursive;          /* script-opmaak (Adventure bound) */
-  font-size: clamp(180px, 9vw, 92px)!important;  /* hero-titel = groot, maar niet te groot */
+  font-family: 'Abril Fatface', serif;
+  font-size: clamp(140px, 9vw, 75px)!important;
   line-height: 0.95;
-  font-weight:550;
-  color: var(--terra-licht);
+  font-weight: 400;
+  color: var(--amber);
+  text-shadow: 8px 8px 0 #d2402f;
+  text-transform: none;
   text-align: center;
-  transform: rotate(-5deg);
   margin: 0 0 4px;
 }
 
-/* Hero-kop = titel + sub strak onder elkaar, boven de bomen */
+/* Hero-kop = titel + sub, boven de bomen */
 .hero-kop {
   position: relative;
   z-index: 3;
@@ -119,7 +120,7 @@
   width: 94%;
   max-width: 1400px;
   transform: translateX(-50%);   /* horizontaal centreren */
-  border-radius: 12px 12px 0 0;
+  border-radius: 0;
   overflow: hidden;
   z-index: 1;
   animation: foto-van-links 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.3s both;
@@ -243,7 +244,7 @@
   flex: 1;
   min-width: 0;
   height: 600px;
-  border-radius: 5px;                          /* subtiele ronding */
+  border-radius: 0;                          /* subtiele ronding */
   overflow: hidden;
   border: 8px solid #F0E9D1;                   /* poster-frame om de buitenkant */
   box-shadow: 0 0 0 1px rgba(38, 28, 21, 0.16); /* dunne rand zodat het frame altijd afsteekt */
@@ -267,7 +268,7 @@
   font-family: var(--font-accent);
   font-size: 18px;
   letter-spacing: 0.2em;
-  color: var(--autumn-leaf);
+  color: var(--kleur-accent);
 }
 
 .content-text h2 {
@@ -402,7 +403,7 @@
   position: relative;
   width: 100%;
   height: 300px;
-  border-radius: 4px;                            /* strak/poster i.p.v. var(--afgerond) */
+  border-radius: 0;                            /* strak/poster i.p.v. var(--afgerond) */
   overflow: hidden;
   margin-bottom: 14px;
   border: 8px solid #F0E9D1;                     /* cream poster-frame, als de content-foto's */
@@ -427,7 +428,7 @@
   color: var(--groen-donker);
   background: var(--amber);
   padding: 3px 10px;
-  border-radius: 2px;
+  border-radius: 0;
 }
 .kaart-label {
   font-family: var(--font-accent);
@@ -499,7 +500,7 @@
     width: 100%;
     max-width: 100%;
     margin-top: 4px;
-    border-radius: 8px 8px 0 0;
+    border-radius: 0;
     animation: none;
   }
 
@@ -597,7 +598,7 @@
   background: var(--terra-donker);
   color: var(--papier-licht);
   padding: 14px 36px;
-  border-radius: 100px;
+  border-radius: 0;
   text-decoration: none;
   transition: background 0.2s ease;
 }

@@ -15,7 +15,7 @@
 .kleurband__tekst p  { color: var(--kleur-hero-ink); opacity: 0.9; max-width: 46ch; }
 .kleurband__beeld {
   align-self: end;
-  border-radius: var(--afgerond) var(--afgerond) 0 0;
+  border-radius: 0;
   overflow: hidden;
   transform: translateY(40px);
 }
@@ -23,7 +23,7 @@
 .kleurband__beeld img {
   width: 100%;
   display: block;
-  border-radius: 8px;
+  border-radius: 0;
 }
 
 .content-eyebrow--licht { color: var(--kleur-hero-ink); opacity: 0.75; }
@@ -37,7 +37,7 @@
   font-size: 18px;
   letter-spacing: 0.08em;
   padding: 13px 28px;
-  border-radius: 100px;
+  border-radius: 0;
   text-decoration: none;
 }
 
@@ -88,7 +88,7 @@
   color: var(--kleur-hero-ink);
   border: 1.5px solid rgba(245, 245, 245, 0.5);
   padding: 12px 26px;
-  border-radius: 100px;
+  border-radius: 0;
   text-decoration: none;
 }
 @media (max-width: 900px) {
@@ -112,7 +112,7 @@
 }
 .info-kaart {
   background: var(--papier-creme);
-  border-radius: var(--afgerond);
+  border-radius: 0;
   padding: 32px;
   border-top: 4px solid var(--kleur-accent);   /* de kleur-pop per kaart */
 }

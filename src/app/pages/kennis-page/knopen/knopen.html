@@ -1,6 +1,6 @@
 <section class="subhero subhero--met-veldstrip">
   <div class="subhero__media">
-    <img src="images/treeroot.jpeg" alt="Detail van wortels en textuur in de natuur" />
+    <img src="images/zigzag.jpg" alt="Klimmer op de berg" />
   </div>
   <div class="subhero__content">
     <span class="subhero__eyebrow">Kennis</span>
@@ -9,4 +9,30 @@
   </div>
   <app-veldstrip [items]="veldgegevens" meta="touwwerk" />
   <app-route-divider class="subhero__route" variant="overlay" [stops]="etappes" [actief]="actief" />
+</section>
+
+<section class="sectie sectie--creme" id="oefenen">
+  <div class="sectie-inner tekst-blok">
+    <span class="content-eyebrow">Knopen leggen</span>
+    <h2>Zo leg je de knoop</h2>
+    <p>Klik op afspelen of sleep de schuif om een knoop stap voor stap te zien.</p>
+  </div>
+</section>
+
+<section class="sectie knopen-overzicht" id="knopen">
+  <div class="sectie-inner">
+    <div class="knopen-grid">
+      @for (knoop of knoopBlokken; track $index) {
+        @if (knoop) {
+          <app-knoop-viewer [knoop]="knoop" />
+        } @else {
+          <article class="knoop-placeholder">
+            <span class="knoop-placeholder__nummer">{{ ($index + 1).toString().padStart(2, '0') }}</span>
+            <h3>Nieuwe knoop</h3>
+            <p>Voeg deze knoop toe in <code>knopen.json</code> of via de editor.</p>
+          </article>
+        }
+      }
+    </div>
+  </div>
 </section>

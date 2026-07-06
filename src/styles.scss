@@ -44,7 +44,7 @@
   --bullet:            url('/bulletpoints/greenarrow.svg');  /* opsommingsteken — per thema anders */
 
   /* ── Fonts ── */
-  --font-heading: 'Limelight', cursive;                     /* h1, h2            */
+  --font-heading: 'Bricolage Grotesque', sans-serif;     /* h1, h2            */
   --font-accent:  'Bebas Neue', sans-serif;              /* labels, kickers, nav */
   --font:         'Barlow', sans-serif;                  /* body              */
   --font-display: 'Bricolage Grotesque', sans-serif;     /* h3/h4 + uitgelicht */
@@ -52,8 +52,8 @@
   /* ── Afmetingen ── */
   --max-breedte:    1315px;
   --padding-zij:    20px;
-  --afgerond:       16px;
-  --afgerond-groot: 24px;
+  --afgerond:       0;
+  --afgerond-groot: 0;
 }
 
 /* ══════════════════════════════════════
@@ -163,7 +163,7 @@ body {
   font-family: var(--font-accent);
   font-size: 18px;
   letter-spacing: 0.2em;
-  color: var(--kleur-hero);
+  color: var(--kleur-accent);
 }
 
 /* ─── Hero met overlappende tekst (subpagina's) ─── */
@@ -216,7 +216,7 @@ body {
   width: 48px;
   height: 3px;
   background: var(--kleur-hero);     /* accentkleur van de sectie */
-  border-radius: 2px;
+  border-radius: 0;
   margin-bottom: 18px;
 }
 .hero-overlap__kaart h1 {
@@ -399,8 +399,9 @@ body {
 h1 {
   font-family: var(--font-heading);
   font-size: 78px;
-  font-weight: 400;
+  font-weight: 700;
   line-height: 90%;
+  text-transform: uppercase;
   margin: 0;
 }
 
@@ -409,6 +410,8 @@ h2 {
   font-size: 46px;
   font-weight: 700;
   line-height: 90%;
+  color: var(--kleur-hero);
+  text-transform: uppercase;
   margin: 0.5rem 0 1.5rem;
 }
 
@@ -446,7 +449,7 @@ p {
   font-size: 20px;
   letter-spacing: 0.1em;
   padding: 14px 32px;
-  border-radius: 100px;
+  border-radius: 0;
   text-decoration: none;
 }
 
@@ -469,7 +472,7 @@ p {
 
 /* 1) Tekstblok — kop + alinea's */
 .tekst-blok    { max-width: 760px; }
-.tekst-blok h2 { color: var(--kleur-tekst); margin: 0.75rem 0 16px; }
+.tekst-blok h2 { color: var(--kleur-hero); margin: 0.75rem 0 16px; }
 .tekst-blok p  { margin: 0 0 16px; }
 
 /* Opsommingslijst met eigen pijl-bullet (kleur volgt het thema) */
@@ -544,7 +547,7 @@ p {
   flex: 1;
   min-width: 0;
   min-height: 320px;
-  border-radius: 5px;                          /* subtiele ronding */
+  border-radius: 0;                          /* subtiele ronding */
   overflow: hidden;
   background: var(--papier-creme);
   border: 8px solid #F0E9D1;                   /* poster-frame om de buitenkant */
@@ -573,14 +576,14 @@ p {
   display: flex; gap: 16px; align-items: flex-start;
   min-width: 0;
   background: var(--papier-creme);
-  border-radius: var(--afgerond);
+  border-radius: 0;
   padding: 24px;
 }
 .icon-kaart__icon {
   flex: none;
   width: 78px; height: 78px;
   display: grid; place-items: center;
-  border-radius: 12px;
+  border-radius: 0;
   background: var(--kleur-accent);
   color: var(--papier-licht);
 }
@@ -602,7 +605,7 @@ a.icon-kaart:hover {
   box-shadow: 0 8px 24px rgba(38, 28, 21, 0.1);
 }
 /* 8) Split-screen — twee gelijke panelen (één gekleurd) */
-.split          { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border-radius: var(--afgerond); overflow: hidden; }
+.split          { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border-radius: 0; overflow: hidden; }
 .split__paneel  { padding: 56px 48px; display: flex; flex-direction: column; justify-content: center; min-height: 360px; }
 .split__paneel--kleur {
   background: var(--kleur-hero);
@@ -615,13 +618,13 @@ a.icon-kaart:hover {
 .asym        { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 24px; }
 .asym__groot {
   background: var(--papier-creme);
-  border-radius: var(--afgerond);
+  border-radius: 0;
   padding: 40px;
 }
 .asym__kolom { display: flex; flex-direction: column; gap: 24px; }
 .asym__klein {
   background: var(--papier-creme);
-  border-radius: var(--afgerond);
+  border-radius: 0;
   padding: 28px;
   border-left: 3px solid var(--kleur-accent);
 }
@@ -694,7 +697,7 @@ a.icon-kaart:hover {
 }
 .badge-kaart {
   background: var(--papier-creme);
-  border-radius: var(--afgerond);
+  border-radius: 0;
   padding: 28px;
   text-align: center;
 }
@@ -727,7 +730,7 @@ a.icon-kaart:hover {
   align-items: center;
   gap: 22px;
   background: var(--papier-creme);
-  border-radius: var(--afgerond);
+  border-radius: 0;
   padding: 16px 24px;
 }
 .badge-lijst__item img {
@@ -846,7 +849,7 @@ a.icon-kaart:hover {
   display: block;
   background: var(--paper-creme);
   border: 1.5px solid var(--inkt);
-  border-radius: 4px;
+  border-radius: 0;
   padding: 10px 10px 4px;
   text-decoration: none;
   color: var(--inkt);
@@ -862,7 +865,7 @@ a.icon-kaart:hover {
   aspect-ratio: 4 / 5;
   overflow: hidden;
   border: 1px solid rgba(42, 42, 30, 0.35);
-  border-radius: 2px;
+  border-radius: 0;
   background: var(--paper-haver);
 }
 .poster-kaart__beeld img {
@@ -882,7 +885,7 @@ a.icon-kaart:hover {
   color: var(--paper-creme);
   background: var(--terra);
   padding: 2px 8px;
-  border-radius: 2px;
+  border-radius: 0;
 }
 /* banner-kop onder het beeld */
 .poster-kaart__banner {
@@ -1107,7 +1110,7 @@ a.icon-kaart:hover {
   text-align: center;
   background: var(--crème);
   border: 3px double var(--groen);
-  border-radius: 4px;
+  border-radius: 0;
   padding: 52px 40px 44px;
   max-width: 720px;
   margin: 0 auto;
@@ -1118,7 +1121,7 @@ a.icon-kaart:hover {
   position: absolute;
   inset: 9px;
   border: 1px solid var(--groen);
-  border-radius: 2px;
+  border-radius: 0;
   pointer-events: none;
 }
 /* boompje dat op de bovenrand zit */
@@ -1144,7 +1147,7 @@ a.icon-kaart:hover {
 .kader-blok__banner {
   display: inline-block;
   background: var(--groen-licht);
-  border-radius: 3px;
+  border-radius: 0;
   padding: 8px 26px;
 }
 .kader-blok__banner h2 {

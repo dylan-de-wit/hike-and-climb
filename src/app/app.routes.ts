@@ -25,6 +25,7 @@ import { BoulderenMateriaal } from './pages/boulderen-page/materiaal/materiaal';
 import { BoulderenTraining } from './pages/boulderen-page/training/training';
 
 // Kennis sub-pagina's
+import { KnoopEditor } from './components/knoop-editor/knoop-editor';
 import { KennisKnopen } from './pages/kennis-page/knopen/knopen';
 import { KennisTechnieken } from './pages/kennis-page/technieken/technieken';
 import { KennisReisverhalen } from './pages/kennis-page/artikelen/artikelen';
@@ -61,6 +62,7 @@ export const routes: Routes = [
 
   { path: 'kennis', component: KennisPage },
   { path: 'kennis/knopen', component: KennisKnopen },
+  { path: 'kennis/knopen/editor', component: KnoopEditor },
   { path: 'kennis/technieken', component: KennisTechnieken },
   { path: 'kennis/artikelen', redirectTo: 'kennis/reisverhalen', pathMatch: 'full' },
   { path: 'kennis/reisverhalen', component: KennisReisverhalen },
