@@ -46,8 +46,7 @@
   flex-wrap: wrap;
 }
 
-.editor__knop,
-.editor__select {
+.editor__knop {
   font-family: var(--font-accent);
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -231,17 +230,6 @@
   padding: 2px;
   border-radius: 0;
   cursor: pointer;
-}
-
-.editor__check {
-  flex-direction: row !important;
-  align-items: center;
-  gap: 8px !important;
-}
-
-.editor__check input {
-  width: auto;
-  margin: 0;
 }
 
 /* ── Knopenbalk (tegels) ── */

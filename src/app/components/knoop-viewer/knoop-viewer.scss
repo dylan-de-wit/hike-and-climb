@@ -117,11 +117,6 @@
   stroke-linejoin: round;
 }
 
-/* Schaduwstreep uit voor een vlakke riso-look */
-.knoop-viewer__schaduw {
-  display: none;
-}
-
 .knoop-viewer__streng {
   fill: none;
   stroke: var(--touw-kleur);
@@ -355,7 +350,6 @@
 
 @media (prefers-reduced-motion: reduce) {
   .knoop-viewer__reveal,
-  .knoop-viewer__brug,
   .knoop-viewer__stap-uitleg {
     transition: none;
   }

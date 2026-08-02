@@ -604,17 +604,7 @@ a.icon-kaart:hover {
   transform: translateY(-3px);
   box-shadow: 0 8px 24px rgba(38, 28, 21, 0.1);
 }
-/* 8) Split-screen — twee gelijke panelen (één gekleurd) */
-.split          { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border-radius: 0; overflow: hidden; }
-.split__paneel  { padding: 56px 48px; display: flex; flex-direction: column; justify-content: center; min-height: 360px; }
-.split__paneel--kleur {
-  background: var(--kleur-hero);
-  color: var(--kleur-hero-ink);
-}
-.split__paneel--kleur h2 { color: var(--kleur-hero-ink); }
-.split__paneel--creme { background: var(--papier-creme); }
-
-/* 9) Asymmetrisch — één groot vlak + kolom met kleine */
+/* 8) Asymmetrisch — één groot vlak + kolom met kleine */
 .asym        { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 24px; }
 .asym__groot {
   background: var(--papier-creme);
@@ -643,8 +633,6 @@ a.icon-kaart:hover {
   .uitgelicht p      { font-size: 24px; }
 
   .icon-grid         { grid-template-columns: 1fr; }
-  .split             { grid-template-columns: 1fr; }
-  .split__paneel     { padding: 40px 28px; min-height: 0; }
   .asym              { grid-template-columns: 1fr; }
   .asym__groot       { padding: 28px; }
 }
@@ -745,23 +733,6 @@ a.icon-kaart:hover {
 .badge-lijst__item p {
   margin: 0;
   font-size: 16px;
-}
-
-/* D) Strip — losse rij badges (zoals een verzamelvel) */
-.badge-strip {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  gap: 16px;
-}
-.badge-strip img {
-  width: 84px;
-  height: 84px;
-  transition: transform 0.2s ease;
-}
-.badge-strip img:hover {
-  transform: scale(1.08) rotate(-2deg);
 }
 
 @media (max-width: 768px) {
@@ -917,258 +888,24 @@ a.icon-kaart:hover {
   .poster-grid   { grid-template-columns: 1fr; }
 }
 
-/* ══════════════════════════════════════
-   GROOVY ZEGEL-BAND (Anderson-richting)
-   Donkere band met sunburst en een titel
-   die rond een onzichtbare cirkel buigt.
-   Eigen gedempte kleuren (scoped).
-   ══════════════════════════════════════ */
-.groovy-band {
-  --donker:   #221F16;  /* espresso-olijf achtergrond */
-  --crème:    #ECE3C5;  /* warm crème voor tekst/lijnen */
-  --oker:     #D69A3C;  /* honingoker accent */
-  --salie:    #8FA77E;  /* gedempt groen */
-
-  position: relative;
-  overflow: hidden;
-  background: var(--donker);
-  padding: 96px 20px 104px;
-  text-align: center;
-}
-/* uitwaaierende zonnestralen, vervagend naar de randen */
-.groovy-band__rays {
-  position: absolute;
-  inset: -20% 0;
-  background: repeating-conic-gradient(
-    from -1.5deg at 50% 50%,
-    rgba(214, 154, 60, 0.16) 0deg 3deg,
-    transparent 3deg 15deg
-  );
-  -webkit-mask: radial-gradient(circle at 50% 50%, #000 0%, #000 30%, transparent 66%);
-          mask: radial-gradient(circle at 50% 50%, #000 0%, #000 30%, transparent 66%);
-  pointer-events: none;
-}
-/* papierkorrel over de hele band */
-.groovy-band::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 300 300' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n2'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n2)'/%3E%3C/svg%3E");
-  background-size: 200px 200px;
-  opacity: 0.5;
-  mix-blend-mode: overlay;
-  pointer-events: none;
-}
-.groovy-band__inner {
-  position: relative;
-  z-index: 1;
-  max-width: 720px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-/* het ronde zegel met gebogen tekst */
-.groovy-zegel {
-  width: 340px;
-  max-width: 80vw;
-  height: auto;
-}
-.groovy-zegel .ring {
-  fill: none;
-  stroke: var(--crème);
-}
-.groovy-zegel .boog {
-  font-family: var(--font-accent);
-  fill: var(--crème);
-  letter-spacing: 0.18em;
-  font-size: 22px;
-}
-.groovy-zegel .boog--oker { fill: var(--oker); }
-.groovy-zegel .berg-crème { fill: var(--crème); }
-.groovy-zegel .berg-salie { fill: var(--salie); }
-.groovy-zegel .zon        { fill: var(--oker); }
-.groovy-zegel .zonstraal  { stroke: var(--oker); stroke-width: 2.5; stroke-linecap: round; }
-.groovy-zegel .grond      { stroke: var(--crème); stroke-width: 3; stroke-linecap: round; }
-
-.groovy-band__tagline {
-  font-family: var(--font-display);
-  font-size: 30px;
-  line-height: 1.25;
-  color: var(--crème);
-  margin: 30px 0 0;
-  max-width: 18ch;
-}
-.groovy-band__tagline em {
-  font-family: var(--font-heading);
-  font-style: normal;
-  color: var(--oker);
-}
-
-@media (max-width: 560px) {
-  .groovy-band { padding: 64px 20px 72px; }
-  .groovy-band__tagline { font-size: 23px; }
-}
-
-/* ══════════════════════════════════════
-   POSTER-KOPPEN (Anderson/groovy titelblokken)
-   Drie tekst/titel-treatments naar de
-   referentie-posters. Eigen gedempte kleuren.
-   ══════════════════════════════════════ */
-.kop-groovy,
-.kop-script,
-.kader-blok {
-  --terra:       #B0552A;
-  --oker:        #C68A2E;
-  --mos:         #5E6B3F;
-  --inkt:        #2A2A1E;
-  --crème:       #EFEAD8;
-  --groen:       #3F6B3A;
-  --groen-licht: #9FB98A;
-}
-
-/* 1) GROOVY — dikke bubbeltitel (The Mountain / Rocky Mountain) */
-.kop-groovy {
-  text-align: center;
-  max-width: 860px;
-  margin: 0 auto;
-}
-.kop-groovy__kicker {
-  display: block;
-  font-family: var(--font-accent);
-  font-size: 18px;
-  letter-spacing: 0.26em;
-  text-transform: uppercase;
-  color: var(--mos);
-  margin-bottom: 12px;
-}
-.kop-groovy__titel {
-  font-family: 'Bowlby One SC', sans-serif;
-  font-size: clamp(42px, 8vw, 90px);
-  line-height: 0.9;
-  letter-spacing: 0.005em;
-  text-transform: uppercase;
-  color: var(--terra);
-  margin: 0;
-}
-.kop-groovy__titel em {
-  font-style: normal;
-  color: var(--oker);
-}
-.kop-groovy__tagline {
-  font-family: var(--font-heading);
-  font-size: 22px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--mos);
-  margin: 20px 0 0;
-}
-
-/* 2) SCRIPT — handgeschreven kop (Adventure Bound) */
-.kop-script {
-  text-align: center;
-  max-width: 760px;
-  margin: 0 auto;
-}
-.kop-script__titel {
-  font-family: 'Yellowtail', cursive;
-  font-size: clamp(48px, 9vw, 92px);
-  line-height: 0.95;
-  color: var(--terra);
-  transform: rotate(-3deg);
-  margin: 0 0 4px;
-}
+/* Script-subtitel in de home-hero. */
 .kop-script__sub {
   display: block;
   font-family: var(--font-accent);
   font-size: 22px;
   letter-spacing: 0.34em;
   text-transform: uppercase;
-  color: var(--inkt);
+  color: var(--kleur-tekst);
 }
-/* dun lijntje met een puntje, als de line-art in de poster */
+
 .kop-script__sub::after {
   content: '';
   display: block;
   width: 120px;
   height: 0;
   margin: 14px auto 0;
-  border-top: 1.5px solid var(--oker);
+  border-top: 1.5px solid var(--amber);
   position: relative;
-}
-.kop-script__tekst {
-  margin-top: 22px;
-}
-.kop-script__tekst p {
-  margin: 0 auto 14px;
-  max-width: 56ch;
-}
-
-/* 3) SIERKADER — twee-toon omlijst blok (Yosemite) */
-.kader-blok {
-  position: relative;
-  text-align: center;
-  background: var(--crème);
-  border: 3px double var(--groen);
-  border-radius: 0;
-  padding: 52px 40px 44px;
-  max-width: 720px;
-  margin: 0 auto;
-}
-/* tweede, dunne binnenlijn */
-.kader-blok::before {
-  content: '';
-  position: absolute;
-  inset: 9px;
-  border: 1px solid var(--groen);
-  border-radius: 0;
-  pointer-events: none;
-}
-/* boompje dat op de bovenrand zit */
-.kader-blok__tree {
-  position: absolute;
-  top: -20px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 40px;
-  height: auto;
-  background: var(--crème);
-  padding: 0 6px;
-}
-.kader-blok__sub {
-  display: block;
-  font-family: var(--font-accent);
-  font-size: 17px;
-  letter-spacing: 0.24em;
-  text-transform: uppercase;
-  color: var(--groen);
-  margin-bottom: 18px;
-}
-.kader-blok__banner {
-  display: inline-block;
-  background: var(--groen-licht);
-  border-radius: 0;
-  padding: 8px 26px;
-}
-.kader-blok__banner h2 {
-  font-family: 'Alfa Slab One', serif;
-  font-size: clamp(28px, 5vw, 44px);
-  line-height: 1;
-  letter-spacing: 0.02em;
-  color: var(--crème);
-  margin: 0;
-}
-.kader-blok__tagline {
-  font-family: var(--font-heading);
-  font-size: 19px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--groen);
-  margin: 20px 0 0;
-}
-
-@media (max-width: 560px) {
-  .kader-blok { padding: 44px 24px 36px; }
 }
 
 /* ══════════════════════════════════════
