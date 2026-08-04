@@ -347,7 +347,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(rgba(156, 72, 24, 0.32), rgba(81, 87, 49, 0.40));
+  background: linear-gradient(rgba(204, 96, 36, 0.32), rgba(81, 87, 49, 0.40));
   mix-blend-mode: multiply;
   pointer-events: none;
 }
@@ -360,7 +360,7 @@
   margin: 0 auto;
   text-align: center;
   background: rgba(240, 235, 225, 0.93);
-  border: 2px solid var(--terra-donker);
+  border: 2px solid var(--terra-licht);
   border-radius: 240px 240px 24px 24px;     /* hoge boog boven */
   padding: 70px 52px 54px;
   box-shadow: 0 22px 55px rgba(38, 28, 21, 0.28);
@@ -381,7 +381,7 @@
   font-size: 16px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--terra-donker);
+  color: var(--terra-licht);
   margin-bottom: 14px;
 }
 .floral-banner__titel {
@@ -402,7 +402,7 @@
   font-family: var(--font-accent);
   font-size: 19px;
   letter-spacing: 0.08em;
-  background: var(--terra-donker);
+  background: var(--terra-licht);
   color: var(--papier-licht);
   padding: 14px 36px;
   border-radius: 0;

@@ -204,7 +204,7 @@ export class KnoopEditor {
   }
 
   kleurVoorKeuze(keuze: KruisKeuze): string {
-    return keuze === 'vroeg-over' ? '#024D4D' : '#9C4818';
+    return keuze === 'vroeg-over' ? '#024D4D' : '#CC6024';
   }
 
   zetStrengen(waarde: string): void {

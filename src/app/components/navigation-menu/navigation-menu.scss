@@ -69,11 +69,11 @@
   transition: color 0.15s ease;
 
   &:hover {
-    color: var(--terra-donker);
+    color: var(--terra-licht);
   }
 
   &.active {
-    color: var(--terra-donker);
+    color: var(--terra-licht);
   }
 }
 
@@ -98,7 +98,7 @@
   }
 
   &.active {
-    color: var(--terra-donker);
+    color: var(--terra-licht);
     font-weight: 600;
   }
 }
@@ -184,7 +184,7 @@
   }
 
   &.active {
-    color: var(--terra-donker);
+    color: var(--terra-licht);
     font-weight: 700;
   }
 }

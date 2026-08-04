@@ -5,17 +5,13 @@
 :root {
   /* ── Groen — lente/mos palet ── */
   --lentegroen:      #938E3B;  /* lentegroen        — hero achtergrond     */
-  --lentegroen-mid:  #777431;  /* lentegroen midden — accenten op groen    */
   --mos-donker:      #515731;  /* mos donker        — donkere vlakken      */
 
   /* ── Terra — oranje/bruin palet ── */
-  --terra-donker:    #9C4818;  /* terra donker      — knoppen, CTA's       */
   --terra-licht:     #CC6024;  /* terra licht       — hover, accenten      */
 
   /* ── Teal — blauw/groen palet ── */
   --teal-licht:      #6E9F88;  /* teal licht        — subtiele accenten    */
-  --matt-teal:       #57866C;  /* matt teal         — secties, vlakken     */
-  --teal-mid:        #579688;  /* teal mid          — accenten             */
   --teal-diep:       #024D4D;  /* teal diep         — donkere accenten     */
 
   /* ── Geel ── */
@@ -23,11 +19,11 @@
 
   /* ── Backwards compatible (oude namen blijven werken) ── */
   --groen-donker:    var(--mos-donker);
-  --groen-mos:       var(--lentegroen-mid);
+  --groen-mos:       var(--lentegroen);
   --groen-licht:     var(--lentegroen);
-  --autumn-leaf:     var(--terra-donker);
+  --autumn-leaf:     var(--terra-licht);
   --teal-donker:     var(--mos-donker);
-  --teal-zacht:      var(--lentegroen-mid);
+  --teal-zacht:      var(--lentegroen);
 
   /* ── Papier — witte tinten ── */
   --papier-licht:    #F5F5F5;  /* papier licht      — achtergrond pagina   */
@@ -39,7 +35,7 @@
   --kleur-tekst:       #261C15;  /* inkt             — hoofdtekst          */
   --kleur-tekst-licht: #4A3530;  /* inkt licht       — subtekst            */
   --kleur-hero:        var(--lentegroen);
-  --kleur-accent:      var(--terra-donker);
+  --kleur-accent:      var(--terra-licht);
   --kleur-hero-ink:    var(--papier-licht);  /* hero titel/tekst — licht of donker per thema */
   --bullet:            url('/bulletpoints/greenarrow.svg');  /* opsommingsteken — per thema anders */
 
@@ -75,9 +71,9 @@
   --bullet: url('/bulletpoints/blueyellowarrow.svg');
 }
 .thema-boulderen {
-  --kleur-hero:     var(--terra-donker);  /* warm terra */
-  --kleur-accent:   var(--teal-mid);       /* mid teal accent */
-  --kleur-hero-ink: var(--papier-licht);  /* witte titel op donker terra */
+  --kleur-hero:     var(--terra-licht);   /* warm terra */
+  --kleur-accent:   #008D8F;               /* teal accent */
+  --kleur-hero-ink: var(--papier-licht);  /* witte titel */
   --bullet: url('/bulletpoints/orangearrow.svg');
 }
 .thema-kennis {
@@ -1134,10 +1130,10 @@ a.icon-kaart:hover {
   margin-top: 2px;
 }
 .callout p { margin: 0; color: var(--kleur-tekst); }
-.callout--tip { background: #eef2e0; border-left-color: var(--lentegroen-mid); }
-.callout--tip .callout__label { background: var(--lentegroen-mid); }
-.callout--let { background: #f8e8df; border-left-color: var(--terra-donker); }
-.callout--let .callout__label { background: var(--terra-donker); }
+.callout--tip { background: #eef2e0; border-left-color: var(--lentegroen); }
+.callout--tip .callout__label { background: var(--lentegroen); }
+.callout--let { background: #f8e8df; border-left-color: var(--terra-licht); }
+.callout--let .callout__label { background: var(--terra-licht); }
 
 /* ─── Begrippenstrip ─── */
 .begrippen {
