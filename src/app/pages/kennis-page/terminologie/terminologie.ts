@@ -4,20 +4,20 @@ import { VeldItem, Veldstrip } from '../../../components/veldstrip/veldstrip';
 import { KENNIS_ETAPPES } from '../kennis-etappes';
 
 @Component({
-  selector: 'app-kennis-reisverhalen',
+  selector: 'app-kennis-terminologie',
   host: { class: 'thema-kennis' },
   imports: [Veldstrip, RouteDivider],
-  templateUrl: './artikelen.html',
-  styleUrl: './artikelen.scss',
+  templateUrl: './terminologie.html',
+  styleUrl: './terminologie.scss',
 })
-export class KennisReisverhalen {
+export class KennisTerminologie {
   readonly veldgegevens: VeldItem[] = [
-    { label: 'Type', waarde: 'verhaal' },
-    { label: 'Sfeer', waarde: 'route' },
-    { label: 'Notities', waarde: 'veld' },
-    { label: 'Leestijd', waarde: '8 min' },
+    { label: 'Type', waarde: 'woordenlijst' },
+    { label: 'Focus', waarde: 'klimtaal' },
+    { label: 'Gebruik', waarde: 'naslag' },
+    { label: 'Niveau', waarde: 'basis' },
   ];
 
   readonly etappes = KENNIS_ETAPPES;
-  readonly actief = 4;
+  readonly actief = 2;
 }

@@ -1,0 +1,55 @@
+<section class="subhero subhero--met-veldstrip">
+  <div class="subhero__media">
+    <img src="images/mountainforest.jpeg" alt="Bergpad richting klimgebied" />
+  </div>
+  <div class="subhero__content">
+    <span class="subhero__eyebrow">Kennis</span>
+    <h1>Events</h1>
+    <p>Overzicht voor klimweekenden, gezamenlijke trips, workshops en andere buitenactiviteiten.</p>
+  </div>
+  <app-veldstrip [items]="veldgegevens" meta="agenda" />
+  <app-route-divider class="subhero__route" variant="overlay" [stops]="etappes" [actief]="actief" />
+</section>
+
+<section class="sectie">
+  <div class="sectie-inner events-layout">
+    <div class="tekst-blok">
+      <span class="content-eyebrow">Agenda</span>
+      <h2>Klimweekenden en gezamenlijke plannen</h2>
+      <p>Gebruik deze pagina straks voor aankomende weekenden, inschrijflinks, verzamelpunten en praktische voorbereiding.</p>
+    </div>
+
+    <div class="event-lijst">
+      <article class="event-kaart">
+        <div class="event-kaart__datum">
+          <span>Jun</span>
+          <strong>2026</strong>
+        </div>
+        <div>
+          <h3>Klimweekend Ardennen</h3>
+          <p>Conceptblok voor datum, locatie, niveau, benodigde set en groepsafspraken.</p>
+        </div>
+      </article>
+      <article class="event-kaart">
+        <div class="event-kaart__datum">
+          <span>Jul</span>
+          <strong>2026</strong>
+        </div>
+        <div>
+          <h3>Single-pitch clinic</h3>
+          <p>Ruimte voor een workshop met focus op routelezen, zekeren en efficiënt klimmen.</p>
+        </div>
+      </article>
+      <article class="event-kaart">
+        <div class="event-kaart__datum">
+          <span>Sep</span>
+          <strong>2026</strong>
+        </div>
+        <div>
+          <h3>Hike & climb trip</h3>
+          <p>Een gecombineerd weekend met routeplanning, overnachting en klimgebiedinformatie.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>

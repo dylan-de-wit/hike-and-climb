@@ -19,5 +19,5 @@ export class KennisGidsen {
   ];
 
   readonly etappes = KENNIS_ETAPPES;
-  readonly actief = 3;
+  readonly actief = 5;
 }

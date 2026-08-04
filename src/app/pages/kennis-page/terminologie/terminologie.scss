@@ -1,0 +1,51 @@
+.termen-layout {
+  display: grid;
+  gap: 48px;
+}
+
+.termen-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.term-kaart {
+  background: var(--papier-creme);
+  border-top: 4px solid var(--kleur-accent);
+  padding: 28px;
+  min-height: 190px;
+}
+
+.term-kaart__letter {
+  display: inline-grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  margin-bottom: 18px;
+  background: var(--kleur-hero);
+  color: var(--kleur-hero-ink);
+  font-family: var(--font-accent);
+  font-size: 24px;
+}
+
+.term-kaart h3 {
+  margin: 0 0 10px;
+}
+
+.term-kaart p {
+  margin: 0;
+  color: var(--kleur-tekst-licht);
+  font-size: 17px;
+}
+
+@media (max-width: 900px) {
+  .termen-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 620px) {
+  .termen-grid {
+    grid-template-columns: 1fr;
+  }
+}

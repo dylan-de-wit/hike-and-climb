@@ -16,10 +16,10 @@
 /* Basis-fotosectie — de foto komt uit --foto */
 .sectie-foto {
   position: relative;
-  padding: 120px 20px;
+  padding: 120px 0;
   background: var(--foto) center / cover no-repeat;
   color: var(--papier-licht);
-  margin:20px;
+  margin: 20px 0;
 }
 
 .sectie-foto::before {
@@ -37,7 +37,7 @@
 
 /* Poster-variant — zelfde foto-systeem + dubbel kader + meer ruimte */
 .sectie-foto--poster {
-  padding: 140px 20px;
+  padding: 140px 0;
 }
 .sectie-foto--poster::after {
   content: '';
@@ -50,7 +50,7 @@
 
 .foto-paneel {
   position: relative;
-  padding: 80px 20px;
+  padding: 80px var(--padding-zij);
   background: var(--foto) center / cover no-repeat;
   display: flex;
   justify-content: flex-start;   /* kaart links; 'center' = midden */
@@ -91,7 +91,7 @@
 
 .foto-editorial {
   position: relative;
-  padding: 140px 20px;
+  padding: 140px 0;
   background: var(--foto) center / cover no-repeat;
   color: var(--papier-licht);
 }
@@ -105,7 +105,7 @@
   position: relative;
   z-index: 1;
   max-width: 620px;
-  padding-left: 80px;
+  padding-inline: var(--padding-zij);
   margin: 0 auto 0 0;     /* tekst links uitgelijnd binnen de breedte */
   width: 100%;
   max-width: var(--max-breedte);
@@ -116,7 +116,7 @@
 
 .foto-fixed {
   position: relative;
-  padding: 120px 20px;
+  padding: 120px 0;
   margin: 20px 0;
   background: var(--foto) center / cover no-repeat;
   background-attachment: fixed;       /* het parallax-effect */
@@ -133,6 +133,7 @@
   z-index: 1;
   max-width: 760px;
   margin: 0 auto;
+  padding-inline: var(--padding-zij);
 }
 .foto-fixed h2 { color: var(--papier-licht); }
 .foto-fixed p  { color: rgba(245, 245, 245, 0.9); }
@@ -140,7 +141,7 @@
 /* ── Poster-container met dubbel kaderlijntje ── */
 .poster {
   position: relative;
-  padding: 120px 48px;
+  padding: 120px 0;
   background: var(--foto) center / cover no-repeat;
   color: var(--papier-licht);
   overflow: hidden;
@@ -172,12 +173,13 @@
   width: 100%;
   max-width: var(--max-breedte);
   margin: 0 auto;
+  padding-inline: var(--padding-zij);
 }
 .poster__inhoud > * { max-width: 640px; }
 .poster h2 { color: var(--papier-licht); }
 .poster p  { color: rgba(245, 245, 245, 0.92); }
 
 @media (max-width: 768px) {
-  .poster { padding: 72px 28px; }
+  .poster { padding: 72px 0; }
   .poster::after { inset: 14px; }
 }

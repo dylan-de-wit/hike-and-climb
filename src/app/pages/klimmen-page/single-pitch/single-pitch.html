@@ -1,269 +1,523 @@
-<section class="subhero subhero--met-veldstrip">
-  <div class="subhero__media">
-    <img src="images/overhangwater2.png" alt="Klimmer op rotswand" />
+<!-- ═══ MEESCROLLENDE ANKERBALK ═══ -->
+<nav class="sp-nav" [class.sp-nav--zichtbaar]="navZichtbaar()" aria-label="Op deze pagina">
+  <div class="sp-nav__inner">
+    <span class="sp-nav__merk">Single pitch</span>
+    <ul class="sp-nav__links">
+      @for (link of navLinks; track link.anchor) {
+        <li>
+          <a [attr.href]="'#' + link.anchor" (click)="scrollNaar(link.anchor, $event)">{{ link.label }}</a>
+        </li>
+      }
+    </ul>
   </div>
-  <div class="subhero__content">
-    <span class="subhero__eyebrow">Klimmen</span>
-    <h1>Single-pitch</h1>
-    <p>Leer de basis van zekeren, touwverloop en efficiënt klimmen op single-pitch routes.</p>
-  </div>
-  <app-veldstrip [items]="veldgegevens" meta="single-pitch" />
-  <app-route-divider
-    class="subhero__route"
-    variant="overlay"
-    [stops]="secties"
-    [(actief)]="actieveSectie" />
-</section>
+</nav>
 
-<!-- ═══ 1. HET VERSCHIL ═══ -->
-<section class="sectie" id="verschil">
-  <div class="sectie-inner">
-    <div class="media-blok">
-      <div class="media-blok__media">
-        <img src="images/redrock.jpg" alt="Klimmer red rock" />
-      </div>
-      <div class="media-blok__tekst">
-        <h2>Wat is single-pitch?</h2>
-        <p>Bij <strong>single-pitch</strong> klim je één touwlengte van de grond tot het ankerpunt bovenaan. Je zekeraar blijft beneden, waardoor communicatie en partnercheck overzichtelijk blijven.</p>
-        <p>Onderweg gebruik je de vaste tussenzekeringen of het bovenanker van de route. De kern blijft hetzelfde: veilig instappen, helder zekeren en bovenaan gecontroleerd ombouwen.</p>
-        <p>Een <strong>single-pitch</strong> route is een route die je in één touwlengte kunt klimmen, van de grond tot het ankerpunt bovenaan. Daarna bouw je om en laat je je zakken. Bij multi-pitch is de route langer en klim je meerdere standplaatsen na elkaar.</p>
-        <ul class="lijst">
-          <li>Een overzichtelijke route van de grond tot één ankerpunt</li>
-          <li>Duidelijke communicatie tussen klimmer en zekeraar</li>
-          <li>Single-pitch: een route die je in één touwlengte klimt, met één anker bovenin</li>
-        </ul>
-      </div>
-    </div>
+<!-- ═══ BLOK 1 — HERO ═══ -->
+<header class="sp-hero">
+  <div class="sp-hero__inner">
+    <span class="content-eyebrow">Klimmen · Single-pitch</span>
+    <h1>Standplaats maken en ombouwen bij single pitch</h1>
+    <p class="sp-hero__intro">
+      Aan het einde van een single pitch route maak je een standplaats, bouw je om naar toprope en
+      laat je je zakken. Op deze pagina lees je hoe je jezelf zekert aan de standhaken, welke
+      ombouwmethode past bij welke situatie, en wat je doet als je uitkomt op een scherpe of enkele
+      haak.
+    </p>
   </div>
-</section>
+</header>
+<span #sentinel class="sp-sentinel" aria-hidden="true"></span>
 
-<!-- ═══ 2. STANDPLAATS MAKEN ═══ -->
-<section class="sectie sectie--creme" id="standplaats">
+<!-- ═══ BLOK 2 — SNEL NAAR ═══ -->
+<nav class="sp-snelnaar" aria-label="Snel naar">
+  <span class="sp-snelnaar__label">Snel naar</span>
+  <a href="#standplaats" (click)="scrollNaar('standplaats', $event)">Standplaats maken</a>
+  <a href="#ombouwen" (click)="scrollNaar('ombouwen', $event)">Ombouwen naar toprope</a>
+  <a href="#bijzonder" (click)="scrollNaar('bijzonder', $event)">Afdalen in bijzondere situaties</a>
+  <a href="#commandos" (click)="scrollNaar('commandos', $event)">Touwcommando's</a>
+</nav>
+
+<!-- ═══ BLOK 3 — STANDPLAATS MAKEN ═══ -->
+<section class="sectie" id="standplaats">
   <div class="sectie-inner tekst-blok">
     <span class="content-eyebrow">Techniek</span>
     <h2>Standplaats maken</h2>
-    <p>Een goede standplaats is je veiligheidsanker bovenaan de route. Je maakt jezelf vast voordat je de naklimmer zevert.</p>
+    <p>
+      Aan het einde van de pitch maak je eerst een zelfzekering. Pas daarna begin je met ombouwen.
+      Zolang je aan de standplaats hangt, blijft je zekeraar je zekeren.
+    </p>
   </div>
-  <div class="sectie-inner" style="margin-top: 48px;">
-    <div class="asym">
-      <div class="asym__groot">
-        <h3>Zelfzekering maken</h3>
-        <p>Verbind jezelf met een sling of kort touwstuk aan de ankerpunten. Zorg dat je niet verder kunt vallen dan de hoogte van de stand zelf. Gebruik altijd twee onafhankelijke verbindingen.</p>
-        <p>Controleer je verbinding: trekken aan het systeem mag niets los laten komen. Karabiners zijn gesloten en vergrendeld.</p>
+
+  <!-- 3a — zelfzekering (foto + tekst) -->
+  <div class="sectie-inner sp-blok">
+    <div class="media-blok">
+      <div class="media-blok__media">
+        <div class="foto-plsh"><span>foto — zelfzekering met ankersteek in sling aan karabiner</span></div>
       </div>
-      <div class="asym__kolom">
-        <div class="asym__klein">
-          <h3>Altijd op minstens twee punten</h3>
-          <p>Eén haakverlies mag het systeem niet laten falen. Twee punten is de minimumnorm.</p>
-        </div>
-        <div class="asym__klein">
-          <h3>Haken verbinden: sling of twee quickdraws</h3>
-          <p>Met een sling en twee karabiners maak je een eenvoudige vaste stand. Quickdraws geven meer flexibiliteit bij haakafstand.</p>
-        </div>
+      <div class="media-blok__tekst">
+        <h3>Je zelfzekering maken</h3>
+        <p>
+          De standaardmanier is een sling van 60 cm die je met een <strong>ankersteek</strong> aan de
+          inbindlus van je gordel bevestigt. Het andere uiteinde hang je met een extra beveiligde
+          karabiner in een van de standhaken.
+        </p>
+        <p>
+          Werk je liever met een verstelbare lifeline, zoals de Petzl Connect, dan gebruik je die op
+          dezelfde manier. Een derde optie is een mastworp in je klimtouw die je met een
+          schroefkarabiner aan de standplaats verbindt.
+        </p>
       </div>
+    </div>
+  </div>
+
+  <!-- 3b — twee punten (foto + tekst, gespiegeld) -->
+  <div class="sectie-inner sp-blok">
+    <div class="media-blok media-blok--flip">
+      <div class="media-blok__media">
+        <div class="foto-plsh"><span>foto — twee boorhaken, verbonden met ketting/maillons</span></div>
+      </div>
+      <div class="media-blok__tekst">
+        <h3>Altijd gezekerd aan minstens twee punten</h3>
+        <p>
+          Op de meeste standplaatsen zitten twee boorhaken, al dan niet verbonden door een ketting of
+          maillons rapides. Zorg er altijd voor dat je op minstens twee punten vastzit, zodat je veilig
+          bent als één ankerpunt faalt.
+        </p>
+        <p>
+          Zijn de haken al verbonden met een ketting, dan hang je de karabiner van je zelfzekering in de
+          bovenste maillon of ring.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3c — haken verbinden (twee kaarten) -->
+  <div class="sectie-inner sp-blok">
+    <div class="sp-kop">
+      <span class="content-eyebrow">Keuze</span>
+      <h3>De haken verbinden als ze los zitten</h3>
+    </div>
+    <div class="sp-kaarten">
+      <article class="sp-kaart">
+        <span class="sp-kaart__nr">01</span>
+        <h4>Met een sling of alpinesetje</h4>
+        <div class="foto-plsh foto-plsh--kaart"><span>foto — sling tussen twee haken, op spanning met zaksteek</span></div>
+        <p>
+          Hang een karabiner in beide haken en verbind deze met een sling. Breng de sling op lengte met
+          een <strong>zaksteek</strong>, zodat de verbinding net op spanning staat.
+        </p>
+      </article>
+      <article class="sp-kaart">
+        <span class="sp-kaart__nr">02</span>
+        <h4>Met twee quickdraws</h4>
+        <div class="foto-plsh foto-plsh--kaart"><span>foto — twee quickdraws, gelijke driehoek met middelpunt</span></div>
+        <p>
+          Clip een quickdraw in elke haak en creëer een gelijke driehoek met een centraal middelpunt,
+          zodat beide haken evenveel gewicht dragen.
+        </p>
+      </article>
+    </div>
+  </div>
+
+  <!-- 3d — tip -->
+  <div class="sectie-inner sp-blok">
+    <aside class="callout callout--tip">
+      <span class="callout__label">Tip</span>
+      <p>
+        <strong>"Screw down, so you don't screw up."</strong> Hang karabiners altijd met de schroef naar
+        beneden, zodat ze minder snel opendraaien door bijvoorbeeld trillingen, en met de schroef van de
+        wand af.
+      </p>
+    </aside>
+
+    <!-- 3e — begrippenstrip -->
+    <div class="begrippen">
+      <span class="begrippen__label">Begrippen</span>
+      <ul class="begrippen__lijst">
+        <li>ankersteek</li>
+        <li>inbindlus</li>
+        <li>maillon rapide</li>
+        <li>zaksteek</li>
+      </ul>
+      <a class="begrippen__link" routerLink="/kennis/technieken">Terminologie →</a>
     </div>
   </div>
 </section>
 
-<section class="kleurband">
-  <div class="kleurband__inner">
-    <div class="kleurband__tekst">
-      <span class="content-eyebrow content-eyebrow--licht">Over klimmen</span>
-      <h2>Meer dan alleen omhoog komen</h2>
-      <p>Klimmen is techniek, vertrouwen en samenspel. Van je eerste meters toprope tot lange routes in de bergen — het draait om bewust bewegen en op elkaar kunnen rekenen.</p>
-      <a href="/klimmen/toprope-lead" class="btn-licht">Begin bij de basis →</a>
-    </div>
-    <div class="kleurband__beeld">
-      <img src="images/rockclimbing.jpeg" alt="Klimmer op een rotswand" />
-    </div>
-  </div>
-</section>
-
-
-<!-- ═══ 3. OMBOUWEN AAN HET ANKER ═══ -->
-<section class="sectie" id="ombouwen">
+<!-- ═══ BLOK 4 — OMBOUWEN NAAR TOPROPE ═══ -->
+<section class="sectie sectie--creme" id="ombouwen">
   <div class="sectie-inner tekst-blok">
     <span class="content-eyebrow">Techniek</span>
-    <h2>Ombouwen aan het anker</h2>
-    <p>Bovenaan de route bouw je het systeem om zodat je veilig kunt laten zakken of afronden. Er zijn meerdere methodes — kies de situatie die past.</p>
+    <h2>Ombouwen naar toprope</h2>
+    <p>
+      Ombouwen doe je terwijl je zekeraar je blijft zekeren. Welke methode je kiest hangt af van het
+      ankerpunt en van wie er na jou klimt. Bij de eerste twee methodes laat je gear tijdelijk hangen,
+      dat de laatste klimmer weer meeneemt. Bij de laatste twee laat je niets achter.
+    </p>
   </div>
-  <div class="sectie-inner" style="margin-top: 48px;">
-    <ul class="blok-items">
-      <li class="blok-item">
-        <span class="item-nummer">01</span>
-        <div>
-          <h3>Snel systeem zonder volledig ombouwen</h3>
-          <p>Hang een quickdraw of sling in het maillonrapide bovenaan. Leg het touw erdoorheen — klaar. Werkt alleen als de standring groot genoeg is en de naklimmer laag blijft.</p>
+
+  <!-- 4a — vergelijkingstabel -->
+  <div class="sectie-inner sp-blok">
+    <div class="tabel-wrap">
+      <table class="sp-tabel">
+        <thead>
+          <tr>
+            <th>Methode</th>
+            <th>Wanneer je hem kiest</th>
+            <th>Gear achterlaten</th>
+            <th>Wie maakt schoon</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td data-label="Methode">Snelle toprope zonder ombouwen</td>
+            <td data-label="Wanneer">Er klimt nog iemand na jou en je wilt snel zijn</td>
+            <td data-label="Gear achterlaten">Twee schroefkarabiners</td>
+            <td data-label="Wie maakt schoon">De laatste klimmer</td>
+          </tr>
+          <tr>
+            <td data-label="Methode">Karabiner door de bovenste maillon</td>
+            <td data-label="Wanneer">Je wilt het maillon sparen</td>
+            <td data-label="Gear achterlaten">Eén beveiligde karabiner</td>
+            <td data-label="Wie maakt schoon">De laatste klimmer clipt alleen uit</td>
+          </tr>
+          <tr>
+            <td data-label="Methode">Petzl-methode</td>
+            <td data-label="Wanneer">Er is genoeg ruimte in de maillons</td>
+            <td data-label="Gear achterlaten">Niets</td>
+            <td data-label="Wie maakt schoon">Niet nodig</td>
+          </tr>
+          <tr>
+            <td data-label="Methode">Klassiek ombouwen</td>
+            <td data-label="Wanneer">Standaardmethode, ook bij weinig ruimte</td>
+            <td data-label="Gear achterlaten">Niets</td>
+            <td data-label="Wie maakt schoon">Niet nodig</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- 4b — uitklapbare stappen -->
+  <div class="sectie-inner sp-blok">
+    <div class="accordions">
+      <details class="accordion">
+        <summary>
+          <span class="accordion__nr">1</span>
+          <span class="accordion__titel">Snelle toprope zonder ombouwen</span>
+        </summary>
+        <div class="accordion__body">
+          <p>
+            Je hangt twee schroefkarabiners ondersteboven en met de schroeven tegenovergesteld van elkaar
+            in de maillons of bolts. Dan haal je het touw door de karabiners en laat je je zakken. De
+            zekeraar stopt bij elk setje zodat je ze kan weghalen.
+          </p>
+          <p>
+            Deze methode is snel, maar je karabiners blijven hangen totdat de laatste klimmer de
+            standplaats schoonmaakt.
+          </p>
         </div>
-      </li>
-      <li class="blok-item">
-        <span class="item-nummer">02</span>
-        <div>
-          <h3>Karabiner door bovenste maillon na ombouwen</h3>
-          <p>Hang een HMS-karabiner in het maillonrapide. Leg het touw erdoorheen met een mastworp. De standplaatskarabiner loopt mee als je het touw ophaalt.</p>
+      </details>
+
+      <details class="accordion">
+        <summary>
+          <span class="accordion__nr">2</span>
+          <span class="accordion__titel">Karabiner door de bovenste maillon na ombouwen</span>
+        </summary>
+        <div class="accordion__body">
+          <p>
+            Nadat je hebt omgebouwd, hang je een beveiligde karabiner in de bovenste ring of maillon en
+            haal je het touw door die karabiner in plaats van direct door het maillon. De karabiner
+            beschermt het maillon tegen slijtage. De laatste klimmer clipt alleen de karabiner uit en hoeft
+            niet schoon te maken.
+          </p>
         </div>
-      </li>
-      <li class="blok-item">
-        <span class="item-nummer">03</span>
-        <div>
-          <h3>Petzl-methode</h3>
-          <p>Gebruik een Reverso of ATC in geleidingsfunctie direct aan het maillonrapide. Handig als je wil zekeren vanuit de standplaats terwijl de naklimmer klimt.</p>
+      </details>
+
+      <details class="accordion">
+        <summary>
+          <span class="accordion__nr">3</span>
+          <span class="accordion__titel">Petzl-methode</span>
+        </summary>
+        <div class="accordion__body">
+          <p>
+            Als je genoeg ruimte hebt in de maillons, kun je het touw gelijk dubbel erdoorheen halen. Haal
+            twee meter touw dubbel door de maillons en bevestig dit met een dubbele achtknoop aan een extra
+            beveiligde karabiner aan je inbindlus.
+          </p>
+          <p>
+            Maak daarna je originele achtknoop los, leun naar achteren terwijl je je lifeline verlengt, en
+            check of je in je nieuwe systeem hangt. Daarna maak je je lifeline los en kun je je laten
+            zakken.
+          </p>
         </div>
-      </li>
-      <li class="blok-item">
-        <span class="item-nummer">04</span>
-        <div>
-          <h3>Klassiek ombouwen</h3>
-          <p>Knoop jezelf los, leg het touw door de ringen, bind opnieuw vast. Wordt minder gebruikt maar is goed om te begrijpen als basis voor alle varianten.</p>
+      </details>
+
+      <details class="accordion">
+        <summary>
+          <span class="accordion__nr">4</span>
+          <span class="accordion__titel">Klassiek ombouwen</span>
+        </summary>
+        <div class="accordion__body">
+          <p>
+            Je haalt twee meter touw op en legt daarna een tijdelijke dubbele achtknoop die je met een
+            karabiner aan je inbindlus vastmaakt. Dit zorgt ervoor dat het touw aan je gordel blijft hangen
+            wanneer je je directe inbindknoop losmaakt, en dus niet naar beneden valt terwijl je boven
+            zonder touw staat.
+          </p>
+          <p>
+            Maak nu je originele inbindknoop los en haal het touweinde van onderaf omhoog door de ring of
+            beide maillons. Dan bind je jezelf opnieuw in met een teruggestoken achtknoop en verwijder je de
+            tijdelijke achtknoop en karabiner. Trek jezelf naar de standplaats, vraag om blok en controleer
+            of je daadwerkelijk in het touw hangt. Check je nieuwe set-up. Pas daarna maak je de
+            zelfzekering los en laat je je zakken.
+          </p>
         </div>
-      </li>
+      </details>
+    </div>
+  </div>
+
+  <!-- 4c — waarschuwing -->
+  <div class="sectie-inner sp-blok">
+    <aside class="callout callout--let">
+      <span class="callout__label">Let op</span>
+      <p>
+        Leun altijd eerst naar achter om te testen of je in je nieuwe systeem hangt, voordat je je
+        zelfzekering losmaakt.
+      </p>
+    </aside>
+  </div>
+</section>
+
+<!-- ═══ BLOK 5 — AFDALEN IN BIJZONDERE SITUATIES ═══ -->
+<section class="sectie" id="bijzonder">
+  <div class="sectie-inner tekst-blok">
+    <span class="content-eyebrow">Veiligheid</span>
+    <h2>Afdalen in bijzondere situaties</h2>
+    <p>
+      Soms kom je uit bij één ronde haak, of bij haken die zo scherp zijn dat je er je klimtouw niet
+      doorheen wilt halen. Hieronder staan drie situaties en wat je dan doet.
+    </p>
+  </div>
+
+  <!-- 5a — terugtrekken (foto + tekst) -->
+  <div class="sectie-inner sp-blok">
+    <div class="media-blok">
+      <div class="media-blok__media">
+        <div class="foto-plsh"><span>foto — prusikknoop met 3 lussen op enkeltouw, safebiner aan inbindlus</span></div>
+      </div>
+      <div class="media-blok__tekst">
+        <h3>Terugtrekken halverwege de route op één ronde haak</h3>
+        <p>
+          Clip jezelf eerst in met een setje aan de haak en vraag om een blok. Clip je zelfzekering in het
+          setje met je sling of lifeline. Vraag om slack en haal een paar meter touw op. Leg daarin een
+          dubbele achtknoop en bevestig deze aan je inbindlus.
+        </p>
+        <p>
+          Maak nu je directe inbinding los, dus de originele teruggestoken achtknoop. Haal het touw door de
+          ronde haak en bind jezelf opnieuw in. Ruim het setje en de dubbele achtknoop op. Vraag om blok en
+          check of je in het touw hangt.
+        </p>
+        <p>
+          Omdat je nu aan één ronde haak hangt, leg je met een prusiktouwtje een prusikknoop op het touw
+          dat van de zekeraar komt. Gebruik drie lussen bij het knopen omdat het enkeltouw is. Bevestig
+          deze knoop met een safebiner aan je inbindlus.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5b — scherpe haak (tekst + foto, gespiegeld) -->
+  <div class="sectie-inner sp-blok">
+    <div class="media-blok media-blok--flip">
+      <div class="media-blok__media">
+        <div class="foto-plsh"><span>foto — touw door een achtergelaten karabiner i.p.v. de scherpe haak</span></div>
+      </div>
+      <div class="media-blok__tekst">
+        <h3>Ombouwen op een scherpe haak</h3>
+        <p>
+          Dit doe je op dezelfde manier als de enkele ombouwmethode hierboven. Het verschil is dat je het
+          touw niet door de scherpe haak haalt, maar door een karabiner die je achterlaat.
+        </p>
+        <p>
+          Deze methode kun je ook toepassen als je bij een standplaats komt met alleen twee scherpe haken.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5c — abseilen met hulptouwtje (foto + tekst) -->
+  <div class="sectie-inner sp-blok">
+    <div class="media-blok">
+      <div class="media-blok__media">
+        <div class="foto-plsh"><span>foto — dubbelgevouwen prusiktouwtje in bovenste plaquette, klimtouw tot middenmarkering</span></div>
+      </div>
+      <div class="media-blok__tekst">
+        <h3>Abseilen op een scherpe haak met hulptouwtje</h3>
+        <p>
+          Kom je bij een standplaats met alleen scherpe haken, dan kun je ook je prusiktouwtje gebruiken
+          als tussenschakel. Maak eerst een zelfzekering aan de standplaats. Vouw je prusiktouwtje dubbel
+          en hang de lus in de bovenste plaquette. Haal je klimtouw door die lus tot je bij het midden van
+          het touw bent en bouw om zoals je normaal doet bij abseilen.
+        </p>
+        <p>Deze methode gebruik je het liefst als je twee prusiktouwtjes bij je hebt.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5d — waarschuwing -->
+  <div class="sectie-inner sp-blok">
+    <aside class="callout callout--let">
+      <span class="callout__label">Let op</span>
+      <p>
+        Haal nooit je klimtouw direct door een scherpe haak. Laat ook nooit een maillon rapide achter,
+        want die kan onder andere gaan roesten en andere klimmers in de weg zitten.
+      </p>
+    </aside>
+  </div>
+</section>
+
+<!-- ═══ BLOK 6 — TOUWCOMMANDO'S ═══ -->
+<section class="sectie sectie--creme" id="commandos">
+  <div class="sectie-inner tekst-blok">
+    <span class="content-eyebrow">Communicatie</span>
+    <h2>Touwcommando's bij single pitch</h2>
+    <p>
+      Deze drie commando's gebruik je bij het ombouwen en afdalen. De volledige lijst met commando's voor
+      voorklimmen, multipitch en steenslag staat op de pagina
+      <a class="tekst-link" routerLink="/kennis/technieken">touwcommando's</a>.
+    </p>
+  </div>
+
+  <div class="sectie-inner sp-blok">
+    <div class="tabel-wrap">
+      <table class="sp-tabel sp-tabel--commandos">
+        <thead>
+          <tr>
+            <th>Wie</th>
+            <th>Wanneer</th>
+            <th>Wat zeg je</th>
+            <th>Actie</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td data-label="Wie">Klimmer</td>
+            <td data-label="Wanneer">Na het ombouwen, voor het losmaken van de zelfzekering</td>
+            <td data-label="Wat zeg je"><span class="commando">"Blok"</span></td>
+            <td data-label="Actie">Zekeraar trekt touw strak</td>
+          </tr>
+          <tr>
+            <td data-label="Wie">Zekeraar</td>
+            <td data-label="Wanneer">Na het straktrekken en blokkeren van het zekeringsapparaat</td>
+            <td data-label="Wat zeg je"><span class="commando">"Ok, ga maar hangen"</span></td>
+            <td data-label="Actie">
+              Klimmer leunt naar achter om te controleren of hij correct vastzit, maakt dan pas de
+              zelfzekering los
+            </td>
+          </tr>
+          <tr>
+            <td data-label="Wie">Klimmer</td>
+            <td data-label="Wanneer">Als hij goed vastzit en gewicht op het touw kan overdragen</td>
+            <td data-label="Wat zeg je"><span class="commando">"Laat maar zakken"</span> met ronddraaiende vinger</td>
+            <td data-label="Actie">Zekeraar laat de klimmer zakken en stopt bij elk setje om het te verwijderen</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ BLOK 7 — CHECKLIST ═══ -->
+<section class="sectie">
+  <div class="sectie-inner tekst-blok">
+    <span class="content-eyebrow">Controle</span>
+    <h2>Check voordat je je zelfzekering losmaakt</h2>
+  </div>
+  <div class="sectie-inner sp-blok">
+    <ul class="sp-checklist">
+      <li>Je zit vast aan minstens twee punten</li>
+      <li>Alle schroefkarabiners zijn dicht, met de schroef naar beneden en van de wand af</li>
+      <li>Je zekeraar weet dat je gaat ombouwen en houdt je gezekerd</li>
+      <li>Het touw loopt door het ankerpunt en niet meer alleen door je zelfzekering</li>
+      <li>Je hebt naar achteren geleund en hangt in je nieuwe systeem</li>
+      <li>Je hebt je materiaal van de standplaats verzameld</li>
     </ul>
   </div>
 </section>
 
-<section class="uitgelicht">
-  <div class="uitgelicht__inner">
-    <p>"Screw down, so you don't screw up".</p>
-  </div>
-</section>
-
-<!-- ═══ 4. STANDPLAATS SCHOONMAKEN ═══ -->
-<section class="sectie sectie--creme" id="schoonmaken">
-  <div class="sectie-inner">
-    <div class="media-blok media-blok--flip">
-      <div class="media-blok__media">
-        <img src="images/rockclimbing.jpeg" alt="Klimmer maakt de standplaats schoon" />
-      </div>
-      <div class="media-blok__tekst">
-        <span class="content-eyebrow">Afronden</span>
-        <h2>Standplaats schoonmaken</h2>
-        <p>Als de naklimmer boven is, ruim je de stand op. Verwijder je zelfzekering pas als je partner goed vast staat en de stand gereed is voor afdalen.</p>
-        <ul class="lijst">
-          <li>Controleer of de naklimmer zichzelf heeft ingeknoopt</li>
-          <li>Verwijder quickdraws en slings van de stand</li>
-          <li>Bevestig het touw voor het afdalen voordat je je eigen zelfzekering verwijdert</li>
-          <li>Communiceer duidelijk: "Klaar om af te dalen?"</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══ 5. AFDALEN IN BIJZONDERE SITUATIES ═══ -->
-<section class="sectie" id="afdalen">
+<!-- ═══ BLOK 8 — FAQ ═══ -->
+<section class="sectie sectie--creme">
   <div class="sectie-inner tekst-blok">
-    <span class="content-eyebrow">Veiligheid</span>
-    <h2>Afdalen in bijzondere situaties</h2>
-    <p>Niet elke afdaling verloopt standaard. Leer hoe je omgaat met een terugtrekking halverwege of een scherpe haak bovenaan.</p>
+    <span class="content-eyebrow">Veelgestelde vragen</span>
+    <h2>Veelgestelde vragen</h2>
   </div>
-  <div class="sectie-inner" style="margin-top: 48px;">
-    <div class="icon-grid">
-      <div class="icon-kaart">
-        <div class="icon-kaart__icon">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+  <div class="sectie-inner sp-blok">
+    <div class="accordions accordions--faq">
+      <details class="accordion">
+        <summary><span class="accordion__titel">Welke ombouwmethode moet ik kiezen?</span></summary>
+        <div class="accordion__body">
+          <p>
+            Dat hangt af van twee dingen. Kijk eerst naar het ankerpunt, want de Petzl-methode werkt alleen
+            als er genoeg ruimte in de maillons zit. Kijk daarna naar wie er na jou klimt. Klimt er nog
+            iemand, dan kun je gear laten hangen en snel afdalen. Ben jij de laatste, dan bouw je klassiek
+            om en laat je niets achter.
+          </p>
         </div>
-        <div>
-          <h3>Terugtrekken halverwege de route</h3>
-          <p>Klip het touw in de hoogste quickdraw die je bereikt. Laat je zakken tot de grond. Haal dan de quickdraw op met een stok of trek de naklimmer omhoog om hem te halen.</p>
+      </details>
+
+      <details class="accordion">
+        <summary><span class="accordion__titel">Waarom hang ik schroefkarabiners ondersteboven?</span></summary>
+        <div class="accordion__body">
+          <p>
+            Met de schroef naar beneden draaien ze minder snel open door trillingen. Hang de schroef ook
+            van de wand af, zodat de rots hem niet kan opendraaien.
+          </p>
         </div>
-      </div>
-      <div class="icon-kaart">
-        <div class="icon-kaart__icon">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+      </details>
+
+      <details class="accordion">
+        <summary><span class="accordion__titel">Mag ik mijn touw direct door het maillon halen?</span></summary>
+        <div class="accordion__body">
+          <p>
+            Bij de Petzl-methode en bij klassiek ombouwen doe je dat. Wil je het maillon sparen, dan hang je
+            er een beveiligde karabiner in en haal je het touw daardoorheen.
+          </p>
         </div>
-        <div>
-          <h3>Ombouwen op een scherpe haak</h3>
-          <p>Bij een scherpe of verroeste haak bovenaan gebruik je twee losse karabiners als buffer. Leg het touw nooit direct over metaal — gebruik altijd een karabiner of maillon.</p>
+      </details>
+
+      <details class="accordion">
+        <summary><span class="accordion__titel">Wat doe ik als er maar één haak is?</span></summary>
+        <div class="accordion__body">
+          <p>
+            Dan gebruik je de enkele ombouwmethode. Je haalt het touw door de haak, bindt jezelf opnieuw in
+            en legt een prusikknoop met drie lussen op het touw dat van de zekeraar komt, bevestigd met een
+            safebiner aan je inbindlus.
+          </p>
         </div>
-      </div>
-      <div class="icon-kaart">
-        <div class="icon-kaart__icon">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8h1a4 4 0 010 8h-1M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8zM6 1v3M10 1v3M14 1v3"/></svg>
+      </details>
+
+      <details class="accordion">
+        <summary><span class="accordion__titel">Waarom laat ik geen maillon rapide achter?</span></summary>
+        <div class="accordion__body">
+          <p>
+            Een achtergelaten maillon kan gaan roesten en zit andere klimmers in de weg. Laat liever een
+            karabiner achter die de laatste klimmer weer meeneemt.
+          </p>
         </div>
-        <div>
-          <h3>Abseilen op scherpe haak met hulptouwtje</h3>
-          <p>Gebruik een Prusik-lus of Klemheist als back-up bij het abseilen. Zo houd je controle als je loslaat, en bescherm je het touw tegen slijtage op de haak.</p>
-        </div>
-      </div>
+      </details>
     </div>
   </div>
 </section>
 
-<!-- ═══ BADGE STRIP — afsluiting ═══ -->
-<section class="uitgelicht">
-  <div class="uitgelicht__inner">
-    <p>Klaar met single-pitch? Ga verder met multi-pitch.</p>
-    <a href="/klimmen/multi-pitch" class="btn-download" style="margin-top: 28px; display: inline-block;">Multi-pitch →</a>
+<!-- ═══ BLOK 9 — VERDER LEZEN ═══ -->
+<section class="verder-lezen">
+  <div class="verder-lezen__inner">
+    <span class="verder-lezen__label">Verder lezen</span>
+    <ul class="verder-lezen__lijst">
+      <li><a routerLink="/kennis/knopen">Knopen</a></li>
+      <li><a routerLink="/kennis/technieken">Terminologie</a></li>
+      <li><a routerLink="/klimmen/multi-pitch">Multipitch klimmen</a></li>
+      <li><a routerLink="/kennis/technieken">Afdalen en zelfredding</a></li>
+    </ul>
   </div>
 </section>
-
-<section class="proces">
-  <div class="proces__inner">
-    <div class="proces__kop">
-      <h2>Zo bouw je het op</h2>
-      <a href="/klimmen/materiaal" class="btn-omlijnd">Bekijk materiaal</a>
-    </div>
-    <div class="proces__stappen">
-      <div class="proces__stap">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2v20M5 9l7-7 7 7"/></svg>
-        <span class="proces__nr">01</span>
-        <h3>Leer zekeren</h3>
-        <p>Begin met top-rope en de basis van veilig zekeren met een partner.</p>
-      </div>
-      <div class="proces__stap">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
-        <span class="proces__nr">02</span>
-        <h3>Oefen techniek</h3>
-        <p>Voetwerk, balans en efficiënt klimmen op single-pitch routes.</p>
-      </div>
-      <div class="proces__stap">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 21l9-18 9 18M7 21l5-10 5 10"/></svg>
-        <span class="proces__nr">03</span>
-        <h3>Ga lead</h3>
-        <p>Klim met het touw onder je en leer quickdraws inwerpen.</p>
-      </div>
-      <div class="proces__stap">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 12h18M12 3v18" /><circle cx="12" cy="12" r="9"/></svg>
-        <span class="proces__nr">04</span>
-        <h3>Naar buiten</h3>
-        <p>Pak je eerste echte rotsen in de Ardennen of de bergen.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="sectie">
-  <div class="sectie-inner">
-    <div class="kaart-grid__kop">
-      <span class="content-eyebrow">Overzicht</span>
-      <h2>Alles wat je moet weten</h2>
-    </div>
-    <div class="kaart-grid">
-      <article class="info-kaart">
-        <h3>Touwwerk</h3>
-        <p>Van achtknoop tot prusik — de knopen die je elke klim gebruikt.</p>
-      </article>
-      <article class="info-kaart">
-        <h3>Zekeren</h3>
-        <p>Top-rope, lead en de juiste apparaten om veilig te zekeren.</p>
-      </article>
-      <article class="info-kaart">
-        <h3>Standplaats</h3>
-        <p>Bouw een betrouwbaar ankerpunt aan twee of meer punten.</p>
-      </article>
-      <article class="info-kaart">
-        <h3>Materiaal</h3>
-        <p>Gordel, helm, schoenen en de rest van je basisset.</p>
-      </article>
-      <article class="info-kaart">
-        <h3>Afdalen</h3>
-        <p>Ombouwen, abseilen en veilig terug naar de grond komen.</p>
-      </article>
-      <article class="info-kaart">
-        <h3>Buiten klimmen</h3>
-        <p>Van lokale crag tot alpiene wand — vind je gebied.</p>
-      </article>
-    </div>
-  </div>
-</section>
-

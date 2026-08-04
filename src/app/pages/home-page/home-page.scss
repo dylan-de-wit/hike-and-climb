@@ -4,6 +4,7 @@
 
 /* ─── HERO ─── */
 .hero-section {
+  position: relative;
   min-height: max(85vh, calc(100vw * 3948 / 5272));
   justify-content: center;
   gap: 32px;
@@ -19,22 +20,53 @@
   text-shadow: 8px 8px 0 #d2402f;
   text-transform: none;
   text-align: center;
-  margin: 0 0 4px;
+  margin: 0 0 30px;
 }
 
-/* Hero-kop = titel + sub, boven de bomen */
+/* Hero-kop */
 .hero-kop {
   position: relative;
   z-index: 3;
   text-align: center;
+  margin-top: -6vh;
 }
 .hero-sub {
   position: relative;
   z-index: 3;
+  margin: 0;
   animation: fade-omhoog 0.6s ease-out 0.28s both;
   color: white;
   text-shadow: 0 1px 3px rgba(20, 24, 16, 0.55),
                0 2px 12px rgba(20, 24, 16, 0.4);
+}
+
+/* Slogan onderaan de hero — komt op bij scrollen (zie .scroll-fade) */
+.hero-slogan {
+  position: absolute;
+  left: 50%;
+  bottom: 18vh;
+  transform: translateX(-50%);
+  z-index: 3;
+  margin: -50;
+  width: 100%;
+  text-align: center;
+  color: white;
+  font-size: clamp(18px, 2vw, 24px);
+  text-shadow: 0 1px 3px rgba(20, 24, 16, 0.55),
+               0 2px 12px rgba(20, 24, 16, 0.4);
+}
+
+/* ─── Slogan onder de kaarten ─── */
+.kaarten-slogan {
+  position: relative;
+  z-index: 1;
+  margin: 48px auto 0;
+  max-width: 640px;
+  text-align: center;
+  font-family: 'Abril Fatface', serif;
+  font-size: clamp(24px, 3.2vw, 40px);
+  line-height: 1.15;
+  color: var(--amber);
 }
 
 /* ─── Keyframes ─── */
@@ -71,9 +103,13 @@
 }
 
 /* ─── CONTENT SECTIE ─── */
+.sectie {
+  background: #F5F5F5
+}
+
 .content-section {
-  background: var(--kleur-wit);
-  padding: 100px 80px;
+  background: #F5F5F5;
+  padding: 100px 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -85,19 +121,20 @@
   display: flex;
   align-items: center;
   gap: 80px;
-  max-width: 1315px;
+  max-width: var(--max-breedte);
   width: 100%;
   min-width: 0;
+  padding-inline: var(--padding-zij);
 }
 
 .content-image {
   flex: 1;
   min-width: 0;
   height: 600px;
-  border-radius: 0;                          /* subtiele ronding */
+  border-radius: 0;                          
   overflow: hidden;
-  border: 8px solid #F0E9D1;                   /* poster-frame om de buitenkant */
-  box-shadow: 0 0 0 1px rgba(38, 28, 21, 0.16); /* dunne rand zodat het frame altijd afsteekt */
+  border: 8px solid #F0E9D1;                  
+  box-shadow: 0 0 0 1px rgba(38, 28, 21, 0.16);
 }
 
 .content-image img {
@@ -137,7 +174,7 @@
 .kaarten-blok {
   position: relative;
   background: var(--groen-donker);
-  padding: 96px 80px;
+  padding: 96px 0;
   width: 100%;
   max-width: 100%;
   overflow: hidden;
@@ -158,9 +195,9 @@
 .kaarten-kop {
   position: relative;
   z-index: 1;
-  max-width: 1315px;
+  max-width: var(--max-breedte);
   margin: 0 auto 48px;
-  padding-bottom: 20px;
+  padding: 0 var(--padding-zij) 20px;
   text-align: center;          /* centreert de kicker + titel binnen de brede kop */
   border-bottom: 1px solid rgba(245, 245, 245, 0.18);
 }
@@ -174,9 +211,10 @@
   z-index: 1;
   display: flex;
   gap: 32px;
-  max-width: 1315px;
+  max-width: var(--max-breedte);
   margin: 0 auto;
   min-width: 0;
+  padding-inline: var(--padding-zij);
   counter-reset: kaart;
 }
 .kaart {
@@ -258,12 +296,12 @@
 @media (max-width: 1024px) {
   .hero-section .hero-title { font-size: 80px; }
 
-  .content-section  { padding: 60px 40px; }
+  .content-section  { padding: 60px 0; }
   .content-inner    { gap: 48px; }
   .content-image    { height: 440px; }
   .content-text h2  { font-size: 44px; }
 
-  .kaarten-blok     { padding: 60px 40px; }
+  .kaarten-blok     { padding: 60px 0; }
   .kaarten-inner    { gap: 20px; }
 }
 
@@ -286,12 +324,12 @@
     border-radius: 0;
   }
 
-  .content-section  { padding: 48px 20px; }
+  .content-section  { padding: 48px 0; }
   .content-inner    { flex-direction: column; gap: 32px; }
   .content-image    { height: 280px; width: 100%; }
   .content-text h2  { font-size: 36px; }
 
-  .kaarten-blok     { padding: 48px 20px; }
+  .kaarten-blok     { padding: 48px 0; }
   .kaarten-inner    { flex-direction: column; gap: 24px; }
   .kaart            { flex: none; width: 100%; }
   .kaart-afbeelding { height: 220px; }

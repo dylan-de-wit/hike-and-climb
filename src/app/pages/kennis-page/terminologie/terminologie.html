@@ -1,0 +1,55 @@
+<section class="subhero subhero--met-veldstrip">
+  <div class="subhero__media">
+    <img src="images/rockclimbing.jpeg" alt="Klimmer op een rotswand" />
+  </div>
+  <div class="subhero__content">
+    <span class="subhero__eyebrow">Kennis</span>
+    <h1>Terminologie</h1>
+    <p>Een compacte woordenlijst voor klimtermen, route-info en veelgebruikte begrippen op de rots.</p>
+  </div>
+  <app-veldstrip [items]="veldgegevens" meta="naslag" />
+  <app-route-divider class="subhero__route" variant="overlay" [stops]="etappes" [actief]="actief" />
+</section>
+
+<section class="sectie">
+  <div class="sectie-inner termen-layout">
+    <div class="tekst-blok">
+      <span class="content-eyebrow">Woordenlijst</span>
+      <h2>Begrippen die je onderweg vaak tegenkomt</h2>
+      <p>Gebruik deze pagina als snelle referentie wanneer topo's, gidsen of andere klimmers termen gebruiken die je nog niet helemaal scherp hebt.</p>
+    </div>
+
+    <div class="termen-grid" aria-label="Terminologie overzicht">
+      <article class="term-kaart">
+        <span class="term-kaart__letter">A</span>
+        <h3>Approach</h3>
+        <p>De aanloop van parkeerplaats of trailhead naar de klimroute of wand.</p>
+      </article>
+      <article class="term-kaart">
+        <span class="term-kaart__letter">B</span>
+        <h3>Belay</h3>
+        <p>Zekeren van een klimmer met touw, zekeringsapparaat en duidelijke communicatie.</p>
+      </article>
+      <article class="term-kaart">
+        <span class="term-kaart__letter">C</span>
+        <h3>Crux</h3>
+        <p>Het moeilijkste deel van een route, vaak bepalend voor de graad.</p>
+      </article>
+      <article class="term-kaart">
+        <span class="term-kaart__letter">P</span>
+        <h3>Pitch</h3>
+        <p>Een touwlengte in een route. Bij multi-pitch routes klim je meerdere pitches achter elkaar.</p>
+      </article>
+      <article class="term-kaart">
+        <span class="term-kaart__letter">R</span>
+        <h3>Runout</h3>
+        <p>Een stuk route met relatief veel afstand tussen zekeringen.</p>
+      </article>
+      <article class="term-kaart">
+        <span class="term-kaart__letter">T</span>
+        <h3>Topo</h3>
+        <p>Routebeschrijving met lijn, graad, lengte, oriëntatie en vaak ook materiaaladvies.</p>
+      </article>
+    </div>
+  </div>
+</section>

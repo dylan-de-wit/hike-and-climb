@@ -1,0 +1,58 @@
+.events-layout {
+  display: grid;
+  gap: 48px;
+}
+
+.event-lijst {
+  display: grid;
+  gap: 18px;
+}
+
+.event-kaart {
+  display: grid;
+  grid-template-columns: 112px minmax(0, 1fr);
+  gap: 28px;
+  align-items: start;
+  background: var(--papier-creme);
+  border-left: 6px solid var(--kleur-accent);
+  padding: 28px;
+}
+
+.event-kaart__datum {
+  display: grid;
+  place-items: center;
+  min-height: 92px;
+  background: var(--kleur-hero);
+  color: var(--kleur-hero-ink);
+  font-family: var(--font-accent);
+  text-transform: uppercase;
+}
+
+.event-kaart__datum span {
+  font-size: 28px;
+}
+
+.event-kaart__datum strong {
+  font-size: 18px;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+}
+
+.event-kaart h3 {
+  margin: 0 0 10px;
+}
+
+.event-kaart p {
+  margin: 0;
+  color: var(--kleur-tekst-licht);
+}
+
+@media (max-width: 620px) {
+  .event-kaart {
+    grid-template-columns: 1fr;
+  }
+
+  .event-kaart__datum {
+    width: 112px;
+  }
+}

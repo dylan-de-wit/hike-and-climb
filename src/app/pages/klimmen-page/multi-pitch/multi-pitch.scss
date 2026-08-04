@@ -1,0 +1,225 @@
+/* ══════════════════════════════════════
+   MULTIPITCH — twee-koloms layout
+   Hoofdkolom + sticky zijkolom (referentie-rail)
+   ══════════════════════════════════════ */
+
+.mp-layout {
+  max-width: var(--max-breedte);
+  margin: 0 auto;
+  padding: 8px var(--padding-zij) 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(320px, 400px);
+  gap: clamp(32px, 4vw, 64px);
+  align-items: start;
+}
+
+/* ─── Hoofdkolom: secties vullen de kolom ─── */
+.mp-main .sectie {
+  padding: 0;
+}
+.mp-main .sectie + .sectie {
+  margin-top: 56px;
+}
+.mp-main .sectie-inner {
+  padding-inline: 0;
+  max-width: none;
+}
+.mp-main .sp-blok {
+  margin-top: 40px;
+}
+
+/* Verwijzing naar de kaarten in de zijkolom */
+.mp-verwijzing {
+  color: var(--kleur-tekst-licht);
+  margin: 0;
+}
+.mp-verwijzing__pijl {
+  display: inline-block;
+  font-family: var(--font-accent);
+  font-size: 16px;
+  letter-spacing: 0.03em;
+  color: var(--kleur-accent);
+}
+
+/* ─── Zijkolom ─── */
+.mp-side__blok + .mp-side__blok {
+  margin-top: 44px;
+}
+.mp-side__titel {
+  font-family: var(--font-display);
+  font-size: 22px;
+  margin: 0 0 6px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid var(--kleur-accent);
+  color: var(--kleur-tekst);
+}
+.mp-side__intro {
+  font-size: 15px;
+  color: var(--kleur-tekst-licht);
+  margin: 12px 0 18px;
+}
+.mp-side__stapel {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-top: 16px;
+}
+.mp-side__stapel .sp-kaart h4 {
+  font-size: 19px;
+}
+.mp-side__stapel .sp-kaart p {
+  font-size: 15px;
+}
+.mp-side__voet {
+  font-size: 13px;
+  color: var(--kleur-tekst-licht);
+  margin: 14px 0 0;
+}
+
+/* ─── Touwcommando's — compacte tabel in de rail ─── */
+.mp-cmdtabel {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13.5px;
+  margin-top: 4px;
+}
+.mp-cmdtabel th {
+  text-align: left;
+  font-family: var(--font-accent);
+  font-size: 13px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--kleur-tekst-licht);
+  padding: 6px 8px;
+  border-bottom: 2px solid rgba(38, 28, 21, 0.22);
+}
+.mp-cmdtabel td {
+  padding: 8px;
+  border-bottom: 1px solid rgba(38, 28, 21, 0.1);
+  vertical-align: top;
+  color: var(--kleur-tekst);
+}
+.mp-cmdtabel .commando {
+  white-space: nowrap;
+  font-size: 13.5px;
+}
+
+/* ─── Welk touw — compacte lijst in de rail ─── */
+.mp-touwlijst {
+  list-style: none;
+  margin: 0 0 18px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.mp-touwlijst li {
+  font-size: 15px;
+  color: var(--kleur-tekst-licht);
+  padding: 12px 14px;
+  background: var(--papier-creme);
+  border-left: 3px solid var(--kleur-accent);
+}
+.mp-touwlijst strong {
+  color: var(--kleur-tekst);
+}
+
+/* ─── Volgorde-checklist — één kolom, lege vakjes (als wireframe) ─── */
+.sp-checklist--stappen {
+  grid-template-columns: 1fr;
+  gap: 18px;
+  max-width: 760px;
+}
+.sp-checklist--stappen li::after {
+  display: none; /* geen vinkje: leeg vakje om af te vinken */
+}
+
+/* ─── Afdalen — drie linkkaarten ─── */
+.mp-linkkaarten {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.mp-linkkaart {
+  background: var(--papier-creme);
+  border-top: 4px solid var(--kleur-accent);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+}
+.mp-linkkaart h3 {
+  margin: 0 0 12px;
+  font-size: 22px;
+  color: var(--kleur-tekst);
+}
+.mp-linkkaart p {
+  font-size: 15px;
+  margin: 0 0 18px;
+}
+.mp-linkkaart__link {
+  margin-top: auto;
+  font-family: var(--font-accent);
+  font-size: 16px;
+  letter-spacing: 0.04em;
+  color: var(--kleur-accent);
+  text-decoration: none;
+}
+.mp-linkkaart__link:hover {
+  text-decoration: underline;
+}
+
+/* ══════════════════════════════════════
+   STICKY RAIL — alleen op desktop
+   Zijkolom blijft in beeld; scrollt intern
+   als de inhoud hoger is dan het scherm.
+   ══════════════════════════════════════ */
+@media (min-width: 1025px) {
+  .mp-side {
+    position: sticky;
+    top: 68px;
+    align-self: start;
+    max-height: calc(100vh - 160px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding-right: 12px;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(38, 28, 21, 0.28) transparent;
+  }
+  .mp-side::-webkit-scrollbar {
+    width: 8px;
+  }
+  .mp-side::-webkit-scrollbar-thumb {
+    background: rgba(38, 28, 21, 0.24);
+    border-radius: 4px;
+  }
+  .mp-side::-webkit-scrollbar-track {
+    background: transparent;
+  }
+}
+
+/* ══════════════════════════════════════
+   RESPONSIVE — zijkolom onder de content
+   ══════════════════════════════════════ */
+@media (max-width: 1024px) {
+  .mp-layout {
+    grid-template-columns: 1fr;
+    gap: 56px;
+  }
+  .mp-side__titel {
+    font-size: 24px;
+  }
+  .mp-side__stapel {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+}
+
+@media (max-width: 680px) {
+  .mp-linkkaarten {
+    grid-template-columns: 1fr;
+  }
+  .mp-side__stapel {
+    grid-template-columns: 1fr;
+  }
+}

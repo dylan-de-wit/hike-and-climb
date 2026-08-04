@@ -1,29 +1,74 @@
-import { Component } from '@angular/core';
-import { RouteDivider, RouteStop } from '../../../components/route-divider/route-divider';
-import { VeldItem, Veldstrip } from '../../../components/veldstrip/veldstrip';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  NgZone,
+  OnDestroy,
+  signal,
+  viewChild,
+} from '@angular/core';
+import { RouterLink } from '@angular/router';
+
+interface NavLink {
+  label: string;
+  anchor: string;
+}
 
 @Component({
   selector: 'app-multi-pitch',
   host: { class: 'thema-klimmen' },
-  imports: [Veldstrip, RouteDivider],
+  imports: [RouterLink],
   templateUrl: './multi-pitch.html',
   styleUrl: './multi-pitch.scss',
 })
-export class MultiPitch {
-  readonly veldgegevens: VeldItem[] = [
-    { label: 'Route lengte', waarde: '1+ pitches' },
-    { label: 'Niveau', waarde: 'gevorderd' },
-    { label: 'Tijd', waarde: '½ – hele dag' },
-    { label: 'Focus', waarde: 'Ombouwen, abseilen & noodreddingen' },
+export class MultiPitch implements AfterViewInit, OnDestroy {
+  /** Ankers voor de meescrollende balk. */
+  readonly navLinks: NavLink[] = [
+    { label: 'Standplaats', anchor: 'standplaats' },
+    { label: 'Naklimmer', anchor: 'naklimmer' },
+    { label: "Commando's", anchor: 'commandos' },
+    { label: 'Touw', anchor: 'touw' },
+    { label: 'Afdalen', anchor: 'afdalen' },
   ];
 
-  readonly secties: RouteStop[] = [
-    { naam: 'Anders', anchor: 'anders' },
-    { naam: 'Standplaats', anchor: 'standplaats' },
-    { naam: 'Zekeren', anchor: 'zekeren' },
-    { naam: 'Prusiken', anchor: 'prusiken' },
-    { naam: 'Noodredding', anchor: 'noodredding' },
-  ];
+  /** Toont de vaste balk zodra de hero voorbij gescrold is. */
+  readonly navZichtbaar = signal(false);
 
-  actieveSectie = 0;
+  private readonly sentinel = viewChild<ElementRef<HTMLElement>>('sentinel');
+  private ticking = false;
+
+  private readonly onScroll = (): void => {
+    if (this.ticking) return;
+    this.ticking = true;
+    requestAnimationFrame(() => {
+      this.ticking = false;
+      const el = this.sentinel()?.nativeElement;
+      if (!el) return;
+      const zichtbaar = el.getBoundingClientRect().bottom <= 0;
+      if (zichtbaar !== this.navZichtbaar()) {
+        this.zone.run(() => this.navZichtbaar.set(zichtbaar));
+      }
+    });
+  };
+
+  constructor(private readonly zone: NgZone) {}
+
+  ngAfterViewInit(): void {
+    this.zone.runOutsideAngular(() => {
+      window.addEventListener('scroll', this.onScroll, { capture: true, passive: true });
+      window.addEventListener('resize', this.onScroll, { passive: true });
+    });
+    this.onScroll();
+  }
+
+  ngOnDestroy(): void {
+    window.removeEventListener('scroll', this.onScroll, { capture: true });
+    window.removeEventListener('resize', this.onScroll);
+  }
+
+  /** Zachte scroll naar een sectie-anker. */
+  scrollNaar(anchor: string, event: Event): void {
+    event.preventDefault();
+    document.getElementById(anchor)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
 }
