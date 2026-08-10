@@ -8,27 +8,23 @@ import {
   viewChild,
 } from '@angular/core';
 import { RouterLink } from '@angular/router';
-
-interface NavLink {
-  label: string;
-  anchor: string;
-}
+import { Hoofdstuk, HoofdstukNav } from '../../../components/hoofdstuk-nav/hoofdstuk-nav';
 
 @Component({
   selector: 'app-multi-pitch',
   host: { class: 'thema-klimmen' },
-  imports: [RouterLink],
+  imports: [RouterLink, HoofdstukNav],
   templateUrl: './multi-pitch.html',
   styleUrl: './multi-pitch.scss',
 })
 export class MultiPitch implements AfterViewInit, OnDestroy {
-  /** Ankers voor de meescrollende balk. */
-  readonly navLinks: NavLink[] = [
-    { label: 'Standplaats', anchor: 'standplaats' },
-    { label: 'Naklimmer', anchor: 'naklimmer' },
-    { label: "Commando's", anchor: 'commandos' },
-    { label: 'Touw', anchor: 'touw' },
-    { label: 'Afdalen', anchor: 'afdalen' },
+  /** Hoofdstukken van de pagina: gebruikt in de balk onder de hero én in de meescrollende balk. */
+  readonly hoofdstukken: Hoofdstuk[] = [
+    { naam: 'De standplaats', kort: 'Standplaats', anchor: 'standplaats' },
+    { naam: 'Naklimmer zekeren', kort: 'Naklimmer', anchor: 'naklimmer' },
+    { naam: "Touwcommando's", kort: "Commando's", anchor: 'commandos' },
+    { naam: 'Welk touw', kort: 'Touw', anchor: 'touw' },
+    { naam: 'Afdalen', anchor: 'afdalen' },
   ];
 
   /** Toont de vaste balk zodra de hero voorbij gescrold is. */

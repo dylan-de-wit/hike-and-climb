@@ -1,7 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { RouteDivider, RouteStop } from '../../../components/route-divider/route-divider';
-import { VeldItem, Veldstrip } from '../../../components/veldstrip/veldstrip';
 
 interface Klimmuur {
   naam: string;
@@ -26,20 +25,12 @@ interface Klimregio {
 @Component({
   selector: 'app-klimgebieden',
   host: { class: 'thema-klimmen' },
-  imports: [Veldstrip, RouteDivider],
+  imports: [RouteDivider],
   templateUrl: './klimgebieden.html',
   styleUrl: './klimgebieden.scss',
 })
 export class Klimgebieden {
   private readonly sanitizer = inject(DomSanitizer);
-
-  readonly veldgegevens: VeldItem[] = [
-    { label: 'Locaties', waarde: 'wereldwijd' },
-    { label: 'Klimseizoen', waarde: 'vanaf voorjaar tot herfst' },
-    { label: 'Inpaklijst', waarde: '5 items' },
-    { label: 'Routes', waarde: 'sportklimmen & solo' },
-  ];
-
   readonly klimregios: Klimregio[] = [
     {
       naam: 'Dinant',

@@ -1,202 +1,106 @@
-<section class="hero-overlap hero-overlap--met-route">
-  <div class="hero-overlap__media">
-    <img src="images/rockclimbing.jpeg" alt="Klimmer op een rotswand" />
+<!-- ═══ MEESCROLLENDE ANKERBALK ═══ -->
+<nav class="sp-nav" [class.sp-nav--zichtbaar]="navZichtbaar()" aria-label="Op deze pagina">
+  <div class="sp-nav__inner">
+    <span class="sp-nav__merk">Klimmen</span>
+    <ul class="sp-nav__links">
+      @for (h of hoofdstukken; track h.anchor) {
+        <li><a [routerLink]="h.link">{{ h.kort ?? h.naam }}</a></li>
+      }
+    </ul>
   </div>
-  <div class="hero-overlap__kaart">
-    <span class="hero-overlap__kicker">Routes · Techniek · Materiaal</span>
-    <span class="hero-overlap__lijn"></span>
+</nav>
+
+<!-- ═══ BLOK 1 — HERO ═══ -->
+<header class="sp-hero sp-hero--met-foto">
+  <img class="sp-hero__media" src="images/single-pitch.png" alt="" aria-hidden="true" />
+  <div class="sp-hero__inner">
+    <span class="content-eyebrow">Routes · Techniek · Materiaal</span>
     <h1>Klimmen</h1>
-    <p>Ontdek de mooiste klimroutes, welke gear je nodig hebt en lees alles over de techniek.</p>
+    <p class="sp-hero__intro">
+      Kriebelen jouw handen om de rotswand weer aan te raken? Hier lees je alles over rotsklimmen, de voorbereidingen en de gear!
+    </p>
   </div>
-  <app-veldstrip [items]="veldgegevens" meta="24° · NW 3" />
-  <app-route-divider
-    class="hero-overlap__route"
-    variant="overlay"
-    [stops]="etappes"
-    [actief]="actief" />
-</section>
+</header>
+<span #sentinel class="sp-sentinel" aria-hidden="true"></span>
 
-<!-- ═══ 1. WAAR WIL JE BEGINNEN? ═══ -->
-<section class="sectie">
+<!-- ═══ BLOK 2 — CHIPS NAAR DE SUBPAGINA'S ═══ -->
+<app-hoofdstuk-nav [hoofdstukken]="hoofdstukken" label="Waar wil je beginnen?" />
+
+<!-- ═══ BLOK 3 — BASISTECHNIEKEN ═══ -->
+<section class="sectie" id="basistechnieken">
   <div class="sectie-inner tekst-blok">
-    <h2>Waar wil je beginnen?</h2>
+    <span class="content-eyebrow">Techniek</span>
+    <h2>Basistechnieken</h2>
+    <p>De drie vaardigheden waar elke buitenklimmer mee begint: een standplaats maken, zekeren en communiceren.</p>
   </div>
-  <div class="sectie-inner" style="margin-top: 40px;">
-    <div class="icon-grid" style="grid-template-columns: repeat(2, 1fr);">
-      <a class="icon-kaart" href="/klimmen/single-pitch">
-        <div class="icon-kaart__icon icon-kaart__icon--beeld">
-          <img src="pictogrammen/ropesetje.svg" alt="" />
-        </div>
-        <div>
-          <h3>Single-pitch</h3>
-          <p>Standplaats maken, ombouwen en zekeren op single-pitch routes.</p>
-        </div>
+  <div class="sectie-inner sp-blok">
+    <div class="sp-kaarten sp-kaarten--3">
+      <a class="sp-kaart kaart-thema" routerLink="/klimmen/single-pitch">
+        <span class="sp-kaart__nr">01</span>
+        <h4>Single pitch</h4>
+        <p>Standplaats maken, ombouwen naar toprope en afdalen.</p>
       </a>
-      <a class="icon-kaart" href="/klimmen/multi-pitch">
-        <div class="icon-kaart__icon icon-kaart__icon--beeld">
-          <img src="pictogrammen/karabiners.svg" alt="" />
-        </div>
-        <div>
-          <h3>Multi-pitch</h3>
-          <p>Meerdere lengtes, standplaatsen onderweg en naklimmer zekeren.</p>
-        </div>
+      <a class="sp-kaart kaart-thema" routerLink="/klimmen/multi-pitch">
+        <span class="sp-kaart__nr">02</span>
+        <h4>Multipitch</h4>
+        <p>Een centraal punt inrichten en je naklimmer zekeren.</p>
       </a>
-      <a class="icon-kaart" href="/klimmen/materiaal">
-        <div class="icon-kaart__icon icon-kaart__icon--beeld">
-          <img src="pictogrammen/harnass.svg" alt="" />
-        </div>
-        <div>
-          <h3>Materiaal</h3>
-          <p>Touwen, karabiners, gordel en alles wat je nodig hebt om te beginnen.</p>
-        </div>
-      </a>
-      <a class="icon-kaart" href="/klimmen/klimgebieden">
-        <div class="icon-kaart__icon icon-kaart__icon--beeld">
-          <img src="pictogrammen/helm.svg" alt="" />
-        </div>
-        <div>
-          <h3>Klimgebieden</h3>
-          <p>De mooiste rotsen in de Benelux en Europa, per seizoen en niveau.</p>
-        </div>
+      <a class="sp-kaart kaart-thema" routerLink="/kennis/technieken">
+        <span class="sp-kaart__nr">03</span>
+        <h4>Touwcommando's</h4>
+        <p>De termen die je iedereen hoort schreeuwen op de wand.</p>
       </a>
     </div>
   </div>
 </section>
 
-<!-- ═══ 3. BEGIN BIJ DE BASIS ═══ -->
-<section class="blok-lijst">
-  <div class="blok-inner">
-    <div class="blok-tekst">
-      <span class="content-eyebrow">Basis</span>
-      <h2>Nog nooit geklommen?</h2>
-      <p>Start hier.</p>
-    </div>
-    <ul class="blok-items">
-      <li class="blok-item">
-        <span class="item-nummer">01</span>
-        <div>
-          <h3>Knopen leren</h3>
-          <p>De achtknoop en dubbele achtknoop zijn het fundament van elk klimavontuur.</p>
-        </div>
-      </li>
-      <li class="blok-item">
-        <span class="item-nummer">02</span>
-        <div>
-          <h3>Eerste single-pitch route</h3>
-          <p>Begin met een overzichtelijke route van één touwlengte en focus op partnercheck, zekeren en rustig klimmen.</p>
-        </div>
-      </li>
-      <li class="blok-item">
-        <span class="item-nummer">03</span>
-        <div>
-          <h3>Partner check</h3>
-          <p>Leer hoe je elkaars materiaal controleert vóór elke klim. Geen uitzonderingen.</p>
-        </div>
-      </li>
-    </ul>
+<!-- ═══ BLOK 4 — VOORBEREIDING ═══ -->
+<section class="sectie sectie--getint" id="voorbereiding">
+  <div class="sectie-inner tekst-blok">
+    <span class="content-eyebrow">Voorbereiding</span>
+    <h2>Het halve werk</h2>
+    <p>Wat je thuis of op de camping regelt voordat je onderaan de wand staat.</p>
   </div>
-</section>
-
-<!-- ═══ 4. UITGELICHT ═══ -->
-<section class="uitgelicht">
-  <div class="uitgelicht__inner">
-    <p>De complete gids voor je eerste multi-pitch route — van standplaats tot afdalen.</p>
-  </div>
-</section>
-
-<section class="sectie">
-  <div class="sectie-inner">
-    <div class="asym">
-      <div class="asym__groot">
-        <span class="content-eyebrow">Uitgelicht</span>
-        <h2>Multi-pitch van A tot Z</h2>
-        <p>Alles wat je moet weten voor je eerste meerpitchreis: standplaatsen, naklimmer zekeren, prusiken en de beste startroutes in de Ardennen.</p>
-        <a href="/klimmen/multi-pitch" class="btn-download" style="margin-top: 24px; display: inline-block;">Lees de gids</a>
-      </div>
-      <div class="asym__kolom">
-        <div class="asym__klein">
-          <h3>Standplaatsen</h3>
-          <p>Hoe maak je een veilige stand aan twee haken?</p>
-        </div>
-        <div class="asym__klein">
-          <h3>Naklimmer zekeren</h3>
-          <p>Halve mastworp of tuber — wanneer gebruik je wat?</p>
-        </div>
-        <div class="asym__klein">
-          <h3>Prusiken</h3>
-          <p>Als de naklimmer vastloopt, haal je hem omhoog.</p>
-        </div>
-      </div>
+  <div class="sectie-inner sp-blok">
+    <div class="sp-kaarten sp-kaarten--3">
+      <a class="sp-kaart kaart-thema" routerLink="/klimmen/materiaal">
+        <span class="sp-kaart__nr">01</span>
+        <h4>Materiaal & voorbereiding</h4>
+        <p>Karabiners, slings, uitrusting en de partnercheck.</p>
+      </a>
+      <a class="sp-kaart kaart-thema" routerLink="/kennis/knopen">
+        <span class="sp-kaart__nr">02</span>
+        <h4>Knopen</h4>
+        <p>De knopen die je moet kennen en niet wilt vergeten.</p>
+      </a>
+      <a class="sp-kaart kaart-thema" routerLink="/kennis/terminologie">
+        <span class="sp-kaart__nr">03</span>
+        <h4>Terminologie</h4>
+        <p>Klimjargon en hun betekenissen.</p>
+      </a>
     </div>
   </div>
 </section>
 
-<!-- Poster-stijl met border -->
-<section class="sectie-foto sectie-foto--poster" style="--foto: url('/images/overhangwater.png')">
-  <div class="sectie-inner">
-    <span class="content-eyebrow">Klimgebieden</span>
-    <h2>De mooiste wanden van de Ardennen</h2>
-    <p>Korte intro...</p>
+<!-- ═══ BLOK 5 — OP DE ROTS ═══ -->
+<section class="sectie" id="op-de-rots">
+  <div class="sectie-inner tekst-blok">
+    <span class="content-eyebrow">Eindelijk naar buiten</span>
+    <h2>Op de rots</h2>
+    <p>Waar je gaat klimmen en wat je controleert voordat je vertrekt.</p>
   </div>
-</section>
-
-<!-- Fotosectie met tekst en header -->
-<section class="sectie-foto" style="--foto: url('/images/overhangwater.png')">
-  <div class="sectie-inner">
-    <span class="content-eyebrow">Klimgebieden</span>
-    <h2>Dinant aan de Maas</h2>
-    <p>Korte intro...</p>
-  </div>
-</section>
-
-<section class="foto-paneel" style="--foto: url('/images/sunnysnow.jpg')">
-  <div class="foto-paneel__kaart">
-    <span class="content-eyebrow">Klimgebieden</span>
-    <h2>Klimmen in de Ardennen</h2>
-    <p>De Ardennen vormen het dichtstbijzijnde echte klimgebied vanuit Nederland. Kalksteen langs de Maas, korte aanlopen en routes voor elk niveau.</p>
-    <p>Of je nu voor het eerst buiten klimt of een lange multi-pitch zoekt — hier vind je wanden die passen bij je ervaring.</p>
-    <ul class="lijst">
-      <li>Sportroutes van 4a tot 8a</li>
-      <li>Op 2,5 uur rijden van Utrecht</li>
-      <li>Beste seizoen: voor- en najaar</li>
-    </ul>
-  </div>
-</section>
-
-<section class="foto-split">
-  <div class="foto-split__beeld" style="--foto: url('/images/sunnysnow.jpg')"></div>
-  <div class="foto-split__tekst">
-    <span class="content-eyebrow">Over het gebied</span>
-    <h2>Dinant</h2>
-    <p>Kalksteen aan de Maas, dé klassieker van de Belgische Ardennen. Honderden sportroutes verspreid over meerdere wanden, van laagdrempelig tot stevig overhangend.</p>
-    <p>De rotsen kijken grotendeels op het zuiden — heerlijk in het voorjaar, maar 's zomers warm. Kom vroeg of kies een schaduwwand.</p>
-    <a href="/klimmen/klimgebieden/dinant" class="btn-download">Bekijk de wanden →</a>
-  </div>
-</section>
-
-<section class="foto-editorial" style="--foto: url('/images/sunnysnow.jpg')">
-  <div class="foto-editorial__inhoud">
-    <span class="content-eyebrow">Waar wil je klimmen?</span>
-    <h2>Van lokale crag tot alpiene wand</h2>
-    <p>Buiten klimmen begint dichtbij huis en kan je zo ver brengen als je wil. Een dagtrip naar de Ardennen, of een week graniet in de Mont Blanc-vallei.</p>
-    <p>Op deze pagina vind je de gebieden die wij goed kennen — met praktische info over toegang, seizoen en niveau, zodat je voorbereid vertrekt.</p>
-  </div>
-</section>
-
-<section class="foto-fixed" style="--foto: url('/images/sunnysnow.jpg')">
-  <div class="foto-fixed__inhoud">
-    <span class="content-eyebrow">Goed voorbereid</span>
-    <h2>Voordat je vertrekt</h2>
-    <p>Een geslaagde klimdag begint thuis...</p>
-    <p>Nog veel meer tekst die over de vaste foto heen scrollt...</p>
-  </div>
-</section>
-
-<section class="poster" style="--foto: url('/backgrounds/mapgreen.png')">
-  <div class="poster__inhoud">
-    <span class="content-eyebrow">Klimgebieden</span>
-    <h2>Klimmen in de Ardennen</h2>
-    <p>Het dichtstbijzijnde echte klimgebied vanuit Nederland — kalksteen langs de Maas, korte aanlopen en routes voor elk niveau.</p>
-    <p>Of je nu voor het eerst buiten klimt of een lange multi-pitch zoekt, hier vind je wanden die bij je passen.</p>
+  <div class="sectie-inner sp-blok">
+    <div class="sp-kaarten">
+      <a class="sp-kaart kaart-thema" routerLink="/klimmen/klimgebieden">
+        <span class="sp-kaart__nr">01</span>
+        <h4>Klimgebieden</h4>
+        <p>Per land en regio, met praktische info per gebied.</p>
+      </a>
+      <a class="sp-kaart kaart-thema" routerLink="/klimmen/materiaal" fragment="partnercheck">
+        <span class="sp-kaart__nr">02</span>
+        <h4>Checklist voor vertrek</h4>
+        <p>Wat je controleert voordat je aan een route begint.</p>
+      </a>
+    </div>
   </div>
 </section>

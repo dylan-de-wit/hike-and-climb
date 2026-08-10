@@ -1,4 +1,4 @@
-<section class="subhero subhero--met-veldstrip">
+<section class="subhero">
   <div class="subhero__media">
     <img src="images/overhangwater.png" alt="Overhangende rots bij water" />
   </div>
@@ -7,6 +7,6 @@
     <h1>Training &<br>progressie</h1>
     <p>Bouw kracht, mobiliteit en techniek op zonder herstel uit het oog te verliezen.</p>
   </div>
-  <app-veldstrip [items]="veldgegevens" meta="trainingsblok" />
-  <app-route-divider class="subhero__route" variant="overlay" [stops]="etappes" [actief]="actief" />
 </section>
+
+<app-route-divider class="subhero__route" [stops]="etappes" [actief]="actief" />

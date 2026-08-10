@@ -1,6 +1,6 @@
 
 <!-- ═══ SUBHERO ═══ -->
-<section class="subhero subhero--met-veldstrip">
+<section class="subhero">
   <div class="subhero__media">
     <img src="images/overhangwater2.png" alt="" />
   </div>
@@ -9,13 +9,12 @@
     <h1>Klimgebieden</h1>
     <p>Vind hier de beste gebieden om te klimmen.</p>
   </div>
-  <app-veldstrip [items]="veldgegevens" meta="gebiedskaart" />
-  <app-route-divider
+</section>
+
+<app-route-divider
     class="subhero__route"
-    variant="overlay"
     [stops]="secties"
     [(actief)]="actieveSectie" />
-</section>
 
 <!-- ═══ 1. WAAR KUN JE KLIMMEN ═══ -->
 <section class="sectie" id="waar">
@@ -161,6 +160,6 @@
 <section class="uitgelicht">
   <div class="uitgelicht__inner">
     <p>Klaar om te gaan? Check eerst je materiaal en partner.</p>
-    <a href="/klimmen/materiaal" class="btn-download" style="margin-top: 28px; display: inline-block;">Naar materiaal →</a>
+    <a href="/klimmen/materiaal" class="btn-thema" style="margin-top: 28px;">Naar materiaal →</a>
   </div>
 </section>

@@ -1,0 +1,28 @@
+<nav class="hoofdstuk-nav" aria-label="Hoofdstukken op deze pagina">
+  <div class="hoofdstuk-nav__inner">
+    @if (label()) {
+      <span class="hoofdstuk-nav__label">{{ label() }}</span>
+    }
+
+    <ul class="hoofdstuk-nav__lijst">
+      @for (h of hoofdstukken(); track h.anchor; let i = $index) {
+        <li>
+          @if (h.link) {
+            <a class="hoofdstuk-nav__link" [routerLink]="h.link">
+              <span class="hoofdstuk-nav__nr">{{ nr(i) }}</span>
+              <span class="hoofdstuk-nav__naam">{{ h.naam }}</span>
+            </a>
+          } @else {
+            <a
+              class="hoofdstuk-nav__link"
+              [attr.href]="'#' + h.anchor"
+              (click)="scrollNaar(h.anchor, $event)">
+              <span class="hoofdstuk-nav__nr">{{ nr(i) }}</span>
+              <span class="hoofdstuk-nav__naam">{{ h.naam }}</span>
+            </a>
+          }
+        </li>
+      }
+    </ul>
+  </div>
+</nav>

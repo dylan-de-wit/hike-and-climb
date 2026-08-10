@@ -1,4 +1,4 @@
-<section class="subhero subhero--met-veldstrip">
+<section class="subhero">
   <div class="subhero__media">
     <img src="images/bouldering.jpg" alt="Boulderaar op een rotswand met mos" />
   </div>
@@ -7,6 +7,6 @@
     <h1>Techniek</h1>
     <p>Werk aan voetenwerk, lichaamsspanning en efficiënte beweging op de wand.</p>
   </div>
-  <app-veldstrip [items]="veldgegevens" meta="skills" />
-  <app-route-divider class="subhero__route" variant="overlay" [stops]="etappes" [actief]="actief" />
 </section>
+
+<app-route-divider class="subhero__route" [stops]="etappes" [actief]="actief" />

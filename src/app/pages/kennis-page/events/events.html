@@ -1,4 +1,4 @@
-<section class="subhero subhero--met-veldstrip">
+<section class="subhero">
   <div class="subhero__media">
     <img src="images/mountainforest.jpeg" alt="Bergpad richting klimgebied" />
   </div>
@@ -7,9 +7,9 @@
     <h1>Events</h1>
     <p>Overzicht voor klimweekenden, gezamenlijke trips, workshops en andere buitenactiviteiten.</p>
   </div>
-  <app-veldstrip [items]="veldgegevens" meta="agenda" />
-  <app-route-divider class="subhero__route" variant="overlay" [stops]="etappes" [actief]="actief" />
 </section>
+
+<app-route-divider class="subhero__route" [stops]="etappes" [actief]="actief" />
 
 <section class="sectie">
   <div class="sectie-inner events-layout">

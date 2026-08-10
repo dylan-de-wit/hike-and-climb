@@ -1,4 +1,4 @@
-<section class="subhero subhero--met-veldstrip">
+<section class="subhero">
   <div class="subhero__media">
     <img src="images/topmountain.jpg" alt="Bergpad met wijds uitzicht" />
   </div>
@@ -7,6 +7,6 @@
     <h1>Routes &<br>gebieden</h1>
     <p>Kies routes op afstand, terrein, seizoen en het soort landschap dat je zoekt.</p>
   </div>
-  <app-veldstrip [items]="veldgegevens" meta="kaart · trail" />
-  <app-route-divider class="subhero__route" variant="overlay" [stops]="etappes" [actief]="actief" />
 </section>
+
+<app-route-divider class="subhero__route" [stops]="etappes" [actief]="actief" />

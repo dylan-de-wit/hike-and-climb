@@ -1,23 +1,1295 @@
 import { Component } from '@angular/core';
-import { RouteDivider } from '../../../components/route-divider/route-divider';
-import { VeldItem, Veldstrip } from '../../../components/veldstrip/veldstrip';
-import { KENNIS_ETAPPES } from '../kennis-etappes';
+import { RouterLink } from '@angular/router';
+
+type Thema = 'klimmen' | 'boulderen' | 'hiken' | 'natuur';
+
+interface TermKaart {
+  thema: Thema;
+  label: string;
+  term: string;
+  definitie: string;
+  /** Routerpad naar de pagina waar deze term wordt uitgelegd/gebruikt. */
+  link: string;
+  /** Optioneel anker binnen die pagina. */
+  fragment?: string;
+  /** Leesbaar "Pagina · Sectie" label, getoond op de kaart. */
+  paginaLabel: string;
+}
 
 @Component({
   selector: 'app-kennis-terminologie',
   host: { class: 'thema-kennis' },
-  imports: [Veldstrip, RouteDivider],
+  imports: [RouterLink],
   templateUrl: './terminologie.html',
   styleUrl: './terminologie.scss',
 })
 export class KennisTerminologie {
-  readonly veldgegevens: VeldItem[] = [
-    { label: 'Type', waarde: 'woordenlijst' },
-    { label: 'Focus', waarde: 'klimtaal' },
-    { label: 'Gebruik', waarde: 'naslag' },
-    { label: 'Niveau', waarde: 'basis' },
+  zoekterm = '';
+  actiefThema: Thema | null = null;
+
+  private readonly alleThemas: { id: Thema; label: string }[] = [
+    { id: 'klimmen', label: 'Klimmen' },
+    { id: 'boulderen', label: 'Boulderen' },
+    { id: 'hiken', label: 'Hiken' },
+    { id: 'natuur', label: 'Natuur' },
   ];
 
-  readonly etappes = KENNIS_ETAPPES;
-  readonly actief = 2;
+  /** Alleen filter-chips tonen voor thema's die daadwerkelijk termen hebben. */
+  get themas(): { id: Thema; label: string }[] {
+    return this.alleThemas.filter((thema) => this.termen.some((term) => term.thema === thema.id));
+  }
+
+  readonly termen: TermKaart[] = [
+    // ═══ A ═══
+    {
+      thema: 'klimmen',
+      label: 'Klimmen',
+      term: 'Abseilen',
+      definitie: `Gecontroleerd afdalen langs het touw met behulp van een tuber en een prusikknoop als back-up. Bij abseilen gebeuren vaak ongelukken, dus controleer altijd alles extra goed.`,
+      link: '/klimmen/multi-pitch',
+      fragment: 'afdalen',
+      paginaLabel: 'Multipitch · Afdalen en zelfredding',
+    },
+    {
+      thema: 'klimmen',
+      label: 'Klimmen',
+      term: 'Afgebonden krachtendriehoek',
+      definitie: `Standplaatsmethode voor minder dan 100% betrouwbare vaste punten. Een sling wordt met knopen tussen twee punten gespannen zodat beide punten gelijkmatig belast worden. Hoe kleiner de hoek van de lus, hoe gunstiger de krachtenverdeling. Idealiter liggen de punten boven elkaar. Bij 100% betrouwbare boorhaken gebruik je in plaats hiervan de rijverankering.`,
+      link: '/klimmen/multi-pitch',
+      fragment: 'standplaats',
+      paginaLabel: 'Multipitch · De standplaats',
+    },
+    {
+      thema: 'klimmen',
+      label: 'Klimmen',
+      term: 'Alpinesetje',
+      definitie: `Dunne, lange sling verbonden aan twee karabiners of snappers.`,
+      link: '/klimmen/single-pitch',
+      fragment: 'standplaats',
+      paginaLabel: 'Single-pitch · Standplaats maken',
+    },
+    {
+      thema: 'boulderen',
+      label: 'Boulderen',
+      term: 'Arête / rand',
+      definitie: `De buitenste rand of hoek van de muur of van een volume, die je als extra grip- of steunpunt mag gebruiken.`,
+      link: '/boulderen/techniek',
+      paginaLabel: 'Boulderen · Techniek',
+    },
+    {
+      thema: 'klimmen',
+      label: 'Klimmen',
+      term: 'ATC',
+      definitie: `Zekeringsapparaat. Gebruik de normale modus bij het zekeren van de voorklimmer vanaf de grond of het lichaam.`,
+      link: '/klimmen/materiaal',
+      fragment: 'zekering',
+      paginaLabel: 'Materiaal · Karabiners en zekeringsapparaten',
+    },
+    {
+      thema: 'klimmen',
+      label: 'Klimmen',
+      term: 'Autoblokkering',
+      definitie: `Het automatisch vergrendelen van een zekeringsapparaat bij een val.`,
+      link: '/klimmen/multi-pitch',
+      fragment: 'naklimmer',
+      paginaLabel: 'Multipitch · De naklimmer zekeren',
+    },
+
+    // ═══ B ═══
+    {
+      thema: 'klimmen',
+      label: 'Klimmen',
+      term: 'Behaking / Boorhaken',
+      definitie: `Vaste zekeringspunten die in de rots zijn geboord. Er zijn twee soorten: mechanische haken die zich met een spreidmechanisme vastklemmen (herkenbaar aan een plaatje met oog), en chemische ankers (lijmhaken) die met epoxyhars worden vastgezet en een ringvormig oog hebben. Moderne boorhaken zijn betrouwbaar, maar kunnen verkeerd zijn geplaatst, of door corrosie, met name nabij de zee, snel verzwakken.`,
+      link: '/klimmen/klimgebieden',
+      fragment: 'gebied-check',
+      paginaLabel: 'Klimgebieden · Wat je per gebied moet weten',
+    },
+    {
+      thema: 'klimmen',
+      label: 'Klimmen',
+      term: 'Belaylus',
+      definitie: `De kleine lus op de voorzijde van de gordel, gebruikt voor het bevestigen van het zekeringsapparaat en back-ups bij noodreddingen.`,
+      link: '/klimmen/materiaal',
+      fragment: 'persoonlijk',
+      paginaLabel: 'Materiaal · Persoonlijke uitrusting',
+    },
+    {
+      thema: 'boulderen',
+      label: 'Boulderen',
+      term: 'Beta',
+      definitie: `De aanpak of tactiek om een boulder te klimmen: welke grepen je gebruikt, in welke volgorde en met welke techniek. Vaak een kwestie van uitproberen tot je de meest efficiënte weg naar boven vindt.`,
+      link: '/boulderen/techniek',
+      paginaLabel: 'Boulderen · Techniek',
+    },
+    {
+      thema: 'boulderen',
+      label: 'Boulderen',
+      term: 'Beta spraying',
+      definitie: `Ongevraagd advies of aanwijzingen geven aan iemand die op dat moment aan het klimmen is. Wordt over het algemeen als onbeleefd ervaren.`,
+      link: '/boulderen/techniek',
+      paginaLabel: 'Boulderen · Techniek',
+    },
+    {
+      thema: 'klimmen',
+      label: 'Klimmen',
+      term: 'Big Friendly Knot',
+      definitie: `Informele naam voor de zaksteek die je bij noodreddingen altijd als eerste in het vrije touweinde legt, zodat het touw niet per ongeluk door het zekeringsapparaat of de maillon schiet als je de controle verliest.`,
+      link: '/klimmen/multi-pitch',
+      fragment: 'afdalen',
+      paginaLabel: 'Multipitch · Afdalen en zelfredding',
+    },
+
+    // ═══ C ═══
+    {
+      thema: 'klimmen',
+      label: 'Klimmen',
+      term: 'Centraal punt',
+      definitie: `Het ene ophangpunt op de standplaats waaraan zowel de zelfzekering als de zekeringsopstelling hangen. Bestaat uit een extra beveiligde karabiner of een vooraf geknoopte lus in een sling van 120 cm.`,
+      link: '/klimmen/multi-pitch',
+      fragment: 'standplaats',
+      paginaLabel: 'Multipitch · De standplaats',
+    },
+    {
+      thema: 'boulderen',
+      label: 'Boulderen',
+      term: 'Chalken',
+      definitie: `Je handen insmeren met magnesiumpoeder om zweet te absorberen en meer grip te houden.`,
+      link: '/boulderen/materiaal',
+      paginaLabel: 'Boulderen · Materiaal',
+    },
+    {
+      thema: 'boulderen',
+      label: 'Boulderen',
+      term: 'Cheaten',
+      definitie: `Een niet-toegestaan hulpmiddel gebruiken dat geen onderdeel is van de route, zoals afzetten tegen iets wat niet meetelt.`,
+      link: '/boulderen/techniek',
+      paginaLabel: 'Boulderen · Techniek',
+    },
+    {
+      thema: 'klimmen',
+      label: 'Klimmen',
+      term: 'Clipstick',
+      definitie: `Uitschuifbare stok waarmee je de eerste haak van de grond af kunt inclippen met het touw. Zo vermijd je het risico dat je valt voordat het touw in de eerste haak zit.`,
+      link: '/klimmen/materiaal',
+      fragment: 'zekering',
+      paginaLabel: 'Materiaal · Karabiners en zekeringsapparaten',
+    },
+    {
+      thema: 'boulderen',
+      label: 'Boulderen',
+      term: 'Crimps',
+      definitie: `Kleine, smalle richels die je met de vingertoppen vastpakt, vaak in een gekromde vingerhouding.`,
+      link: '/boulderen/techniek',
+      paginaLabel: 'Boulderen · Techniek',
+    },
+    {
+      thema: 'boulderen',
+      label: 'Boulderen',
+      term: 'Crux',
+      definitie: `Het lastigste gedeelte van een boulderroute, vaak de plek met de moeilijkste combinatie van grepen en bewegingen.`,
+      link: '/boulderen/techniek',
+      paginaLabel: 'Boulderen · Techniek',
+    },
+
+    // ═══ D ═══
+    {
+      thema: 'boulderen',
+      label: 'Boulderen',
+      term: 'Deadpoint',
+      definitie: `Een korte, gecontroleerde beweging naar een grip op het moment dat je even gewichtloos bent. Timing is hierbij alles.`,
+      link: '/boulderen/techniek',
+      paginaLabel: 'Boulderen · Techniek',
+    },
+    {
+      thema: 'klimmen',
+      label: 'Klimmen',
+      term: 'Directe / Indirecte inbinding',
+      definitie: `Directe inbinding: de achtknoop waarmee de klimmer rechtstreeks aan het touw vastzit. Indirecte inbinding: bevestiging via een of twee karabiners, als tijdelijke zekering bij ombouwen, zodat je niet loskomt als je de directe knoop losmaakt.`,
+      link: '/klimmen/single-pitch',
+      fragment: 'ombouwen',
+      paginaLabel: 'Single-pitch · Ombouwen naar toprope',
+    },
+    {
+      thema: 'boulderen',
+      label: 'Boulderen',
+      term: 'Dropknee',
+      definitie: `Een houding waarbij je je knie naar binnen of naar beneden draait om lager bij de muur te komen en verder te kunnen reiken.`,
+      link: '/boulderen/techniek',
+      paginaLabel: 'Boulderen · Techniek',
+    },
+    {
+      thema: 'klimmen',
+      label: 'Klimmen',
+      term: 'Dual Connect Adjust',
+      definitie: `Verstelbare dubbele lifeline van Petzl. Eén arm dient als zelfzekering in de standplaats; de andere arm houdt bijvoorbeeld de abseilsetup (tuber + touw) op zijn plek.`,
+      link: '/klimmen/multi-pitch',
+      fragment: 'afdalen',
+      paginaLabel: 'Multipitch · Afdalen en zelfredding',
+    },
+    {
+      thema: 'klimmen',
+      label: 'Klimmen',
+      term: 'Dummy runner',
+      definitie: `De eerste tussenzekering die vóór het vertrek van de voorklimmer in de back-up haak van de standplaats wordt gehangen. Voorkomt dat bij een val de zekeraar direct wordt geraakt of dat de tuber verkeerd wordt belast. Verplicht bij zekeren over het centrale punt of het lichaam.`,
+      link: '/klimmen/multi-pitch',
+      fragment: 'naklimmer',
+      paginaLabel: 'Multipitch · De naklimmer zekeren',
+    },
+    {
+      thema: 'klimmen',
+      label: 'Klimmen',
+      term: 'Dynamisch touw',
+      definitie: `Klimtouw dat bij een val rekt tot maximaal 40% om de schokbelasting te spreiden. Verplicht bij voorklimmen; statisch touw is hiervoor nooit geschikt.`,
+      link: '/klimmen/materiaal',
+      fragment: 'touwen',
+      paginaLabel: 'Materiaal · Touwen',
+    },
+    {
+      thema: 'boulderen',
+      label: 'Boulderen',
+      term: 'Dyno',
+      definitie: `Een dynamische, springende beweging waarbij je jezelf helemaal loslaat van de muur om een verdere grip te bereiken.`,
+      link: '/boulderen/techniek',
+      paginaLabel: 'Boulderen · Techniek',
+    },
+
+    // ═══ E ═══
+    {
+      thema: 'klimmen',
+      label: 'Klimmen',
+      term: 'Edelrid Ohm',
+      definitie: `Weerstandsapparaat dat in de eerste haak van de route wordt gehangen. Verlaagt de kracht die een val van de voorklimmer op de zekeraar uitoefent; aanbevolen als de voorklimmer meer dan 30% zwaarder is dan de zekeraar.`,
+      link: '/klimmen/materiaal',
+      fragment: 'zekering',
+      paginaLabel: 'Materiaal · Karabiners en zekeringsapparaten',
+    },
+    {
+      thema: 'klimmen',
+      label: 'Klimmen',
+      term: 'Enkeltouw',
+      definitie: `Eén touw dat sterk genoeg is om een val alleen op te vangen. Voor single pitch altijd een enkeltouw van minimaal 60 m, bij voorkeur 70–80 m. Gemiddelde diameter is 9,5 mm.`,
+      link: '/klimmen/materiaal',
+      fragment: 'touwen',
+      paginaLabel: 'Materiaal · Touwen',
+    },
+    {
+      thema: 'klimmen',
+      label: 'Klimmen',
+      term: 'Exprestakel',
+      definitie: `Takelconstructie om de naklimmer touwsteun te geven bij een te moeilijk stuk. Zie hoofdstuk 'Noodreddingen op standplaats'.`,
+      link: '/klimmen/multi-pitch',
+      fragment: 'afdalen',
+      paginaLabel: 'Multipitch · Afdalen en zelfredding',
+    },
+
+    // ═══ F ═══
+    {
+      thema: 'boulderen',
+      label: 'Boulderen',
+      term: 'Flash',
+      definitie: `Een boulder in één poging tot de top klimmen zonder eerder te vallen, waarbij je vooraf wel beta mocht krijgen of iemand anders de route zien klimmen.`,
+      link: '/boulderen/training',
+      paginaLabel: 'Boulderen · Training & progressie',
+    },
+
+    // ═══ G ═══
+    {
+      thema: 'boulderen',
+      label: 'Boulderen',
+      term: 'Gaston',
+      definitie: `Een greeptechniek waarbij je met je elleboog naar buiten tegen een verticale grip drukt in plaats van eraan te trekken.`,
+      link: '/boulderen/techniek',
+      paginaLabel: 'Boulderen · Techniek',
+    },
+    {
+      thema: 'klimmen',
+      label: 'Klimmen',
+      term: 'Gordel',
+      definitie: `De sportklimgordel bestaat uit een heupband en twee beenlussen. Beenlussen horen zo strak rond de bovenbenen te zitten dat je er een vlakke hand tussen kunt steken. De gordel heeft 2 tot 4 materiaallussen voor het ophangen van setjes en overig materiaal.`,
+      link: '/klimmen/materiaal',
+      fragment: 'persoonlijk',
+      paginaLabel: 'Materiaal · Persoonlijke uitrusting',
+    },
+    {
+      thema: 'klimmen',
+      label: 'Klimmen',
+      term: 'Gravity loaded',
+      definitie: `Principe waarbij karabiners met de schroef naar beneden worden gehangen, zodat ze minder snel opendraaien door trillingen of eigen gewicht. Hang de schroef ook van de muur af zodat hij minder snel beschadigt.`,
+      link: '/klimmen/single-pitch',
+      fragment: 'standplaats',
+      paginaLabel: 'Single-pitch · Standplaats maken',
+    },
+    {
+      thema: 'klimmen',
+      label: 'Klimmen',
+      term: 'Guide-modus',
+      definitie: `Opstelling waarbij tuber en touw samen in het centrale punt hangen, waardoor het apparaat bij een val automatisch blokkeert. Dit is de standaardmethode voor het zekeren van de naklimmer op de standplaats bij multi-pitch.`,
+      link: '/klimmen/multi-pitch',
+      fragment: 'naklimmer',
+      paginaLabel: 'Multipitch · De naklimmer zekeren',
+    },
+
+    // ═══ H ═══
+    {
+      thema: 'klimmen',
+      label: 'Klimmen',
+      term: 'Halfautomaat',
+      definitie: `Zekeringsapparaat dat bij een val volledig automatisch blokkeert zonder dat de zekeraar het remtouw hoeft vast te houden. Voorbeelden: Petzl GriGri, Edelrid Giga Jul, Camp Smart. Voordeel: maximale veiligheid bij het zekeren van de voorklimmer. Nadeel: touw uitgeven gaat minder soepel dan bij een tuber, en de technieken voor touw uitgeven en laten zakken verschillen.`,
+      link: '/klimmen/materiaal',
+      fragment: 'zekering',
+      paginaLabel: 'Materiaal · Karabiners en zekeringsapparaten',
+    },
+    {
+      thema: 'klimmen',
+      label: 'Klimmen',
+      term: 'Halftouw',
+      definitie: `Twee aparte touwen die je beurtelings inclipt. Elk touw loopt zo zijn eigen rechte lijn, wat wrijving sterk vermindert bij zigzagroutes. Gebruik halftouw bij multipitch met veel bochten, drie klimmers, grote haakafstanden, of als je de volledige touwlengte wilt abseilen. Symbool: ½.`,
+      link: '/klimmen/materiaal',
+      fragment: 'touwen',
+      paginaLabel: 'Materiaal · Touwen',
+    },
+    {
+      thema: 'boulderen',
+      label: 'Boulderen',
+      term: 'Heel hook',
+      definitie: `Een techniek waarbij je je hiel achter of op een grip haakt om jezelf naar binnen te trekken of om extra stabiliteit te krijgen.`,
+      link: '/boulderen/techniek',
+      paginaLabel: 'Boulderen · Techniek',
+    },
+    {
+      thema: 'klimmen',
+      label: 'Klimmen',
+      term: 'HMS-karabiner',
+      definitie: `Peervormige karabiner, herkenbaar aan de omcirkelde H. Verplicht voor de halve mastworp: de peervorm zorgt dat de knoop zich omkeert bij het wisselen van inhalen naar uitgeven. Gebruik hem ook voor de zelfzekering en het centrale punt op de standplaats. Gebruik bij voorkeur een extra beveiligde variant (safebiner).`,
+      link: '/klimmen/multi-pitch',
+      fragment: 'naklimmer',
+      paginaLabel: 'Multipitch · De naklimmer zekeren',
+    },
+
+    // ═══ I ═══
+    {
+      thema: 'klimmen',
+      label: 'Klimmen',
+      term: 'Inbindlus',
+      definitie: `Het centrale verbindingspunt van de gordel waaraan de inbindknoop en de zelfzekering worden bevestigd.`,
+      link: '/klimmen/single-pitch',
+      fragment: 'standplaats',
+      paginaLabel: 'Single-pitch · Standplaats maken',
+    },
+
+    // ═══ J ═══
+    {
+      thema: 'boulderen',
+      label: 'Boulderen',
+      term: 'Jugs',
+      definitie: `Grote, makkelijk vast te pakken grepen waar je je hele hand omheen kunt sluiten.`,
+      link: '/boulderen/techniek',
+      paginaLabel: 'Boulderen · Techniek',
+    },
+
+    // ═══ K ═══
+    {
+      thema: 'klimmen',
+      label: 'Klimmen',
+      term: 'Karabiner — beveiligd',
+      definitie: `Karabiner waarbij minimaal twee bewegingen nodig zijn om de sluiting te openen. Verkleint de kans op ongewild opengaan door trillingen of beweging. Voorbeelden: schroefkarabiner, twistlock-karabiner. Geschikt voor het zekeringsapparaat aan de gordel en voor standplaatsinrichting.`,
+      link: '/klimmen/materiaal',
+      fragment: 'zekering',
+      paginaLabel: 'Materiaal · Karabiners en zekeringsapparaten',
+    },
+    {
+      thema: 'klimmen',
+      label: 'Klimmen',
+      term: 'Karabiner — extra beveiligd',
+      definitie: `Karabiner waarbij minimaal drie handelingen nodig zijn om de sluiting te openen. Ook wel 'safebiner' genoemd. Verplicht voor alle levensdragende posities: zelfzekering, centraal punt en zekeringskarabiner op de standplaats. Voorbeelden: DMM Belay Master, Petzl Ball Lock. Let op: niet elke extra beveiligde karabiner is geschikt voor gebruik met elk zekeringsapparaat.`,
+      link: '/klimmen/materiaal',
+      fragment: 'zekering',
+      paginaLabel: 'Materiaal · Karabiners en zekeringsapparaten',
+    },
+    {
+      thema: 'klimmen',
+      label: 'Klimmen',
+      term: 'Karabiner / Snapper',
+      definitie: `Karabiner zonder beveiligde sluiting: de snapper gaat open met één drukbeweging. Uitsluitend geschikt voor setjes en quickdraws. Nooit gebruiken op levensdragende posities zoals zelfzekering, centraal punt of zekeringsapparaat.`,
+      link: '/klimmen/materiaal',
+      fragment: 'zekering',
+      paginaLabel: 'Materiaal · Karabiners en zekeringsapparaten',
+    },
+    {
+      thema: 'klimmen',
+      label: 'Klimmen',
+      term: 'Klimtopo / Topo',
+      definitie: `Klimmenje met alle informatie over het klimgebied en de routes: parkeerplaats, paden, (tijdelijke) klimverboden, gedragsregels, routeverloop, moeilijkheidsgraad, haakafstanden, benodigde touwlengte en setjes, en hoe de hulpdiensten te bereiken.`,
+      link: '/klimmen/klimgebieden',
+      fragment: 'waar',
+      paginaLabel: 'Klimgebieden · Waar kun je klimmen?',
+    },
+
+    // ═══ L ═══
+    {
+      thema: 'klimmen',
+      label: 'Klimmen',
+      term: 'Levensdragende karabiner',
+      definitie: `Extra beveiligde karabiner uit de categorie 'extra beveiligd' (minimaal drie handelingen om te openen) voor de zelfzekering, het centrale punt en de zekeringskarabiner op de standplaats. Gebruik met name levensdragende karabiners als er touw doorheen loopt waar iemand aanhangt.`,
+      link: '/klimmen/materiaal',
+      fragment: 'zekering',
+      paginaLabel: 'Materiaal · Karabiners en zekeringsapparaten',
+    },
+    {
+      thema: 'klimmen',
+      label: 'Klimmen',
+      term: 'Lifeline',
+      definitie: `Verstelbare sling die als zelfzekering dient, bijvoorbeeld de Petzl Connect Adjust of Dual Connect Adjust. Alternatief voor een vaste sling of een mastworp met het hoofdtouw.`,
+      link: '/klimmen/single-pitch',
+      fragment: 'standplaats',
+      paginaLabel: 'Single-pitch · Standplaats maken',
+    },
+
+    // ═══ M ═══
+    {
+      thema: 'klimmen',
+      label: 'Klimmen',
+      term: 'Maillon rapide',
+      definitie: `Een gedeponeerde merknaam van het Franse bedrijf Péguet. Metalen schroefschakel die twee boorhaken met elkaar verbindt op de standplaats, herkenbaar aan de ovale of peervorm met een schroef. De breeklast is 35kN voor de 8mm, 45kN voor de 9mm en zelfs 55kN voor de 10mm variant. Hier kun je direct het touw doorheen halen bij bijv. abseilen, maar hang bij voorkeur eerst een karabiner door een maillon om slijtage te voorkomen. Bij ombouwen op een plaquette: laat nooit een maillon achter als tussenschakel.`,
+      link: '/klimmen/single-pitch',
+      fragment: 'ombouwen',
+      paginaLabel: 'Single-pitch · Ombouwen naar toprope',
+    },
+    {
+      thema: 'boulderen',
+      label: 'Boulderen',
+      term: 'Mantle',
+      definitie: `Een druktechniek waarbij je jezelf via je armen over een rand of plateau omhoogduwt, vergelijkbaar met uit een zwembad klimmen.`,
+      link: '/boulderen/techniek',
+      paginaLabel: 'Boulderen · Techniek',
+    },
+    {
+      thema: 'boulderen',
+      label: 'Boulderen',
+      term: 'Matchen',
+      definitie: `Beide handen kort op dezelfde grip zetten, bijvoorbeeld om even te rusten of om je volgende beweging voor te bereiden.`,
+      link: '/boulderen/techniek',
+      paginaLabel: 'Boulderen · Techniek',
+    },
+    {
+      thema: 'klimmen',
+      label: 'Klimmen',
+      term: 'Moeilijkheidsschaal',
+      definitie: `Systeem om de moeilijkheid van klimroutes aan te geven. In de meeste Europese landen (waaronder Nederland, België en Frankrijk) wordt de Franse schaal gebruikt. In Duitsland de UIAA-schaal. De waardering is subjectief en kan per klimgebied flink verschillen.`,
+      link: '/klimmen/klimgebieden',
+      fragment: 'waar',
+      paginaLabel: 'Klimgebieden · Waar kun je klimmen?',
+    },
+
+    // ═══ N ═══
+    {
+      thema: 'klimmen',
+      label: 'Klimmen',
+      term: 'Naklimmer',
+      definitie: `De klimmer die tweede klimt, terwijl de eerste voorklimmer, die nu de zekeraar is, van boven zekert vanaf de standplaats.`,
+      link: '/klimmen/multi-pitch',
+      fragment: 'naklimmer',
+      paginaLabel: 'Multipitch · De naklimmer zekeren',
+    },
+
+    // ═══ O ═══
+    {
+      thema: 'klimmen',
+      label: 'Klimmen',
+      term: 'Ombouwen',
+      definitie: `Het omzetten van de standplaats van zekeren naar toprope of abseilen, terwijl de zekeraar blijft zekeren en de klimmer altijd via een indirecte inbinding gezekerd blijft. Roep nooit 'Stand!' bij single pitch ombouwen. Leun altijd naar achter om te testen of je daadwerkelijk in het nieuwe systeem hangt voordat je de zelfzekering losmaakt.`,
+      link: '/klimmen/single-pitch',
+      fragment: 'ombouwen',
+      paginaLabel: 'Single-pitch · Ombouwen naar toprope',
+    },
+    {
+      thema: 'klimmen',
+      label: 'Klimmen',
+      term: 'Omhoog prusikken',
+      definitie: `Techniek om met twee prusikknopen langs het touw omhoog te werken, bijvoorbeeld na een fout bij het abseilen.`,
+      link: '/klimmen/multi-pitch',
+      fragment: 'afdalen',
+      paginaLabel: 'Multipitch · Afdalen en zelfredding',
+    },
+    {
+      thema: 'boulderen',
+      label: 'Boulderen',
+      term: 'Onsight',
+      definitie: `Hetzelfde als een flash, maar dan zonder enige voorkennis: je hebt de boulder niet eerder zien klimmen en niemand heeft je tips gegeven.`,
+      link: '/boulderen/training',
+      paginaLabel: 'Boulderen · Training & progressie',
+    },
+    {
+      thema: 'klimmen',
+      label: 'Klimmen',
+      term: 'Opspannen',
+      definitie: `Het verbinden van twee zekeringspunten met een sling, hulptouwtje of het hoofdtouw via een mastworp. Werkwijze: leg eerst de helft van de mastworp, trek strak en fixeer, leg dan de tweede helft.`,
+      link: '/klimmen/multi-pitch',
+      fragment: 'standplaats',
+      paginaLabel: 'Multipitch · De standplaats',
+    },
+    {
+      thema: 'boulderen',
+      label: 'Boulderen',
+      term: 'Overhang',
+      definitie: `Een muurdeel dat naar voren over je heen helt, waardoor je lichaam continu schuin hangt en je armen extra worden belast.`,
+      link: '/boulderen/techniek',
+      paginaLabel: 'Boulderen · Techniek',
+    },
+
+    // ═══ P ═══
+    {
+      thema: 'klimmen',
+      label: 'Klimmen',
+      term: 'Partnercheck',
+      definitie: `Veiligheidscontrole die vóór elke klim wordt gedaan. Als voorklimmer controleer je bij de zekeraar: gordel, touw in zekeringsapparaat, karabiner dicht. Als zekeraar controleer je bij de klimmer: gordel, achtknoop goed gelegd, voldoende setjes. Samen: touw lang genoeg, knoop in het uiteinde, helm op. Bij multi-pitch ook op elke standplaats vóórdat de voorklimmer zijn zelfzekering losmaakt.`,
+      link: '/klimmen/materiaal',
+      fragment: 'starten',
+      paginaLabel: 'Materiaal · Wat heb je nodig om te beginnen?',
+    },
+    {
+      thema: 'boulderen',
+      label: 'Boulderen',
+      term: 'Pinches',
+      definitie: `Grepen die je van twee kanten tussen duim en vingers moet knijpen.`,
+      link: '/boulderen/techniek',
+      paginaLabel: 'Boulderen · Techniek',
+    },
+    {
+      thema: 'klimmen',
+      label: 'Klimmen',
+      term: 'Pitch / Single pitch / Multipitch',
+      definitie: `Een pitch is één klimlengte van standplaats tot standplaats. Single pitch: de route wordt in één touwlengte geklommen (maximaal de helft van de touwlengte). Multi-pitch: de route bestaat uit meerdere pitches met tussenliggende standplaatsen.`,
+      link: '/klimmen/single-pitch',
+      paginaLabel: 'Klimmen · Single-pitch',
+    },
+    {
+      thema: 'klimmen',
+      label: 'Klimmen',
+      term: 'Plaquette / Scherpe haak',
+      definitie: `Geboord ankerpunt met een vlak plaatje en een gat met scherpe randen. De scherpe rand beschadigt het touw bij direct contact; haal het klimtouw dus nooit direct door een plaquette. Gebruik altijd een karabiner die je achterlaat, of een prusiktouwtje dubbel gevouwen als tussenschakel. Laat nooit een maillon rapide achter als alternatief; die verroest en maakt het inhangen voor de volgende klimmer lastig.`,
+      link: '/klimmen/single-pitch',
+      fragment: 'bijzonder',
+      paginaLabel: 'Single-pitch · Afdalen in bijzondere situaties',
+    },
+    {
+      thema: 'boulderen',
+      label: 'Boulderen',
+      term: 'Pockets',
+      definitie: `Grepen met een of meerdere kleine gaten waar je een beperkt aantal vingers in kwijt kunt.`,
+      link: '/boulderen/techniek',
+      paginaLabel: 'Boulderen · Techniek',
+    },
+    {
+      thema: 'boulderen',
+      label: 'Boulderen',
+      term: 'Project(en)',
+      definitie: `Een boulder die je nog niet hebt gehaald maar waar je gericht aan blijft werken, vaak door hem meerdere keren te proberen en je aanpak steeds bij te schaven.`,
+      link: '/boulderen/training',
+      paginaLabel: 'Boulderen · Training & progressie',
+    },
+    {
+      thema: 'klimmen',
+      label: 'Klimmen',
+      term: 'Prusiktouwtje',
+      definitie: `Dun hulptouwtje (~5–6 mm diameter) voor prusikknopen. Een dunner touwtje heeft onvoldoende breeksterkte; een dikker touw heeft onvoldoende klemmende werking.`,
+      link: '/klimmen/multi-pitch',
+      fragment: 'afdalen',
+      paginaLabel: 'Multipitch · Afdalen en zelfredding',
+    },
+    {
+      thema: 'boulderen',
+      label: 'Boulderen',
+      term: 'Pumped',
+      definitie: `De vermoeide, verzuurde onderarmen krijgen waardoor je grip snel afneemt.`,
+      link: '/boulderen/training',
+      paginaLabel: 'Boulderen · Training & progressie',
+    },
+
+    // ═══ Q ═══
+    {
+      thema: 'klimmen',
+      label: 'Klimmen',
+      term: 'Quickdraw / Setje',
+      definitie: `Twee karabiners verbonden door een korte sling. Gebruik quickdraws om het klimtouw door haken te clippen. Langere setjes (18 of 25 cm in plaats van 12 cm) zijn handig bij haken die niet op de meest logische positie zitten, om touwwrijving te verminderen.`,
+      link: '/klimmen/materiaal',
+      fragment: 'zekering',
+      paginaLabel: 'Materiaal · Karabiners en zekeringsapparaten',
+    },
+
+    // ═══ R ═══
+    {
+      thema: 'klimmen',
+      label: 'Klimmen',
+      term: 'Relais',
+      definitie: `Het Franse woord voor standplaats of omlooppunt: het eindpunt van een route waar je het touw doorheen haalt om naar beneden te komen. Zie ook: standplaats.`,
+      link: '/klimmen/multi-pitch',
+      fragment: 'standplaats',
+      paginaLabel: 'Multipitch · De standplaats',
+    },
+    {
+      thema: 'klimmen',
+      label: 'Klimmen',
+      term: 'Remtouw',
+      definitie: `Het touwdeel aan de uitgangszijde van het zekeringsapparaat. Houd de remhand altijd aan het remtouw, ook bij automatisch blokkerende apparaten.`,
+      link: '/klimmen/multi-pitch',
+      fragment: 'naklimmer',
+      paginaLabel: 'Multipitch · De naklimmer zekeren',
+    },
+    {
+      thema: 'klimmen',
+      label: 'Klimmen',
+      term: 'Rijverankering',
+      definitie: `Methode om twee 100% betrouwbare haken (boorhaken) te verbinden via een bandlus of het hoofdtouw. De onderste haak draagt 100% van de belasting; de bovenste fungeert als back-up zonder speling. Als de haken al verbonden zijn met een ketting, hang je de centrale karabiner in het oog of de ring van de onderste haak, nooit in individuele schakels of om de ketting heen.`,
+      link: '/klimmen/multi-pitch',
+      fragment: 'standplaats',
+      paginaLabel: 'Multipitch · De standplaats',
+    },
+    {
+      thema: 'klimmen',
+      label: 'Klimmen',
+      term: 'Ronde haak / Ring / Bolt',
+      definitie: `Geboord ankerpunt met een gladde, ronde of ovale ring. Je mag het touw bij ombouwen en abseilen direct doorheen halen. Hang bij voorkeur wel een karabiner als tussenschakel om slijtage van de ring te beperken, zeker bij routes die veel gedaan worden.`,
+      link: '/klimmen/single-pitch',
+      fragment: 'bijzonder',
+      paginaLabel: 'Single-pitch · Afdalen in bijzondere situaties',
+    },
+
+    // ═══ S ═══
+    {
+      thema: 'boulderen',
+      label: 'Boulderen',
+      term: 'Sandbagged',
+      definitie: `Wanneer een boulder in de praktijk veel pittiger blijkt dan de aangegeven moeilijkheidsgraad doet vermoeden.`,
+      link: '/boulderen/boulderlocaties',
+      paginaLabel: 'Boulderen · Boulderlocaties',
+    },
+    {
+      thema: 'klimmen',
+      label: 'Klimmen',
+      term: 'Schlinge / Bandslinge',
+      definitie: `Gesloten lus van band. Gebruik alleen gestikte bandlus met een breeksterkte van minimaal 22 kN. Gebruik een sling van 60 cm voor de zelfzekering bij single pitch (met ankersteek aan de inbindlus), en een van 120 cm voor de rijverankering en het centrale punt bij multipitch.`,
+      link: '/klimmen/single-pitch',
+      fragment: 'standplaats',
+      paginaLabel: 'Single-pitch · Standplaats maken',
+    },
+    {
+      thema: 'klimmen',
+      label: 'Klimmen',
+      term: 'Schroefkarabiner',
+      definitie: `Beveiligde karabiner met een schroefhuls die je met twee bewegingen opent (draaien + opendrukken). Let op: vergeet nooit de schroef volledig dicht te draaien, check dit altijd dubbel. Valt in de categorie 'beveiligd'; voor levensdragende posities gebruik je bij voorkeur een extra beveiligde karabiner.`,
+      link: '/klimmen/materiaal',
+      fragment: 'zekering',
+      paginaLabel: 'Materiaal · Karabiners en zekeringsapparaten',
+    },
+    {
+      thema: 'boulderen',
+      label: 'Boulderen',
+      term: 'Send',
+      definitie: `Een boulder succesvol uitklimmen tot de top, ongeacht hoeveel pogingen of valpartijen daaraan voorafgingen.`,
+      link: '/boulderen/training',
+      paginaLabel: 'Boulderen · Training & progressie',
+    },
+    {
+      thema: 'boulderen',
+      label: 'Boulderen',
+      term: 'Slab',
+      definitie: `Een muurdeel dat licht naar achteren helt of verticaal loopt, waardoor je vooral op je voeten en balans klimt in plaats van op armkracht.`,
+      link: '/boulderen/techniek',
+      paginaLabel: 'Boulderen · Techniek',
+    },
+    {
+      thema: 'boulderen',
+      label: 'Boulderen',
+      term: 'Slopers',
+      definitie: `Ronde, gladde grepen zonder duidelijke rand, waarbij je vooral op wrijving en handpositie vertrouwt.`,
+      link: '/boulderen/techniek',
+      paginaLabel: 'Boulderen · Techniek',
+    },
+    {
+      thema: 'klimmen',
+      label: 'Klimmen',
+      term: 'Spotten',
+      definitie: `Het begeleiden van een klimmer naar een veilige landing vóórdat het touw in de eerste haak zit. Je vangt de klimmer niet op, maar stuurt hem bij een val naar een veilige positie. Alleen doen als het daadwerkelijk mogelijk is. Na de eerste haak zeker je kort en statisch tot de derde of vierde haak; daarna ga je verder van de wand staan en dynamischer zekeren.`,
+      link: '/klimmen/materiaal',
+      fragment: 'starten',
+      paginaLabel: 'Materiaal · Wat heb je nodig om te beginnen?',
+    },
+    {
+      thema: 'klimmen',
+      label: 'Klimmen',
+      term: 'Standplaats',
+      definitie: `Het eindpunt van een pitch waar de voorklimmer zichzelf zekert en vervolgens de naklimmer van opzekert. Bevat ankerpunten (haken of ketting), een centraal punt, de zelfzekering van de voorklimmer en de zekeringsopstelling voor de naklimmer. Richt op elke standplaats een centraal punt in voor overzicht en werkruimte.`,
+      link: '/klimmen/multi-pitch',
+      fragment: 'standplaats',
+      paginaLabel: 'Multipitch · De standplaats',
+    },
+    {
+      thema: 'klimmen',
+      label: 'Klimmen',
+      term: 'Statisch touw',
+      definitie: `Touw met nauwelijks rek. Nooit geschikt om een voorklimval op te vangen; gebruik het uitsluitend voor abseilen of werktouwen.`,
+      link: '/klimmen/materiaal',
+      fragment: 'touwen',
+      paginaLabel: 'Materiaal · Touwen',
+    },
+
+    // ═══ T ═══
+    {
+      thema: 'klimmen',
+      label: 'Klimmen',
+      term: 'Tibloc / Mini Traxion',
+      definitie: `Lichtgewicht stijgklemmen die als terugloopzekering of als onderdeel van een exprestakel ingezet kunnen worden, als snel en handig alternatief voor de prusikknoop. Werken sneller en blokkeren minder snel.`,
+      link: '/klimmen/multi-pitch',
+      fragment: 'afdalen',
+      paginaLabel: 'Multipitch · Afdalen en zelfredding',
+    },
+    {
+      thema: 'boulderen',
+      label: 'Boulderen',
+      term: 'Toe hook',
+      definitie: `Vergelijkbaar met een heel hook, maar dan met de teenkant van je schoen. Vooral bruikbaar op steile stukken.`,
+      link: '/boulderen/techniek',
+      paginaLabel: 'Boulderen · Techniek',
+    },
+    {
+      thema: 'boulderen',
+      label: 'Boulderen',
+      term: 'Toppen',
+      definitie: `De boulder succesvol afmaken door de eindgreep gecontroleerd te bereiken en vast te houden.`,
+      link: '/boulderen/techniek',
+      paginaLabel: 'Boulderen · Techniek',
+    },
+    {
+      thema: 'klimmen',
+      label: 'Klimmen',
+      term: 'Touw opnemen / Opbossen',
+      definitie: `Het netjes opschieten van het touw in lussen, met het uiteinde er strak omheen gewikkeld zodat het niet uiteen valt. Leg het touw altijd netjes uit vóór het klimmen; dat voorkomt knopen bij het zekeren.`,
+      link: '/klimmen/materiaal',
+      fragment: 'touwen',
+      paginaLabel: 'Materiaal · Touwen',
+    },
+    {
+      thema: 'klimmen',
+      label: 'Klimmen',
+      term: 'Touw verkorten',
+      definitie: `Techniek om lussen in het touw gelijk te maken (tot middelhoogte) en vast te zetten met een zaksteek en karabiner aan de inbindlus; gebruikt als je met een korter effectief touw wilt klimmen. Twee varianten: ingebonden aan het uiteinde of in het midden van het touw.`,
+      link: '/klimmen/materiaal',
+      fragment: 'touwen',
+      paginaLabel: 'Materiaal · Touwen',
+    },
+    {
+      thema: 'klimmen',
+      label: 'Klimmen',
+      term: 'Tuber',
+      definitie: `Zekeringsapparaat met één of twee gleuven voor het touw. Heeft een normale modus (aan de inbindlus, voor zekeren van de voorklimmer) en een guide-modus (aan het centrale punt, voor zekeren van de naklimmer op de standplaats). Voorbeelden: ATC Guide (Black Diamond), Reverso (Petzl), Mega Jul (Edelrid), Pivot (DMM).`,
+      link: '/klimmen/multi-pitch',
+      fragment: 'naklimmer',
+      paginaLabel: 'Multipitch · De naklimmer zekeren',
+    },
+    {
+      thema: 'klimmen',
+      label: 'Klimmen',
+      term: 'Tweelingtouw',
+      definitie: `Twee touwen die altijd als één geheel worden behandeld; beide gaan tegelijk door elke quickdraw. Net als een enkeltouw, maar met een ingebouwde back-up als één touw op een scherpe rand beschadigt. Bij zigzagroutes hetzelfde wrijvingsprobleem als enkeltouw. Symbool: ∞.`,
+      link: '/klimmen/materiaal',
+      fragment: 'touwen',
+      paginaLabel: 'Materiaal · Touwen',
+    },
+
+    // ═══ V ═══
+    {
+      thema: 'klimmen',
+      label: 'Klimmen',
+      term: 'Valfactor',
+      definitie: `Maat voor de hardheid van een val. Berekend als: valfactor = valhoogte ÷ lengte uitgegeven touw. Hoe hoger de valfactor, hoe groter de kracht op de klimmer, het touw en de ankerpunten. De maximale theoretische waarde is 2; dit gebeurt bijvoorbeeld als je boven je zekeringsapparaat valt zonder touw ertussen. Een val van 2 m bij 6 m uitgegeven touw (valfactor 0,33) is zachter dan een val van 2 m bij 3 m uitgegeven touw (valfactor 0,67), ook al is de valhoogte gelijk. Inclippen verkleint zowel de valhoogte als het uitgegeven touw, maar de valfactor daalt pas echt als het touw al lang genoeg is. Wrijving in de quickdraws en de beweging van de zekeraar verlagen de effectieve kracht in de praktijk verder.`,
+      link: '/klimmen/materiaal',
+      fragment: 'touwen',
+      paginaLabel: 'Materiaal · Touwen',
+    },
+    {
+      thema: 'klimmen',
+      label: 'Klimmen',
+      term: 'Vangstoot',
+      definitie: `De maximale kracht die optreedt op het moment dat het touw volledig is uitgerekt bij een val. Staat vermeld op elk klimtouw als kwaliteitskenmerk: hoe lager de waarde, hoe zachter de val wordt opgevangen en hoe minder kracht er op de klimmer en de ankerpunten wordt uitgeoefend. Dynamische touwen mogen wettelijk maximaal 40% rekken; typische waarden liggen tussen 28% en 35%.`,
+      link: '/klimmen/materiaal',
+      fragment: 'touwen',
+      paginaLabel: 'Materiaal · Touwen',
+    },
+    {
+      thema: 'boulderen',
+      label: 'Boulderen',
+      term: 'Volume',
+      definitie: `Een grote, uitstekende vorm die op de muur is gemonteerd en meetelt als klimoppervlak, ook al is het strikt genomen geen los grip-element.`,
+      link: '/boulderen/techniek',
+      paginaLabel: 'Boulderen · Techniek',
+    },
+    {
+      thema: 'klimmen',
+      label: 'Klimmen',
+      term: 'Voorklimmer',
+      definitie: `De klimmer die als eerste omhooggaat, de tussenhaken inclipt en de standplaats aan het einde van de pitch inricht.`,
+      link: '/klimmen/multi-pitch',
+      fragment: 'standplaats',
+      paginaLabel: 'Multipitch · De standplaats',
+    },
+
+    // ═══ Z ═══
+    {
+      thema: 'klimmen',
+      label: 'Klimmen',
+      term: 'Zekeraar',
+      definitie: `De persoon die het zekeringsapparaat bedient en de klimmer vangt bij een val. Zekeraar en klimmer zijn samen verantwoordelijk voor de veiligheid. Houd de remhand altijd aan het touw en let extra op bij moeilijke passages.`,
+      link: '/klimmen/single-pitch',
+      fragment: 'commandos',
+      paginaLabel: "Single-pitch · Touwcommando's",
+    },
+    {
+      thema: 'klimmen',
+      label: 'Klimmen',
+      term: 'Zekeren over het lichaam / over de standplaats',
+      definitie: `Bij multipitch zijn er twee manieren om de voorklimmer te zekeren vanuit de standplaats. Over het lichaam: de zekeraar hangt met een relatief lange zelfzekering direct onder de standplaats, niet aanbevolen bij grote gewichtsverschillen. Over de standplaats: het zekeringsapparaat hangt in het centrale punt.`,
+      link: '/klimmen/multi-pitch',
+      fragment: 'naklimmer',
+      paginaLabel: 'Multipitch · De naklimmer zekeren',
+    },
+    {
+      thema: 'klimmen',
+      label: 'Klimmen',
+      term: 'Zelfzekering',
+      definitie: `De directe bevestiging van de klimmer aan de standplaats, onafhankelijk van het klimtouw. Altijd aangebracht voordat de inbindknoop losgemaakt wordt. Bij single pitch: met een sling van 60 cm via een ankersteek aan de inbindlus. Bij multipitch: ook met het hoofdtouw via een hele mastworp in een karabiner, voordeel is dat de lengte volledig aanpasbaar is.`,
+      link: '/klimmen/single-pitch',
+      fragment: 'standplaats',
+      paginaLabel: 'Single-pitch · Standplaats maken',
+    },
+
+    // ═══ HIKEN ═══
+    {
+      thema: 'hiken',
+      label: 'Hiken',
+      term: 'Dagtocht',
+      definitie: `Een wandeling die je in één dag doet, meestal terug bij je startpunt of met vervoer terug.`,
+      link: '/hiken/multiday-hikes',
+      paginaLabel: 'Hiken · Multiday hikes',
+    },
+    {
+      thema: 'hiken',
+      label: 'Hiken',
+      term: 'Meerdaagse trektocht / thru-hike',
+      definitie: `Een wandeltocht die meerdere dagen duurt en waarbij je onderweg overnacht, vaak langs een vaste route van begin- tot eindpunt.`,
+      link: '/hiken/multiday-hikes',
+      paginaLabel: 'Hiken · Multiday hikes',
+    },
+    {
+      thema: 'hiken',
+      label: 'Hiken',
+      term: 'Etappe',
+      definitie: `Eén dagdeel van een meerdaagse tocht, met een vast start- en eindpunt.`,
+      link: '/hiken/multiday-hikes',
+      paginaLabel: 'Hiken · Multiday hikes',
+    },
+    {
+      thema: 'hiken',
+      label: 'Hiken',
+      term: 'Wildkamperen vs. bivakkeren',
+      definitie: `Wildkamperen is overnachten buiten een officiële camping, vaak zonder toestemming en dus lang niet overal toegestaan. Bivakkeren is een kortere, sobere overnachting in de natuur, meestal wel gedoogd of expliciet toegestaan op aangewezen plekken.`,
+      link: '/hiken/multiday-hikes',
+      paginaLabel: 'Hiken · Multiday hikes',
+    },
+    {
+      thema: 'hiken',
+      label: 'Hiken',
+      term: 'Lagensysteem (baselayer/midlayer/shell)',
+      definitie: `Kledingsysteem met drie lagen: een baselayer die vocht afvoert, een midlayer die isoleert, en een shell die je beschermt tegen wind en regen.`,
+      link: '/hiken/uitrusting',
+      paginaLabel: 'Hiken · Uitrusting',
+    },
+    {
+      thema: 'hiken',
+      label: 'Hiken',
+      term: 'Draagsysteem en heupgordel',
+      definitie: `Het frame en de banden van een rugzak die het gewicht verdelen; de heupgordel legt het grootste deel van het gewicht op je heupen in plaats van je schouders.`,
+      link: '/hiken/uitrusting',
+      paginaLabel: 'Hiken · Uitrusting',
+    },
+    {
+      thema: 'hiken',
+      label: 'Hiken',
+      term: 'Trekkingpoles',
+      definitie: `Wandelstokken die je stabiliteit geven en je knieën ontlasten, vooral bij afdalingen en met een zware rugzak.`,
+      link: '/hiken/uitrusting',
+      paginaLabel: 'Hiken · Uitrusting',
+    },
+    {
+      thema: 'hiken',
+      label: 'Hiken',
+      term: 'Hoogtemeters (D+)',
+      definitie: `Het totaal aantal hoogtemeters dat je tijdens een tocht stijgt (denivelé positief); een betere maat voor de zwaarte van een tocht dan de afstand alleen.`,
+      link: '/hiken/planning',
+      paginaLabel: 'Hiken · Planning',
+    },
+    {
+      thema: 'hiken',
+      label: 'Hiken',
+      term: 'GPX-track',
+      definitie: `Een digitaal opgeslagen route met coördinaten die je kunt laden in een gps-apparaat of app om de tocht te volgen.`,
+      link: '/hiken/planning',
+      paginaLabel: 'Hiken · Planning',
+    },
+    {
+      thema: 'hiken',
+      label: 'Hiken',
+      term: 'Blaze / markering',
+      definitie: `Een geverfde streep, bordje of ander teken langs het pad dat aangeeft dat je nog op de juiste route zit.`,
+      link: '/hiken/routes-gebieden',
+      paginaLabel: 'Hiken · Routes & gebieden',
+    },
+    {
+      thema: 'hiken',
+      label: 'Hiken',
+      term: 'Cairn (steenmannetje)',
+      definitie: `Een opgestapeld hoopje stenen dat als routemarkering dient, vooral boven de boomgrens waar andere markeringen ontbreken.`,
+      link: '/hiken/routes-gebieden',
+      paginaLabel: 'Hiken · Routes & gebieden',
+    },
+
+    // ═══ NATUUR — Astronavigatie ═══
+    {
+      thema: 'natuur',
+      label: 'Natuur',
+      term: 'Kompas en declinatie',
+      definitie: `Een kompas wijst naar het magnetische noorden, dat net iets afwijkt van het echte noorden. Dat verschil heet de declinatie en verschilt per locatie en jaar; je moet ervoor corrigeren als je nauwkeurig wilt navigeren.`,
+      link: '/natuur/astronavigatie',
+      paginaLabel: 'Natuur · Astronavigatie',
+    },
+    {
+      thema: 'natuur',
+      label: 'Natuur',
+      term: 'Kaartlezen via hoogtelijnen',
+      definitie: `Hoogtelijnen op een kaart verbinden punten op dezelfde hoogte. Liggen ze dicht bij elkaar, dan is het terrein steil; liggen ze ver uit elkaar, dan is het vlak.`,
+      link: '/natuur/astronavigatie',
+      paginaLabel: 'Natuur · Astronavigatie',
+    },
+    {
+      thema: 'natuur',
+      label: 'Natuur',
+      term: 'Poolster vinden via de Grote Beer',
+      definitie: `Je verlengt de twee buitenste sterren van de 'pan' van de Grote Beer ongeveer vijf keer om bij de Poolster uit te komen, die het noorden aangeeft.`,
+      link: '/natuur/astronavigatie',
+      paginaLabel: 'Natuur · Astronavigatie',
+    },
+    {
+      thema: 'natuur',
+      label: 'Natuur',
+      term: 'Zon-tijd methode',
+      definitie: `Met een analoog horloge kun je bij benadering het zuiden bepalen door het uurwerk zo te draaien dat de uurwijzer naar de zon wijst; het zuiden ligt dan halverwege tussen de uurwijzer en 12 uur.`,
+      link: '/natuur/astronavigatie',
+      paginaLabel: 'Natuur · Astronavigatie',
+    },
+    {
+      thema: 'natuur',
+      label: 'Natuur',
+      term: 'Azimut',
+      definitie: `De richting naar een punt, uitgedrukt in graden vanaf het noorden (0 tot 360°), gebruikt om een koers te volgen met kompas of kaart.`,
+      link: '/natuur/astronavigatie',
+      paginaLabel: 'Natuur · Astronavigatie',
+    },
+    {
+      thema: 'natuur',
+      label: 'Natuur',
+      term: 'Gegist bestek (dead reckoning)',
+      definitie: `Je positie schatten op basis van je laatst bekende punt, de gelopen richting, snelheid en tijd, zonder gps.`,
+      link: '/natuur/astronavigatie',
+      paginaLabel: 'Natuur · Astronavigatie',
+    },
+
+    // ═══ NATUUR — Weer lezen ═══
+    {
+      thema: 'natuur',
+      label: 'Natuur',
+      term: 'Cumulus- en cumulonimbuswolken',
+      definitie: `Cumulus zijn de stapelwolken met platte basis die bij mooi weer horen; groeien ze fors de hoogte in met een donkere basis, dan spreek je van cumulonimbus, de onweerswolk.`,
+      link: '/natuur/bushcraft',
+      paginaLabel: 'Natuur · Bushcraft',
+    },
+    {
+      thema: 'natuur',
+      label: 'Natuur',
+      term: 'Windrichting aflezen',
+      definitie: `De richting waar de wind vandaan komt bepalen, bijvoorbeeld met een vlaggetje, rook, of het gevoel op je gezicht; belangrijk om weersveranderingen te voorspellen.`,
+      link: '/natuur/bushcraft',
+      paginaLabel: 'Natuur · Bushcraft',
+    },
+    {
+      thema: 'natuur',
+      label: 'Natuur',
+      term: 'Luchtdruktrend',
+      definitie: `De verandering van de luchtdruk over tijd; een snel dalende luchtdruk wijst vaak op naderend slecht weer, een stijgende trend op opklaring.`,
+      link: '/natuur/bushcraft',
+      paginaLabel: 'Natuur · Bushcraft',
+    },
+    {
+      thema: 'natuur',
+      label: 'Natuur',
+      term: 'Bliksem-donder-methode',
+      definitie: `Je telt de seconden tussen een bliksemflits en de donder en deelt dat door drie; dat geeft ruwweg de afstand tot het onweer in kilometers.`,
+      link: '/natuur/bushcraft',
+      paginaLabel: 'Natuur · Bushcraft',
+    },
+    {
+      thema: 'natuur',
+      label: 'Natuur',
+      term: 'Halo rond zon of maan',
+      definitie: `Een lichte ring rond de zon of maan, ontstaan door ijskristallen hoog in de atmosfeer; wordt vaak gezien als voorbode van naderend natter weer.`,
+      link: '/natuur/bushcraft',
+      paginaLabel: 'Natuur · Bushcraft',
+    },
+    {
+      thema: 'natuur',
+      label: 'Natuur',
+      term: 'Boerenweerspreuken',
+      definitie: `Traditionele, op ervaring gebaseerde weersvoorspellingen zoals 'rode lucht 's avonds, mooi weer op til'; niet wetenschappelijk sluitend maar vaak gebaseerd op echte patronen.`,
+      link: '/natuur/bushcraft',
+      paginaLabel: 'Natuur · Bushcraft',
+    },
+
+    // ═══ NATUUR — Wildplukken ═══
+    {
+      thema: 'natuur',
+      label: 'Natuur',
+      term: 'Brandnetel',
+      definitie: `Bekend door de brandharen, maar goed eetbaar na koken of stampen (dan verdwijnt de brandwerking); rijk aan vitamines.`,
+      link: '/natuur/wildplukken',
+      paginaLabel: 'Natuur · Wildplukken',
+    },
+    {
+      thema: 'natuur',
+      label: 'Natuur',
+      term: 'Look-zonder-look',
+      definitie: `Voorjaarsplant met een knoflookgeur bij het kneuzen van het blad, maar de smaak is milder; te herkennen aan de hartvormige bladeren.`,
+      link: '/natuur/wildplukken',
+      paginaLabel: 'Natuur · Wildplukken',
+    },
+    {
+      thema: 'natuur',
+      label: 'Natuur',
+      term: 'Paardenbloem',
+      definitie: `Blaadjes, bloemen en wortel zijn alle drie eetbaar; de blaadjes zijn wat bitter en worden vaak door sla of soep gemengd.`,
+      link: '/natuur/wildplukken',
+      paginaLabel: 'Natuur · Wildplukken',
+    },
+    {
+      thema: 'natuur',
+      label: 'Natuur',
+      term: 'Zevenblad',
+      definitie: `Plant met blad in groepjes van zeven blaadjes, smaakt wat naar peterselie-achtige kruidigheid, veel gebruikt als wilde groente.`,
+      link: '/natuur/wildplukken',
+      paginaLabel: 'Natuur · Wildplukken',
+    },
+    {
+      thema: 'natuur',
+      label: 'Natuur',
+      term: 'Vlierbloesem / vlierbessen',
+      definitie: `De bloesem gebruik je vers of gedroogd voor thee of siroop; de bessen moet je altijd eerst verhitten, want rauw zijn ze licht giftig.`,
+      link: '/natuur/wildplukken',
+      paginaLabel: 'Natuur · Wildplukken',
+    },
+    {
+      thema: 'natuur',
+      label: 'Natuur',
+      term: 'Determineren',
+      definitie: `Een plant met zekerheid op naam brengen aan de hand van kenmerken zoals bladvorm, bloei en groeiplaats, essentieel voordat je iets eet.`,
+      link: '/natuur/wildplukken',
+      paginaLabel: 'Natuur · Wildplukken',
+    },
+    {
+      thema: 'natuur',
+      label: 'Natuur',
+      term: 'Giftige dubbelgangers',
+      definitie: `Planten die sterk lijken op een eetbare soort maar giftig zijn, zoals dolle kervel die op peterselie of fluitenkruid lijkt; hét grootste risico bij wildplukken.`,
+      link: '/natuur/wildplukken',
+      paginaLabel: 'Natuur · Wildplukken',
+    },
+
+    // ═══ NATUUR — Geologie ═══
+    {
+      thema: 'natuur',
+      label: 'Natuur',
+      term: 'Sediment-, stollings- en metamorf gesteente',
+      definitie: `De drie hoofdgroepen van gesteente. Sedimentgesteente ontstaat uit afgezette en samengeperste deeltjes (zoals zandsteen en kalksteen), stollingsgesteente uit afgekoeld magma of lava (zoals basalt en graniet), en metamorf gesteente ontstaat als bestaand gesteente onder hitte en druk van vorm en structuur verandert (zoals leisteen of marmer).`,
+      link: '/natuur/gesteenten-geologie',
+      paginaLabel: 'Natuur · Gesteenten & geologie',
+    },
+    {
+      thema: 'natuur',
+      label: 'Natuur',
+      term: 'Kalksteen',
+      definitie: `Sedimentgesteente dat grotendeels bestaat uit kalk, vaak ontstaan uit de resten van zeeorganismen op de bodem van een oude zee. De rotsen van Freyr bij Dinant, een van de bekendste Belgische klimgebieden, zijn hier een goed voorbeeld van: een gelaagde kalksteenformatie uit het Paleozoïcum.`,
+      link: '/natuur/gesteenten-geologie',
+      paginaLabel: 'Natuur · Gesteenten & geologie',
+    },
+    {
+      thema: 'natuur',
+      label: 'Natuur',
+      term: 'Zandsteen',
+      definitie: `Sedimentgesteente opgebouwd uit samengekitte zandkorrels. Fontainebleau bij Parijs, hét mekka voor buiten boulderen, bestaat uit duizenden zandstenen blokken die zich uitstekend lenen voor technisch, grepenarm klimmen.`,
+      link: '/natuur/gesteenten-geologie',
+      paginaLabel: 'Natuur · Gesteenten & geologie',
+    },
+    {
+      thema: 'natuur',
+      label: 'Natuur',
+      term: 'Basalt / zuilbasalt',
+      definitie: `Donker, vulkanisch stollingsgesteente dat ontstaat als lava snel afkoelt, waarbij zich vaak karakteristieke zeshoekige zuilen vormen. Het klimgebied Ettringen in de Duitse Eifel ligt in voormalige basaltgroeves aan de voet van een oude vulkaan en staat bekend om spleten, kanten en versnijdingen in plaats van 'gewone' grepen.`,
+      link: '/natuur/gesteenten-geologie',
+      paginaLabel: 'Natuur · Gesteenten & geologie',
+    },
+    {
+      thema: 'natuur',
+      label: 'Natuur',
+      term: 'Erosie',
+      definitie: `Het wegslijten van gesteente en bodem door water, wind, ijs of temperatuurwisselingen; vormt op lange termijn landschappen zoals dalen en rotswanden.`,
+      link: '/natuur/gesteenten-geologie',
+      paginaLabel: 'Natuur · Gesteenten & geologie',
+    },
+    {
+      thema: 'natuur',
+      label: 'Natuur',
+      term: 'Verwering',
+      definitie: `Het langzaam afbrokkelen en ontbinden van gesteente ter plekke, door bijvoorbeeld vorst, planten of chemische processen; de eerste stap voordat erosie het materiaal verplaatst.`,
+      link: '/natuur/gesteenten-geologie',
+      paginaLabel: 'Natuur · Gesteenten & geologie',
+    },
+    {
+      thema: 'natuur',
+      label: 'Natuur',
+      term: 'Mohs-hardheidsschaal',
+      definitie: `Een schaal van 1 (talk, heel zacht) tot 10 (diamant, heel hard) om te bepalen hoe krasbestendig een mineraal is, gebruikt om gesteentesoorten te herkennen.`,
+      link: '/natuur/gesteenten-geologie',
+      paginaLabel: 'Natuur · Gesteenten & geologie',
+    },
+    {
+      thema: 'natuur',
+      label: 'Natuur',
+      term: 'Fossiel',
+      definitie: `Het versteende overblijfsel of de afdruk van een organisme uit het verleden, bewaard gebleven in sedimentgesteente; in kalksteengebieden zoals de Ardennen vind je regelmatig fossiele schelpen of koralen in de rots.`,
+      link: '/natuur/gesteenten-geologie',
+      paginaLabel: 'Natuur · Gesteenten & geologie',
+    },
+    {
+      thema: 'natuur',
+      label: 'Natuur',
+      term: 'Zwerfkei',
+      definitie: `Een grote steen die door een gletsjer is meegevoerd en op een plek is achtergebleven die geologisch niet bij het gesteente past, vaak ver van de oorspronkelijke herkomst.`,
+      link: '/natuur/gesteenten-geologie',
+      paginaLabel: 'Natuur · Gesteenten & geologie',
+    },
+
+    // ═══ NATUUR — Bushcraft ═══
+    {
+      thema: 'natuur',
+      label: 'Natuur',
+      term: 'Vuur maken (tondel, fire steel)',
+      definitie: `Tondel is licht ontvlambaar materiaal (zoals droog gras of schors) waarmee je een vonk opvangt; een fire steel geeft met een schraapbeweging een hete vonk die geschikt is om tondel mee aan te steken, ook als het vochtig is.`,
+      link: '/natuur/bushcraft',
+      paginaLabel: 'Natuur · Bushcraft',
+    },
+    {
+      thema: 'natuur',
+      label: 'Natuur',
+      term: 'Shelter bouwen',
+      definitie: `Een geïmproviseerd onderkomen maken met beschikbare materialen zoals takken, een tarp of noodfolie, om beschermd te zijn tegen wind, regen of kou.`,
+      link: '/natuur/bushcraft',
+      paginaLabel: 'Natuur · Bushcraft',
+    },
+    {
+      thema: 'natuur',
+      label: 'Natuur',
+      term: 'Waterzuivering / filteren',
+      definitie: `Water drinkbaar maken door filtering, koken, of chemische zuivering (zoals chloor- of jodiumtabletten).`,
+      link: '/natuur/bushcraft',
+      paginaLabel: 'Natuur · Bushcraft',
+    },
+    {
+      thema: 'natuur',
+      label: 'Natuur',
+      term: 'EHBO in het veld',
+      definitie: `Eerste hulp bieden bij letsel of ongevallen op plekken zonder snelle toegang tot professionele hulp, waarbij improvisatie met beschikbare middelen vaak nodig is.`,
+      link: '/natuur/bushcraft',
+      paginaLabel: 'Natuur · Bushcraft',
+    },
+
+    // ═══ KLIMMEN — Knopen ═══
+    {
+      thema: 'klimmen',
+      label: 'Klimmen',
+      term: 'Ankersteek',
+      definitie: `Knoop waarmee je een sling aan je inbindlus vastmaakt voor de zelfzekering. Het andere uiteinde van de sling hang je met een extra beveiligde karabiner in een van de standhaken.`,
+      link: '/klimmen/single-pitch',
+      fragment: 'standplaats',
+      paginaLabel: 'Single-pitch · Standplaats maken',
+    },
+    {
+      thema: 'klimmen',
+      label: 'Klimmen',
+      term: 'Zaksteek',
+      definitie: `Knoop om een sling of lus op de juiste lengte te brengen, zodat de verbinding net op spanning staat. Gebruikt bij het verbinden van twee haken met een sling of alpinesetje.`,
+      link: '/klimmen/single-pitch',
+      fragment: 'standplaats',
+      paginaLabel: 'Single-pitch · Standplaats maken',
+    },
+    {
+      thema: 'klimmen',
+      label: 'Klimmen',
+      term: 'Dubbele paalsteek',
+      definitie: `Knoop waarmee je een rijverankering legt: drie vingers breed, direct tegen het stiksel van de sling aan. Zorgt voor een vaste lus die de belasting eerlijk over de twee ankerpunten verdeelt.`,
+      link: '/klimmen/multi-pitch',
+      fragment: 'standplaats',
+      paginaLabel: 'Multipitch · De standplaats',
+    },
+    {
+      thema: 'klimmen',
+      label: 'Klimmen',
+      term: 'Hele mastworp',
+      definitie: `Knoop voor de zelfzekering met het hoofdtouw. Je legt hem in een extra beveiligde karabiner in de standplaats; de lengte is volledig aanpasbaar aan de situatie.`,
+      link: '/klimmen/multi-pitch',
+      fragment: 'standplaats',
+      paginaLabel: 'Multipitch · De standplaats',
+    },
+  ];
+
+  get gefilterdeTermen(): TermKaart[] {
+    const zoekterm = this.zoekterm.trim().toLowerCase();
+
+    return this.termen
+      .filter((term) => {
+        const pastBijThema = !this.actiefThema || term.thema === this.actiefThema;
+        const pastBijZoekterm =
+          !zoekterm ||
+          term.term.toLowerCase().includes(zoekterm) ||
+          term.definitie.toLowerCase().includes(zoekterm);
+
+        return pastBijThema && pastBijZoekterm;
+      })
+      .sort((a, b) => a.term.localeCompare(b.term, 'nl'));
+  }
+
+  werkZoektermBij(event: Event): void {
+    this.zoekterm = (event.target as HTMLInputElement).value;
+  }
+
+  kiesThema(thema: Thema): void {
+    this.actiefThema = this.actiefThema === thema ? null : thema;
+  }
+
+  /** URL-veilig anker voor een term, bv. "HMS-karabiner" → "hms-karabiner". */
+  slugVan(term: string): string {
+    return term
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-+|-+$/g, '');
+  }
 }

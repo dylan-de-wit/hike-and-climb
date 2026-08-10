@@ -3,9 +3,9 @@
   <div class="sp-nav__inner">
     <span class="sp-nav__merk">Multipitch</span>
     <ul class="sp-nav__links">
-      @for (link of navLinks; track link.anchor) {
+      @for (h of hoofdstukken; track h.anchor) {
         <li>
-          <a [attr.href]="'#' + link.anchor" (click)="scrollNaar(link.anchor, $event)">{{ link.label }}</a>
+          <a [attr.href]="'#' + h.anchor" (click)="scrollNaar(h.anchor, $event)">{{ h.kort ?? h.naam }}</a>
         </li>
       }
     </ul>
@@ -13,33 +13,28 @@
 </nav>
 
 <!-- ═══ BLOK 1 — HERO ═══ -->
-<header class="sp-hero">
+<header class="sp-hero sp-hero--met-foto">
+  <!-- Achtergrondfoto — vervang de src door je eigen afbeelding in public/images/ -->
+  <img class="sp-hero__media" src="images/ropelonger.jpg" alt="" aria-hidden="true" />
   <div class="sp-hero__inner">
-    <span class="content-eyebrow">Klimmen · Multipitch</span>
-    <h1>Multipitch klimmen, standplaats maken en zekeren</h1>
+    <span class="content-eyebrow">Klimmen · Multi-pitch</span>
+    <h1>Multi-pitch klimmen, standplaats maken <br> en zekeren</h1>
     <p class="sp-hero__intro">
-      In multipitch klim je meerdere pitches achter elkaar en is de standplaats je werkplek. Je zekert
+      In multi-pitch klim je meerdere pitches achter elkaar en is de standplaats je werkplek. Je zekert
       daar niet alleen jezelf, maar ook je naklimmer, en je wisselt materiaal en rollen. Op deze pagina
       lees je hoe je een standplaats inricht rond één centraal punt en hoe je de naklimmer zekert met een
       halve mastworp of met een tuber.
     </p>
     <p class="sp-hero__verwijzing">
       Ombouwen naar toprope en afdalen aan het einde van één pitch →
-      <a routerLink="/klimmen/single-pitch">pagina single pitch</a>
+      <a routerLink="/klimmen/single-pitch"> Single pitch</a>
     </p>
   </div>
 </header>
 <span #sentinel class="sp-sentinel" aria-hidden="true"></span>
 
-<!-- ═══ BLOK 2 — SNEL NAAR ═══ -->
-<nav class="sp-snelnaar" aria-label="Snel naar">
-  <span class="sp-snelnaar__label">Snel naar</span>
-  <a href="#standplaats" (click)="scrollNaar('standplaats', $event)">De standplaats</a>
-  <a href="#naklimmer" (click)="scrollNaar('naklimmer', $event)">De naklimmer zekeren</a>
-  <a href="#commandos" (click)="scrollNaar('commandos', $event)">Touwcommando's</a>
-  <a href="#touw" (click)="scrollNaar('touw', $event)">Welk touw neem je mee</a>
-  <a href="#afdalen" (click)="scrollNaar('afdalen', $event)">Afdalen en zelfredding</a>
-</nav>
+<!-- ═══ BLOK 2 — HOOFDSTUKKEN OP DEZE PAGINA ═══ -->
+<app-hoofdstuk-nav [hoofdstukken]="hoofdstukken" />
 
 <!-- ═══ TWEE-KOLOMS: HOOFDKOLOM + STICKY ZIJKOLOM ═══ -->
 <div class="mp-layout">
@@ -101,13 +96,13 @@
         <div class="begrippen">
           <span class="begrippen__label">Begrippen</span>
           <ul class="begrippen__lijst">
-            <li>centraal punt</li>
-            <li>rijverankering</li>
-            <li>dubbele paalsteek</li>
-            <li>HMS-karabiner</li>
-            <li>hele mastworp</li>
+            <li><a routerLink="/kennis/terminologie" fragment="centraal-punt">centraal punt</a></li>
+            <li><a routerLink="/kennis/terminologie" fragment="rijverankering">rijverankering</a></li>
+            <li><a routerLink="/kennis/terminologie" fragment="dubbele-paalsteek">dubbele paalsteek</a></li>
+            <li><a routerLink="/kennis/terminologie" fragment="hms-karabiner">HMS-karabiner</a></li>
+            <li><a routerLink="/kennis/terminologie" fragment="hele-mastworp">hele mastworp</a></li>
           </ul>
-          <a class="begrippen__link" routerLink="/kennis/technieken">Terminologie →</a>
+          <a class="begrippen__link" routerLink="/kennis/terminologie">Terminologie →</a>
         </div>
       </div>
     </section>
@@ -200,6 +195,27 @@
         </div>
       </div>
     </section>
+
+    <!-- BLOK 8 — VOLGORDE-CHECKLIST (in de hoofdkolom) -->
+    <section class="sectie" id="volgorde">
+      <div class="sectie-inner tekst-blok">
+            <span class="content-eyebrow">Volgorde</span>
+            <h2>De volgorde als je boven komt</h2>
+      </div>
+      <div class="sectie-inner sp-blok">
+        <div class="paneel-zand">
+          <ul class="sp-checklist sp-checklist--stappen sp-checklist--interactief">
+            <li><label><input type="checkbox" checked /> <span>Zelfzekeren aan de standplaats met een hele mastworp</span></label></li>
+            <li><label><input type="checkbox" checked /> <span>"Stand!" roepen, zodat je zekeraar het touw uit het apparaat haalt</span></label></li>
+            <li><label><input type="checkbox" checked /> <span>Touw inhalen tot het strak staat, waarna de ander "Touw uit" roept</span></label></li>
+            <li><label><input type="checkbox" checked /> <span>Het centrale punt inrichten</span></label></li>
+            <li><label><input type="checkbox" checked /> <span>De zekering voor de naklimmer opbouwen</span></label></li>
+            <li><label><input type="checkbox" checked /> <span>"Nakomen" roepen als de zekering op orde is</span></label></li>
+            <li><label><input type="checkbox" checked /> <span>De naklimmer roept "Ik kom" en start met klimmen</span></label></li>
+          </ul>
+        </div>
+      </div>
+    </section>
   </div>
 
   <!-- ═══ STICKY ZIJKOLOM ═══ -->
@@ -208,7 +224,7 @@
     <div class="mp-side__blok">
       <h3 class="mp-side__titel">De twee haken verbinden</h3>
       <div class="mp-side__stapel">
-        <article class="sp-kaart">
+        <article class="sp-kaart kaart-thema">
           <span class="sp-kaart__nr">01</span>
           <h4>Aan twee haken met ketting</h4>
           <div class="foto-plsh foto-plsh--kaart"><span>foto — ketting</span></div>
@@ -217,7 +233,7 @@
             individuele schakels of om de ketting heen, want dan wordt de kracht verkeerd verdeeld.
           </p>
         </article>
-        <article class="sp-kaart">
+        <article class="sp-kaart kaart-thema">
           <span class="sp-kaart__nr">02</span>
           <h4>Aan twee haken zonder ketting</h4>
           <div class="foto-plsh foto-plsh--kaart"><span>foto — rijverankering</span></div>
@@ -240,7 +256,7 @@
     <div class="mp-side__blok">
       <h3 class="mp-side__titel">Positie van de naklimmer</h3>
       <div class="mp-side__stapel">
-        <article class="sp-kaart">
+        <article class="sp-kaart kaart-thema">
           <span class="sp-kaart__nr">01</span>
           <h4>De naklimmer is onder jou</h4>
           <div class="foto-plsh foto-plsh--kaart"><span>foto — tuber aan centraal punt, autoblokkering</span></div>
@@ -251,7 +267,7 @@
             blokkeert het systeem vanzelf. Touw inhalen doe je precies zoals je gewend bent.
           </p>
         </article>
-        <article class="sp-kaart">
+        <article class="sp-kaart kaart-thema">
           <span class="sp-kaart__nr">02</span>
           <h4>De naklimmer is boven jou</h4>
           <div class="foto-plsh foto-plsh--kaart"><span>foto — extra karabiner, remtouw voor de knik</span></div>
@@ -270,7 +286,7 @@
     </div>
 
     <!-- Touwcommando's — compact -->
-    <div class="mp-side__blok" id="commandos">
+    <div class="mp-side__blok paneel-getint" id="commandos">
       <h3 class="mp-side__titel">Touwcommando's</h3>
       <p class="mp-side__intro">
         Op een standplaats zie en hoor je elkaar vaak slecht. Vaste commando's voorkomen dat je gaat
@@ -340,34 +356,15 @@
   </aside>
 </div>
 
-<!-- ═══ BLOK 8 — CHECKLIST ═══ -->
-<section class="sectie">
-  <div class="sectie-inner tekst-blok">
-    <span class="content-eyebrow">Volgorde</span>
-    <h2>De volgorde als je boven komt</h2>
-  </div>
-  <div class="sectie-inner sp-blok">
-    <ul class="sp-checklist sp-checklist--stappen">
-      <li>Zelfzekeren aan de standplaats met een hele mastworp</li>
-      <li>"Stand!" roepen, zodat je zekeraar het touw uit het apparaat haalt</li>
-      <li>Touw inhalen tot het strak staat, waarna de ander "Touw uit" roept</li>
-      <li>Het centrale punt inrichten</li>
-      <li>De zekering voor de naklimmer opbouwen</li>
-      <li>"Nakomen" roepen als de zekering op orde is</li>
-      <li>De naklimmer roept "Ik kom" en start met klimmen</li>
-    </ul>
-  </div>
-</section>
-
 <!-- ═══ BLOK 9 — FAQ ═══ -->
-<section class="sectie">
+<section class="sectie sectie--getint">
   <div class="sectie-inner tekst-blok">
     <span class="content-eyebrow">Veelgestelde vragen</span>
     <h2>Veelgestelde vragen</h2>
   </div>
   <div class="sectie-inner sp-blok">
     <div class="accordions accordions--faq">
-      <details class="accordion">
+      <details class="accordion" name="multi-pitch-faq">
         <summary><span class="accordion__titel">Wat is het verschil tussen een hele en een halve mastworp?</span></summary>
         <div class="accordion__body">
           <p>
@@ -376,7 +373,7 @@
           </p>
         </div>
       </details>
-      <details class="accordion">
+      <details class="accordion" name="multi-pitch-faq">
         <summary><span class="accordion__titel">Waarom hang ik in de onderste haak en niet in de bovenste?</span></summary>
         <div class="accordion__body">
           <p>
@@ -386,7 +383,7 @@
           </p>
         </div>
       </details>
-      <details class="accordion">
+      <details class="accordion" name="multi-pitch-faq">
         <summary><span class="accordion__titel">Waarom blokkeert mijn tuber slecht als de naklimmer boven me hangt?</span></summary>
         <div class="accordion__body">
           <p>
@@ -396,13 +393,13 @@
           </p>
         </div>
       </details>
-      <details class="accordion">
+      <details class="accordion" name="multi-pitch-faq">
         <summary><span class="accordion__titel">Kan ik met een halve mastworp ook over het lichaam zekeren?</span></summary>
         <div class="accordion__body">
           <p>Ja. Je kunt er zowel over het lichaam als over de standplaats mee zekeren.</p>
         </div>
       </details>
-      <details class="accordion">
+      <details class="accordion" name="multi-pitch-faq">
         <summary><span class="accordion__titel">Wanneer neem ik halftouw mee in plaats van enkeltouw?</span></summary>
         <div class="accordion__body">
           <p>
@@ -421,7 +418,7 @@
     <span class="verder-lezen__label">Verder lezen</span>
     <ul class="verder-lezen__lijst">
       <li><a routerLink="/kennis/knopen">Knopen</a></li>
-      <li><a routerLink="/kennis/technieken">Terminologie</a></li>
+      <li><a routerLink="/kennis/terminologie">Terminologie</a></li>
       <li><a routerLink="/klimmen/single-pitch">Single pitch</a></li>
       <li><a routerLink="/klimmen/materiaal">Touwen</a></li>
     </ul>

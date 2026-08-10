@@ -1,4 +1,4 @@
-<section class="subhero subhero--met-veldstrip">
+<section class="subhero">
   <div class="subhero__media">
     <img src="images/snowymountain.jpeg" alt="Besneeuwde bergtoppen boven een trail" />
   </div>
@@ -7,6 +7,6 @@
     <h1>Multiday<br>hikes</h1>
     <p>Bouw je tocht op in etappes met aandacht voor slaapplaatsen, eten en weer.</p>
   </div>
-  <app-veldstrip [items]="veldgegevens" meta="trekking" />
-  <app-route-divider class="subhero__route" variant="overlay" [stops]="etappes" [actief]="actief" />
 </section>
+
+<app-route-divider class="subhero__route" [stops]="etappes" [actief]="actief" />

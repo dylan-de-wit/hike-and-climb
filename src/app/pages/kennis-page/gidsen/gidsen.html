@@ -1,4 +1,4 @@
-<section class="subhero subhero--met-veldstrip">
+<section class="subhero">
   <div class="subhero__media">
     <img src="images/topmountain.jpg" alt="Bergtop in helder licht" />
   </div>
@@ -7,6 +7,6 @@
     <h1>Gidsen &<br>downloads</h1>
     <p>Verzamel praktische gidsen die je kunt bewaren, printen of offline meenemen.</p>
   </div>
-  <app-veldstrip [items]="veldgegevens" meta="download" />
-  <app-route-divider class="subhero__route" variant="overlay" [stops]="etappes" [actief]="actief" />
 </section>
+
+<app-route-divider class="subhero__route" [stops]="etappes" [actief]="actief" />

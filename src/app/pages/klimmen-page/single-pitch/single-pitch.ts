@@ -8,26 +8,22 @@ import {
   viewChild,
 } from '@angular/core';
 import { RouterLink } from '@angular/router';
-
-interface NavLink {
-  label: string;
-  anchor: string;
-}
+import { Hoofdstuk, HoofdstukNav } from '../../../components/hoofdstuk-nav/hoofdstuk-nav';
 
 @Component({
   selector: 'app-single-pitch',
   host: { class: 'thema-klimmen' },
-  imports: [RouterLink],
+  imports: [RouterLink, HoofdstukNav],
   templateUrl: './single-pitch.html',
   styleUrl: './single-pitch.scss',
 })
 export class SinglePitch implements AfterViewInit, OnDestroy {
-  /** Ankers voor de meescrollende balk. */
-  readonly navLinks: NavLink[] = [
-    { label: 'Standplaats', anchor: 'standplaats' },
-    { label: 'Ombouwen', anchor: 'ombouwen' },
-    { label: 'Bijzonder', anchor: 'bijzonder' },
-    { label: "Commando's", anchor: 'commandos' },
+  /** Hoofdstukken van de pagina: gebruikt in de balk onder de hero én in de meescrollende balk. */
+  readonly hoofdstukken: Hoofdstuk[] = [
+    { naam: 'Standplaats maken', kort: 'Standplaats', anchor: 'standplaats' },
+    { naam: 'Ombouwen naar toprope', kort: 'Ombouwen', anchor: 'ombouwen' },
+    { naam: 'Bijzondere situaties', kort: 'Bijzonder', anchor: 'bijzonder' },
+    { naam: "Touwcommando's", kort: "Commando's", anchor: 'commandos' },
   ];
 
   /** Toont de vaste balk zodra de hero voorbij gescrold is. */

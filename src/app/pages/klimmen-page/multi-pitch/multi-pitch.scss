@@ -3,12 +3,18 @@
    Hoofdkolom + sticky zijkolom (referentie-rail)
    ══════════════════════════════════════ */
 
+/* Hero-titel (h1) in Londrina Outline. h2's gaan via de globale regel. */
+h1 {
+  font-family: 'Londrina Outline', var(--font-heading);
+  font-weight: 400;
+}
+
 .mp-layout {
   max-width: var(--max-breedte);
   margin: 0 auto;
   padding: 8px var(--padding-zij) 0;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(320px, 400px);
+  grid-template-columns: minmax(0, 8fr) minmax(280px, 4fr);
   gap: clamp(32px, 4vw, 64px);
   align-items: start;
 }
@@ -24,8 +30,25 @@
   padding-inline: 0;
   max-width: none;
 }
+.mp-main .tekst-blok,
+.mp-main .tekst-blok p,
+.mp-main .media-blok__tekst,
+.mp-main .media-blok__tekst p,
+.mp-main .callout p,
+.mp-main .mp-verwijzing {
+  max-width: var(--tekst-maat);
+}
 .mp-main .sp-blok {
   margin-top: 40px;
+}
+.mp-main .media-blok,
+.mp-main .media-blok--flip {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+.mp-main .media-blok__media {
+  min-height: 280px;
 }
 
 /* Verwijzing naar de kaarten in de zijkolom */
@@ -130,7 +153,7 @@
   gap: 18px;
   max-width: 760px;
 }
-.sp-checklist--stappen li::after {
+.sp-checklist--stappen:not(.sp-checklist--interactief) li::after {
   display: none; /* geen vinkje: leeg vakje om af te vinken */
 }
 

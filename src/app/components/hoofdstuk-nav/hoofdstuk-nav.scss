@@ -1,0 +1,135 @@
+:host {
+  display: block;
+}
+
+/* Balk met hairlines boven en onder, net als de "snel naar"-strip. */
+.hoofdstuk-nav {
+  background: var(--papier-licht);
+  border-block: 1px solid rgba(38, 28, 21, 0.12);
+}
+
+.hoofdstuk-nav__inner {
+  max-width: var(--max-breedte);
+  margin: 0 auto;
+  padding: 10px var(--padding-zij);
+  display: flex;
+  align-items: center;
+  gap: 4px 26px;
+  flex-wrap: wrap;
+}
+
+/* Label + kort stippellijntje, als aanloop van een routelijn. */
+.hoofdstuk-nav__label {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-accent);
+  font-size: 16px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--kleur-tekst-licht);
+  opacity: 0.55;
+}
+
+.hoofdstuk-nav__label::after {
+  content: '';
+  width: 30px;
+  border-top: 2px dotted currentColor;
+}
+
+.hoofdstuk-nav__lijst {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 2px 26px;
+}
+
+.hoofdstuk-nav__link {
+  position: relative;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 8px;
+  padding: 10px 0 12px;
+  color: var(--kleur-tekst);
+  text-decoration: none;
+  transition: transform 0.2s ease;
+}
+
+.hoofdstuk-nav__nr {
+  font-family: var(--font-accent);
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  color: var(--kleur-accent);
+  opacity: 0.5;
+  transition: opacity 0.2s ease;
+}
+
+.hoofdstuk-nav__naam {
+  font-family: var(--font-accent);
+  font-size: 19px;
+  letter-spacing: 0.05em;
+}
+
+/* Onderstreping die bij hover vanaf links inschuift. */
+.hoofdstuk-nav__link::after {
+  content: '';
+  position: absolute;
+  inset-inline: 0;
+  bottom: 4px;
+  height: 2px;
+  background: var(--kleur-accent);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.24s ease;
+}
+
+.hoofdstuk-nav__link:hover,
+.hoofdstuk-nav__link:focus-visible {
+  transform: translateY(-2px);
+  outline: none;
+}
+
+.hoofdstuk-nav__link:hover::after,
+.hoofdstuk-nav__link:focus-visible::after {
+  transform: scaleX(1);
+}
+
+.hoofdstuk-nav__link:hover .hoofdstuk-nav__nr,
+.hoofdstuk-nav__link:focus-visible .hoofdstuk-nav__nr {
+  opacity: 1;
+}
+
+.hoofdstuk-nav__link:active {
+  transform: translateY(0);
+}
+
+/* Smal scherm: één rij die horizontaal scrollt, label erboven. */
+@media (max-width: 760px) {
+  .hoofdstuk-nav__inner {
+    display: block;
+    padding-inline: 0;
+  }
+
+  .hoofdstuk-nav__label {
+    padding-inline: var(--padding-zij);
+  }
+
+  .hoofdstuk-nav__lijst {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding-inline: var(--padding-zij);
+    gap: 22px;
+    scrollbar-width: none;
+  }
+
+  .hoofdstuk-nav__lijst::-webkit-scrollbar {
+    display: none;
+  }
+
+  .hoofdstuk-nav__link {
+    white-space: nowrap;
+  }
+}

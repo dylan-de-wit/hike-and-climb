@@ -1,4 +1,4 @@
-<section class="subhero subhero--met-veldstrip">
+<section class="subhero">
   <div class="subhero__media">
     <img src="images/zigzag.jpg" alt="Klimmer op de berg" />
   </div>
@@ -7,9 +7,9 @@
     <h1>Knopen</h1>
     <p>Leer betrouwbare knopen herkennen, leggen en controleren in duidelijke stappen.</p>
   </div>
-  <app-veldstrip [items]="veldgegevens" meta="touwwerk" />
-  <app-route-divider class="subhero__route" variant="overlay" [stops]="etappes" [actief]="actief" />
 </section>
+
+<app-route-divider class="subhero__route" [stops]="etappes" [actief]="actief" />
 
 <section class="sectie sectie--creme" id="oefenen">
   <div class="sectie-inner tekst-blok">

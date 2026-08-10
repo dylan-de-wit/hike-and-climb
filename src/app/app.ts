@@ -13,9 +13,31 @@ export class App {
   constructor(router: Router) {
     router.events
       .pipe(filter((event): event is NavigationEnd => event instanceof NavigationEnd))
-      .subscribe(() => {
-        this.scrollToTop();
+      .subscribe((event) => {
+        const anker = event.urlAfterRedirects.split('#')[1];
+        if (anker) {
+          this.scrollNaarAnker(decodeURIComponent(anker));
+        } else {
+          this.scrollToTop();
+        }
       });
+  }
+
+  /**
+   * Handmatige anker-scroll: deze app draait zonder zone.js, waardoor Angular's
+   * ingebouwde anchorScrolling (die op zone-stabilisatie leunt) niet betrouwbaar
+   * scrolt. Zelfde rAF/timeout-retrypatroon als scrollToTop hieronder.
+   */
+  private scrollNaarAnker(id: string): void {
+    const ga = () => {
+      document.getElementById(id)?.scrollIntoView({ behavior: 'auto', block: 'start' });
+    };
+
+    requestAnimationFrame(() => {
+      ga();
+      requestAnimationFrame(ga);
+    });
+    setTimeout(ga, 100);
   }
 
   private scrollToTop(): void {

@@ -155,7 +155,7 @@
   font-family: var(--font-accent);
   font-size: 18px;
   letter-spacing: 0.2em;
-  color: var(--kleur-accent);
+  color: #CC6024;
 }
 
 .content-text h2 {
@@ -279,6 +279,7 @@
 }
 .kaart-titel {
   color: var(--papier-licht);
+  font-family: var(--font-accent);
   font-size: 30px;
   margin: 0;
   padding-left: 4px;
@@ -397,19 +398,6 @@
   max-width: 44ch;
   margin: 0 auto 30px;
 }
-.floral-banner__knop {
-  display: inline-block;
-  font-family: var(--font-accent);
-  font-size: 19px;
-  letter-spacing: 0.08em;
-  background: var(--terra-licht);
-  color: var(--papier-licht);
-  padding: 14px 36px;
-  border-radius: 0;
-  text-decoration: none;
-  transition: background 0.2s ease;
-}
-.floral-banner__knop:hover { background: var(--terra-licht); }
 
 @media (max-width: 600px) {
   .floral-banner { padding: 60px 16px; }

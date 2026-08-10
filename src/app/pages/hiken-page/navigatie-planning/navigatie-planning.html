@@ -1,4 +1,4 @@
-<section class="subhero subhero--met-veldstrip">
+<section class="subhero">
   <div class="subhero__media">
     <img src="images/mountainvillage.jpg" alt="Hangbrug op een wandelroute" />
   </div>
@@ -7,6 +7,6 @@
     <h1>Planning</h1>
     <p>Plan je route, timing, navigatie en alternatieven voordat je het pad op gaat.</p>
   </div>
-  <app-veldstrip [items]="veldgegevens" meta="GPX · kaart" />
-  <app-route-divider class="subhero__route" variant="overlay" [stops]="etappes" [actief]="actief" />
 </section>
+
+<app-route-divider class="subhero__route" [stops]="etappes" [actief]="actief" />

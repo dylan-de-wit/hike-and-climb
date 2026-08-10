@@ -4,7 +4,7 @@
    ══════════════════════════════════════ */
 :root {
   /* ── Groen — lente/mos palet ── */
-  --lentegroen:      #938E3B;  /* lentegroen        — hero achtergrond     */
+  --lentegroen:      #9B9630;  /* lentegroen        — hero achtergrond     */
   --mos-donker:      #515731;  /* mos donker        — donkere vlakken      */
 
   /* ── Terra — oranje/bruin palet ── */
@@ -32,21 +32,24 @@
   /* ── Algemeen ── */
   --kleur-achtergrond: var(--papier-licht);
   --kleur-wit:         var(--papier-licht);
-  --kleur-tekst:       #261C15;  /* inkt             — hoofdtekst          */
-  --kleur-tekst-licht: #4A3530;  /* inkt licht       — subtekst            */
+  --kleur-tekst:       #000000;  /* inkt             — hoofdtekst          */
+  --kleur-tekst-licht: #000000;  /* inkt licht       — subtekst            */
   --kleur-hero:        var(--lentegroen);
   --kleur-accent:      var(--terra-licht);
+  --kleur-highlight:   var(--amber);
   --kleur-hero-ink:    var(--papier-licht);  /* hero titel/tekst — licht of donker per thema */
   --bullet:            url('/bulletpoints/greenarrow.svg');  /* opsommingsteken — per thema anders */
 
   /* ── Fonts ── */
   --font-heading: 'Bricolage Grotesque', sans-serif;     /* h1, h2            */
+  --font-heading-outline: 'Londrina Outline', var(--font-heading);
   --font-accent:  'Bebas Neue', sans-serif;              /* labels, kickers, nav */
   --font:         'Barlow', sans-serif;                  /* body              */
   --font-display: 'Bricolage Grotesque', sans-serif;     /* h3/h4 + uitgelicht */
 
   /* ── Afmetingen ── */
-  --max-breedte:    none;
+  --max-breedte:    1280px;
+  --tekst-maat:     68ch;
   --padding-zij:    clamp(24px, 3.5vw, 72px);
   --afgerond:       0;
   --afgerond-groot: 0;
@@ -59,8 +62,9 @@
    ══════════════════════════════════════ */
 
 .thema-klimmen {
-  --kleur-hero:     var(--lentegroen);   /* groen  */
-  --kleur-accent:   var(--terra-licht);  /* oranje */
+  --kleur-hero:     var(--teal-diep);    /* diep teal */
+  --kleur-accent:   var(--amber);        /* amber geel */
+  --kleur-highlight: var(--amber);       /* amber geel */
   --kleur-hero-ink: var(--papier-licht); /* witte titel */
   --bullet: url('/bulletpoints/orangegreenarrow.svg');
 }
@@ -162,232 +166,138 @@ body {
   color: var(--kleur-accent);
 }
 
-/* ─── Hero met overlappende tekst (subpagina's) ─── */
-.hero-overlap {
-  position: relative;
-  width: 100%;
-}
-
-.hero-overlap__media {
-  position: relative;                 
-  width: 100%;
-  height: 80vh;                       
-  overflow: hidden;
-}
-/* Zachte verdonkering onder + links voor leesbare tekst op de foto */
-.hero-overlap__media::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(to top,   rgba(15, 10, 6, 0.58), rgba(15, 10, 6, 0) 42%),
-    linear-gradient(to right,  rgba(15, 10, 6, 0.45), rgba(15, 10, 6, 0) 48%);
-  pointer-events: none;
-}
-.hero-overlap__media img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-.hero-overlap__kaart {
-  position: absolute;                 
-  left: 104px;
-  bottom: 100px;
-  max-width: 540px;   
-  color: var(--kleur-hero-ink);
-}
-.hero-overlap__kicker {
-  display: inline-block;
-  font-family: var(--font-accent);
-  font-size: 15px;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--kleur-hero-ink);
-  opacity: 0.7;
-  margin-bottom: 14px;
-}
-.hero-overlap__lijn {
-  display: block;
-  width: 48px;
-  height: 3px;
-  background: var(--kleur-hero);     /* accentkleur van de sectie */
-  border-radius: 0;
-  margin-bottom: 18px;
-}
-.hero-overlap__kaart h1 {
-  font-size: 80px;
-  line-height: 0.95;
-  letter-spacing: -0.01em;
-  color: var(--kleur-hero-ink);
-  margin: 0 0 16px;
-}
-.hero-overlap__kaart p {
-  font-size: 20px;
-  line-height: 1.4;
-  max-width: 42ch;
-  color: var(--kleur-hero-ink);
-  opacity: 0.88;
-  margin: 0;
-}
-
-/* Hoofdpagina-hero met veldstrip en routekaart */
-.hero-overlap--met-route .hero-overlap__media {
-  height: 96vh;
-  min-height: 760px;
-}
-
-.hero-overlap--met-route .hero-overlap__kaart {
-  bottom: 270px;
-}
-
-.hero-overlap--met-route app-veldstrip {
-  --veldstrip-bottom: 0;
-}
-
-.hero-overlap__route {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 54px;
-  z-index: 2;
-  padding: 0 244px 0 104px;
-}
-
-/* Subpagina-hero met kaartnavigatie */
+/* ─── Gedeelde foto-hero's (alle pagina's behalve home) ─── */
+.hero-overlap,
 .subhero {
   position: relative;
-  min-height: 88vh;
+  min-height: 64vh;
   overflow: hidden;
   background: var(--kleur-hero);
   display: flex;
-  flex-direction: column;
+  align-items: flex-end;
+  padding-block: clamp(80px, 12vw, 160px) clamp(40px, 7vw, 88px);
 }
 
+.hero-overlap__media,
 .subhero__media {
   position: absolute;
   inset: 0;
+  z-index: 0;
 }
 
+.hero-overlap__media img,
 .subhero__media img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: var(--foto-pos, 50% center);  /* per pagina te verschuiven */
+  object-position: var(--foto-pos, 50% center);
   display: block;
 }
 
+.hero-overlap::after,
 .subhero::after {
   content: '';
   position: absolute;
   inset: 0;
-  background:
-    linear-gradient(to top, rgba(15, 10, 6, 0.6), rgba(15, 10, 6, 0.08) 55%),
-    linear-gradient(to right, rgba(15, 10, 6, 0.42), rgba(15, 10, 6, 0) 60%);
+  z-index: 1;
+  background: linear-gradient(
+    to bottom,
+    rgba(15, 10, 6, 0) 24%,
+    rgba(15, 10, 6, 0.24) 58%,
+    rgba(15, 10, 6, 0.88) 100%
+  );
   pointer-events: none;
 }
 
+.hero-overlap__kaart,
 .subhero__content {
   position: relative;
-  z-index: 1;
-  flex: 1;
-  width: 100%;
-  max-width: var(--max-breedte);
+  z-index: 2;
+  width: min(100%, 900px);
+  max-width: min(100%, var(--max-breedte));
   margin: 0 auto;
-  padding: 96px 20px 24px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
+  padding-inline: var(--padding-zij);
+  color: var(--papier-licht);
 }
 
+.hero-overlap__kicker,
+.subhero__eyebrow {
+  display: inline-block;
+  font-family: var(--font-accent);
+  font-size: 18px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--amber);
+  margin-bottom: 0;
+  text-shadow:
+    0 2px 10px rgba(15, 10, 6, 0.74),
+    0 1px 2px rgba(15, 10, 6, 0.9);
+}
+
+.hero-overlap__lijn {
+  display: none;
+}
+
+.hero-overlap__kaart h1,
+.subhero h1 {
+  font-family: var(--font-heading-outline);
+  font-size: 78px;
+  font-weight: 400;
+  line-height: 90%;
+  color: var(--papier-licht);
+  max-width: 20ch;
+  margin: 14px 0 24px;
+  text-shadow:
+    0 3px 18px rgba(15, 10, 6, 0.72),
+    0 1px 3px rgba(15, 10, 6, 0.86);
+}
+
+.hero-overlap__kaart p,
+.subhero p {
+  max-width: 62ch;
+  margin: 0 0 16px;
+  color: rgba(245, 245, 245, 0.92);
+  font-size: clamp(17px, 1.5vw, 20px);
+  line-height: 1.2;
+  text-shadow: 0 2px 12px rgba(15, 10, 6, 0.58);
+}
+
+.hero-overlap__route,
 .subhero__route {
-  position: relative;
-  z-index: 2;
   display: block;
   width: 100%;
   max-width: var(--max-breedte);
   margin: 0 auto;
-  padding: 0 20px 40px;
-}
-
-.subhero--met-veldstrip .subhero__route {
-  padding-right: 244px;
-}
-
-.subhero__eyebrow {
-  font-family: var(--font-accent);
-  font-size: 22px;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--kleur-hero);
-  margin-bottom: 14px;
-}
-
-.subhero h1 {
-  color: var(--papier-licht);
-  max-width: 900px;
-}
-
-.subhero p {
-  color: rgba(245, 245, 245, 0.86);
-  max-width: 680px;
-  margin-top: 18px;
-}
-
-@media (max-width: 768px) {
-  .hero-overlap__media { height: 56vh; }
-  .hero-overlap__kaart {
-    position: static;
-    max-width: 100%;
-    margin: -12px 38px 0;
-  }
-  .hero-overlap__kaart h1 { font-size: 38px; }
-}
-
-@media (max-width: 1024px) {
-  .hero-overlap__route {
-    padding: 0 234px 0 40px;
-  }
+  padding: 0 var(--padding-zij);
 }
 
 @media (max-width: 900px) {
-  .hero-overlap--met-route .hero-overlap__media {
-    min-height: 680px;
-  }
-
   .hero-overlap__route,
-  .subhero--met-veldstrip .subhero__route {
-    padding-right: 40px;
-    padding-left: 40px;
+  .subhero__route {
+    padding-inline: 40px;
   }
 }
 
 @media (max-width: 768px) {
-  .hero-overlap--met-route .hero-overlap__media {
-    height: 62vh;
-    min-height: 460px;
-  }
-
-  .hero-overlap--met-route .hero-overlap__kaart {
-    bottom: auto;
-  }
-
-  .hero-overlap__route {
-    position: static;
-    padding: 24px 20px 0;
-  }
-
+  .hero-overlap,
   .subhero {
-    min-height: 0;
+    min-height: 62vh;
+    padding-block: 300px 40px;
   }
 
+  .hero-overlap__kaart,
   .subhero__content {
-    padding: 360px 38px 28px;
+    padding-inline: 38px;
   }
 
-  .subhero__route,
-  .subhero--met-veldstrip .subhero__route {
-    padding: 0 20px 28px;
+  .hero-overlap__kaart h1,
+  .subhero h1 {
+    font-size: 44px;
+  }
+
+  .hero-overlap__route,
+  .subhero__route {
+    padding: 24px 20px 0;
   }
 }
 
@@ -402,9 +312,9 @@ h1 {
 }
 
 h2 {
-  font-family: var(--font-heading);
+  font-family: var(--font-heading-outline);
   font-size: 46px;
-  font-weight: 700;
+  font-weight: 400; /* Londrina Outline heeft alleen deze variant */
   line-height: 90%;
   color: var(--kleur-hero);
   text-transform: uppercase;
@@ -436,21 +346,46 @@ p {
   margin: 0 0 1rem;
 }
 
-.btn-download {
-  display: inline-block;
-  align-self: flex-start;
-  background: var(--amber);
-  color: var(--groen-donker);
+/* ─── Knop — pil-stijl, kleur volgt automatisch het thema van de pagina ───
+   Gebruik: <a class="btn-thema" routerLink="…">Tekst →</a>
+   De kleur komt uit var(--kleur-accent), die per pagina al gezet wordt
+   door de .thema-klimmen / .thema-hiken / … klasse op de hostcomponent.
+   Zelfde mechaniek als de filter-chips op de terminologiepagina. */
+.btn-thema {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  border: 0;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--kleur-accent) 12%, var(--papier-licht));
+  color: color-mix(in srgb, var(--kleur-tekst-licht) 85%, transparent);
+  cursor: pointer;
   font-family: var(--font-accent);
-  font-size: 20px;
-  letter-spacing: 0.1em;
-  padding: 14px 32px;
-  border-radius: 0;
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  padding: 0 28px;
   text-decoration: none;
+  transition:
+    background-color 200ms ease,
+    color 200ms ease,
+    box-shadow 200ms ease,
+    transform 200ms ease;
 }
 
-.btn-download:hover {
-  background: var(--papier-creme);
+.btn-thema:hover,
+.btn-thema:focus-visible {
+  background: var(--kleur-accent);
+  color: var(--papier-licht);
+  box-shadow: 0 4px 0 0 color-mix(in srgb, var(--kleur-accent) 38%, var(--kleur-tekst));
+  transform: translateY(-2px);
+}
+
+.btn-thema:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 0 0 color-mix(in srgb, var(--kleur-accent) 38%, var(--kleur-tekst));
 }
 
 /* ══════════════════════════════════════
@@ -466,10 +401,38 @@ p {
 .sectie-inner  { width: 100%; max-width: var(--max-breedte); margin: 0 auto; padding-inline: var(--padding-zij); }
 .sectie--creme { background: var(--papier-creme); }
 
+/* Sectie-achtergronden voor afwisseling tussen de blokken. De tinten worden
+   uit het thema van de pagina gemengd, dus ze kloppen op elke sectie.
+   De eerste background-regel is de terugval voor oude browsers. */
+.sectie--getint {
+  background: var(--papier-creme);
+  background: color-mix(in srgb, var(--kleur-hero) 20%, var(--papier-licht));
+  border: 3px solid color-mix(in srgb, var(--kleur-hero) 30%, transparent);
+}
+
+.sectie--zand {
+background: color-mix(in srgb, var(--lentegroen) 12%, var(--papier-licht));
+border: 3px solid color-mix(in srgb, var(--lentegroen) 30%, transparent);
+}
+
+/* Zelfde tinten als los paneel, voor blokken bínnen een kolom*/
+.paneel-getint,
+.paneel-zand {
+  padding: clamp(20px, 3vw, 32px);
+}
+.paneel-getint {
+  background: var(--papier-creme);
+  background: color-mix(in srgb, var(--kleur-hero) 8%, var(--papier-licht));
+}
+.paneel-zand {
+  background: var(--papier-creme);
+  background: color-mix(in srgb, var(--kleur-accent) 14%, var(--papier-licht));
+}
+
 /* 1) Tekstblok — kop + alinea's */
-.tekst-blok    { max-width: 760px; }
+.tekst-blok    { max-width: var(--tekst-maat); }
 .tekst-blok h2 { color: var(--kleur-hero); margin: 0.75rem 0 16px; }
-.tekst-blok p  { margin: 0 0 16px; }
+.tekst-blok p  { max-width: var(--tekst-maat); margin: 0 0 16px; }
 
 /* Opsommingslijst met eigen pijl-bullet (kleur volgt het thema) */
 .lijst    { list-style: none; padding: 0; margin: 0; max-width: 760px; }
@@ -553,7 +516,7 @@ p {
   color: var(--kleur-tekst-licht);
 }
 .media-blok__media img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.media-blok__tekst   { flex: 1; min-width: 0; }
+.media-blok__tekst   { flex: 1; min-width: 0; max-width: var(--tekst-maat); }
 .media-blok__tekst h2 { margin: 12px 0 16px; }
 
 /* 5) Uitgelicht — gekleurde band (volgt herokleur) */
@@ -942,7 +905,7 @@ a.icon-kaart:hover {
 
   p  { font-size: 16px; }
 
-  .btn-download { font-size: 16px; padding: 12px 24px; }
+  .btn-thema { font-size: 15px; padding: 0 22px; }
 }
 
 /* ══════════════════════════════════════
@@ -959,7 +922,7 @@ a.icon-kaart:hover {
   left: 0;
   right: 0;
   z-index: 40;
-  background: var(--mos-donker);
+  background: var(--kleur-hero);
   transform: translateY(-100%);
   transition: transform 0.35s ease;
   box-shadow: 0 2px 14px rgba(20, 24, 16, 0.28);
@@ -1001,15 +964,21 @@ a.icon-kaart:hover {
 /* ─── Sub-hero (titel + intro) ─── */
 .sp-hero { padding: clamp(56px, 8vw, 104px) 0 clamp(32px, 4vw, 56px); }
 .sp-hero__inner {
-  max-width: 900px;
+  max-width: min(100%, 1280px);
   margin: 0 auto;
   padding-inline: var(--padding-zij);
 }
-.sp-hero h1 { margin: 14px 0 24px; color: var(--kleur-tekst); max-width: 20ch; }
+.sp-hero h1 {
+  font-family: var(--font-heading-outline);
+  font-weight: 400;
+  margin: 14px 0 24px;
+  color: var(--kleur-tekst);
+  max-width: 20ch;
+}
 .sp-hero__intro {
   font-size: clamp(17px, 1.5vw, 20px);
   color: var(--kleur-tekst-licht);
-  max-width: 62ch;
+  max-width: 50ch;
 }
 .sp-hero__intro + .sp-hero__intro { margin-top: 16px; }
 .sp-hero__verwijzing {
@@ -1022,6 +991,99 @@ a.icon-kaart:hover {
 .sp-hero__verwijzing a { color: var(--kleur-accent); text-decoration: none; }
 .sp-hero__verwijzing a:hover { text-decoration: underline; }
 .sp-sentinel { display: block; height: 0; }
+
+/* Hero mét achtergrondfoto  */
+.sp-hero--met-foto {
+  position: relative;
+  overflow: hidden;
+  min-height: 64vh;
+  display: flex;
+  align-items: flex-end;
+  padding-block: clamp(80px, 12vw, 160px) clamp(40px, 7vw, 88px);
+}
+.sp-hero__media {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+.sp-hero--met-foto::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    to bottom,
+    rgba(15, 10, 6, 0) 24%,
+    rgba(15, 10, 6, 0.24) 58%,
+    rgba(15, 10, 6, 0.88) 100%
+  );
+}
+.sp-hero--met-foto .sp-hero__inner {
+  position: relative;
+  z-index: 2;
+}
+.sp-hero--met-foto h1 {
+  color: var(--papier-licht);
+  text-shadow:
+    0 3px 18px rgb(255, 253, 253),
+    0 1px 3px rgba(192, 189, 189, 0.86);
+}
+
+.sp-hero--met-foto .content-eyebrow {
+  color: var(--amber);
+  text-shadow:
+    0 3px 18px rgb(255, 253, 253),
+    0 1px 3px rgba(147, 144, 141, 0.86);
+}
+
+.sp-hero--met-foto .sp-hero__intro,
+.sp-hero--met-foto .sp-hero__verwijzing {
+  color: rgba(245, 245, 245, 0.92);
+}
+.sp-hero--met-foto .sp-hero__verwijzing a {
+  color: var(--amber);
+}
+
+/* ─── Vaste foto-sectie ─── */
+.foto-fixed {
+  position: relative;
+  padding: 50px 0;
+  margin: 20px 0;
+  background: var(--foto) center / cover no-repeat;
+  background-attachment: fixed;
+  color: var(--papier-licht);
+}
+.foto-fixed::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(15, 10, 6, 0.235);
+}
+.foto-fixed__inhoud {
+  position: relative;
+  z-index: 1;
+  max-width: 760px;
+  margin: 0 auto;
+  padding-inline: var(--padding-zij);
+  text-align: center;
+}
+.foto-fixed h2 {
+  color: var(--papier-licht);
+  font-family: var(--font-heading-outline);
+  font-size: 56px;
+  font-weight: 600;
+  text-shadow: 0 2px 14px rgba(255, 255, 255, 0.825);
+}
+.foto-fixed p {
+  color: rgba(245, 245, 245, 0.95);
+  font-weight: 700;
+  text-shadow:
+    0 1px 3px rgba(15, 10, 6, 0.55),
+    0 2px 12px rgba(15, 10, 6, 0.4);
+}
 
 /* ─── Snel naar ─── */
 .sp-snelnaar {
@@ -1054,7 +1116,7 @@ a.icon-kaart:hover {
 .sp-snelnaar a:hover { color: var(--kleur-accent); border-color: var(--kleur-accent); }
 
 /* ─── Blok- en kopruimte ─── */
-.sp-blok { margin-top: 48px; }
+.sp-blok { margin-top: 48px; margin-bottom: 48px; }
 .sp-kop { margin-bottom: 28px; }
 .sp-kop h3 { margin: 8px 0 0; }
 
@@ -1090,10 +1152,16 @@ a.icon-kaart:hover {
   grid-template-columns: repeat(2, 1fr);
   gap: 24px;
 }
+/* Drie kaarten per rij i.p.v. twee. */
+.sp-kaarten--3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+@media (max-width: 1024px) {
+  .sp-kaarten--3 { grid-template-columns: repeat(2, 1fr); }
+}
 .sp-kaart {
   position: relative;
   background: var(--papier-creme);
-  border-top: 4px solid var(--kleur-accent);
   padding: 28px 28px 32px;
 }
 .sp-kaart__nr {
@@ -1106,10 +1174,44 @@ a.icon-kaart:hover {
   font-family: var(--font-display);
   font-size: 22px;
   margin: 4px 0 0;
-  color: var(--kleur-tekst);
 }
 .sp-kaart p { margin: 0; font-size: 16px; }
 .sp-kaart p + p { margin-top: 12px; }
+
+/* ─── Kaart — thema-gekleurde rand, titel & hover; herbruikbaar ───
+   Voeg toe náást een bestaande kaart-klasse, bv. class="sp-kaart kaart-thema".
+   Rand- en titelkleur komen uit var(--kleur-accent), dus die volgen het
+   thema van de pagina. Werkt op elke h3/h4 + p erin; verder bemoeit deze
+   klasse zich niet met layout, achtergrond of padding van de kaart zelf. */
+.kaart-thema {
+  border: 3px solid var(--teal-diep);
+  border-radius: 20px;
+  transition:
+    transform 200ms ease,
+    box-shadow 200ms ease;
+}
+.kaart-thema h3,
+.kaart-thema h4 {
+  color: var(--teal-diep);
+  font-weight: 800;
+  transition: color 200ms ease;
+}
+.kaart-thema p {
+  color: var(--kleur-tekst);
+  line-height: 1.5;
+}
+.kaart-thema:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 0 0 var(--teal-diep);
+}
+.kaart-thema:hover h3,
+.kaart-thema:hover h4 {
+  color: var(--kleur-tekst);
+}
+.kaart-thema:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 0 0 var(--kleur-accent);
+}
 
 /* ─── Callouts (tip / let op) ─── */
 .callout {
@@ -1132,12 +1234,13 @@ a.icon-kaart:hover {
 .callout p { margin: 0; color: var(--kleur-tekst); }
 .callout--tip { background: #eef2e0; border-left-color: var(--lentegroen); }
 .callout--tip .callout__label { background: var(--lentegroen); }
-.callout--let { background: #f8e8df; border-left-color: var(--terra-licht); }
-.callout--let .callout__label { background: var(--terra-licht); }
+.callout--let { background: #77acaa; border-left-color: var(--teal-licht); }
+.callout--let .callout__label { background: var(--teal-licht); }
 
 /* ─── Begrippenstrip ─── */
 .begrippen {
   margin-top: 28px;
+  margin-left: 35px;
   display: flex;
   align-items: center;
   gap: 12px 18px;
@@ -1159,11 +1262,35 @@ a.icon-kaart:hover {
   flex-wrap: wrap;
 }
 .begrippen__lijst li {
+  display: inline-block;
+}
+.begrippen__lijst a {
+  display: inline-block;
   font-size: 15px;
   color: var(--kleur-tekst);
   background: var(--papier-creme);
   border: 1px solid rgba(38, 28, 21, 0.14);
+  border-radius: 999px;
   padding: 5px 12px;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    color 200ms ease,
+    background-color 200ms ease,
+    border-color 200ms ease,
+    box-shadow 200ms ease,
+    transform 200ms ease;
+}
+.begrippen__lijst a:hover {
+  color: var(--papier-licht);
+  background: var(--amber);
+  border-color: var(--amber);
+  box-shadow: 0 4px 0 0 color-mix(in srgb, var(--amber) 44%, var(--kleur-tekst));
+  transform: translateY(-2px);
+}
+.begrippen__lijst a:active {
+  box-shadow: 0 2px 0 0 color-mix(in srgb, var(--amber) 44%, var(--kleur-tekst));
+  transform: translateY(0);
 }
 .begrippen__link {
   font-family: var(--font-accent);
@@ -1189,7 +1316,7 @@ a.icon-kaart:hover {
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--papier-licht);
-  background: var(--mos-donker);
+  background: var(--teal-diep);
   padding: 14px 18px;
   vertical-align: bottom;
 }
@@ -1205,7 +1332,12 @@ a.icon-kaart:hover {
 
 /* ─── Accordions ─── */
 .accordions { display: flex; flex-direction: column; gap: 12px; }
-.accordion { border: 1px solid rgba(38, 28, 21, 0.16); background: var(--papier-licht); }
+.accordion {
+  border: 1px solid rgba(38, 28, 21, 0.16);
+  background: var(--papier-licht);
+  interpolate-size: allow-keywords;
+  overflow: hidden;
+}
 .accordion summary {
   list-style: none;
   cursor: pointer;
@@ -1226,9 +1358,19 @@ a.icon-kaart:hover {
   border-right: 2px solid var(--kleur-accent);
   border-bottom: 2px solid var(--kleur-accent);
   transform: rotate(45deg);
-  transition: transform 0.25s ease;
+  transition: transform 0.3s ease;
 }
 .accordion[open] summary::after { transform: rotate(-135deg); }
+.accordion::details-content {
+  block-size: 0;
+  overflow: hidden;
+  transition:
+    block-size 0.34s ease,
+    content-visibility 0.34s ease allow-discrete;
+}
+.accordion[open]::details-content {
+  block-size: auto;
+}
 .accordion__nr {
   flex: none;
   width: 30px;
@@ -1241,13 +1383,23 @@ a.icon-kaart:hover {
   background: var(--kleur-accent);
 }
 .accordion__titel { min-width: 0; }
-.accordion__body { padding: 4px 20px 20px; border-top: 1px solid rgba(38, 28, 21, 0.1); }
+.accordion__body {
+  padding: 4px 20px 20px;
+  border-top: 1px solid rgba(38, 28, 21, 0.1);
+}
 .accordion__body p { margin: 14px 0 0; color: var(--kleur-tekst-licht); }
+
+@media (prefers-reduced-motion: reduce) {
+  .accordion::details-content,
+  .accordion summary::after {
+    transition: none;
+  }
+}
 
 /* ─── Checklist ─── */
 .sp-checklist {
   list-style: none;
-  margin: 0;
+  margin: 0 auto;
   padding: 0;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -1283,6 +1435,63 @@ a.icon-kaart:hover {
   border-right: 2px solid var(--kleur-accent);
   border-bottom: 2px solid var(--kleur-accent);
   transform: translateY(-60%) rotate(45deg);
+}
+.sp-checklist--interactief {
+  max-width: 900px;
+  justify-items: center;
+}
+.sp-checklist--interactief li {
+  width: min(100%, 420px);
+  padding-left: 0;
+  justify-content: center;
+  text-align: center;
+}
+.sp-checklist--interactief li::before,
+.sp-checklist--interactief li::after {
+  content: none;
+}
+.sp-checklist--interactief label {
+  display: grid;
+  grid-template-columns: 30px minmax(0, 1fr);
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  cursor: pointer;
+}
+.sp-checklist--interactief input {
+  appearance: none;
+  position: relative;
+  width: 30px;
+  height: 30px;
+  margin: 0;
+  border: 2px solid var(--kleur-accent);
+  background: var(--papier-licht);
+  cursor: pointer;
+  transition:
+    background 0.18s ease,
+    border-color 0.18s ease,
+    transform 0.18s ease;
+}
+.sp-checklist--interactief input:hover {
+  transform: rotate(-4deg) scale(1.04);
+}
+.sp-checklist--interactief input:checked {
+  background: var(--kleur-highlight);
+  border-color: var(--kleur-highlight);
+}
+.sp-checklist--interactief input:checked::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 48%;
+  width: 8px;
+  height: 15px;
+  border-right: 3px solid var(--kleur-tekst);
+  border-bottom: 3px solid var(--kleur-tekst);
+  transform: translate(-50%, -56%) rotate(42deg);
+}
+.sp-checklist--interactief span {
+  display: block;
 }
 
 /* ─── Inline tekstlink ─── */
