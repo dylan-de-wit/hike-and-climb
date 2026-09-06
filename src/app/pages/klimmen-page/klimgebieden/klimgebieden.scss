@@ -1,3 +1,281 @@
+.klimgebieden-hero {
+  --hero-foto-pos: 50% center;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.klimgebied-filter-layout {
+  display: grid;
+  gap: 34px;
+}
+
+.klimgebied-filter {
+  display: grid;
+  grid-template-columns: minmax(280px, 440px) minmax(0, 1fr);
+  align-items: end;
+  gap: 24px;
+  padding: 0 0 28px;
+  border-bottom: 1px solid color-mix(in srgb, var(--kleur-tekst) 18%, transparent);
+}
+
+.klimgebied-filter__zoek {
+  position: relative;
+  display: block;
+  width: 100%;
+}
+
+.klimgebied-filter__icoon {
+  position: absolute;
+  bottom: 15px;
+  left: 16px;
+  width: 14px;
+  height: 14px;
+  border: 2px solid color-mix(in srgb, var(--kleur-tekst-licht) 45%, transparent);
+  border-radius: 999px;
+  pointer-events: none;
+}
+
+.klimgebied-filter__icoon::after {
+  content: "";
+  position: absolute;
+  right: -5px;
+  bottom: -4px;
+  width: 7px;
+  height: 2px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--kleur-tekst-licht) 45%, transparent);
+  transform: rotate(45deg);
+}
+
+.klimgebied-filter__zoek input {
+  width: 100%;
+  height: 44px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--papier-licht);
+  color: var(--kleur-tekst);
+  font: inherit;
+  font-size: 15px;
+  padding: 0 18px 0 44px;
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--kleur-tekst) 12%, transparent);
+  transition:
+    background-color 200ms ease,
+    box-shadow 200ms ease;
+}
+
+.klimgebied-filter__zoek input::placeholder {
+  color: color-mix(in srgb, var(--kleur-tekst-licht) 62%, transparent);
+}
+
+.klimgebied-filter__zoek input:focus {
+  outline: none;
+  background: var(--papier-licht);
+  box-shadow: inset 0 0 0 2px var(--teal-diep);
+}
+
+.klimgebied-filter__groepen {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(140px, 168px)) minmax(112px, auto);
+  justify-content: end;
+  align-items: end;
+  gap: 12px;
+}
+
+.klimgebied-filter__select {
+  --filter-color: var(--amber);
+  --filter-bg: #FBEFD6;
+
+  position: relative;
+  display: block;
+  min-width: 0;
+  width: 100%;
+}
+
+.klimgebied-filter__select--rots {
+  --filter-color: var(--terra-licht);
+  --filter-bg: #F3E9E4;
+}
+
+.klimgebied-filter__select--stijl {
+  --filter-color: #008D8F;
+  --filter-bg: #E5F0F0;
+}
+
+.klimgebied-filter__select--land {
+  --filter-color: #2F6F3A;
+  --filter-bg: #E8F0E8;
+}
+
+.klimgebied-filter__select--trip {
+  --filter-color: var(--amber);
+  --filter-bg: #FBEFD6;
+}
+
+.klimgebied-filter__label {
+  display: block;
+  height: 16px;
+  margin: 0 0 15px 10px;
+  font-family: var(--font-accent);
+  font-size: 16px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--filter-color);
+}
+
+.klimgebied-filter__label--zoek {
+  color: var(--teal-diep);
+}
+
+.klimgebied-filter__dropdown {
+  position: relative;
+}
+
+.klimgebied-filter__dropdown summary::after {
+  content: "";
+  position: absolute;
+  right: 18px;
+  top: 17px;
+  width: 8px;
+  height: 8px;
+  border-right: 2px solid var(--filter-color);
+  border-bottom: 2px solid var(--filter-color);
+  transform: rotate(45deg);
+  pointer-events: none;
+  transition: transform 200ms ease;
+}
+
+.klimgebied-filter__dropdown[open] summary::after {
+  transform: translateY(4px) rotate(-135deg);
+}
+
+.klimgebied-filter__dropdown summary {
+  position: relative;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 44px;
+  border-radius: 999px;
+  background: var(--filter-bg);
+  color: color-mix(in srgb, var(--kleur-tekst-licht) 85%, transparent);
+  cursor: pointer;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 0 46px 0 18px;
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--filter-color) 24%, var(--kleur-tekst));
+  transition:
+    background-color 200ms ease,
+    color 200ms ease,
+    box-shadow 200ms ease,
+    transform 200ms ease;
+}
+
+.klimgebied-filter__dropdown summary::-webkit-details-marker {
+  display: none;
+}
+
+.klimgebied-filter__dropdown summary:hover,
+.klimgebied-filter__dropdown summary:focus,
+.klimgebied-filter__dropdown[open] summary {
+  outline: none;
+  background: var(--filter-color);
+  color: var(--papier-licht);
+  box-shadow: 0 4px 0 0 color-mix(in srgb, var(--filter-color) 38%, var(--kleur-tekst));
+  transform: translateY(-2px);
+}
+
+.klimgebied-filter__dropdown[open] {
+  z-index: 10;
+}
+
+.klimgebied-filter__menu {
+  position: absolute;
+  z-index: 20;
+  top: calc(100% + 8px);
+  left: 0;
+  right: 0;
+  display: grid;
+  gap: 6px;
+  padding: 8px;
+  border-radius: 16px;
+  background: var(--papier-licht);
+  box-shadow:
+    0 14px 30px rgba(38, 28, 21, 0.16),
+    inset 0 0 0 1px color-mix(in srgb, var(--filter-color) 24%, transparent);
+}
+
+.klimgebied-filter__menu button {
+  min-height: 34px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--kleur-tekst);
+  cursor: pointer;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 0 12px;
+  text-align: left;
+  transition:
+    background-color 200ms ease,
+    color 200ms ease,
+    transform 200ms ease;
+}
+
+.klimgebied-filter__menu button:hover,
+.klimgebied-filter__menu button:focus-visible,
+.klimgebied-filter__menu button.is-actief {
+  outline: none;
+  background: var(--filter-bg);
+  color: var(--filter-color);
+  transform: translateX(2px);
+}
+
+.klimgebied-filter__wis {
+  align-self: end;
+  height: 44px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--teal-diep);
+  color: var(--papier-licht);
+  cursor: pointer;
+  font-family: var(--font-accent);
+  font-size: 15px;
+  letter-spacing: 0.06em;
+  padding: 0 18px 0;
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    background-color 200ms ease,
+    box-shadow 200ms ease,
+    opacity 200ms ease,
+    transform 200ms ease;
+}
+
+.klimgebied-filter__wis.is-zichtbaar {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.klimgebied-filter__wis:hover,
+.klimgebied-filter__wis:focus-visible {
+  outline: none;
+  background: var(--amber);
+  box-shadow: 0 4px 0 0 color-mix(in srgb, var(--amber) 38%, var(--kleur-tekst));
+  transform: translateY(-2px);
+}
+
 .klimregio__kop {
   display: flex;
   justify-content: space-between;
@@ -7,19 +285,17 @@
 .klimregio__muren {
   margin-top: 48px;
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: clamp(24px, 3vw, 40px);
 }
 
 .klimmuur-kaart {
   min-width: 0;
   background: var(--kleur-wit);
-  border-radius: 0;
   padding: 24px;
   display: grid;
-  grid-template-rows: 82px 42px minmax(96px, auto) 178px auto;
-  gap: 14px;
-  box-shadow: inset 0 0 0 1px rgba(66, 70, 54, 0.08);
+  grid-template-rows: auto auto minmax(96px, auto) 178px auto;
+  gap: 16px;
 }
 
 .klimmuur-kaart__top {
@@ -32,6 +308,9 @@
   flex: none;
   width: 54px;
   height: 54px;
+  padding: 10px;
+  background: color-mix(in srgb, var(--kleur-accent) 14%, var(--papier-licht));
+  border-radius: 999px;
 }
 
 .klimmuur-kaart h3 {
@@ -62,14 +341,37 @@
 }
 
 .klimmuur-kaart__kenmerken li {
+  --kenmerk-color: var(--terra-licht);
+  --kenmerk-bg: #F3E9E4;
+
   font-family: var(--font-accent);
   font-size: 13px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--kleur-tekst);
-  background: var(--papier-creme);
-  border-radius: 0;
+  color: var(--kenmerk-color);
+  background: var(--kenmerk-bg);
+  border-radius: 999px;
   padding: 6px 9px;
+}
+
+.klimmuur-kaart__kenmerken .klimmuur-kaart__kenmerk--rots {
+  --kenmerk-color: var(--terra-licht);
+  --kenmerk-bg: #F3E9E4;
+}
+
+.klimmuur-kaart__kenmerken .klimmuur-kaart__kenmerk--stijl {
+  --kenmerk-color: #008D8F;
+  --kenmerk-bg: #E5F0F0;
+}
+
+.klimmuur-kaart__kenmerken .klimmuur-kaart__kenmerk--land {
+  --kenmerk-color: #2F6F3A;
+  --kenmerk-bg: #E8F0E8;
+}
+
+.klimmuur-kaart__kenmerken .klimmuur-kaart__kenmerk--trip {
+  --kenmerk-color: var(--amber);
+  --kenmerk-bg: #FBEFD6;
 }
 
 .klimmuur-kaart__kaart {
@@ -77,7 +379,7 @@
   overflow: hidden;
   width: 100%;
   height: 178px;
-  border-radius: 0;
+  border-radius: 8px;
   background: var(--papier-creme);
   box-shadow: inset 0 0 0 1px rgba(66, 70, 54, 0.12);
 }
@@ -108,7 +410,7 @@
   top: 50%;
   width: 24px;
   height: 24px;
-  border-radius: 0;
+  border-radius: 8px 8px 8px 0;
   background: var(--terra-licht);
   border: 3px solid var(--papier-licht);
   transform: translate(-50%, -82%) rotate(-45deg);
@@ -121,12 +423,13 @@
   content: '';
   position: absolute;
   inset: 5px;
-  border-radius: 0;
+  border-radius: 999px;
   background: var(--amber);
 }
 
 .klimmuur-kaart__link {
   align-self: flex-start;
+  display: inline-flex;
   font-family: var(--font-accent);
   font-size: 16px;
   letter-spacing: 0.1em;
@@ -139,6 +442,17 @@
   color: var(--kleur-tekst);
 }
 
+.klimgebied-leeg {
+  margin: 0;
+  border: 2px solid var(--teal-diep);
+  border-radius: 20px;
+  background: var(--papier-licht);
+  padding: 44px;
+  text-align: center;
+  color: var(--kleur-tekst-licht);
+  font-size: 16px;
+}
+
 @media (max-width: 900px) {
   .klimregio__muren {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -146,6 +460,24 @@
 }
 
 @media (max-width: 768px) {
+  .klimgebied-filter {
+    grid-template-columns: 1fr;
+  }
+
+  .klimgebied-filter__zoek {
+    width: 100%;
+  }
+
+  .klimgebied-filter__groepen {
+    grid-template-columns: 1fr;
+    justify-content: stretch;
+  }
+
+  .klimgebied-filter__select,
+  .klimgebied-filter__wis {
+    width: 100%;
+  }
+
   .klimregio__kop {
     display: block;
   }

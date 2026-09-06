@@ -48,7 +48,7 @@
   --font-display: 'Bricolage Grotesque', sans-serif;     /* h3/h4 + uitgelicht */
 
   /* ── Afmetingen ── */
-  --max-breedte:    1280px;
+  --max-breedte:    1360px;
   --tekst-maat:     68ch;
   --padding-zij:    clamp(24px, 3.5vw, 72px);
   --afgerond:       0;
@@ -531,13 +531,17 @@ border: 3px solid color-mix(in srgb, var(--lentegroen) 30%, transparent);
 }
 
 /* 7) Icon-kaarten — 6 stuks, 3 per rij, icoon links */
-.icon-grid  { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+.icon-grid  { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(24px, 3vw, 40px); }
 .icon-kaart {
   display: flex; gap: 16px; align-items: flex-start;
   min-width: 0;
   background: var(--papier-creme);
-  border-radius: 0;
+  border: 3px solid var(--teal-diep);
+  border-radius: 20px;
   padding: 24px;
+  transition:
+    transform 200ms ease,
+    box-shadow 200ms ease;
 }
 .icon-kaart__icon {
   flex: none;
@@ -552,17 +556,25 @@ border: 3px solid color-mix(in srgb, var(--lentegroen) 30%, transparent);
 }
 .icon-kaart__icon svg { width: 30px; height: 30px; }
 .icon-kaart__icon img { width: 100%; height: 100%; display: block; object-fit: cover; }
-.icon-kaart h3 { color: var(--kleur-tekst); }
-.icon-kaart p  { margin: 0; font-size: 16px; }
+.icon-kaart h3 {
+  color: var(--teal-diep);
+  font-size: 26px;
+  transition: color 200ms ease;
+}
+.icon-kaart p  { margin: 0; font-size: 15px; line-height: 1.45; }
+
+.icon-kaart:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 0 0 var(--teal-diep);
+}
+
+.icon-kaart:hover h3 {
+  color: var(--kleur-tekst);
+}
 
 a.icon-kaart {
   text-decoration: none;
   color: inherit;
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
-}
-a.icon-kaart:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 24px rgba(38, 28, 21, 0.1);
 }
 /* 8) Asymmetrisch — één groot vlak + kolom met kleine */
 .asym        { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 24px; }
@@ -1026,17 +1038,61 @@ a.icon-kaart:hover {
   z-index: 2;
 }
 .sp-hero--met-foto h1 {
+  position: relative;
+  isolation: isolate;
+  width: fit-content;
   color: var(--papier-licht);
+  padding: 0.08em 0.16em 0.12em;
+  margin-left: -0.16em;
   text-shadow:
     0 3px 18px rgb(255, 253, 253),
     0 1px 3px rgba(192, 189, 189, 0.86);
 }
+.sp-hero--met-foto h1::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  inset: -0.28em -0.34em -0.24em;
+  border-radius: 18px;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(245, 245, 245, 0.055) 0%,
+    rgba(245, 245, 245, 0.024) 28%,
+    rgba(248, 245, 244, 0) 76%
+  );
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  mask-image: radial-gradient(ellipse at center, #000 0%, #000 54%, transparent 84%);
+  -webkit-mask-image: radial-gradient(ellipse at center, #000 0%, #000 54%, transparent 84%);
+}
 
 .sp-hero--met-foto .content-eyebrow {
+  position: relative;
+  isolation: isolate;
+  display: inline-block;
   color: var(--amber);
+  padding: 0.2em 0.46em;
+  margin-left: -0.46em;
   text-shadow:
     0 3px 18px rgb(255, 253, 253),
     0 1px 3px rgba(147, 144, 141, 0.86);
+}
+.sp-hero--met-foto .content-eyebrow::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  inset: -0.18em -0.34em;
+  border-radius: 999px;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(245, 245, 245, 0.05) 0%,
+    rgba(245, 245, 245, 0.022) 46%,
+    rgba(245, 245, 245, 0) 78%
+  );
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  mask-image: radial-gradient(ellipse at center, #000 0%, #000 52%, transparent 84%);
+  -webkit-mask-image: radial-gradient(ellipse at center, #000 0%, #000 52%, transparent 84%);
 }
 
 .sp-hero--met-foto .sp-hero__intro,
@@ -1150,7 +1206,7 @@ a.icon-kaart:hover {
 .sp-kaarten {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 24px;
+  gap: clamp(24px, 3vw, 40px);
 }
 /* Drie kaarten per rij i.p.v. twee. */
 .sp-kaarten--3 {
@@ -1443,8 +1499,8 @@ a.icon-kaart:hover {
 .sp-checklist--interactief li {
   width: min(100%, 420px);
   padding-left: 0;
-  justify-content: center;
-  text-align: center;
+  justify-content: stretch;
+  text-align: left;
 }
 .sp-checklist--interactief li::before,
 .sp-checklist--interactief li::after {
@@ -1461,6 +1517,8 @@ a.icon-kaart:hover {
 .sp-checklist--interactief input {
   appearance: none;
   position: relative;
+  display: grid;
+  place-items: center;
   width: 30px;
   height: 30px;
   margin: 0;
@@ -1472,7 +1530,8 @@ a.icon-kaart:hover {
     border-color 0.18s ease,
     transform 0.18s ease;
 }
-.sp-checklist--interactief input:hover {
+.sp-checklist--interactief label:hover input,
+.sp-checklist--interactief label:focus-within input {
   transform: rotate(-4deg) scale(1.04);
 }
 .sp-checklist--interactief input:checked {
@@ -1481,14 +1540,11 @@ a.icon-kaart:hover {
 }
 .sp-checklist--interactief input:checked::after {
   content: '';
-  position: absolute;
-  left: 50%;
-  top: 48%;
   width: 8px;
   height: 15px;
   border-right: 3px solid var(--kleur-tekst);
   border-bottom: 3px solid var(--kleur-tekst);
-  transform: translate(-50%, -56%) rotate(42deg);
+  transform: translateY(-1px) rotate(42deg);
 }
 .sp-checklist--interactief span {
   display: block;

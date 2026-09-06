@@ -14,8 +14,8 @@ h1 {
   margin: 0 auto;
   padding: 8px var(--padding-zij) 0;
   display: grid;
-  grid-template-columns: minmax(0, 8fr) minmax(280px, 4fr);
-  gap: clamp(32px, 4vw, 64px);
+  grid-template-columns: minmax(0, 8.5fr) minmax(320px, 3.5fr);
+  gap: clamp(40px, 5vw, 80px);
   align-items: start;
 }
 
@@ -103,8 +103,23 @@ h1 {
 .mp-cmdtabel {
   width: 100%;
   border-collapse: collapse;
+  table-layout: fixed;
   font-size: 13.5px;
   margin-top: 4px;
+}
+.mp-cmdtabel th:nth-child(1),
+.mp-cmdtabel td:nth-child(1) {
+  width: 30%;
+}
+.mp-cmdtabel th:nth-child(2),
+.mp-cmdtabel td:nth-child(2) {
+  width: 25%;
+  padding-right: 12px;
+}
+.mp-cmdtabel th:nth-child(3),
+.mp-cmdtabel td:nth-child(3) {
+  width: 45%;
+  padding-left: 10px;
 }
 .mp-cmdtabel th {
   text-align: left;
@@ -113,14 +128,15 @@ h1 {
   letter-spacing: 0.05em;
   text-transform: uppercase;
   color: var(--kleur-tekst-licht);
-  padding: 6px 8px;
+  padding: 6px;
   border-bottom: 2px solid rgba(38, 28, 21, 0.22);
 }
 .mp-cmdtabel td {
-  padding: 8px;
+  padding: 8px 6px;
   border-bottom: 1px solid rgba(38, 28, 21, 0.1);
   vertical-align: top;
   color: var(--kleur-tekst);
+  overflow-wrap: anywhere;
 }
 .mp-cmdtabel .commando {
   white-space: nowrap;
@@ -147,14 +163,60 @@ h1 {
   color: var(--kleur-tekst);
 }
 
-/* ─── Volgorde-checklist — één kolom, lege vakjes (als wireframe) ─── */
-.sp-checklist--stappen {
-  grid-template-columns: 1fr;
-  gap: 18px;
-  max-width: 760px;
+/* ─── Volgorde — genummerde tijdlijn ─── */
+.mp-volgorde {
+  --volgorde-bol: 50px;
+  --volgorde-lijn: 2px;
+  counter-reset: volgorde;
+  list-style: none;
+  display: grid;
+  gap: 0;
+  max-width: 980px;
+  margin: 0;
+  padding: 18px 0;
 }
-.sp-checklist--stappen:not(.sp-checklist--interactief) li::after {
-  display: none; /* geen vinkje: leeg vakje om af te vinken */
+.mp-volgorde li {
+  counter-increment: volgorde;
+  position: relative;
+  min-height: 92px;
+  padding: 8px 0 32px 100px;
+  color: var(--kleur-tekst);
+  font-size: 20px;
+  line-height: 1.25;
+}
+.mp-volgorde li::before {
+  content: counter(volgorde, decimal-leading-zero);
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 1;
+  width: var(--volgorde-bol);
+  height: var(--volgorde-bol);
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  background: var(--teal-diep);
+  color: var(--papier-creme);
+  font-family: var(--font-accent);
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+.mp-volgorde li::after {
+  content: '';
+  position: absolute;
+  left: calc((var(--volgorde-bol) - var(--volgorde-lijn)) / 2);
+  top: var(--volgorde-bol);
+  bottom: 0;
+  width: var(--volgorde-lijn);
+  background: var(--amber);
+}
+.mp-volgorde li:last-child {
+  min-height: 60px;
+  padding-bottom: 8px;
+}
+.mp-volgorde li:last-child::after {
+  content: none;
 }
 
 /* ─── Afdalen — drie linkkaarten ─── */
@@ -239,6 +301,16 @@ h1 {
 }
 
 @media (max-width: 680px) {
+  .mp-volgorde {
+    --volgorde-bol: 46px;
+  }
+  .mp-volgorde li {
+    min-height: 76px;
+    padding-left: 72px;
+  }
+  .mp-volgorde li::before {
+    font-size: 16px;
+  }
   .mp-linkkaarten {
     grid-template-columns: 1fr;
   }

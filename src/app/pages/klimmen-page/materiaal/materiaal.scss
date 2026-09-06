@@ -1,7 +1,7 @@
 .mat-hero {
   --hero-foto-pos: 75% center;
   --hero-foto-schaal: 1.14;
-  --hero-foto-x: -6%;
+  --hero-foto-x: -6---%;
 }
 
 .mat-hero .sp-hero__media {
@@ -76,24 +76,13 @@ h1 {
   border-radius: 999px;
   padding: 7px 16px;
   text-decoration: none;
-  transition:
-    color 0.2s ease,
-    background-color 0.2s ease,
-    border-color 0.2s ease,
-    box-shadow 0.2s ease,
-    transform 0.2s ease;
+  transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
 }
 .mat-chips a:hover,
 .mat-chips a:focus-visible {
   color: var(--papier-licht);
   background: var(--terra-licht);
   border-color: var(--kleur-accent);
-  box-shadow: 0 4px 0 0 color-mix(in srgb, var(--kleur-accent) 44%, var(--kleur-tekst));
-  transform: translateY(-2px);
-}
-.mat-chips a:active {
-  box-shadow: 0 2px 0 0 color-mix(in srgb, var(--kleur-accent) 44%, var(--kleur-tekst));
-  transform: translateY(0);
 }
 
 /* Meer lucht tussen de 11 items, en een royalere body zodat de blokken niet op elkaar plakken. */
@@ -188,7 +177,7 @@ h1 {
 .mat-overig {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
+  gap: clamp(24px, 3vw, 40px);
   margin-top: 8px;
 }
 .mat-overig__kaart {
@@ -239,7 +228,7 @@ h1 {
 .mat-partnercheck {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 24px;
+  gap: clamp(24px, 3vw, 40px);
   margin-top: 28px;
 }
 .mat-partnercheck {
@@ -253,7 +242,7 @@ h1 {
 .mat-partnercheck-fotos {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
+  gap: clamp(20px, 2.5vw, 32px);
   margin-top: 24px;
 }
 

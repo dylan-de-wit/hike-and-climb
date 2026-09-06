@@ -1,45 +1,81 @@
 
-<!-- ═══ SUBHERO ═══ -->
-<section class="subhero">
-  <div class="subhero__media">
-    <img src="images/overhangwater2.png" alt="" />
-  </div>
-  <div class="subhero__content">
-    <span class="subhero__eyebrow">Klimmen</span>
+<!-- ═══ HERO ═══ -->
+<header class="sp-hero sp-hero--met-foto klimgebieden-hero">
+  <img class="sp-hero__media" src="images/dinant.jpg" alt="" aria-hidden="true" />
+  <div class="sp-hero__inner">
+    <span class="content-eyebrow">Klimmen · Buiten</span>
     <h1>Klimgebieden</h1>
-    <p>Vind hier de beste gebieden om te klimmen.</p>
+    <p class="sp-hero__intro">
+      Vind rotsgebieden dichtbij huis, vergelijk type rots en voorbereiding, en open direct de kaart
+      voor je aanloop en parkeerplek.
+    </p>
   </div>
-</section>
+</header>
 
-<app-route-divider
-    class="subhero__route"
-    [stops]="secties"
-    [(actief)]="actieveSectie" />
+<!-- ═══ 2. KLIMGEBIEDEN PER REGIO ═══ -->
+<section class="sectie sectie--creme" id="gebieden">
+  <div class="sectie-inner klimgebied-filter-layout">
+    <div class="klimgebied-filter" aria-label="Klimgebieden filter">
+      <label class="klimgebied-filter__zoek">
+        <span class="klimgebied-filter__label klimgebied-filter__label--zoek">Zoeken</span>
+        <span class="klimgebied-filter__icoon" aria-hidden="true"></span>
+        <span class="sr-only">Zoek klimgebieden</span>
+        <input
+          type="search"
+          [value]="zoekterm"
+          (input)="werkZoektermBij($event)"
+          placeholder="Zoek gebied, regio of kenmerk..."
+        />
+      </label>
 
-<!-- ═══ 1. WAAR KUN JE KLIMMEN ═══ -->
-<section class="sectie" id="waar">
-  <div class="sectie-inner">
-    <div class="media-blok">
-      <div class="media-blok__media">
-        <img src="images/overhangwater2.png" alt="Rotswand boven het water" />
-      </div>
-      <div class="media-blok__tekst">
-        <span class="content-eyebrow">Oriëntatie</span>
-        <h2>Waar kun je klimmen?</h2>
-        <p>Buiten klimmen kan dichtbij huis of ver weg — de keuze bepaalt je dag. Een lokaal gebied in de Ardennen is een dagtrip, terwijl de Alpen of Zuid-Frankrijk een reis vragen maar langere, hogere routes bieden.</p>
-        <p>Ook het type rots maakt verschil voor je techniek en het materiaal dat je meeneemt.</p>
-        <ul class="lijst">
-          <li><strong>Kalksteen</strong> — stevige grepen en plooien, typisch voor de Ardennen en Zuid-Frankrijk</li>
-          <li><strong>Graniet</strong> — ruwe frictie en scheuren, vooral in de hooggebergtes</li>
-          <li><strong>Zandsteen</strong> — zacht en kwetsbaar, vraagt om voorzichtigheid</li>
-        </ul>
+      <div class="klimgebied-filter__groepen" aria-label="Filter op categorie">
+        @for (groep of filterGroepen; track groep.id) {
+          <div class="klimgebied-filter__select klimgebied-filter__select--{{ groep.id }}">
+            <span class="klimgebied-filter__label">{{ groep.label }}</span>
+            <details
+              class="klimgebied-filter__dropdown"
+              [attr.data-filter]="groep.id"
+              (toggle)="sluitAndereFilters(groep.id, $event)"
+            >
+              <summary>
+                <span>{{ actieveFilters[groep.id] || 'Alle' }}</span>
+              </summary>
+              <div class="klimgebied-filter__menu">
+                <button
+                  type="button"
+                  [class.is-actief]="!actieveFilters[groep.id]"
+                  (click)="stelFilterIn(groep.id, '', $event)"
+                >
+                  Alle
+                </button>
+                @for (optie of groep.opties; track optie) {
+                  <button
+                    type="button"
+                    [class.is-actief]="actieveFilters[groep.id] === optie"
+                    (click)="stelFilterIn(groep.id, optie, $event)"
+                  >
+                    {{ optie }}
+                  </button>
+                }
+              </div>
+            </details>
+          </div>
+        }
+        <button
+          type="button"
+          class="klimgebied-filter__wis"
+          [class.is-zichtbaar]="heeftActieveFilters"
+          [disabled]="!heeftActieveFilters"
+          (click)="wisFilters()"
+        >
+          Wis opties
+        </button>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ═══ 2. KLIMGEBIEDEN PER REGIO ═══ -->
-@for (regio of klimregios; track regio.anchor) {
+@for (regio of gefilterdeKlimregios; track regio.anchor) {
   <section class="sectie sectie--creme klimregio" [id]="regio.anchor">
     <div class="sectie-inner klimregio__kop">
       <div class="tekst-blok">
@@ -51,7 +87,7 @@
 
     <div class="sectie-inner klimregio__muren">
       @for (muur of regio.muren; track muur.naam) {
-        <article class="klimmuur-kaart">
+        <article class="klimmuur-kaart kaart-thema">
           <div class="klimmuur-kaart__top">
             <img src="pictogrammen/rock.svg" alt="" />
             <div>
@@ -62,7 +98,7 @@
 
           <ul class="klimmuur-kaart__kenmerken" aria-label="Kenmerken">
             @for (kenmerk of muur.kenmerken; track kenmerk) {
-              <li>{{ kenmerk }}</li>
+              <li class="klimmuur-kaart__kenmerk--{{ categorieVoorKenmerk(kenmerk) }}">{{ kenmerk }}</li>
             }
           </ul>
 
@@ -82,6 +118,12 @@
           </a>
         </article>
       }
+    </div>
+  </section>
+} @empty {
+  <section class="sectie sectie--creme">
+    <div class="sectie-inner">
+      <p class="klimgebied-leeg">Geen klimgebieden gevonden.</p>
     </div>
   </section>
 }
