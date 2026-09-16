@@ -2,6 +2,10 @@
   --hero-foto-pos: 50% center;
 }
 
+.klimgebieden-hero .sp-hero__inner {
+  width: min(100%, 760px);
+}
+
 .sr-only {
   position: absolute;
   width: 1px;
@@ -107,12 +111,12 @@
 }
 
 .klimgebied-filter__select--stijl {
-  --filter-color: #008D8F;
+  --filter-color: var(--glacier-teal);
   --filter-bg: #E5F0F0;
 }
 
 .klimgebied-filter__select--land {
-  --filter-color: #2F6F3A;
+  --filter-color: var(--forest-green);
   --filter-bg: #E8F0E8;
 }
 
@@ -208,7 +212,7 @@
   display: grid;
   gap: 6px;
   padding: 8px;
-  border-radius: 16px;
+  border-radius: var(--afgerond);
   background: var(--papier-licht);
   box-shadow:
     0 14px 30px rgba(38, 28, 21, 0.16),
@@ -360,12 +364,12 @@
 }
 
 .klimmuur-kaart__kenmerken .klimmuur-kaart__kenmerk--stijl {
-  --kenmerk-color: #008D8F;
+  --kenmerk-color: var(--glacier-teal);
   --kenmerk-bg: #E5F0F0;
 }
 
 .klimmuur-kaart__kenmerken .klimmuur-kaart__kenmerk--land {
-  --kenmerk-color: #2F6F3A;
+  --kenmerk-color: var(--forest-green);
   --kenmerk-bg: #E8F0E8;
 }
 
@@ -379,7 +383,7 @@
   overflow: hidden;
   width: 100%;
   height: 178px;
-  border-radius: 8px;
+  border-radius: var(--afgerond);
   background: var(--papier-creme);
   box-shadow: inset 0 0 0 1px rgba(66, 70, 54, 0.12);
 }
@@ -444,8 +448,8 @@
 
 .klimgebied-leeg {
   margin: 0;
-  border: 2px solid var(--teal-diep);
-  border-radius: 20px;
+  border: var(--rand) solid var(--deep-teal);
+  border-radius: var(--afgerond);
   background: var(--papier-licht);
   padding: 44px;
   text-align: center;

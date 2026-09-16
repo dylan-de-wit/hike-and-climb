@@ -13,11 +13,11 @@
 .dock {
   width: 100%;
   min-width: 0;
-  background: rgba(245, 245, 245, 0.95);
+  background: color-mix(in srgb, var(--warm-paper) 95%, transparent);
   backdrop-filter: blur(20px);
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  border-radius: 20px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+  border: 1px solid rgba(56, 44, 39, 0.12);
+  border-radius: var(--afgerond-groot);
+  box-shadow: 0 8px 32px rgba(56, 44, 39, 0.18);
   overflow: hidden;
 }
 
@@ -82,19 +82,19 @@
   width: 100%;
   min-width: 0;
   text-decoration: none;
-  color: #555;
+  color: var(--kleur-tekst-licht);
   font-size: 0.9rem;
   font-weight: 400;
   padding: 0.28rem 0.6rem;
-  border-radius: 7px;
+  border-radius: var(--afgerond);
   text-align: left;
   transition: background 0.15s ease, color 0.15s ease;
   overflow-wrap: anywhere;
   white-space: normal;
 
   &:hover {
-    background: rgba(0, 0, 0, 0.06);
-    color: #111;
+    background: color-mix(in srgb, var(--charcoal-ink) 6%, transparent);
+    color: var(--kleur-tekst);
   }
 
   &.active {
@@ -168,19 +168,19 @@
   overflow-wrap: anywhere;
   white-space: normal;
   text-decoration: none;
-  color: #444;
+  color: var(--kleur-tekst-licht);
   font-size: 1.05rem;
   line-height: 1.1;
   font-weight: 500;
   padding: 0.4rem 1rem;
-  border-radius: 12px;
+  border-radius: 999px;
   text-align: center;
   justify-self: center;
   transition: background 0.15s ease, color 0.15s ease;
 
   &:hover {
-    background: rgba(0, 0, 0, 0.06);
-    color: #000;
+    background: color-mix(in srgb, var(--charcoal-ink) 6%, transparent);
+    color: var(--kleur-tekst);
   }
 
   &.active {

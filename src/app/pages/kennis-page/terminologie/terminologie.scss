@@ -94,16 +94,16 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 38px;
+  min-height: 30px;
   border: 0;
-  border-radius: 999px;
+  border-radius: 3px;
   background: var(--thema-filter-bg);
   color: color-mix(in srgb, var(--kleur-tekst-licht) 85%, transparent);
   cursor: pointer;
   font-family: var(--font);
   font-size: 14px;
   font-weight: 700;
-  padding: 0 17px;
+  padding: 0 13px;
   transition:
     background-color 200ms ease,
     color 200ms ease,
@@ -125,7 +125,7 @@
 }
 
 .thema-filter--boulderen {
-  --thema-filter-color: #008D8F;
+  --thema-filter-color: var(--glacier-teal);
   --thema-filter-bg: #E5F0F0;
 }
 
@@ -135,15 +135,15 @@
 }
 
 .thema-filter--natuur {
-  --thema-filter-color: #2F6F3A;
+  --thema-filter-color: var(--forest-green);
   --thema-filter-bg: #E8F0E8;
 }
 
 .termen-leeg {
   grid-column: 1 / -1;
   margin: 0;
-  border: 2px solid var(--teal-diep);
-  border-radius: 20px;
+  border: var(--rand) solid var(--deep-teal);
+  border-radius: var(--afgerond);
   background: var(--papier-licht);
   padding: 44px;
   text-align: center;
@@ -208,7 +208,7 @@
 }
 
 .term-kaart--boulderen {
-  --term-label-color: #008D8F;
+  --term-label-color: var(--glacier-teal);
   --term-label-hover: #00AEB1;
   --term-label-bg: #E5F0F0;
 }
@@ -220,7 +220,7 @@
 }
 
 .term-kaart--natuur {
-  --term-label-color: #2F6F3A;
+  --term-label-color: var(--forest-green);
   --term-label-hover: #4E9F45;
   --term-label-bg: #E8F0E8;
 }

@@ -104,11 +104,11 @@
 
 /* ─── CONTENT SECTIE ─── */
 .sectie {
-  background: #F5F5F5
+  background: var(--papier-licht)
 }
 
 .content-section {
-  background: #F5F5F5;
+  background: var(--papier-licht);
   padding: 100px 0;
   display: flex;
   align-items: center;
@@ -131,10 +131,10 @@
   flex: 1;
   min-width: 0;
   height: 600px;
-  border-radius: 0;                          
+  border-radius: var(--afgerond);
   overflow: hidden;
-  border: 8px solid #F0E9D1;                  
-  box-shadow: 0 0 0 1px rgba(38, 28, 21, 0.16);
+  border: 8px solid var(--papier-creme);
+  box-shadow: 0 0 0 1px rgba(56, 44, 39, 0.16);
 }
 
 .content-image img {
@@ -155,7 +155,7 @@
   font-family: var(--font-accent);
   font-size: 18px;
   letter-spacing: 0.2em;
-  color: #CC6024;
+  color: var(--canyon-rust);
 }
 
 .content-text h2 {
@@ -242,10 +242,10 @@
   position: relative;
   width: 100%;
   height: 300px;
-  border-radius: 0;                            /* strak/poster i.p.v. var(--afgerond) */
+  border-radius: var(--afgerond);
   overflow: hidden;
   margin-bottom: 14px;
-  border: 8px solid #F0E9D1;                     /* cream poster-frame, als de content-foto's */
+  border: 8px solid var(--papier-creme);         /* fotolijst, als de content-foto's */
   box-shadow: 0 8px 20px rgba(20, 24, 16, 0.38); /* tilt het 'ingelijste' poster los van de band */
 }
 .kaart-afbeelding img {
@@ -264,10 +264,10 @@
   font-family: var(--font-accent);
   font-size: 16px;
   letter-spacing: 0.12em;
-  color: var(--groen-donker);
+  color: var(--charcoal-ink);
   background: var(--amber);
   padding: 3px 10px;
-  border-radius: 0;
+  border-radius: 999px;
 }
 .kaart-label {
   font-family: var(--font-accent);
@@ -386,8 +386,8 @@
   margin-bottom: 14px;
 }
 .floral-banner__titel {
-  font-family: var(--font-heading);          /* Limelight = retro display */
-  color: var(--mos-donker);
+  font-family: var(--font-heading);
+  color: var(--forest-green);
   font-size: 50px;
   line-height: 1.05;
   margin: 0 0 18px;

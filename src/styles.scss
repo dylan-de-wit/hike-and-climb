@@ -1,44 +1,49 @@
 /* ══════════════════════════════════════
-   VARIABELEN — pas hier kleuren, fonts
-   en maten aan voor de hele website
+   VARIABELEN
    ══════════════════════════════════════ */
 :root {
-  /* ── Groen — lente/mos palet ── */
-  --lentegroen:      #9B9630;  /* lentegroen        — hero achtergrond     */
-  --mos-donker:      #515731;  /* mos donker        — donkere vlakken      */
+  /* ── Hike & Climb kleurenpalet ── */
+  --deep-teal:     #175F5C;  /* primaire acties, randen, koppen           */
+  --glacier-teal:  #008D8F;  /* felle accenten, tags, links, highlights   */
+  --trail-amber:   #E9AD21;  /* highlights, nummering, actieve staat      */
+  --canyon-rust:   #A9572E;  /* redactioneel accent, warm contrast        */
+  --forest-green:  #2E6F3A;  /* natuursecties, diepe achtergronden        */
+  --dusk-plum:     #5C4A6B;  /* zeldzame redactionele/avond-momenten      */
+  --alpine-sky:    #A9CDD5;  /* instructiepanelen, rustige banden         */
+  --warm-paper:    #F5F2EA;  /* primaire pagina-achtergrond               */
+  --charcoal-ink:  #382C27;  /* hoofdtekst, sterk contrast                */
+  --morning-fog:   #E2E7E5;  /* secundaire vlakken en scheidingen         */
 
-  /* ── Terra — oranje/bruin palet ── */
-  --terra-licht:     #CC6024;  /* terra licht       — hover, accenten      */
+  /* ── Oude kleurnamen — wijzen nu naar het nieuwe palet, zodat
+     bestaande pagina's/components gewoon blijven werken. Nieuwe code
+     gebruikt de namen hierboven. ── */
+  --teal-diep:       var(--deep-teal);
+  --teal-licht:      var(--glacier-teal);
+  --amber:           var(--trail-amber);
+  --terra-licht:     var(--canyon-rust);
+  --lentegroen:      var(--forest-green);
+  --mos-donker:      var(--forest-green);
+  --groen-donker:    var(--forest-green);
+  --groen-mos:       var(--forest-green);
+  --groen-licht:     var(--forest-green);
+  --autumn-leaf:     var(--canyon-rust);
+  --teal-donker:     var(--forest-green);
+  --teal-zacht:      var(--glacier-teal);
 
-  /* ── Teal — blauw/groen palet ── */
-  --teal-licht:      #6E9F88;  /* teal licht        — subtiele accenten    */
-  --teal-diep:       #024D4D;  /* teal diep         — donkere accenten     */
-
-  /* ── Geel ── */
-  --amber:           #F5AB00;  /* amber honey       — highlights, tags     */
-
-  /* ── Backwards compatible (oude namen blijven werken) ── */
-  --groen-donker:    var(--mos-donker);
-  --groen-mos:       var(--lentegroen);
-  --groen-licht:     var(--lentegroen);
-  --autumn-leaf:     var(--terra-licht);
-  --teal-donker:     var(--mos-donker);
-  --teal-zacht:      var(--lentegroen);
-
-  /* ── Papier — witte tinten ── */
-  --papier-licht:    #F5F5F5;  /* papier licht      — achtergrond pagina   */
-  --papier-creme:    #EFEFEE;  /* papier crème      — kaarten, subtiele vlakken */
+  /* ── Papier — wijzen nu naar warm paper / morning fog ── */
+  --papier-licht:    var(--warm-paper);
+  --papier-creme:    var(--morning-fog);
 
   /* ── Algemeen ── */
-  --kleur-achtergrond: var(--papier-licht);
-  --kleur-wit:         var(--papier-licht);
-  --kleur-tekst:       #000000;  /* inkt             — hoofdtekst          */
-  --kleur-tekst-licht: #000000;  /* inkt licht       — subtekst            */
-  --kleur-hero:        var(--lentegroen);
-  --kleur-accent:      var(--terra-licht);
-  --kleur-highlight:   var(--amber);
-  --kleur-hero-ink:    var(--papier-licht);  /* hero titel/tekst — licht of donker per thema */
-  --bullet:            url('/bulletpoints/greenarrow.svg');  /* opsommingsteken — per thema anders */
+  --kleur-achtergrond: var(--warm-paper);
+  --kleur-wit:         var(--warm-paper);
+  --kleur-tekst:       var(--charcoal-ink);  /* inkt             — hoofdtekst          */
+  --kleur-tekst-licht: color-mix(in srgb, var(--charcoal-ink) 74%, transparent);  /* inkt licht — subtekst */
+  --kleur-hero:        var(--deep-teal);
+  --kleur-accent:      var(--trail-amber);
+  --kleur-highlight:   var(--trail-amber);
+  --kleur-hero-ink:    var(--warm-paper);  /* hero titel/tekst — licht of donker per thema */
+  --bullet:            url('/bulletpoints/orangegreenarrow.svg');  /* opsommingsteken — per thema anders */
 
   /* ── Fonts ── */
   --font-heading: 'Bricolage Grotesque', sans-serif;     /* h1, h2            */
@@ -51,45 +56,44 @@
   --max-breedte:    1360px;
   --tekst-maat:     68ch;
   --padding-zij:    clamp(24px, 3.5vw, 72px);
-  --afgerond:       0;
-  --afgerond-groot: 0;
+  --afgerond:       6px;    /* standaard hoekronding */
+  --afgerond-groot: 6px;
+  --rand:           2px;    /* "2px confident" — structurele randen */
 }
 
 /* ══════════════════════════════════════
    KLEURTHEMA'S PER SECTIE
-   Pas hier een heel thema in één keer aan.
-   De klasse hangt aan elke pagina (zie .ts → host).
    ══════════════════════════════════════ */
 
 .thema-klimmen {
-  --kleur-hero:     var(--teal-diep);    /* diep teal */
-  --kleur-accent:   var(--amber);        /* amber geel */
-  --kleur-highlight: var(--amber);       /* amber geel */
-  --kleur-hero-ink: var(--papier-licht); /* witte titel */
+  --kleur-hero:     var(--deep-teal);
+  --kleur-accent:   var(--trail-amber);
+  --kleur-highlight: var(--trail-amber);
+  --kleur-hero-ink: var(--warm-paper); /* witte titel */
   --bullet: url('/bulletpoints/orangegreenarrow.svg');
 }
 .thema-hiken {
-  --kleur-hero:     var(--teal-diep);    /* blauw/teal */
-  --kleur-accent:   var(--amber);        /* geel accent */
-  --kleur-hero-ink: var(--papier-licht);
+  --kleur-hero:     var(--deep-teal);
+  --kleur-accent:   var(--trail-amber);
+  --kleur-hero-ink: var(--warm-paper);
   --bullet: url('/bulletpoints/blueyellowarrow.svg');
 }
 .thema-boulderen {
-  --kleur-hero:     var(--terra-licht);   /* warm terra */
-  --kleur-accent:   #008D8F;               /* teal accent */
-  --kleur-hero-ink: var(--papier-licht);  /* witte titel */
+  --kleur-hero:     var(--canyon-rust);   /* warm redactioneel accent */
+  --kleur-accent:   var(--glacier-teal);
+  --kleur-hero-ink: var(--warm-paper);
   --bullet: url('/bulletpoints/orangearrow.svg');
 }
 .thema-kennis {
-  --kleur-hero:     var(--teal-licht);     /* fris teal */
-  --kleur-accent:   var(--lentegroen);     /* lentegroen accent */
-  --kleur-hero-ink: var(--papier-licht);
+  --kleur-hero:     var(--alpine-sky);     /* rustig instructiepaneel */
+  --kleur-accent:   var(--deep-teal);
+  --kleur-hero-ink: var(--charcoal-ink);   /* donkere tekst op licht blauw */
   --bullet: url('/bulletpoints/greenbluearrow.svg');
 }
 .thema-natuur {
-  --kleur-hero:     var(--mos-donker);
-  --kleur-accent:   var(--amber);
-  --kleur-hero-ink: var(--papier-licht);
+  --kleur-hero:     var(--forest-green);
+  --kleur-accent:   var(--trail-amber);
+  --kleur-hero-ink: var(--warm-paper);
   --bullet: url('/bulletpoints/lightgreenarrow.svg');
 }
 
@@ -389,11 +393,7 @@ p {
 }
 
 /* ══════════════════════════════════════
-   HERBRUIKBARE CONTENTBLOKKEN
-   Plak de HTML op paginaniveau (als <section>,
-   náást de hero — niet binnen <div class="page">).
-   Accent- en bandkleuren volgen automatisch het
-   thema van de pagina.
+   HERBRUIKBARE CONTENTBLOKKEn
    ══════════════════════════════════════ */
 
 /* Gedeelde sectie-wrapper: ruimte + gecentreerde inhoud */
@@ -401,18 +401,16 @@ p {
 .sectie-inner  { width: 100%; max-width: var(--max-breedte); margin: 0 auto; padding-inline: var(--padding-zij); }
 .sectie--creme { background: var(--papier-creme); }
 
-/* Sectie-achtergronden voor afwisseling tussen de blokken. De tinten worden
-   uit het thema van de pagina gemengd, dus ze kloppen op elke sectie.
-   De eerste background-regel is de terugval voor oude browsers. */
+/* Sectie-achtergronden voor afwisseling tussen de blokken. */
 .sectie--getint {
   background: var(--papier-creme);
   background: color-mix(in srgb, var(--kleur-hero) 20%, var(--papier-licht));
-  border: 3px solid color-mix(in srgb, var(--kleur-hero) 30%, transparent);
+  border: var(--rand) solid color-mix(in srgb, var(--kleur-hero) 30%, transparent);
 }
 
 .sectie--zand {
-background: color-mix(in srgb, var(--lentegroen) 12%, var(--papier-licht));
-border: 3px solid color-mix(in srgb, var(--lentegroen) 30%, transparent);
+background: color-mix(in srgb, var(--forest-green) 12%, var(--papier-licht));
+border: var(--rand) solid color-mix(in srgb, var(--forest-green) 30%, transparent);
 }
 
 /* Zelfde tinten als los paneel, voor blokken bínnen een kolom*/
@@ -507,11 +505,11 @@ border: 3px solid color-mix(in srgb, var(--lentegroen) 30%, transparent);
   flex: 1;
   min-width: 0;
   min-height: 320px;
-  border-radius: 0;                          /* subtiele ronding */
+  border-radius: var(--afgerond);
   overflow: hidden;
   background: var(--papier-creme);
-  border: 8px solid #F0E9D1;                   /* poster-frame om de buitenkant */
-  box-shadow: 0 0 0 1px rgba(38, 28, 21, 0.16); /* dunne rand zodat het frame altijd afsteekt */
+  border: 8px solid var(--papier-creme);        /* fotolijst om de buitenkant */
+  box-shadow: 0 0 0 1px rgba(56, 44, 39, 0.16); /* dunne rand zodat het frame altijd afsteekt */
   display: flex; align-items: center; justify-content: center;
   color: var(--kleur-tekst-licht);
 }
@@ -536,8 +534,8 @@ border: 3px solid color-mix(in srgb, var(--lentegroen) 30%, transparent);
   display: flex; gap: 16px; align-items: flex-start;
   min-width: 0;
   background: var(--papier-creme);
-  border: 3px solid var(--teal-diep);
-  border-radius: 20px;
+  border: var(--rand) solid var(--deep-teal);
+  border-radius: var(--afgerond);
   padding: 24px;
   transition:
     transform 200ms ease,
@@ -547,7 +545,7 @@ border: 3px solid color-mix(in srgb, var(--lentegroen) 30%, transparent);
   flex: none;
   width: 78px; height: 78px;
   display: grid; place-items: center;
-  border-radius: 0;
+  border-radius: var(--afgerond);
   background: var(--kleur-accent);
   color: var(--papier-licht);
 }
@@ -557,7 +555,7 @@ border: 3px solid color-mix(in srgb, var(--lentegroen) 30%, transparent);
 .icon-kaart__icon svg { width: 30px; height: 30px; }
 .icon-kaart__icon img { width: 100%; height: 100%; display: block; object-fit: cover; }
 .icon-kaart h3 {
-  color: var(--teal-diep);
+  color: var(--deep-teal);
   font-size: 26px;
   transition: color 200ms ease;
 }
@@ -565,7 +563,7 @@ border: 3px solid color-mix(in srgb, var(--lentegroen) 30%, transparent);
 
 .icon-kaart:hover {
   transform: translateY(-4px);
-  box-shadow: 0 8px 0 0 var(--teal-diep);
+  box-shadow: 0 8px 0 0 var(--deep-teal);
 }
 
 .icon-kaart:hover h3 {
@@ -580,15 +578,15 @@ a.icon-kaart {
 .asym        { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 24px; }
 .asym__groot {
   background: var(--papier-creme);
-  border-radius: 0;
+  border-radius: var(--afgerond);
   padding: 40px;
 }
 .asym__kolom { display: flex; flex-direction: column; gap: 24px; }
 .asym__klein {
   background: var(--papier-creme);
-  border-radius: 0;
+  border-radius: var(--afgerond);
   padding: 28px;
-  border-left: 3px solid var(--kleur-accent);
+  border-left: var(--rand) solid var(--kleur-accent);
 }
 .asym__klein h3 { color: var(--kleur-tekst); }
 .asym__klein p  { margin: 0; font-size: 16px; }
@@ -611,9 +609,6 @@ a.icon-kaart {
 
 /* ══════════════════════════════════════
    BADGE-BLOKKEN
-   Voor de patch-pictogrammen in /pictogrammen.
-   De badges hebben hun eigen achtergrond, dus
-   géén extra vlak eronder — alleen ruimte + tekst.
    ══════════════════════════════════════ */
 
 /* A) Galerij — raster met label onder elke badge */
@@ -657,7 +652,7 @@ a.icon-kaart {
 }
 .badge-kaart {
   background: var(--papier-creme);
-  border-radius: 0;
+  border-radius: var(--afgerond);
   padding: 28px;
   text-align: center;
 }
@@ -690,7 +685,7 @@ a.icon-kaart {
   align-items: center;
   gap: 22px;
   background: var(--papier-creme);
-  border-radius: 0;
+  border-radius: var(--afgerond);
   padding: 16px 24px;
 }
 .badge-lijst__item img {
@@ -726,20 +721,14 @@ a.icon-kaart {
 }
 
 /* ══════════════════════════════════════
-   POSTER-KAARTGRID (Anderson-richting)
-   Illustratie in een dubbele kaderlijn met
-   Bebas-banner, op haverpapier met grain.
-   Eigen, gedempte kleuren (scoped) zodat dit
-   blok los staat van de rest van de site.
+   POSTER-KAARTGRID
    ══════════════════════════════════════ */
 .poster-sectie {
-  /* gedempt "gedrukt" palet — alleen binnen dit blok */
-  --paper-haver:  #E7E0CE;
-  --paper-creme:  #F0E9D2;
-  --inkt:         #2A2A1E;
-  --oker:         #C68A2E;
-  --terra:        #B0552A;
-  --mos:          #5E6B3F;
+  --paper-haver:  var(--morning-fog);
+  --inkt:         var(--charcoal-ink);
+  --oker:         var(--trail-amber);
+  --terra:        var(--canyon-rust);
+  --mos:          var(--forest-green);
 
   position: relative;
   background: var(--paper-haver);
@@ -791,9 +780,9 @@ a.icon-kaart {
 /* De kaart — gedrukt vlak met dubbele kaderlijn */
 .poster-kaart {
   display: block;
-  background: var(--paper-creme);
-  border: 1.5px solid var(--inkt);
-  border-radius: 0;
+  background: var(--warm-paper);
+  border: var(--rand) solid var(--inkt);
+  border-radius: var(--afgerond);
   padding: 10px 10px 4px;
   text-decoration: none;
   color: var(--inkt);
@@ -808,8 +797,8 @@ a.icon-kaart {
   position: relative;
   aspect-ratio: 4 / 5;
   overflow: hidden;
-  border: 1px solid rgba(42, 42, 30, 0.35);
-  border-radius: 0;
+  border: 1px solid rgba(56, 44, 39, 0.35);
+  border-radius: var(--afgerond);
   background: var(--paper-haver);
 }
 .poster-kaart__beeld img {
@@ -826,10 +815,10 @@ a.icon-kaart {
   font-family: var(--font-accent);
   font-size: 12px;
   letter-spacing: 0.16em;
-  color: var(--paper-creme);
+  color: var(--warm-paper);
   background: var(--terra);
   padding: 2px 8px;
-  border-radius: 0;
+  border-radius: 999px;
 }
 /* banner-kop onder het beeld */
 .poster-kaart__banner {
@@ -1044,10 +1033,8 @@ a.icon-kaart {
   color: var(--papier-licht);
   padding: 0.08em 0.16em 0.12em;
   margin-left: -0.16em;
-  text-shadow:
-    0 3px 18px rgb(255, 253, 253),
-    0 1px 3px rgba(192, 189, 189, 0.86);
 }
+
 .sp-hero--met-foto h1::before {
   content: '';
   position: absolute;
@@ -1073,10 +1060,9 @@ a.icon-kaart {
   color: var(--amber);
   padding: 0.2em 0.46em;
   margin-left: -0.46em;
-  text-shadow:
-    0 3px 18px rgb(255, 253, 253),
-    0 1px 3px rgba(147, 144, 141, 0.86);
+  text-shadow: 0 2px 10px rgba(15, 10, 6, 0.74), 0 1px 2px rgba(15, 10, 6, 0.9);
 }
+
 .sp-hero--met-foto .content-eyebrow::before {
   content: '';
   position: absolute;
@@ -1240,15 +1226,15 @@ a.icon-kaart {
    thema van de pagina. Werkt op elke h3/h4 + p erin; verder bemoeit deze
    klasse zich niet met layout, achtergrond of padding van de kaart zelf. */
 .kaart-thema {
-  border: 3px solid var(--teal-diep);
-  border-radius: 20px;
+  border: var(--rand) solid var(--deep-teal);
+  border-radius: var(--afgerond);
   transition:
     transform 200ms ease,
     box-shadow 200ms ease;
 }
 .kaart-thema h3,
 .kaart-thema h4 {
-  color: var(--teal-diep);
+  color: var(--deep-teal);
   font-weight: 800;
   transition: color 200ms ease;
 }
@@ -1258,7 +1244,7 @@ a.icon-kaart {
 }
 .kaart-thema:hover {
   transform: translateY(-4px);
-  box-shadow: 0 8px 0 0 var(--teal-diep);
+  box-shadow: 0 8px 0 0 var(--deep-teal);
 }
 .kaart-thema:hover h3,
 .kaart-thema:hover h4 {
@@ -1288,10 +1274,10 @@ a.icon-kaart {
   margin-top: 2px;
 }
 .callout p { margin: 0; color: var(--kleur-tekst); }
-.callout--tip { background: #eef2e0; border-left-color: var(--lentegroen); }
-.callout--tip .callout__label { background: var(--lentegroen); }
-.callout--let { background: #77acaa; border-left-color: var(--teal-licht); }
-.callout--let .callout__label { background: var(--teal-licht); }
+.callout--tip { background: color-mix(in srgb, var(--forest-green) 12%, var(--warm-paper)); border-left-color: var(--forest-green); }
+.callout--tip .callout__label { background: var(--forest-green); }
+.callout--let { background: color-mix(in srgb, var(--glacier-teal) 20%, var(--warm-paper)); border-left-color: var(--glacier-teal); }
+.callout--let .callout__label { background: var(--glacier-teal); }
 
 /* ─── Begrippenstrip ─── */
 .begrippen {
@@ -1325,7 +1311,7 @@ a.icon-kaart {
   font-size: 15px;
   color: var(--kleur-tekst);
   background: var(--papier-creme);
-  border: 1px solid rgba(38, 28, 21, 0.14);
+  border: 1px solid rgba(56, 44, 39, 0.14);
   border-radius: 999px;
   padding: 5px 12px;
   text-decoration: none;
@@ -1371,8 +1357,8 @@ a.icon-kaart {
   font-size: 16px;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--papier-licht);
-  background: var(--teal-diep);
+  color: var(--warm-paper);
+  background: var(--charcoal-ink);
   padding: 14px 18px;
   vertical-align: bottom;
 }

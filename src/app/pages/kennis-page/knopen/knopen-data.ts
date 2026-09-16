@@ -67,7 +67,7 @@ export const KNOPEN: Knoop[] = [
     goed: ['Werkt met alleen een HMS-karabiner, geen extra materiaal nodig', 'Werkt in beide richtingen'],
     letOp: ['Draait het touw flink op, wat kink kan geven', 'Vraagt een brede vergrendelbare (HMS-)karabiner'],
     alternatieven: ['hele-mastworp', 'prusik'],
-    fotos: ['Knopen/halvemastworp.jpeg'],
+    fotos: ['Knopen/halvemastworp.png'],
   },
   {
     naam: 'Schootsteek',
@@ -126,7 +126,7 @@ export const KNOPEN: Knoop[] = [
     goed: ['Ook te leggen zonder bij de touwuiteinden te kunnen', 'Nog bijstelbaar nadat hij vastzit'],
     letOp: ['Zelfde beperking als de gewone mastworp: kan doorschuiven', 'Nooit als enige zekering op één ankerpunt'],
     alternatieven: ['mastworp', 'halve-mastworp'],
-    fotos: ['Knopen/helemastworp.jpeg'],
+    fotos: ['Knopen/helemastworp.png'],
   },
   {
     naam: 'Paalsteek',
@@ -165,7 +165,7 @@ export const KNOPEN: Knoop[] = [
     goed: ['Visueel goed te controleren', 'Erg sterk', 'Vergevingsgezind bij kleine afwijkingen'],
     letOp: ['Loopt na een val vast — lastig weer los te maken', 'Neemt relatief veel touw in beslag'],
     alternatieven: ['paalsteek', 'alpine-vlinderknoop'],
-    fotos: ['Knopen/teruggestokenachtknoop.jpeg'],
+    fotos: ['Knopen/teruggestokenachtknoop.png'],
   },
   {
     naam: 'Prusik',

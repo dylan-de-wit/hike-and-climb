@@ -9,6 +9,10 @@
   transform: translateX(var(--hero-foto-x)) scale(var(--hero-foto-schaal));
 }
 
+.mat-hero .sp-hero__inner {
+  width: min(100%, 760px);
+}
+
 /* Hero-titel (h1) in Londrina Outline, net als single-pitch en multi-pitch. */
 h1 {
   font-family: 'Londrina Outline', var(--font-heading);
