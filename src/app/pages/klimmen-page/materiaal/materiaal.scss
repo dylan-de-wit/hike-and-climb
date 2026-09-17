@@ -105,13 +105,13 @@ h1 {
   padding: 8px 28px 32px;
 }
 
-/* Hover: lichte thema-tint + iets meer inspringing, zelfde taal als de begrippen-chips. */
+/* Hover: alleen de inspringing; de kleurwissel komt nu uit de globale
+   .accordion-regels (lichte tint dicht, volle themaband open). */
 .mat-item summary {
   transition: background-color 0.2s ease, padding-left 0.2s ease;
 }
 .mat-item summary:hover,
 .mat-item summary:focus-visible {
-  background: var(--terra-licht);
   padding-left: 26px;
 }
 
@@ -160,6 +160,10 @@ h1 {
 .mat-item .callout,
 .mat-stap .callout {
   margin: 24px 0;
+}
+
+.callout p {
+  color: var(--papier-licht);
 }
 
 /* Tekst + foto naast elkaar, herbruikt in materiaal-items én voorbereidingsstappen. */

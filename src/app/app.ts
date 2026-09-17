@@ -1,15 +1,17 @@
 import { Component } from '@angular/core';
-import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
+import { NavigationEnd, Router, RouterLink, RouterOutlet } from '@angular/router';
 import { filter } from 'rxjs';
 import { NavigationMenu } from './components/navigation-menu/navigation-menu';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, NavigationMenu],
+  imports: [RouterOutlet, RouterLink, NavigationMenu],
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })
 export class App {
+  protected readonly currentYear = new Date().getFullYear();
+
   constructor(router: Router) {
     router.events
       .pipe(filter((event): event is NavigationEnd => event instanceof NavigationEnd))

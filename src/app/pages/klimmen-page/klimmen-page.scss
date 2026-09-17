@@ -4,10 +4,13 @@ h1 {
   font-weight: 400;
 }
 
+.klimmen-hero .sp-hero__media {
+  object-position: right bottom !important;
+}
+
 /* Kaarten als link: reset onderstreping/kleur, verder identiek aan .sp-kaart + .kaart-thema. */
 a.sp-kaart {
   display: block;
   text-decoration: none;
   color: inherit;
 }
-

@@ -103,6 +103,13 @@
 
           <p class="mat-substap">2. Soorten — het keuzetabel</p>
           <div class="tabel-wrap">
+            <div class="tabel-kop">
+              <div class="tabel-kop__tekst">
+                <span class="tabel-kop__kicker">Soorten</span>
+                <h4 class="tabel-kop__titel">Enkel, half of tweeling</h4>
+              </div>
+              <span class="tabel-kop__badge">3 soorten</span>
+            </div>
             <table class="sp-tabel">
               <thead>
                 <tr><th>Soort</th><th>Diameter</th><th>Hoe clippen</th><th>Wanneer gebruiken</th><th>Symbool</th></tr>
@@ -113,21 +120,21 @@
                   <td data-label="Diameter">8,5–10 mm (meestal 9,5 mm)</td>
                   <td data-label="Hoe clippen">Elke quickdraw</td>
                   <td data-label="Wanneer">Standaard voor single pitch, min. 60 m, bij voorkeur 70–80 m</td>
-                  <td data-label="Symbool">Enkel (cirkel)</td>
+                  <td data-label="Symbool"><span class="status status--teal">Enkel (cirkel)</span></td>
                 </tr>
                 <tr>
                   <td data-label="Soort">Halftouw</td>
                   <td data-label="Diameter">7,5–9 mm</td>
                   <td data-label="Hoe clippen">Beurtelings, elk touw een eigen lijn</td>
                   <td data-label="Wanneer">Multipitch met bochten, 3 klimmers, grote haakafstanden</td>
-                  <td data-label="Symbool">½</td>
+                  <td data-label="Symbool"><span class="status status--groen">½</span></td>
                 </tr>
                 <tr>
                   <td data-label="Soort">Tweelingtouw</td>
                   <td data-label="Diameter">6,9–7,8 mm</td>
                   <td data-label="Hoe clippen">Samen, beide touwen door elke quickdraw</td>
                   <td data-label="Wanneer">Lichtgewicht alpiene routes, ingebouwde back-up</td>
-                  <td data-label="Symbool">∞</td>
+                  <td data-label="Symbool"><span class="status status--plum">∞</span></td>
                 </tr>
               </tbody>
             </table>
@@ -164,7 +171,13 @@
           <p class="mat-substap">3. Specificaties van het etiket</p>
           <div class="accordion__media">
             <div class="tabel-wrap">
-              <table class="sp-tabel">
+              <div class="tabel-kop">
+                <div class="tabel-kop__tekst">
+                  <span class="tabel-kop__kicker">Etiket</span>
+                  <h4 class="tabel-kop__titel">Specificaties</h4>
+                </div>
+              </div>
+              <table class="sp-tabel sp-tabel--specs">
                 <tbody>
                   <tr><td data-label="Kenmerk">Vangstoot</td><td data-label="Waarde">28–35% dynamische rek — hoe lager, hoe zachter de val</td></tr>
                   <tr><td data-label="Kenmerk">Normvallen</td><td data-label="Waarde">Aantal testvallen dat het touw kan opvangen voor het faalt</td></tr>
@@ -254,6 +267,13 @@
           </p>
           <p class="mat-substap">Soorten</p>
           <div class="tabel-wrap">
+            <div class="tabel-kop">
+              <div class="tabel-kop__tekst">
+                <span class="tabel-kop__kicker">Soorten</span>
+                <h4 class="tabel-kop__titel">Schaal of hybride</h4>
+              </div>
+              <span class="tabel-kop__badge">2 typen</span>
+            </div>
             <table class="sp-tabel">
               <thead><tr><th>Type</th><th>Werking</th><th>Eigenschap</th></tr></thead>
               <tbody>
@@ -571,6 +591,13 @@
             groter dan in de hal.
           </p>
           <div class="tabel-wrap">
+            <div class="tabel-kop">
+              <div class="tabel-kop__tekst">
+                <span class="tabel-kop__kicker">Topo</span>
+                <h4 class="tabel-kop__titel">Wat je vooraf checkt</h4>
+              </div>
+              <span class="tabel-kop__badge">4 punten</span>
+            </div>
             <table class="sp-tabel">
               <thead><tr><th>Wat staat er in een topo</th><th>Waarom je het checkt</th></tr></thead>
               <tbody>
@@ -595,11 +622,18 @@
             bliksem.
           </p>
           <div class="tabel-wrap">
+            <div class="tabel-kop">
+              <div class="tabel-kop__tekst">
+                <span class="tabel-kop__kicker">Omstandigheden</span>
+                <h4 class="tabel-kop__titel">Rots na regen</h4>
+              </div>
+              <span class="tabel-kop__badge">3 rotstypes</span>
+            </div>
             <table class="sp-tabel">
               <thead><tr><th>Rotstype</th><th>Na regen</th><th>Risico</th></tr></thead>
               <tbody>
                 <tr><td data-label="Rotstype">Kalksteen</td><td data-label="Na regen">Extreem glibberig</td><td data-label="Risico">Wacht tot de rots weer droog is</td></tr>
-                <tr><td data-label="Rotstype">Zandsteen</td><td data-label="Na regen">Fragiel, beschadigt door te klimmen</td><td data-label="Risico">Niet klimmen — helemaal niet</td></tr>
+                <tr><td data-label="Rotstype">Zandsteen</td><td data-label="Na regen">Fragiel, beschadigt door te klimmen</td><td class="cel-accent cel-accent--rust" data-label="Risico">Niet klimmen — helemaal niet</td></tr>
                 <tr><td data-label="Rotstype">Overig</td><td data-label="Na regen">Verschilt per gebied</td><td data-label="Risico">Check lokale info in de topo</td></tr>
               </tbody>
             </table>
@@ -645,21 +679,27 @@
             Spreek met je klimpartner af wie wat meeneemt — je hoeft niet alles dubbel mee te nemen.
           </p>
           <div class="mat-paklijst">
-            <div class="paneel-getint">
-              <h4>Gedeeld</h4>
-              <ul class="sp-checklist sp-checklist--interactief" style="grid-template-columns: 1fr;">
-                <li><label><input type="checkbox" checked /> <span>Eén touw</span></label></li>
-                <li><label><input type="checkbox" checked /> <span>Eén touwtas</span></label></li>
-                <li><label><input type="checkbox" checked /> <span>Extra slings & prusiktouwtjes</span></label></li>
-              </ul>
+            <div class="paneel-checklist paneel-checklist--teal">
+              <span class="paneel-checklist__rand" aria-hidden="true"></span>
+              <div class="paneel-checklist__inhoud">
+                <h4>Gedeeld</h4>
+                <ul class="sp-checklist sp-checklist--interactief" style="grid-template-columns: 1fr;">
+                  <li><label><input type="checkbox" checked /> <span>Eén touw</span></label></li>
+                  <li><label><input type="checkbox" checked /> <span>Eén touwtas</span></label></li>
+                  <li><label><input type="checkbox" checked /> <span>Extra slings & prusiktouwtjes</span></label></li>
+                </ul>
+              </div>
             </div>
-            <div class="paneel-zand">
-              <h4>Eigen</h4>
-              <ul class="sp-checklist sp-checklist--interactief" style="grid-template-columns: 1fr;">
-                <li><label><input type="checkbox" checked /> <span>Gordel & helm</span></label></li>
-                <li><label><input type="checkbox" checked /> <span>Zekeringsapparaat</span></label></li>
-                <li><label><input type="checkbox" checked /> <span>Pofzak & klimschoenen</span></label></li>
-              </ul>
+            <div class="paneel-checklist">
+              <span class="paneel-checklist__rand" aria-hidden="true"></span>
+              <div class="paneel-checklist__inhoud">
+                <h4>Eigen</h4>
+                <ul class="sp-checklist sp-checklist--interactief" style="grid-template-columns: 1fr;">
+                  <li><label><input type="checkbox" checked /> <span>Gordel & helm</span></label></li>
+                  <li><label><input type="checkbox" checked /> <span>Zekeringsapparaat</span></label></li>
+                  <li><label><input type="checkbox" checked /> <span>Pofzak & klimschoenen</span></label></li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
@@ -698,32 +738,41 @@
             ook op elke standplaats, voordat de voorklimmer zijn zelfzekering losmaakt.
           </p>
           <div class="mat-partnercheck">
-            <div class="paneel-getint">
-              <h4>Voorklimmer checkt bij de zekeraar</h4>
-              <ul class="sp-checklist sp-checklist--interactief" style="grid-template-columns: 1fr;">
-                <li><label><input type="checkbox" checked /> <span>Gordel & gesp correct gesloten</span></label></li>
-                <li><label><input type="checkbox" checked /> <span>Touw goed in het zekeringsapparaat</span></label></li>
-                <li><label><input type="checkbox" checked /> <span>Karabiner dicht en vergrendeld</span></label></li>
-                <li><label><input type="checkbox" checked /> <span>Voldoende ruimte, niet te dicht bij de wand</span></label></li>
-              </ul>
+            <div class="paneel-checklist paneel-checklist--teal">
+              <span class="paneel-checklist__rand" aria-hidden="true"></span>
+              <div class="paneel-checklist__inhoud">
+                <h4>Voorklimmer checkt bij de zekeraar</h4>
+                <ul class="sp-checklist sp-checklist--interactief" style="grid-template-columns: 1fr;">
+                  <li><label><input type="checkbox" checked /> <span>Gordel & gesp correct gesloten</span></label></li>
+                  <li><label><input type="checkbox" checked /> <span>Touw goed in het zekeringsapparaat</span></label></li>
+                  <li><label><input type="checkbox" checked /> <span>Karabiner dicht en vergrendeld</span></label></li>
+                  <li><label><input type="checkbox" checked /> <span>Voldoende ruimte, niet te dicht bij de wand</span></label></li>
+                </ul>
+              </div>
             </div>
-            <div class="paneel-zand">
-              <h4>Zekeraar checkt bij de klimmer</h4>
-              <ul class="sp-checklist sp-checklist--interactief" style="grid-template-columns: 1fr;">
-                <li><label><input type="checkbox" checked /> <span>Gordel & gesp correct gesloten</span></label></li>
-                <li><label><input type="checkbox" checked /> <span>Achtknoop parallel, werkeinde min. 10 cm</span></label></li>
-                <li><label><input type="checkbox" checked /> <span>Voldoende setjes voor de route</span></label></li>
-                <li><label><input type="checkbox" checked /> <span>Helm zit goed</span></label></li>
-              </ul>
+            <div class="paneel-checklist">
+              <span class="paneel-checklist__rand" aria-hidden="true"></span>
+              <div class="paneel-checklist__inhoud">
+                <h4>Zekeraar checkt bij de klimmer</h4>
+                <ul class="sp-checklist sp-checklist--interactief" style="grid-template-columns: 1fr;">
+                  <li><label><input type="checkbox" checked /> <span>Gordel & gesp correct gesloten</span></label></li>
+                  <li><label><input type="checkbox" checked /> <span>Achtknoop parallel, werkeinde min. 10 cm</span></label></li>
+                  <li><label><input type="checkbox" checked /> <span>Voldoende setjes voor de route</span></label></li>
+                  <li><label><input type="checkbox" checked /> <span>Helm zit goed</span></label></li>
+                </ul>
+              </div>
             </div>
-            <div class="paneel-getint">
-              <h4>Samen</h4>
-              <ul class="sp-checklist sp-checklist--interactief" style="grid-template-columns: 1fr;">
-                <li><label><input type="checkbox" checked /> <span>Touw lang genoeg voor de route</span></label></li>
-                <li><label><input type="checkbox" checked /> <span>Knoop in het touweinde</span></label></li>
-                <li><label><input type="checkbox" checked /> <span>Beide dragen een helm</span></label></li>
-                <li><label><input type="checkbox" checked /> <span>De route is vrij om te klimmen</span></label></li>
-              </ul>
+            <div class="paneel-checklist paneel-checklist--rust">
+              <span class="paneel-checklist__rand" aria-hidden="true"></span>
+              <div class="paneel-checklist__inhoud">
+                <h4>Samen</h4>
+                <ul class="sp-checklist sp-checklist--interactief" style="grid-template-columns: 1fr;">
+                  <li><label><input type="checkbox" checked /> <span>Touw lang genoeg voor de route</span></label></li>
+                  <li><label><input type="checkbox" checked /> <span>Knoop in het touweinde</span></label></li>
+                  <li><label><input type="checkbox" checked /> <span>Beide dragen een helm</span></label></li>
+                  <li><label><input type="checkbox" checked /> <span>De route is vrij om te klimmen</span></label></li>
+                </ul>
+              </div>
             </div>
           </div>
           <div class="mat-partnercheck-fotos">

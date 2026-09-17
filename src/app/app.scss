@@ -1,3 +1,105 @@
 :host {
-  height: 100%;
+  min-height: 100%;
+  display: block;
+}
+
+.app-shell {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-content {
+  flex: 1 0 auto;
+}
+
+.site-footer {
+  flex-shrink: 0;
+  color: var(--warm-paper);
+  background:
+    linear-gradient(135deg, rgba(23, 95, 92, 0.94), rgba(56, 44, 39, 0.96)),
+    var(--deep-teal);
+  border-top: 2px solid color-mix(in srgb, var(--trail-amber) 72%, var(--deep-teal));
+  padding: clamp(36px, 5vw, 68px) var(--padding-zij) calc(clamp(120px, 13vw, 168px));
+}
+
+.site-footer__inner {
+  width: min(100%, var(--max-breedte));
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(240px, 1.2fr) minmax(260px, 1fr) auto;
+  gap: clamp(24px, 4vw, 72px);
+  align-items: end;
+}
+
+.site-footer__brand {
+  max-width: 520px;
+}
+
+.site-footer__logo {
+  display: inline-block;
+  font-family: var(--font-heading);
+  font-size: clamp(28px, 4vw, 48px);
+  font-weight: 700;
+  line-height: 1;
+  color: var(--warm-paper);
+  text-decoration: none;
+}
+
+.site-footer__brand p,
+.site-footer__meta {
+  margin: 14px 0 0;
+  color: color-mix(in srgb, var(--warm-paper) 78%, transparent);
+  font-size: 0.98rem;
+  line-height: 1.55;
+}
+
+.site-footer__nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 18px;
+  justify-content: center;
+}
+
+.site-footer__nav a {
+  color: var(--warm-paper);
+  text-decoration: none;
+  font-weight: 700;
+  line-height: 1.2;
+  padding-block: 4px;
+  border-bottom: 2px solid transparent;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.site-footer__nav a:hover,
+.site-footer__nav a:focus-visible {
+  color: var(--trail-amber);
+  border-bottom-color: currentColor;
+}
+
+.site-footer__meta {
+  margin-top: 0;
+  text-align: right;
+  white-space: nowrap;
+}
+
+@media (max-width: 900px) {
+  .site-footer__inner {
+    grid-template-columns: 1fr;
+    align-items: start;
+  }
+
+  .site-footer__nav {
+    justify-content: flex-start;
+  }
+
+  .site-footer__meta {
+    text-align: left;
+  }
+}
+
+@media (max-width: 560px) {
+  .site-footer {
+    padding-bottom: 142px;
+  }
 }

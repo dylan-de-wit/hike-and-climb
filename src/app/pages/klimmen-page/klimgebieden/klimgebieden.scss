@@ -293,20 +293,41 @@
   gap: clamp(24px, 3vw, 40px);
 }
 
+/* De kaart had dezelfde vulling als de paginaondergrond en geen rand, waardoor
+   hij wegviel. Nu een harde themarand met een amber accentbalk erboven, plus
+   dezelfde hover-lift als .kaart-thema, en een getinte kopzone zodat er ook
+   bínnen de kaart contrast zit. */
 .klimmuur-kaart {
   min-width: 0;
-  background: var(--kleur-wit);
-  padding: 24px;
+  background: var(--papier-licht);
+  border: var(--rand) solid var(--deep-teal);
+  border-top: 5px solid var(--kleur-accent);
+  border-radius: var(--afgerond);
+  padding: 0 24px 24px;
   display: grid;
   grid-template-rows: auto auto minmax(96px, auto) 178px auto;
   gap: 16px;
+  transition:
+    transform 200ms ease,
+    box-shadow 200ms ease;
+}
+
+.klimmuur-kaart:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 0 0 var(--deep-teal);
 }
 
 .klimmuur-kaart__top {
   display: flex;
   align-items: flex-start;
   gap: 14px;
+  margin: 0 -24px;
+  padding: 20px 24px;
+  background: color-mix(in srgb, var(--deep-teal) 9%, var(--papier-licht));
+  border-bottom: var(--rand) solid var(--deep-teal);
 }
+
+.klimmuur-kaart h3 { color: var(--deep-teal); }
 
 .klimmuur-kaart__top img {
   flex: none;

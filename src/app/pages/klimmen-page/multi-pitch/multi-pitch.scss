@@ -121,23 +121,31 @@ h1 {
   width: 45%;
   padding-left: 10px;
 }
+/* Zelfde zonelogica als .sp-tabel, maar compact genoeg voor de rail:
+   lichte kolomkop in alpine-sky met hero-tekst, en verticale scheidingen. */
+.mp-cmdtabel thead tr { background: var(--alpine-sky); }
 .mp-cmdtabel th {
   text-align: left;
   font-family: var(--font-accent);
   font-size: 13px;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.07em;
   text-transform: uppercase;
-  color: var(--kleur-tekst-licht);
-  padding: 6px;
-  border-bottom: 2px solid rgba(38, 28, 21, 0.22);
+  color: var(--deep-teal);
+  padding: 8px 6px;
+  border-bottom: var(--rand) solid var(--kleur-hero);
 }
 .mp-cmdtabel td {
   padding: 8px 6px;
-  border-bottom: 1px solid rgba(38, 28, 21, 0.1);
+  border-bottom: 1px solid color-mix(in srgb, var(--kleur-hero) 22%, transparent);
   vertical-align: top;
   color: var(--kleur-tekst);
   overflow-wrap: anywhere;
 }
+.mp-cmdtabel th + th,
+.mp-cmdtabel td + td {
+  border-left: 1px solid color-mix(in srgb, var(--kleur-hero) 22%, transparent);
+}
+.mp-cmdtabel td:first-child { font-weight: 700; color: var(--kleur-hero); }
 .mp-cmdtabel .commando {
   white-space: nowrap;
   font-size: 13.5px;

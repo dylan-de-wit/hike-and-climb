@@ -14,9 +14,7 @@
   --charcoal-ink:  #382C27;  /* hoofdtekst, sterk contrast                */
   --morning-fog:   #E2E7E5;  /* secundaire vlakken en scheidingen         */
 
-  /* ── Oude kleurnamen — wijzen nu naar het nieuwe palet, zodat
-     bestaande pagina's/components gewoon blijven werken. Nieuwe code
-     gebruikt de namen hierboven. ── */
+  /* ── Oude kleurnamen —*/
   --teal-diep:       var(--deep-teal);
   --teal-licht:      var(--glacier-teal);
   --amber:           var(--trail-amber);
@@ -56,8 +54,8 @@
   --max-breedte:    1360px;
   --tekst-maat:     68ch;
   --padding-zij:    clamp(24px, 3.5vw, 72px);
-  --afgerond:       6px;    /* standaard hoekronding */
-  --afgerond-groot: 6px;
+  --afgerond:       4px;    /* standaard hoekronding */
+  --afgerond-groot: 4px;
   --rand:           2px;    /* "2px confident" — structurele randen */
 }
 
@@ -119,7 +117,7 @@ svg {
 }
 
 body {
-  padding: 0 0 6rem;
+  padding: 0;
   overflow-x: hidden;
 }
 
@@ -350,27 +348,30 @@ p {
   margin: 0 0 1rem;
 }
 
-/* ─── Knop — pil-stijl, kleur volgt automatisch het thema van de pagina ───
-   Gebruik: <a class="btn-thema" routerLink="…">Tekst →</a>
-   De kleur komt uit var(--kleur-accent), die per pagina al gezet wordt
-   door de .thema-klimmen / .thema-hiken / … klasse op de hostcomponent.
-   Zelfde mechaniek als de filter-chips op de terminologiepagina. */
+/* ─── Knop — stijlgids "Interface kit": gevuld, 6px hoeken, hoofdletters ───
+   Gebruik: <a class="btn-thema" routerLink="…">Tekst →</a>  (primair, kleur-hero)
+            <a class="btn-thema btn-thema--accent" …>…</a>   (secundair, kleur-accent)
+            <a class="btn-thema btn-thema--outline" …>…</a>  (tertiair, outline)
+   Kleuren komen uit var(--kleur-hero)/var(--kleur-accent), die per pagina al
+   gezet worden door de .thema-klimmen / .thema-hiken / … klasse op de
+   hostcomponent — dus elke variant volgt automatisch het paginathema. */
 .btn-thema {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
   min-height: 44px;
-  border: 0;
-  border-radius: 999px;
-  background: color-mix(in srgb, var(--kleur-accent) 12%, var(--papier-licht));
-  color: color-mix(in srgb, var(--kleur-tekst-licht) 85%, transparent);
+  border: var(--rand) solid var(--kleur-hero);
+  border-radius: var(--afgerond);
+  background: var(--kleur-hero);
+  color: var(--kleur-hero-ink);
   cursor: pointer;
   font-family: var(--font-accent);
-  font-size: 17px;
+  font-size: 16px;
   font-weight: 700;
-  letter-spacing: 0.06em;
-  padding: 0 28px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0 26px;
   text-decoration: none;
   transition:
     background-color 200ms ease,
@@ -381,15 +382,47 @@ p {
 
 .btn-thema:hover,
 .btn-thema:focus-visible {
-  background: var(--kleur-accent);
-  color: var(--papier-licht);
-  box-shadow: 0 4px 0 0 color-mix(in srgb, var(--kleur-accent) 38%, var(--kleur-tekst));
+  background: color-mix(in srgb, var(--kleur-hero) 82%, black);
+  border-color: color-mix(in srgb, var(--kleur-hero) 82%, black);
+  box-shadow: 0 4px 0 0 color-mix(in srgb, var(--kleur-hero) 45%, var(--kleur-tekst));
   transform: translateY(-2px);
 }
 
 .btn-thema:active {
   transform: translateY(0);
-  box-shadow: 0 2px 0 0 color-mix(in srgb, var(--kleur-accent) 38%, var(--kleur-tekst));
+  box-shadow: 0 2px 0 0 color-mix(in srgb, var(--kleur-hero) 45%, var(--kleur-tekst));
+}
+
+/* Secundair — gevuld met de accentkleur i.p.v. de heroskleur (bv. amber op klimpagina's) */
+.btn-thema--accent {
+  border-color: var(--kleur-accent);
+  background: var(--kleur-accent);
+  color: var(--charcoal-ink);
+}
+.btn-thema--accent:hover,
+.btn-thema--accent:focus-visible {
+  background: color-mix(in srgb, var(--kleur-accent) 82%, black);
+  border-color: color-mix(in srgb, var(--kleur-accent) 82%, black);
+  box-shadow: 0 4px 0 0 color-mix(in srgb, var(--kleur-accent) 45%, var(--kleur-tekst));
+}
+.btn-thema--accent:active {
+  box-shadow: 0 2px 0 0 color-mix(in srgb, var(--kleur-accent) 45%, var(--kleur-tekst));
+}
+
+/* Tertiair — outline, transparante vulling */
+.btn-thema--outline {
+  background: transparent;
+  border-color: var(--kleur-hero);
+  color: var(--kleur-hero);
+}
+.btn-thema--outline:hover,
+.btn-thema--outline:focus-visible {
+  background: var(--kleur-hero);
+  color: var(--kleur-hero-ink);
+  box-shadow: 0 4px 0 0 color-mix(in srgb, var(--kleur-hero) 45%, var(--kleur-tekst));
+}
+.btn-thema--outline:active {
+  box-shadow: 0 2px 0 0 color-mix(in srgb, var(--kleur-hero) 45%, var(--kleur-tekst));
 }
 
 /* ══════════════════════════════════════
@@ -426,6 +459,52 @@ border: var(--rand) solid color-mix(in srgb, var(--forest-green) 30%, transparen
   background: var(--papier-creme);
   background: color-mix(in srgb, var(--kleur-accent) 14%, var(--papier-licht));
 }
+
+/* ─── Checklist-band*/
+.paneel-checklist {
+  display: grid;
+  grid-template-columns: 1rem 1fr auto;
+  border: var(--rand) solid var(--kleur-hero);
+  border-radius: var(--afgerond);
+  overflow: hidden;
+  color: var(--charcoal-ink);
+}
+.paneel-checklist__rand {
+  background: var(--kleur-accent);
+  border-right: var(--rand) solid var(--teal-diep);
+}
+.paneel-checklist__inhoud {
+  padding: clamp(20px, 3vw, 32px);
+  background: var(--alpine-sky);
+}
+
+.paneel-checklist__actie {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  max-width: 220px;
+  padding: 20px 28px;
+  border-left: var(--rand) solid var(--kleur-hero);
+  background: var(--papier-licht);
+  font-family: var(--font-accent);
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--canyon-rust);
+}
+.paneel-checklist h3,
+.paneel-checklist h4 {
+  font-family: var(--font-heading-outline);
+  font-size: 50px;
+  color: var(--teal-diep);
+}
+.paneel-checklist p {
+  color: var(--teal-diep);
+}
+/* Kleurvarianten voor kolom 1, voor meerdere checklist-panelen naast elkaar */
+.paneel-checklist--teal .paneel-checklist__rand { background: var(--deep-teal); }
+.paneel-checklist--rust .paneel-checklist__rand { background: var(--canyon-rust); }
 
 /* 1) Tekstblok — kop + alinea's */
 .tekst-blok    { max-width: var(--tekst-maat); }
@@ -526,6 +605,22 @@ border: var(--rand) solid color-mix(in srgb, var(--forest-green) 30%, transparen
   line-height: 1.25;
   color: var(--kleur-hero-ink);
   margin: 0;
+}
+/* Op een volledig hero-gekleurde band zou een gevulde .btn-thema
+   onzichtbaar wegvallen tegen dezelfde kleur — hier dus omgekeerd. */
+.uitgelicht .btn-thema {
+  background: var(--kleur-hero-ink);
+  border-color: var(--kleur-hero-ink);
+  color: var(--kleur-hero);
+}
+.uitgelicht .btn-thema:hover,
+.uitgelicht .btn-thema:focus-visible {
+  background: color-mix(in srgb, var(--kleur-hero-ink) 88%, var(--kleur-hero));
+  border-color: color-mix(in srgb, var(--kleur-hero-ink) 88%, var(--kleur-hero));
+  box-shadow: 0 4px 0 0 color-mix(in srgb, var(--kleur-hero-ink) 45%, var(--kleur-hero));
+}
+.uitgelicht .btn-thema:active {
+  box-shadow: 0 2px 0 0 color-mix(in srgb, var(--kleur-hero-ink) 45%, var(--kleur-hero));
 }
 
 /* 7) Icon-kaarten — 6 stuks, 3 per rij, icoon links */
@@ -838,7 +933,7 @@ a.icon-kaart {
   font-weight: 300;
   font-size: 14px;
   line-height: 1.35;
-  color: var(--mos);
+  color: var(--font);
   margin: 4px 0 0;
 }
 
@@ -889,7 +984,7 @@ a.icon-kaart {
 }
 
 @media (max-width: 768px) {
-  body { padding: 0 0 5rem; }
+  body { padding: 0; }
 
   .hero-section {
     padding: 60px 20px;
@@ -1206,6 +1301,38 @@ a.icon-kaart {
   background: var(--papier-creme);
   padding: 28px 28px 32px;
 }
+/* ─── Kaart mét kopband — stijlgids "Technical gear guide": een gekleurde
+   band met kicker en nummer bovenop een papieren body, i.p.v. één vlak vlak.
+   Opt-in, dus bestaande .sp-kaart-markup verandert niet:
+   <article class="sp-kaart kaart-thema sp-kaart--band">
+     <div class="sp-kaart__band"><span class="sp-kaart__kicker">…</span>
+                                 <span class="sp-kaart__band-nr">01</span></div>
+     <div class="sp-kaart__body"> … </div>
+   </article> ─── */
+.sp-kaart--band { padding: 0; overflow: hidden; }
+.sp-kaart__band {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 13px 22px;
+  background: var(--canyon-rust);
+  border-bottom: var(--rand) solid var(--deep-teal);
+}
+.sp-kaart__kicker,
+.sp-kaart__band-nr {
+  font-family: var(--font-accent);
+  font-size: 14px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--trail-amber);
+}
+.sp-kaart--band .sp-kaart__body { padding: 24px 22px 28px; }
+/* Bandkleur-varianten, zodat naast elkaar staande kaarten verschillen. */
+.sp-kaart__band--teal  { background: var(--deep-teal); }
+.sp-kaart__band--groen { background: var(--forest-green); }
+.sp-kaart__band--plum  { background: var(--dusk-plum); }
+
 .sp-kaart__nr {
   font-family: var(--font-accent);
   font-size: 18px;
@@ -1255,29 +1382,132 @@ a.icon-kaart {
   box-shadow: 0 4px 0 0 var(--kleur-accent);
 }
 
-/* ─── Callouts (tip / let op) ─── */
+/* ─── Callouts ─── */
 .callout {
   display: flex;
+  flex-direction: column;
   align-items: flex-start;
-  gap: 18px;
+  gap: 12px;
   padding: 22px 26px;
-  border-left: 5px solid;
+  border-radius: var(--afgerond);
+  border: var(--rand) solid transparent;
 }
 .callout__label {
   flex: none;
+  display: inline-flex;
+  align-items: center;
   font-family: var(--font-accent);
-  font-size: 15px;
+  font-size: 14px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--papier-licht);
-  padding: 4px 12px;
-  margin-top: 2px;
+  background: var(--trail-amber);
+  color: var(--charcoal-ink);
+  border-radius: 999px;
+  padding: 5px 14px;
 }
-.callout p { margin: 0; color: var(--kleur-tekst); }
-.callout--tip { background: color-mix(in srgb, var(--forest-green) 12%, var(--warm-paper)); border-left-color: var(--forest-green); }
-.callout--tip .callout__label { background: var(--forest-green); }
-.callout--let { background: color-mix(in srgb, var(--glacier-teal) 20%, var(--warm-paper)); border-left-color: var(--glacier-teal); }
-.callout--let .callout__label { background: var(--glacier-teal); }
+.callout p { margin: 0; color: var(--papier-licht); }
+.callout--tip {
+  background: var(--forest-green);
+  border-color: color-mix(in srgb, var(--forest-green) 70%, black);
+}
+.callout--let {
+  background: var(--canyon-rust);
+  border-color: color-mix(in srgb, var(--canyon-rust) 70%, black);
+  border-left-width: 4px;
+  border-left-color: var(--amber);
+}
+
+/* ─── Waarschuwingskaart — stijlgids "CRAG ALERT": kopzone (badge + titel +
+   tekst) mét een aparte, donkere voetband (status + link) — voor route-
+   condities/waarschuwingen met een vervolgactie. Voor een korte losse
+   tip/waarschuwing zónder voet blijft .callout het juiste component.
+   Gebruik:
+   <article class="kaart-waarschuwing">
+     <span class="kaart-waarschuwing__label">⚠ Waarschuwing</span>
+     <h4 class="kaart-waarschuwing__titel">Titel</h4>
+     <p>Beschrijving…</p>
+     <div class="kaart-waarschuwing__voet">
+       <span>Conditie · Ernstig</span>
+       <a routerLink="…">Lees meer →</a>
+     </div>
+   </article> ─── */
+.kaart-waarschuwing {
+  display: flex;
+  flex-direction: column;
+  border: var(--rand) solid var(--deep-teal);
+  border-radius: var(--afgerond);
+  overflow: hidden;
+  background: var(--canyon-rust);
+}
+.kaart-waarschuwing__label {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin: 26px 26px 0;
+  font-family: var(--font-accent);
+  font-size: 14px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  background: var(--trail-amber);
+  color: var(--charcoal-ink);
+  border-radius: 999px;
+  padding: 5px 14px;
+}
+.kaart-waarschuwing__titel {
+  margin: 16px 26px 0;
+  font-family: var(--font-display);
+  font-size: 26px;
+  color: var(--papier-licht);
+}
+.kaart-waarschuwing p {
+  margin: 12px 26px 26px;
+  color: var(--papier-licht);
+}
+.kaart-waarschuwing__voet {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 26px;
+  background: var(--deep-teal);
+  font-family: var(--font-accent);
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--papier-licht);
+}
+.kaart-waarschuwing__voet a {
+  color: var(--trail-amber);
+  text-decoration: none;
+  font-weight: 700;
+}
+.kaart-waarschuwing__voet a:hover { text-decoration: underline; }
+
+/* ─── Onderschrift met lijn — stijlgids "Use for: …": een dun streepje
+   links, tekst in de ruimte ernaast. Voor korte toelichting onder een
+   kaart/container, bv. wanneer je uitlegt waar een patroon voor dient.
+   Gebruik: <p class="tekst-met-lijn"><strong>Gebruik voor:</strong> …</p>
+   De lijn is een ::before, dus geen extra element nodig in de HTML. ─── */
+.tekst-met-lijn {
+  position: relative;
+  padding-left: 16px;
+  margin: 12px 0 0;
+  font-size: 15px;
+  color: var(--kleur-tekst-licht);
+}
+.tekst-met-lijn::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 2px;
+  bottom: 2px;
+  width: 2px;
+  background: var(--kleur-accent);
+}
+.tekst-met-lijn strong {
+  color: var(--kleur-tekst);
+}
 
 /* ─── Begrippenstrip ─── */
 .begrippen {
@@ -1343,39 +1573,169 @@ a.icon-kaart {
 }
 .begrippen__link:hover { text-decoration: underline; }
 
-/* ─── Tabellen ─── */
-.tabel-wrap { overflow-x: auto; }
+/* ─── Tabellen — stijlgids "Data & selection".
+   Een tabel is géén vlak vlak: hij bestaat uit zones die in kleur van elkaar
+   verschillen, met harde lijnen ertussen.
+
+     ┌─ .tabel-kop      donkere band (--kleur-hero) + amber kicker + titel
+     ├─ thead           lichte kolomkop (alpine-sky) + hero-tekst
+     ├─ tbody           papier, mét verticale kolomscheidingen
+     └─ .tabel-voet     rustige band voor een noot
+
+   Alle zones zijn optioneel: een kale <div class="tabel-wrap"><table
+   class="sp-tabel"> werkt gewoon. ─── */
+.tabel-wrap {
+  --tabel-kolomkop: var(--alpine-sky);
+  --tabel-lijn: color-mix(in srgb, var(--kleur-hero) 22%, transparent);
+
+  overflow: hidden;
+  border: var(--rand) solid var(--kleur-hero);
+  border-radius: var(--afgerond);
+  background: var(--papier-licht);
+}
+/* Scrollen gebeurt om de tabel heen, zodat de kop/voet blijven staan. */
+.tabel-wrap__scroll { overflow-x: auto; }
+
+/* ─── Kopband — donker, met kicker, titel en optioneel een badge ─── */
+.tabel-kop {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding: 18px 22px;
+  background: var(--kleur-hero);
+  border-bottom: var(--rand) solid var(--kleur-hero);
+}
+.tabel-kop__tekst { flex: 1; min-width: 0; }
+.tabel-kop__kicker {
+  display: block;
+  font-family: var(--font-accent);
+  font-size: 14px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--trail-amber);
+}
+.tabel-kop__titel {
+  margin: 4px 0 0;
+  font-family: var(--font-display);
+  font-size: 24px;
+  color: var(--kleur-hero-ink);
+}
+.tabel-kop__badge {
+  flex: none;
+  font-family: var(--font-accent);
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--kleur-hero-ink);
+  border: var(--rand) solid color-mix(in srgb, var(--kleur-hero-ink) 55%, transparent);
+  border-radius: 999px;
+  padding: 5px 14px;
+}
+
 .sp-tabel {
   width: 100%;
   border-collapse: collapse;
   font-size: 16px;
   background: var(--papier-licht);
 }
+
+/* ─── Kolomkop — licht vlak tégen de donkere band, niet nóg een donkere ─── */
+.sp-tabel thead tr { background: var(--tabel-kolomkop); }
 .sp-tabel th {
   text-align: left;
   font-family: var(--font-accent);
-  font-size: 16px;
-  letter-spacing: 0.06em;
+  font-size: 15px;
+  letter-spacing: 0.09em;
   text-transform: uppercase;
-  color: var(--warm-paper);
-  background: var(--charcoal-ink);
-  padding: 14px 18px;
-  vertical-align: bottom;
+  color: var(--deep-teal);
+  padding: 13px 18px;
+  vertical-align: middle;
+  border-bottom: var(--rand) solid var(--kleur-hero);
 }
+
+/* ─── Cellen — verticale én horizontale scheiding, dat geeft de raster-look ─── */
 .sp-tabel td {
-  padding: 14px 18px;
-  border-bottom: 1px solid rgba(38, 28, 21, 0.12);
+  padding: 16px 18px;
+  border-bottom: 1px solid var(--tabel-lijn);
   vertical-align: top;
   color: var(--kleur-tekst);
 }
-.sp-tabel tbody tr:nth-child(even) td { background: var(--papier-creme); }
-.sp-tabel td:first-child { font-weight: 600; }
+.sp-tabel th + th,
+.sp-tabel td + td { border-left: 1px solid var(--tabel-lijn); }
+.sp-tabel tbody tr:last-child td { border-bottom: 0; }
+
+/* Sleutelkolom: zwaarder en in themakleur. */
+.sp-tabel td:first-child {
+  font-weight: 700;
+  color: var(--kleur-hero);
+}
+.sp-tabel tbody tr:hover td {
+  background: color-mix(in srgb, var(--kleur-hero) 7%, transparent);
+}
+
+/* ─── Specificatie-variant — labelkolom krijgt een eigen tint,
+   voor label/waarde-tabellen waar beide kolommen even zwaar wegen ─── */
+.sp-tabel--specs td:first-child {
+  background: color-mix(in srgb, var(--kleur-hero) 10%, var(--papier-licht));
+  width: 45%;
+}
+
+/* ─── Accentcel — één waarde die eruit moet springen, vlak gevuld ─── */
+.sp-tabel td.cel-accent,
+.sp-tabel tbody tr:hover td.cel-accent {
+  background: var(--trail-amber);
+  color: var(--charcoal-ink);
+  font-weight: 700;
+}
+
+/* Rust-variant voor een waarde die niet alleen opvalt maar afraadt. */
+.sp-tabel td.cel-accent--rust,
+.sp-tabel tbody tr:hover td.cel-accent--rust {
+  background: var(--canyon-rust);
+  color: var(--warm-paper);
+}
+
+/* ─── Voetband — rustige noot onder de data ─── */
+.tabel-voet {
+  margin: 0;
+  padding: 14px 20px;
+  background: color-mix(in srgb, var(--tabel-kolomkop) 45%, var(--papier-licht));
+  border-top: var(--rand) solid var(--kleur-hero);
+  font-size: 15px;
+  color: var(--kleur-tekst-licht);
+}
+
+/* ─── Statuspil — kleur draagt betekenis, in een cel of los ─── */
+.status {
+  display: inline-block;
+  font-family: var(--font-accent);
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--warm-paper);
+  background: var(--canyon-rust);
+  border-radius: 999px;
+  padding: 5px 13px;
+  white-space: nowrap;
+}
+.status--rust  { background: var(--canyon-rust); }
+.status--groen { background: var(--forest-green); }
+.status--plum  { background: var(--dusk-plum); }
+.status--teal  { background: var(--deep-teal); }
+.status--amber { background: var(--trail-amber); color: var(--charcoal-ink); }
+
 .commando { font-weight: 700; color: var(--kleur-accent); }
 
 /* ─── Accordions ─── */
 .accordions { display: flex; flex-direction: column; gap: 12px; }
+/* Harde themarand i.p.v. een neutrale grijze lijn, en een samenvouwbalk die
+   in kleur verschilt van het tekstvlak eronder — dicht = lichte tint, open =
+   volle themaband. Zo blijft een open item ook binnen een andere container
+   herkenbaar als eigen blok. */
 .accordion {
-  border: 1px solid rgba(38, 28, 21, 0.16);
+  border: var(--rand) solid var(--kleur-hero);
+  border-radius: var(--afgerond);
   background: var(--papier-licht);
   interpolate-size: allow-keywords;
   overflow: hidden;
@@ -1389,7 +1749,28 @@ a.icon-kaart {
   padding: 16px 20px;
   font-family: var(--font-display);
   font-size: 18px;
-  color: var(--kleur-tekst);
+  color: var(--kleur-hero);
+  background: color-mix(in srgb, var(--kleur-hero) 9%, var(--papier-licht));
+  transition: background-color 200ms ease, color 200ms ease;
+}
+.accordion summary:hover,
+.accordion summary:focus-visible {
+  background: color-mix(in srgb, var(--kleur-hero) 18%, var(--papier-licht));
+}
+.accordion[open] summary {
+  background: var(--kleur-hero);
+  color: var(--kleur-hero-ink);
+  border-bottom: var(--rand) solid var(--kleur-hero);
+}
+.accordion[open] summary::after {
+  border-color: var(--trail-amber);
+}
+/* Tekst in de open balk volgt de bandkleur; alleen het nummerblokje houdt
+   zijn eigen kleur (anders valt donkere kaarttekst weg op de donkere band). */
+.accordion[open] summary :not(.accordion__nr) { color: inherit; }
+.accordion[open] .accordion__nr {
+  background: var(--trail-amber);
+  color: var(--charcoal-ink);
 }
 .accordion summary::-webkit-details-marker { display: none; }
 .accordion summary::after {
@@ -1419,6 +1800,7 @@ a.icon-kaart {
   height: 30px;
   display: grid;
   place-items: center;
+  border-radius: var(--afgerond);
   font-family: var(--font-accent);
   font-size: 17px;
   color: var(--papier-licht);
@@ -1426,8 +1808,8 @@ a.icon-kaart {
 }
 .accordion__titel { min-width: 0; }
 .accordion__body {
-  padding: 4px 20px 20px;
-  border-top: 1px solid rgba(38, 28, 21, 0.1);
+  padding: 16px 20px 20px;
+  background: var(--papier-licht);
 }
 .accordion__body p { margin: 14px 0 0; color: var(--kleur-tekst-licht); }
 
@@ -1585,19 +1967,33 @@ a.icon-kaart {
 
   .sp-tabel thead { display: none; }
   .sp-tabel, .sp-tabel tbody, .sp-tabel tr, .sp-tabel td { display: block; width: 100%; }
-  .sp-tabel tr { margin-bottom: 18px; border: 1px solid rgba(38, 28, 21, 0.16); }
-  .sp-tabel tbody tr:nth-child(even) td { background: transparent; }
-  .sp-tabel td { border-bottom: 1px solid rgba(38, 28, 21, 0.1); padding-left: 42%; position: relative; }
+  /* Elke rij wordt een eigen blok met een harde themarand links. */
+  .sp-tabel tr {
+    border-left: 4px solid var(--kleur-hero);
+    border-bottom: var(--rand) solid var(--kleur-hero);
+  }
+  .sp-tabel tbody tr:last-child { border-bottom: 0; }
+  .sp-tabel tbody tr:hover td { background: transparent; }
+  /* Verticale scheidingen vervallen; de labelkolom wordt een tint. */
+  .sp-tabel th + th,
+  .sp-tabel td + td { border-left: 0; }
+  .sp-tabel td {
+    border-bottom: 1px solid var(--tabel-lijn);
+    padding-left: 42%;
+    position: relative;
+  }
+  .sp-tabel--specs td:first-child { width: auto; background: transparent; }
   .sp-tabel td::before {
     content: attr(data-label);
     position: absolute;
     left: 16px;
-    top: 14px;
-    width: 38%;
+    top: 16px;
+    width: 34%;
     font-family: var(--font-accent);
     font-size: 13px;
-    letter-spacing: 0.06em;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: var(--kleur-tekst-licht);
+    color: var(--kleur-hero);
   }
+  .tabel-kop__titel { font-size: 21px; }
 }

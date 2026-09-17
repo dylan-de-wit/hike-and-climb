@@ -173,7 +173,7 @@
 /* ─── KAARTENBLOK ─── */
 .kaarten-blok {
   position: relative;
-  background: var(--groen-donker);
+  background: #243A2A;
   padding: 96px 0;
   width: 100%;
   max-width: 100%;
@@ -400,9 +400,18 @@
 }
 
 .floral-banner .btn-thema {
-  background: color-mix(in srgb, var(--terra-licht) 42%, var(--papier-licht));
-  color: var(--kleur-tekst);
-  box-shadow: 0 3px 0 0 color-mix(in srgb, var(--terra-licht) 32%, var(--kleur-tekst));
+  background: var(--terra-licht);
+  border-color: var(--terra-licht);
+  color: var(--papier-licht);
+}
+.floral-banner .btn-thema:hover,
+.floral-banner .btn-thema:focus-visible {
+  background: color-mix(in srgb, var(--terra-licht) 82%, black);
+  border-color: color-mix(in srgb, var(--terra-licht) 82%, black);
+  box-shadow: 0 4px 0 0 color-mix(in srgb, var(--terra-licht) 45%, var(--kleur-tekst));
+}
+.floral-banner .btn-thema:active {
+  box-shadow: 0 2px 0 0 color-mix(in srgb, var(--terra-licht) 45%, var(--kleur-tekst));
 }
 
 @media (max-width: 600px) {
