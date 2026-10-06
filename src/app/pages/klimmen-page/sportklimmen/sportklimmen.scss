@@ -3,14 +3,12 @@
   min-height: 70vh;
 }
 
-// Ankerdoelen landen onder de meescrollende sp-nav.
 [id] {
   scroll-margin-top: 80px;
 }
 
 // ═══ GEDEELDE BOUWSTENEN ═══
 
-// Tekst naast de kop begint op dezelfde hoogte als de titel (onder de kicker).
 .kl-kop__tekst {
   padding-top: 26px;
   padding-right: clamp(24px, 9vw, 140px);
@@ -23,7 +21,7 @@
   }
 }
 
-// Colourway-kaart (gids): 2px teal rand, 6px amber onderrand, hover-pop.
+
 .sk-kaart {
   padding: clamp(20px, 2.4vw, 28px);
   background: var(--warm-paper);
@@ -69,7 +67,7 @@ ol {
   }
 }
 
-// ═══ BEGINNEN ═══
+
 .sk-vormen {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -83,7 +81,7 @@ ol {
   gap: clamp(14px, 1.6vw, 20px);
 }
 
-// Trappetje: elke cursus staat een stap hoger dan de vorige.
+
 .sk-trede {
   display: flex;
 
@@ -161,7 +159,7 @@ ol {
   width: 100%;
 }
 
-// ═══ VEILIG KLIMMEN ═══
+
 .sk-veilig {
   background: color-mix(in srgb, var(--canyon-rust) 16%, var(--warm-paper));
   border-block: var(--rand) solid var(--canyon-rust);
@@ -516,7 +514,7 @@ ol {
   }
 }
 
-// ═══ KLIKBARE KAARTEN ═══
+
 .sk-kaart--link {
   display: flex;
   flex-direction: column;
@@ -573,7 +571,7 @@ ol {
   margin-top: 16px;
 }
 
-// ═══ FAQ + VERDER LEZEN ═══
+
 .sk-faq__lijst {
   margin-top: 28px;
 }
