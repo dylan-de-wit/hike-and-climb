@@ -1,5 +1,3 @@
-/* Override alleen op deze pagina: accentkleur terra-licht i.p.v. het groen van .thema-kennis.
-   :host(.thema-kennis) heeft hogere specificiteit dan .thema-kennis alleen, dus dit wint altijd. */
 :host(.thema-kennis) {
   --kleur-accent: var(--terra-licht);
 }
@@ -8,13 +6,10 @@
   background: var(--kleur-achtergrond);
 }
 
-/* Alle paragraaftekst op deze pagina op 15px, incl. de hero-tekst (.subhero staat in
-   het eigen template van dit component, dus een gewone scoped override volstaat). */
 .subhero p {
   font-size: 15px;
 }
 
-/* ─── Werkbalk: zoeken + opgeslagen + sortering ─── */
 .knopen-toolbar {
   display: flex;
   flex-wrap: wrap;
@@ -78,7 +73,9 @@
   font-size: 15px;
   padding: 0 18px 0 44px;
   box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--kleur-tekst) 12%, transparent);
-  transition: background-color 200ms ease, box-shadow 200ms ease;
+  transition:
+    background-color 200ms ease,
+    box-shadow 200ms ease;
 }
 
 .knopen-zoek input::placeholder {
@@ -97,10 +94,6 @@
   gap: 10px;
 }
 
-/* Pil-knop — zelfde recept als .klimgebied-filter__select / .thema-filter (Klimgebieden,
-   Terminologie): zachte pastel-tint in rust met NEUTRALE tekst, pas bij hover/actief
-   vult 'm solid met de kleur. Dat voorkomt dat de balk met allemaal verzadigde
-   kleuren tegelijk "rommelig" oogt. */
 .knopen-pil {
   --pil-kleur: var(--kleur-accent);
   --pil-tint: var(--papier-creme);
@@ -120,7 +113,11 @@
   letter-spacing: 0.04em;
   padding: 0 18px;
   box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--pil-kleur) 22%, var(--kleur-tekst));
-  transition: background-color 200ms ease, color 200ms ease, box-shadow 200ms ease, transform 200ms ease;
+  transition:
+    background-color 200ms ease,
+    color 200ms ease,
+    box-shadow 200ms ease,
+    transform 200ms ease;
 }
 
 .knopen-pil--klein {
@@ -148,13 +145,23 @@
   box-shadow: 0 2px 0 0 color-mix(in srgb, var(--pil-kleur) 38%, var(--kleur-tekst));
 }
 
-/* Familiekleuren — dezelfde pastel-tinten als de categorie-kleuren op Klimgebieden/Terminologie. */
-.knopen-pil--fam-steek          { --pil-kleur: var(--glacier-teal); --pil-tint: #E5F0F0; }
-.knopen-pil--fam-verbinding     { --pil-kleur: var(--terra-licht); --pil-tint: #F3E9E4; }
-.knopen-pil--fam-lus            { --pil-kleur: var(--amber); --pil-tint: #FBEFD6; }
-.knopen-pil--fam-wrijvingsknoop { --pil-kleur: var(--forest-green); --pil-tint: #E8F0E8; }
+.knopen-pil--fam-steek {
+  --pil-kleur: var(--glacier-teal);
+  --pil-tint: #e5f0f0;
+}
+.knopen-pil--fam-verbinding {
+  --pil-kleur: var(--terra-licht);
+  --pil-tint: #f3e9e4;
+}
+.knopen-pil--fam-lus {
+  --pil-kleur: var(--amber);
+  --pil-tint: #fbefd6;
+}
+.knopen-pil--fam-wrijvingsknoop {
+  --pil-kleur: var(--forest-green);
+  --pil-tint: #e8f0e8;
+}
 
-/* ─── Layout: facet-zijbalk + hoofdkolom ─── */
 .knopen-layout {
   display: grid;
   grid-template-columns: 260px minmax(0, 1fr);
@@ -180,8 +187,6 @@
   border-top: 1px dashed rgba(0, 0, 0, 0.2);
 }
 
-/* Eyebrow-labels van de filter-zijbalk (Gebruik/Familie/Moeilijkheid) —
-   alleen hier op de knopenpagina in teal + font-display i.p.v. de standaard .content-eyebrow. */
 .knopen-filters .content-eyebrow {
   color: var(--teal-diep);
   font-family: var(--font-display);
@@ -234,7 +239,6 @@
   padding: 0;
   font-family: var(--font);
   font-size: 14px;
-  text-decoration: underline;
   color: var(--kleur-tekst-licht);
   background: none;
   border: none;
@@ -245,7 +249,6 @@
   color: var(--kleur-accent);
 }
 
-/* ─── Hoofdkolom: telling + grid ─── */
 .knopen-telling {
   margin: 0 0 20px;
   font-family: var(--font-accent);
@@ -263,22 +266,20 @@
 .knopen-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  /* "dense" laat een normale (1-koloms) kaart na een net geopende volle-breedte
-     kaart terugvloeien naar het gaatje dat die brede kaart openliet, in plaats
-     van dat gaatje leeg te laten staan naast de vorige kaart. De geopende kaart
-     schuift daardoor een positie op, maar de 2-koloms grid blijft verder intact. */
+
   grid-auto-flow: dense;
   gap: 20px;
   align-items: start;
 }
 
-/* ─── Knoop-kaart — zelfde rand + hover-til als .kaart-thema op Terminologie ─── */
 .knoop-kaart {
   background: var(--papier-licht);
   border: var(--rand) solid var(--deep-teal);
   border-radius: var(--afgerond);
   overflow: hidden;
-  transition: transform 200ms ease, box-shadow 200ms ease;
+  transition:
+    transform 200ms ease,
+    box-shadow 200ms ease;
 }
 
 .knoop-kaart:hover {
@@ -341,7 +342,6 @@
   padding: 0 4px;
 }
 
-/* Echte foto i.p.v. de dashed placeholder: geen patroon/rand meer nodig, gewoon vullen. */
 .knoop-kaart__foto--echt {
   padding: 0;
   border: 0;
@@ -356,16 +356,12 @@
   display: block;
 }
 
-/* Foto's in de uitgeklapte kaart, bv. voor de Ankersteek. Ingelijst met padding +
-   object-fit:contain (i.p.v. cover) zodat een staande knoop-foto niet afgesneden wordt. */
 .knoop-kaart__fotos {
   grid-column: 1 / -1;
   padding-bottom: 22px;
   margin-bottom: 6px;
 }
 
-/* Flex i.p.v. grid: bij één foto blijft die op zijn eigen (beperkte) breedte staan i.p.v.
-   uit te rekken over de volle rijbreedte; bij meerdere foto's wikkelen ze netjes af. */
 .knoop-kaart__fotos-grid {
   margin-top: 14px;
   display: flex;
@@ -373,7 +369,6 @@
   gap: 16px;
 }
 
-/* Zelfde poster-lijst als .kaart-afbeelding img op de homepage: dikke crème rand + schaduw. */
 .knoop-kaart__fotos-grid img {
   flex: 0 1 260px;
   max-width: 100%;
@@ -429,10 +424,18 @@
   text-transform: uppercase;
 }
 
-.knopen-badge--steek       { --fam-kleur: var(--glacier-teal); }
-.knopen-badge--verbinding  { --fam-kleur: var(--terra-licht); }
-.knopen-badge--lus         { --fam-kleur: var(--amber); }
-.knopen-badge--wrijvingsknoop { --fam-kleur: var(--forest-green); }
+.knopen-badge--steek {
+  --fam-kleur: var(--glacier-teal);
+}
+.knopen-badge--verbinding {
+  --fam-kleur: var(--terra-licht);
+}
+.knopen-badge--lus {
+  --fam-kleur: var(--amber);
+}
+.knopen-badge--wrijvingsknoop {
+  --fam-kleur: var(--forest-green);
+}
 
 .knoop-kaart__acties {
   flex: none;
@@ -450,7 +453,11 @@
   background: var(--papier-creme);
   border: 0;
   cursor: pointer;
-  transition: background-color 200ms ease, color 200ms ease, box-shadow 200ms ease, transform 200ms ease;
+  transition:
+    background-color 200ms ease,
+    color 200ms ease,
+    box-shadow 200ms ease,
+    transform 200ms ease;
 }
 
 .knoop-kaart__opslaan:hover {
@@ -463,7 +470,6 @@
   box-shadow: 0 4px 0 0 color-mix(in srgb, var(--kleur-accent) 38%, var(--kleur-tekst));
 }
 
-/* ─── Uitgeklapte inhoud */
 .knoop-kaart__detail-wrap {
   display: grid;
   grid-template-rows: 0fr;
@@ -487,7 +493,9 @@
   padding-top: 24px;
   opacity: 0;
   transform: translateY(-8px);
-  transition: opacity 220ms ease, transform 220ms ease;
+  transition:
+    opacity 220ms ease,
+    transform 220ms ease;
 }
 
 .knoop-kaart__detail-wrap.is-open .knoop-kaart__detail {
@@ -503,7 +511,6 @@
   }
 }
 
-/* ─── Specs-strip: Engelse naam / type / gebruik-bij, in overzicht boven de rest ─── */
 .knoop-kaart__specs {
   grid-column: 1 / -1;
   display: grid;
@@ -541,8 +548,6 @@
   color: var(--kleur-tekst);
 }
 
-/* ─── Specs + foto naast elkaar, alleen wanneer een knoop precies 1 foto heeft:
-   tekst links onder elkaar, de foto rechts ernaast i.p.v. in een aparte volle-breedte rij. ─── */
 .knoop-kaart__specs-met-foto {
   grid-column: 1 / -1;
   display: grid;
@@ -667,7 +672,6 @@
   margin-top: 12px;
 }
 
-/* ─── Responsive ─── */
 @media (max-width: 1080px) {
   .knopen-layout {
     grid-template-columns: 1fr;

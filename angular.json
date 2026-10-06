@@ -7,7 +7,7 @@
   },
   "newProjectRoot": "projects",
   "projects": {
-    "hike-and-climb": {
+    "wildline": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -62,10 +62,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "hike-and-climb:build:production"
+              "buildTarget": "wildline:build:production"
             },
             "development": {
-              "buildTarget": "hike-and-climb:build:development"
+              "buildTarget": "wildline:build:development"
             }
           },
           "defaultConfiguration": "development"

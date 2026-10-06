@@ -16,7 +16,8 @@
             <a
               class="hoofdstuk-nav__link"
               [attr.href]="'#' + h.anchor"
-              (click)="scrollNaar(h.anchor, $event)">
+              (click)="scrollNaar(h.anchor, $event)"
+            >
               <span class="hoofdstuk-nav__nr">{{ nr(i) }}</span>
               <span class="hoofdstuk-nav__naam">{{ h.naam }}</span>
             </a>

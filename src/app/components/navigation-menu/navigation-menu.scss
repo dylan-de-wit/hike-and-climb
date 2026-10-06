@@ -9,7 +9,6 @@
   max-width: calc(100vw - 2rem);
 }
 
-/* ─── Hele container ─── */
 .dock {
   width: 100%;
   min-width: 0;
@@ -21,14 +20,15 @@
   overflow: hidden;
 }
 
-/* ─── Uitgeklapte sectie (verborgen by default) ─── */
 .dock-panel {
   display: grid;
   grid-template-columns: repeat(6, minmax(0, 1fr));
   max-height: 0;
   opacity: 0;
   overflow: hidden;
-  transition: max-height 0.35s ease, opacity 0.25s ease;
+  transition:
+    max-height 0.35s ease,
+    opacity 0.25s ease;
 }
 
 .dock:hover .dock-panel {
@@ -36,7 +36,6 @@
   opacity: 1;
 }
 
-/* ─── Kolom per sectie ─── */
 .dock-col {
   display: flex;
   flex-direction: column;
@@ -56,7 +55,6 @@
   justify-content: flex-start;
 }
 
-/* ─── Kolomtitels = klikbare hoofdpagina-links ─── */
 .dock-col-titel {
   display: block;
   width: 100%;
@@ -77,7 +75,6 @@
   }
 }
 
-/* ─── Sub-pagina links ─── */
 .subnav-item {
   width: 100%;
   min-width: 0;
@@ -88,7 +85,9 @@
   padding: 0.28rem 0.6rem;
   border-radius: var(--afgerond);
   text-align: left;
-  transition: background 0.15s ease, color 0.15s ease;
+  transition:
+    background 0.15s ease,
+    color 0.15s ease;
   overflow-wrap: anywhere;
   white-space: normal;
 
@@ -103,7 +102,6 @@
   }
 }
 
-/* ─── Altijd zichtbare balk (verdwijnt bij hover) ─── */
 .dock-bar {
   display: grid;
   grid-template-columns: repeat(6, minmax(0, 1fr));
@@ -112,8 +110,12 @@
   max-height: 76px;
   opacity: 1;
   overflow: hidden;
-  border-top: 1px solid rgba(0, 0, 0, 0.0);
-  transition: max-height 0.3s ease, opacity 0.2s ease, padding 0.3s ease, border-color 0.3s ease;
+  border-top: 1px solid rgba(0, 0, 0, 0);
+  transition:
+    max-height 0.3s ease,
+    opacity 0.2s ease,
+    padding 0.3s ease,
+    border-color 0.3s ease;
 }
 
 .dock:hover .dock-bar {
@@ -124,8 +126,6 @@
   pointer-events: none;
 }
 
-/* ─── Hoofdnavigatie items ─── */
-/* ── Responsive ── */
 @media (max-width: 1024px) {
   .dock-panel {
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -141,7 +141,9 @@
 }
 
 @media (max-width: 768px) {
-  .dock-col--home { display: none; }
+  .dock-col--home {
+    display: none;
+  }
 
   .dock-panel {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -150,16 +152,26 @@
   .dock:hover .dock-panel {
     max-height: 55vh;
   }
-  .subnav-item { white-space: normal; font-size: 0.82rem; }
-  .dock-col { padding: 14px 14px 12px; }
-  .dock-col-titel { font-size: 12px; }
+  .subnav-item {
+    white-space: normal;
+    font-size: 0.82rem;
+  }
+  .dock-col {
+    padding: 14px 14px 12px;
+  }
+  .dock-col-titel {
+    font-size: 12px;
+  }
   .dock-bar {
     grid-template-columns: repeat(3, minmax(0, 1fr));
     max-height: 96px;
     padding: 0.5rem 0.35rem;
     row-gap: 0.2rem;
   }
-  .dock-item { font-size: 0.78rem; padding: 0.35rem 0.35rem; }
+  .dock-item {
+    font-size: 0.78rem;
+    padding: 0.35rem 0.35rem;
+  }
 }
 
 .dock-item {
@@ -176,7 +188,9 @@
   border-radius: 999px;
   text-align: center;
   justify-self: center;
-  transition: background 0.15s ease, color 0.15s ease;
+  transition:
+    background 0.15s ease,
+    color 0.15s ease;
 
   &:hover {
     background: color-mix(in srgb, var(--charcoal-ink) 6%, transparent);

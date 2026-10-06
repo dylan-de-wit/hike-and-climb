@@ -7,7 +7,6 @@ import { NATUUR_ETAPPES } from '../natuur-etappes';
   host: { class: 'thema-natuur' },
   imports: [RouteDivider],
   templateUrl: './gesteenten-geologie.html',
-  styleUrl: './gesteenten-geologie.scss',
 })
 export class GesteentenGeologie {
   readonly etappes = NATUUR_ETAPPES;

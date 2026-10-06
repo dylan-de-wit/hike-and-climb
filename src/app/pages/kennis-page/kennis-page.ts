@@ -7,7 +7,6 @@ import { KENNIS_ETAPPES } from './kennis-etappes';
   host: { class: 'thema-kennis' },
   imports: [RouteDivider],
   templateUrl: './kennis-page.html',
-  styleUrl: './kennis-page.scss',
 })
 export class KennisPage {
   readonly etappes = KENNIS_ETAPPES;

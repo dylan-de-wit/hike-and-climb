@@ -1,21 +1,15 @@
 import { Component, computed, input, model } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
-/** Eén stop op de route. `label`, `link` en `anchor` zijn optioneel. */
 export interface RouteStop {
   naam: string;
   label?: string;
-  /** Routerpad. Is dit gezet, dan navigeert de etappe ernaartoe (tussen pagina's). */
+
   link?: string;
-  /** Id van een element op dezelfde pagina. Klik scrollt ernaartoe (tussen containers). */
+
   anchor?: string;
 }
 
-/**
- * Route-divider — een gestikte routelijn met meerdere klikbare etappes,
- * bedoeld om tussen contentblokken te schuiven. Schaalt naar zoveel stops
- * als je meegeeft; de actieve etappe kleurt mee met het thema-accent.
- */
 @Component({
   selector: 'app-route-divider',
   imports: [RouterLink],
@@ -23,20 +17,17 @@ export interface RouteStop {
   styleUrl: './route-divider.scss',
 })
 export class RouteDivider {
-  /** De etappes op de lijn. Geef er zoveel mee als je wilt. */
   readonly stops = input<RouteStop[]>([]);
-  /** Welke etappe actief is (two-way: [(actief)]). */
+
   readonly actief = model(0);
-  /** Optioneel coördinaat linksboven. */
+
   readonly coordinaat = input<string | null>('36.97°N · 27.02°E');
-  /** 'paneel' = op crème vlak; 'overlay' = transparant, voor op een hero-foto. */
+
   readonly variant = input<'paneel' | 'overlay'>('paneel');
 
-  /** Tekengrootte van het SVG-coördinatenstelsel. */
   readonly vbW = 1000;
   readonly vbH = 80;
 
-  /** Berekent per stop de positie op de golvende lijn. */
   readonly punten = computed(() => {
     const list = this.stops();
     const n = list.length;
@@ -56,15 +47,11 @@ export class RouteDivider {
     });
   });
 
-  /**
-   * De punten waar de lijn doorheen loopt: de waypoints plus twee slingerende
-   * tussenpunten per segment, zodat het pad kronkelt als een bergpad.
-   */
   readonly padPunten = computed(() => {
     const wp = this.punten();
     if (wp.length < 2) return wp.map((p) => ({ x: p.x, y: p.y }));
     const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
-    // Vaste pseudo-ruis op index: onregelmatig, maar elke render hetzelfde.
+
     const ruis = (n: number) => {
       const x = Math.sin(n * 127.1 + 311.7) * 43758.5453;
       return x - Math.floor(x);
@@ -74,7 +61,7 @@ export class RouteDivider {
       const a = wp[i];
       const b = wp[i + 1];
       const dx = b.x - a.x;
-      // Twee tussenpunten met wisselende plek, hoogte en richting.
+
       const t1 = 0.22 + ruis(i * 2.1) * 0.18;
       const t2 = 0.58 + ruis(i * 3.7 + 1) * 0.2;
       const amp1 = 6 + ruis(i * 5.3 + 2) * 17;
@@ -89,7 +76,6 @@ export class RouteDivider {
     return pts;
   });
 
-  /** Een vloeiend pad door alle punten (Catmull-Rom → Bézier). */
   readonly pad = computed(() => {
     const p = this.padPunten();
     if (p.length < 2) return '';
@@ -108,7 +94,6 @@ export class RouteDivider {
     return d;
   });
 
-  /** "Etappe 02 / 05" als er een actieve etappe is, anders het overzicht. */
   readonly teller = computed(() => {
     const n = this.stops().length;
     const a = this.actief();
@@ -117,7 +102,6 @@ export class RouteDivider {
       : `Leerpad · ${this.nr(n - 1)} etappes`;
   });
 
-  /** x-positie als percentage van de breedte (voor stippen en labels). */
   pct(x: number): number {
     return (x / this.vbW) * 100;
   }

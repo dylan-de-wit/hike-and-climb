@@ -1,6 +1,5 @@
 import { Component, ElementRef, HostListener, inject } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
-import { RouteDivider, RouteStop } from '../../../components/route-divider/route-divider';
 
 interface Klimmuur {
   naam: string;
@@ -27,7 +26,6 @@ type FilterCategorie = 'rots' | 'stijl' | 'land' | 'trip';
 @Component({
   selector: 'app-klimgebieden',
   host: { class: 'thema-klimmen' },
-  imports: [RouteDivider],
   templateUrl: './klimgebieden.html',
   styleUrl: './klimgebieden.scss',
 })
@@ -139,15 +137,6 @@ export class Klimgebieden {
     },
   ];
 
-  /** Secties op déze pagina — de divider springt ernaartoe (tussen containers). */
-  readonly secties: RouteStop[] = [
-    { naam: 'Waar', anchor: 'waar' },
-    ...this.klimregios.map((regio) => ({ naam: regio.naam, anchor: regio.anchor })),
-    { naam: 'Check', anchor: 'gebied-check' },
-  ];
-
-  actieveSectie = 0;
-
   get gefilterdeKlimregios(): Klimregio[] {
     const zoekterm = this.zoekterm.trim().toLowerCase();
 
@@ -216,10 +205,10 @@ export class Klimgebieden {
     ) as NodeListOf<HTMLDetailsElement>;
 
     openDropdowns.forEach((anderDetails) => {
-        if (anderDetails.dataset['filter'] !== categorie) {
-          anderDetails.removeAttribute('open');
-        }
-      });
+      if (anderDetails.dataset['filter'] !== categorie) {
+        anderDetails.removeAttribute('open');
+      }
+    });
   }
 
   @HostListener('document:click', ['$event'])

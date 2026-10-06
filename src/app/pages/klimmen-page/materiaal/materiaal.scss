@@ -1,30 +1,17 @@
 .mat-hero {
   --hero-foto-pos: 75% center;
   --hero-foto-schaal: 1.14;
-  --hero-foto-x: -6---%;
-}
-
-.mat-hero .sp-hero__media {
-  object-position: var(--hero-foto-pos, center);
-  transform: translateX(var(--hero-foto-x)) scale(var(--hero-foto-schaal));
+  --hero-foto-x: -6%;
 }
 
 .mat-hero .sp-hero__inner {
   width: min(100%, 760px);
 }
 
-/* Hero-titel (h1) in Londrina Outline, net als single-pitch en multi-pitch. */
-h1 {
-  font-family: 'Londrina Outline', var(--font-heading);
-  font-weight: 400;
-}
-
-/* ─── Actieve tab-indicator in de meescrollende ankerbalk ─── */
 .sp-nav__links a.mat-actief {
   color: var(--kleur-accent);
 }
 
-/* ─── Tab-toggle onder de hero ─── */
 .mat-tabs {
   display: flex;
   max-width: var(--max-breedte);
@@ -42,7 +29,9 @@ h1 {
   font-size: 20px;
   letter-spacing: 0.04em;
   color: var(--kleur-tekst-licht);
-  transition: color 0.2s ease, border-color 0.2s ease;
+  transition:
+    color 0.2s ease,
+    border-color 0.2s ease;
 }
 .mat-tabs__aantal {
   font-size: 14px;
@@ -59,7 +48,6 @@ h1 {
   opacity: 1;
 }
 
-/* ─── Chips: snel naar een materiaal-item ─── */
 .mat-chips {
   max-width: var(--max-breedte);
   margin: 24px auto 0;
@@ -80,7 +68,10 @@ h1 {
   border-radius: 999px;
   padding: 7px 16px;
   text-decoration: none;
-  transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease,
+    border-color 0.2s ease;
 }
 .mat-chips a:hover,
 .mat-chips a:focus-visible {
@@ -89,14 +80,10 @@ h1 {
   border-color: var(--kleur-accent);
 }
 
-/* Meer lucht tussen de 11 items, en een royalere body zodat de blokken niet op elkaar plakken. */
 .mat-items {
   gap: 24px;
 }
 
-/* Tijdens een chip-sprong: open/dicht-animatie uitschakelen zodat het net geopende (en het net
-   gesloten) item meteen hun definitieve hoogte hebben — scrollIntoView richt zich anders op een
-   nog lopende animatie en landt te vroeg. Zie springNaarItem()/scrollNaId() in materiaal.ts. */
 .mat-items--springen .accordion,
 .mat-items--springen .accordion::details-content {
   transition: none !important;
@@ -105,17 +92,16 @@ h1 {
   padding: 8px 28px 32px;
 }
 
-/* Hover: alleen de inspringing; de kleurwissel komt nu uit de globale
-   .accordion-regels (lichte tint dicht, volle themaband open). */
 .mat-item summary {
-  transition: background-color 0.2s ease, padding-left 0.2s ease;
+  transition:
+    background-color 0.2s ease,
+    padding-left 0.2s ease;
 }
 .mat-item summary:hover,
 .mat-item summary:focus-visible {
   padding-left: 26px;
 }
 
-/* ─── Materiaal-items: summary-regel met naam + meta ─── */
 .mat-item__naam {
   font-family: var(--font-display);
   font-weight: 600;
@@ -128,7 +114,6 @@ h1 {
   margin-right: auto;
 }
 
-/* Kleine label boven elk blokje binnen een item ("1. Waarvoor & hoe het werkt", …). */
 .mat-substap {
   font-family: var(--font-accent);
   font-size: 14px;
@@ -166,7 +151,6 @@ h1 {
   color: var(--papier-licht);
 }
 
-/* Tekst + foto naast elkaar, herbruikt in materiaal-items én voorbereidingsstappen. */
 .accordion__media {
   display: grid;
   grid-template-columns: 1fr minmax(200px, 300px);
@@ -181,7 +165,6 @@ h1 {
   margin: 0;
 }
 
-/* ─── Overig materiaal: compact kaartenraster ─── */
 .mat-overig {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -202,7 +185,6 @@ h1 {
   font-size: 15px;
 }
 
-/* ─── Voorbereiding: genummerde tijdlijn ─── */
 .mat-stappen {
   display: flex;
   flex-direction: column;

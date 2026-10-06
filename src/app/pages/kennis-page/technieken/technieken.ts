@@ -7,7 +7,6 @@ import { KENNIS_ETAPPES } from '../kennis-etappes';
   host: { class: 'thema-kennis' },
   imports: [RouteDivider],
   templateUrl: './technieken.html',
-  styleUrl: './technieken.scss',
 })
 export class KennisTechnieken {
   readonly etappes = KENNIS_ETAPPES;

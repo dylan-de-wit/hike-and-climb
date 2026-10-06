@@ -7,7 +7,6 @@ import { NATUUR_ETAPPES } from '../natuur-etappes';
   host: { class: 'thema-natuur' },
   imports: [RouteDivider],
   templateUrl: './astronavigatie.html',
-  styleUrl: './astronavigatie.scss',
 })
 export class Astronavigatie {
   readonly etappes = NATUUR_ETAPPES;

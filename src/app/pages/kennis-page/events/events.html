@@ -1,55 +1,279 @@
 <section class="subhero">
   <div class="subhero__media">
-    <img src="images/mountainforest.jpeg" alt="Bergpad richting klimgebied" />
+    <img src="images/village2.jpg" alt="Bergpad richting klimgebied" />
   </div>
   <div class="subhero__content">
     <span class="subhero__eyebrow">Kennis</span>
     <h1>Events</h1>
-    <p>Overzicht voor klimweekenden, gezamenlijke trips, workshops en andere buitenactiviteiten.</p>
+    <p>Join the fun! Kies een trip en schrijf je in.</p>
   </div>
 </section>
 
-<app-route-divider class="subhero__route" [stops]="etappes" [actief]="actief" />
-
-<section class="sectie">
-  <div class="sectie-inner events-layout">
-    <div class="tekst-blok">
-      <span class="content-eyebrow">Agenda</span>
-      <h2>Klimweekenden en gezamenlijke plannen</h2>
-      <p>Gebruik deze pagina straks voor aankomende weekenden, inschrijflinks, verzamelpunten en praktische voorbereiding.</p>
+<!-- ═══ AANKOMENDE TRIPS ═══ -->
+<section class="sectie events">
+  <div class="sectie-inner">
+    <div class="events-kop">
+      <span class="events-kop__eyebrow">Agenda</span>
+      <h2>Aankomende trips</h2>
+      <p>{{ aantalOpen() }} trips open voor inschrijving · herfstseizoen</p>
+    </div>
+    <div class="events-filter">
+      <div class="events-filter__groep">
+        <span class="events-filter__label" id="filter-label">Soort trip</span>
+        <div class="events-filter__chips" role="group" aria-labelledby="filter-label">
+          @for (f of filters; track f.id) {
+            <button
+              type="button"
+              class="label-chip"
+              [class.label-chip--actief]="filter() === f.id"
+              [attr.aria-pressed]="filter() === f.id"
+              (click)="filter.set(f.id)"
+            >
+              {{ f.naam }}
+            </button>
+          }
+        </div>
+      </div>
+      <div class="events-filter__groep events-filter__sort">
+        <span class="events-filter__label" id="sort-label">Sorteer op</span>
+        <app-keuzelijst [opties]="sorteerOpties" [(gekozen)]="sortering" labelId="sort-label" />
+      </div>
     </div>
 
-    <div class="event-lijst">
-      <article class="event-kaart">
-        <div class="event-kaart__datum">
-          <span>Jun</span>
-          <strong>2026</strong>
-        </div>
-        <div>
-          <h3>Klimweekend Ardennen</h3>
-          <p>Conceptblok voor datum, locatie, niveau, benodigde set en groepsafspraken.</p>
-        </div>
-      </article>
-      <article class="event-kaart">
-        <div class="event-kaart__datum">
-          <span>Jul</span>
-          <strong>2026</strong>
-        </div>
-        <div>
-          <h3>Single-pitch clinic</h3>
-          <p>Ruimte voor een workshop met focus op routelezen, zekeren en efficiënt klimmen.</p>
-        </div>
-      </article>
-      <article class="event-kaart">
-        <div class="event-kaart__datum">
-          <span>Sep</span>
-          <strong>2026</strong>
-        </div>
-        <div>
-          <h3>Hike & climb trip</h3>
-          <p>Een gecombineerd weekend met routeplanning, overnachting en klimgebiedinformatie.</p>
-        </div>
-      </article>
+    <div class="trip-grid">
+      @for (t of zichtbaar(); track t.id) {
+        <article class="trip-kaart trip-kaart--{{ t.discipline }}" [class.trip-kaart--vol]="vol(t)">
+          <div class="trip-kaart__foto">
+            <img [src]="t.foto" alt="" loading="lazy" />
+            <span class="trip-kaart__datum">{{ t.datumLabel }}</span>
+            @if (vol(t)) {
+              <span class="trip-kaart__status">Vol</span>
+            }
+          </div>
+          <div class="trip-kaart__body">
+            <span class="trip-kaart__kicker">
+              {{ disciplineNaam[t.discipline] }} · {{ t.dagen }}
+              {{ t.dagen === 1 ? 'dag' : 'dagen' }}
+              @if (t.beginnersvriendelijk) {
+                · Beginners
+              }
+            </span>
+            <h3>{{ t.titel }}</h3>
+            <p class="trip-kaart__meta">
+              {{ t.niveau }} · verzamelen {{ t.verzamelen }}
+              <br />
+              {{ t.noot ?? t.vervoer }}
+            </p>
+
+            <div class="plekken">
+              <div
+                class="plekken__balk"
+                role="img"
+                [attr.aria-label]="t.bezet + ' van ' + t.plekken + ' plekken bezet'"
+              >
+                <span [style.width.%]="bezetting(t)"></span>
+              </div>
+              <span class="plekken__tekst">{{
+                vol(t) ? 'Vol' : over(t) + ' / ' + t.plekken + ' over'
+              }}</span>
+            </div>
+
+            <div class="trip-kaart__acties">
+              @if (vol(t)) {
+                <button
+                  type="button"
+                  class="btn-thema btn-thema--plum trip-kaart__wacht"
+                  (click)="openTrip(t)"
+                >
+                  Op de wachtlijst
+                </button>
+              } @else {
+                <button type="button" class="btn-thema btn-thema--amber" (click)="openTrip(t)">
+                  Inschrijven
+                </button>
+              }
+              <button
+                type="button"
+                class="btn-thema btn-thema--outline btn-thema--licht"
+                (click)="openTrip(t)"
+              >
+                Details
+              </button>
+            </div>
+          </div>
+        </article>
+      } @empty {
+        <p class="trip-leeg">Geen trips voor dit filter.</p>
+      }
     </div>
   </div>
 </section>
+
+<!-- ═══ TRIP-MODAL — details + inschrijven, daarna bevestiging ═══ -->
+<dialog
+  #dialoog
+  class="trip-modal"
+  aria-labelledby="trip-modal-titel"
+  (click)="backdropKlik($event)"
+>
+  @if (open(); as t) {
+    <button type="button" class="trip-modal__sluit" (click)="sluit()" aria-label="Sluiten">
+      ×
+    </button>
+
+    @if (!verstuurd()) {
+      <div class="trip-modal__foto"><img [src]="t.foto" alt="" /></div>
+
+      <div class="trip-modal__grid">
+        <div class="trip-modal__info">
+          <h2 id="trip-modal-titel">{{ t.titel }}</h2>
+          <p class="trip-modal__meta">
+            {{ t.datumBereik }} · verzamelen {{ t.verzamelen }} · €{{ t.prijs }}
+          </p>
+
+          <ul class="trip-tags">
+            <li class="trip-tag trip-tag--{{ t.discipline }}">
+              {{ disciplineNaam[t.discipline] }}
+            </li>
+            <li class="trip-tag trip-tag--plum">{{ t.niveau }}</li>
+            <li class="trip-tag trip-tag--amber">
+              {{ vol(t) ? 'Vol' : over(t) + ' plekken over' }}
+            </li>
+          </ul>
+
+          <p class="trip-modal__tekst">{{ t.samenvatting }}</p>
+
+          <dl class="trip-feiten">
+            <div>
+              <dt>Vertrek</dt>
+              <dd>{{ t.verzamelen }}</dd>
+            </div>
+            <div>
+              <dt>Vervoer</dt>
+              <dd>{{ t.vervoer }}</dd>
+            </div>
+            <div>
+              <dt>Duur</dt>
+              <dd>{{ t.dagen }} {{ t.dagen === 1 ? 'dag' : 'dagen' }}</dd>
+            </div>
+            <div>
+              <dt>Prijs</dt>
+              <dd>€{{ t.prijs }}</dd>
+            </div>
+          </dl>
+
+          <a class="trip-modal__link" [routerLink]="t.link" (click)="sluit()"
+            >{{ t.linkTekst }} →</a
+          >
+        </div>
+        <form class="trip-form" (submit)="inschrijven($event)">
+          <span class="trip-form__kop">{{ vol(t) ? 'Wachtlijst' : 'Inschrijven' }}</span>
+
+          <input
+            class="veld"
+            name="naam"
+            required
+            autocomplete="name"
+            placeholder="Je naam"
+            aria-label="Naam"
+          />
+          <input
+            class="veld"
+            name="email"
+            type="email"
+            required
+            autocomplete="email"
+            placeholder="E-mail"
+            aria-label="E-mail"
+          />
+
+          <fieldset class="trip-form__groep">
+            <legend class="trip-form__label">Niveau</legend>
+            <div class="keuze-chips">
+              @for (n of niveaus(); track n; let i = $index) {
+                <label class="keuze-chip">
+                  <input
+                    type="radio"
+                    name="niveau"
+                    [value]="n"
+                    [checked]="i === niveau()"
+                    (change)="niveau.set(i)"
+                  />
+                  <span>{{ n }}</span>
+                </label>
+              }
+            </div>
+          </fieldset>
+
+          <div class="trip-form__groep">
+            <span class="trip-form__label" id="ervaring-label">Ervaring</span>
+            <app-keuzelijst
+              variant="warm"
+              [opties]="ervaringOpties"
+              [(gekozen)]="ervaring"
+              labelId="ervaring-label"
+            />
+          </div>
+
+          <div class="trip-form__groep">
+            <span class="trip-form__label" id="meenemen-label">Wat neem je mee?</span>
+            <app-keuzelijst
+              variant="warm"
+              [meervoud]="true"
+              [opties]="gear()"
+              [gekozen]="meenemen()"
+              (gekozenChange)="zetMeenemen($event)"
+              placeholder="Kies je materiaal"
+              labelId="meenemen-label"
+            />
+            <span class="trip-form__hint"
+              >Zo weten we welk groepsmateriaal we nog moeten regelen.</span
+            >
+          </div>
+
+          <label class="akkoord">
+            <input type="checkbox" name="akkoord" required />
+            <span>Ik ga akkoord met de afstandsverklaring</span>
+          </label>
+
+          <button type="submit" class="btn-thema btn-thema--amber trip-form__knop">
+            {{ vol(t) ? 'Zet me op de wachtlijst' : 'Inschrijven' }}
+          </button>
+        </form>
+      </div>
+    } @else {
+      <div class="trip-klaar">
+        <span class="trip-klaar__kop">{{ opWachtlijst() ? 'Wachtlijst' : 'Ingeschreven' }}</span>
+        <span class="trip-klaar__vinkje" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" /></svg>
+        </span>
+        <h2 id="trip-modal-titel">
+          {{ opWachtlijst() ? 'Je staat op de wachtlijst' : 'Je staat op de lijst' }}
+        </h2>
+        <p>
+          We sturen een bevestiging naar je e-mail, met de afstandsverklaring en de paklijst.
+          @if (opWachtlijst()) {
+            Komt er een plek vrij, dan hoor je het meteen.
+          } @else {
+            Nog {{ over(t) }} {{ over(t) === 1 ? 'plek' : 'plekken' }} over.
+          }
+        </p>
+        @if (meenemenTekst()) {
+          <p class="trip-klaar__gear"><strong>Je neemt mee:</strong> {{ meenemenTekst() }}</p>
+        }
+        <div class="trip-klaar__acties">
+          <button
+            type="button"
+            class="btn-thema btn-thema--outline btn-thema--teal"
+            (click)="inAgenda(t)"
+          >
+            Zet in agenda
+          </button>
+          <button type="button" class="btn-thema btn-thema--rust" (click)="sluit()">
+            Terug naar trips
+          </button>
+        </div>
+      </div>
+    }
+  }
+</dialog>

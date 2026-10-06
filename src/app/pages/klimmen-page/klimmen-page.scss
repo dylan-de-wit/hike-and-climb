@@ -1,16 +1,410 @@
-/* Hero-titel (h1) in Londrina Outline, net als single-pitch en multi-pitch. */
-h1 {
-  font-family: 'Londrina Outline', var(--font-heading);
+
+.klimmen-hero {
+  --hero-foto-pos: right bottom;
+}
+
+// Ankerdoelen landen onder de meescrollende sp-nav.
+[id] {
+  scroll-margin-top: 80px;
+}
+
+// ═══ GEDEELDE BOUWSTENEN ═══
+
+.kl-kicker {
+  display: block;
+  font-family: var(--font-accent);
+  font-size: 17px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--canyon-rust);
+}
+
+
+.kl-h2 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(38px, 4.6vw, 60px);
+  line-height: 0.95;
+  letter-spacing: -0.01em;
+  text-transform: none;
+  color: var(--deep-teal);
+  margin: 6px 0 0;
+}
+.kl-outline {
+  display: block;
+  font-family: var(--font-heading-outline);
   font-weight: 400;
 }
 
-.klimmen-hero .sp-hero__media {
-  object-position: right bottom !important;
+
+.kl-kop {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+  gap: 24px clamp(32px, 4vw, 56px);
+  align-items: start;
+  padding-top: 20px;
+  margin-bottom: clamp(40px, 5vw, 64px);
 }
 
-/* Kaarten als link: reset onderstreping/kleur, verder identiek aan .sp-kaart + .kaart-thema. */
-a.sp-kaart {
-  display: block;
-  text-decoration: none;
-  color: inherit;
+
+.kl-meta {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  font-family: var(--font-accent);
+  text-transform: uppercase;
+}
+.kl-meta__nr {
+  font-family: var(--font-accent);
+  font-size: 25px;
+  letter-spacing: 0.04em;
+  color: var(--trail-amber);
+}
+.kl-meta__label {
+  font-size: 25px;
+  letter-spacing: 0.06em;
+  color: var(--canyon-rust);
+}
+
+@media (max-width: 760px) {
+  .kl-kop {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+.kl-intro {
+  padding-bottom: 8px;
+
+  .kl-kop {
+    margin-bottom: 0;
+  }
+}
+
+// ═══ STIJGENDE TREDEN ═══
+.kl-treden-sectie {
+  padding-top: 0;
+}
+
+.kl-treden {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: end;
+}
+
+
+.kl-trede {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 22px 24px 26px;
+  border: var(--rand) solid var(--deep-teal);
+  border-bottom: 6px solid var(--trail-amber);
+  border-radius: var(--afgerond) var(--afgerond) 0 0;
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease;
+
+  h3 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 26px;
+    line-height: 1.1;
+    color: var(--deep-teal);
+    margin: 0 0 10px;
+  }
+
+  p {
+    margin: 0 0 12px;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  .btn-thema {
+    margin-top: 10px;
+  }
+
+  &:hover,
+  &:focus-within {
+    z-index: 1;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 0 0 var(--deep-teal);
+  }
+
+  &:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 0 0 var(--deep-teal);
+  }
+}
+
+.kl-trede__body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: auto;
+  padding-top: 18px;
+}
+
+
+.kl-trede--1 {
+  min-height: 380px;
+  background: var(--warm-paper);
+}
+.kl-trede--2 {
+  min-height: 500px;
+  margin-left: calc(var(--rand) * -1);
+  background: var(--alpine-sky);
+
+
+  .kl-meta__nr {
+    color: var(--deep-teal);
+  }
+}
+.kl-trede--3 {
+  margin-left: calc(var(--rand) * -1);
+  background: var(--deep-teal);
+  color: var(--warm-paper);
+
+  h3 {
+    color: var(--warm-paper);
+  }
+  p {
+    color: var(--alpine-sky);
+  }
+  .kl-meta__label {
+    color: var(--trail-amber);
+  }
+  .kl-trede__body {
+    border-top-color: color-mix(in srgb, var(--warm-paper) 25%, transparent);
+  }
+  &:hover,
+  &:focus-within {
+    box-shadow: 0 5px 0 0 var(--charcoal-ink);
+  }
+}
+
+.kl-trede__foto {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: var(--afgerond);
+  margin-top: 16px;
+}
+
+@media (max-width: 900px) {
+  .kl-treden {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .kl-trede {
+    min-height: 0;
+    border-radius: var(--afgerond);
+  }
+  .kl-trede--2 {
+    margin-left: 24px;
+  }
+  .kl-trede--3 {
+    margin-left: 48px;
+  }
+  .kl-trede__foto {
+    aspect-ratio: 16 / 9;
+  }
+}
+
+
+.kl-boulder {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+  gap: 20px clamp(32px, 5vw, 72px);
+  margin-top: clamp(56px, 7vw, 88px);
+  padding: clamp(26px, 3.5vw, 44px);
+  background: var(--canyon-rust);
+  color: var(--warm-paper);
+  border: var(--rand) solid var(--canyon-rust);
+  border-bottom: 6px solid var(--glacier-teal);
+  border-radius: var(--afgerond);
+
+  .kl-kicker {
+    color: var(--trail-amber);
+  }
+
+  h3 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: clamp(26px, 2.8vw, 34px);
+    line-height: 1.1;
+    color: var(--warm-paper);
+    margin: 8px 0 0;
+  }
+
+  p {
+    margin: 0 0 16px;
+    color: color-mix(in srgb, var(--warm-paper) 88%, transparent);
+  }
+}
+
+@media (max-width: 760px) {
+  .kl-boulder {
+    grid-template-columns: 1fr;
+  }
+}
+
+// ═══ GOED VOORBEREID DE ROTS IN ═══
+.kl-rij {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(24px, 4vw, 56px);
+  align-items: center;
+
+  & + & {
+    margin-top: clamp(48px, 6vw, 72px);
+  }
+
+  h3 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: clamp(28px, 2.6vw, 34px);
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+    color: var(--deep-teal);
+    margin: 0 0 14px;
+  }
+
+  p {
+    margin: 0 0 20px;
+  }
+}
+
+.kl-rij__tekst .kl-meta {
+  justify-content: flex-start;
+  margin-bottom: 14px;
+  padding-bottom: 12px;
+
+  // Klein, ruim gespatieerd label boven de kop — de kop moet de grootste zijn.
+  .kl-meta__nr,
+  .kl-meta__label {
+    font-size: 17px;
+    letter-spacing: 0.14em;
+  }
+
+  .kl-meta__label {
+    color: var(--trail-amber);
+  }
+}
+
+.kl-rij--flip .kl-rij__foto {
+  order: 2;
+}
+
+.kl-rij__foto {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  border-radius: var(--afgerond);
+}
+
+@media (max-width: 760px) {
+  .kl-rij {
+    grid-template-columns: 1fr;
+  }
+  .kl-rij--flip .kl-rij__foto {
+    order: 0;
+  }
+}
+
+// ═══ VEILIGHEID  ═══
+.kl-veiligheid-sectie {
+  background: var(--charcoal-ink);
+}
+
+.kl-veiligheid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  gap: clamp(24px, 4vw, 56px);
+  align-items: center;
+  color: var(--warm-paper);
+
+  .kl-kicker {
+    color: var(--trail-amber);
+  }
+
+  .kl-h2 {
+    color: var(--warm-paper);
+    margin-bottom: 20px;
+  }
+
+  p {
+    margin: 0 0 24px;
+    color: color-mix(in srgb, var(--warm-paper) 80%, transparent);
+  }
+}
+
+.kl-veiligheid__foto {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: var(--afgerond);
+}
+
+@media (max-width: 760px) {
+  .kl-veiligheid {
+    grid-template-columns: 1fr;
+  }
+}
+
+// ═══ BASIS — LINKREGEL ═══
+.kl-basis .kl-kop {
+  margin-bottom: 32px;
+}
+
+.kl-basis__links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 16px;
+
+  a {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    height: 100%;
+    padding: 16px 18px 18px;
+    background: var(--warm-paper);
+    border: var(--rand) solid var(--deep-teal);
+    border-bottom: 6px solid var(--trail-amber);
+    border-radius: var(--afgerond);
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 19px;
+    line-height: 1.15;
+    color: var(--deep-teal);
+    text-decoration: none;
+    transition:
+      transform 180ms ease,
+      box-shadow 180ms ease;
+  }
+
+  a:hover,
+  a:focus-visible {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 0 0 var(--deep-teal);
+  }
+
+  a:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 0 0 var(--deep-teal);
+  }
+}
+
+@media (max-width: 900px) {
+  .kl-basis__links {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }

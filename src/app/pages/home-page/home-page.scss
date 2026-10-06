@@ -1,8 +1,3 @@
-/* ══════════════════════════════════════
-   HOME PAGE
-   ══════════════════════════════════════ */
-
-/* ─── HERO ─── */
 .hero-section {
   position: relative;
   min-height: max(85vh, calc(100vw * 3948 / 5272));
@@ -23,7 +18,6 @@
   margin: 0 0 30px;
 }
 
-/* Hero-kop */
 .hero-kop {
   position: relative;
   z-index: 3;
@@ -36,11 +30,11 @@
   margin: 0;
   animation: fade-omhoog 0.6s ease-out 0.28s both;
   color: white;
-  text-shadow: 0 1px 3px rgba(20, 24, 16, 0.55),
-               0 2px 12px rgba(20, 24, 16, 0.4);
+  text-shadow:
+    0 1px 3px rgba(20, 24, 16, 0.55),
+    0 2px 12px rgba(20, 24, 16, 0.4);
 }
 
-/* Slogan onderaan de hero — komt op bij scrollen (zie .scroll-fade) */
 .hero-slogan {
   position: absolute;
   left: 50%;
@@ -52,11 +46,11 @@
   text-align: center;
   color: white;
   font-size: clamp(18px, 2vw, 24px);
-  text-shadow: 0 1px 3px rgba(20, 24, 16, 0.55),
-               0 2px 12px rgba(20, 24, 16, 0.4);
+  text-shadow:
+    0 1px 3px rgba(20, 24, 16, 0.55),
+    0 2px 12px rgba(20, 24, 16, 0.4);
 }
 
-/* ─── Slogan onder de kaarten ─── */
 .kaarten-slogan {
   position: relative;
   z-index: 1;
@@ -69,10 +63,15 @@
   color: var(--amber);
 }
 
-/* ─── Keyframes ─── */
 @keyframes fade-omhoog {
-  from { opacity: 0; translate: 0 24px; }
-  to   { opacity: 1; translate: 0 0; }
+  from {
+    opacity: 0;
+    translate: 0 24px;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
 }
 
 .hero-section .hero-title {
@@ -81,7 +80,6 @@
   animation: fade-omhoog 0.7s ease-out 0.15s both;
 }
 
-/* ─── Hero foto — volledige afbeelding, verankerd onderaan ─── */
 .hero-foto-frame {
   position: absolute;
   left: 50%;
@@ -102,9 +100,8 @@
   object-fit: contain;
 }
 
-/* ─── CONTENT SECTIE ─── */
 .sectie {
-  background: var(--papier-licht)
+  background: var(--papier-licht);
 }
 
 .content-section {
@@ -170,16 +167,15 @@
   margin: 0;
 }
 
-/* ─── KAARTENBLOK ─── */
 .kaarten-blok {
   position: relative;
-  background: #243A2A;
+  background: #243a2a;
   padding: 96px 0;
   width: 100%;
   max-width: 100%;
   overflow: hidden;
 }
-/* Drukkorrel over de groene band — gedrukt veldgids-gevoel */
+
 .kaarten-blok::before {
   content: '';
   position: absolute;
@@ -191,14 +187,13 @@
   mix-blend-mode: overlay;
 }
 
-/* Veldgids-kop boven de kaarten */
 .kaarten-kop {
   position: relative;
   z-index: 1;
   max-width: var(--max-breedte);
   margin: 0 auto 48px;
   padding: 0 var(--padding-zij) 20px;
-  text-align: center;          /* centreert de kicker + titel binnen de brede kop */
+  text-align: center;
   border-bottom: 1px solid rgba(245, 245, 245, 0.18);
 }
 .kaarten-kop__titel {
@@ -245,8 +240,8 @@
   border-radius: var(--afgerond);
   overflow: hidden;
   margin-bottom: 14px;
-  border: 8px solid var(--papier-creme);         /* fotolijst, als de content-foto's */
-  box-shadow: 0 8px 20px rgba(20, 24, 16, 0.38); /* tilt het 'ingelijste' poster los van de band */
+  border: 8px solid var(--papier-creme);
+  box-shadow: 0 8px 20px rgba(20, 24, 16, 0.38);
 }
 .kaart-afbeelding img {
   width: 100%;
@@ -254,7 +249,7 @@
   object-fit: cover;
   transition: transform 0.4s ease;
 }
-/* Genummerd stempel (01–04) linksboven op de foto */
+
 .kaart::before {
   content: counter(kaart, decimal-leading-zero);
   position: absolute;
@@ -290,24 +285,36 @@
   padding-left: 4px;
 }
 
-/* ══════════════════════════════════════
-   RESPONSIVE
-   ══════════════════════════════════════ */
-
 @media (max-width: 1024px) {
-  .hero-section .hero-title { font-size: 80px; }
+  .hero-section .hero-title {
+    font-size: 80px;
+  }
 
-  .content-section  { padding: 60px 0; }
-  .content-inner    { gap: 48px; }
-  .content-image    { height: 440px; }
-  .content-text h2  { font-size: 44px; }
+  .content-section {
+    padding: 60px 0;
+  }
+  .content-inner {
+    gap: 48px;
+  }
+  .content-image {
+    height: 440px;
+  }
+  .content-text h2 {
+    font-size: 44px;
+  }
 
-  .kaarten-blok     { padding: 60px 0; }
-  .kaarten-inner    { gap: 20px; }
+  .kaarten-blok {
+    padding: 60px 0;
+  }
+  .kaarten-inner {
+    gap: 20px;
+  }
 }
 
 @media (max-width: 768px) {
-  .hero-section .hero-title { font-size: 52px; }
+  .hero-section .hero-title {
+    font-size: 52px;
+  }
   .hero-section {
     min-height: max(80vh, calc(100vw * 3948 / 5272));
     padding: 60px 20px 0;
@@ -325,16 +332,38 @@
     border-radius: 0;
   }
 
-  .content-section  { padding: 48px 0; }
-  .content-inner    { flex-direction: column; gap: 32px; }
-  .content-image    { height: 280px; width: 100%; }
-  .content-text h2  { font-size: 36px; }
+  .content-section {
+    padding: 48px 0;
+  }
+  .content-inner {
+    flex-direction: column;
+    gap: 32px;
+  }
+  .content-image {
+    height: 280px;
+    width: 100%;
+  }
+  .content-text h2 {
+    font-size: 36px;
+  }
 
-  .kaarten-blok     { padding: 48px 0; }
-  .kaarten-inner    { flex-direction: column; gap: 24px; }
-  .kaart            { flex: none; width: 100%; }
-  .kaart-afbeelding { height: 220px; }
-  .kaart-titel      { font-size: 26px; }
+  .kaarten-blok {
+    padding: 48px 0;
+  }
+  .kaarten-inner {
+    flex-direction: column;
+    gap: 24px;
+  }
+  .kaart {
+    flex: none;
+    width: 100%;
+  }
+  .kaart-afbeelding {
+    height: 220px;
+  }
+  .kaart-titel {
+    font-size: 26px;
+  }
 }
 
 .floral-banner {
@@ -343,17 +372,16 @@
   background: url('/backgrounds/floralbackground.png') center / cover no-repeat;
   overflow: hidden;
 }
-/* Warme retro-tint over de bloemen — bindt de kleuren samen */
+
 .floral-banner::before {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(rgba(204, 96, 36, 0.32), rgba(81, 87, 49, 0.40));
+  background: linear-gradient(rgba(204, 96, 36, 0.32), rgba(81, 87, 49, 0.4));
   mix-blend-mode: multiply;
   pointer-events: none;
 }
 
-/* Boogvormig cream paneel = de retro 'arch' */
 .floral-banner__paneel {
   position: relative;
   z-index: 1;
@@ -362,11 +390,11 @@
   text-align: center;
   background: rgba(240, 235, 225, 0.93);
   border: 2px solid var(--terra-licht);
-  border-radius: 240px 240px 24px 24px;     /* hoge boog boven */
+  border-radius: 240px 240px 24px 24px;
   padding: 70px 52px 54px;
   box-shadow: 0 22px 55px rgba(38, 28, 21, 0.28);
 }
-/* Dubbele binnenrand — poster/patch-detail */
+
 .floral-banner__paneel::after {
   content: '';
   position: absolute;
@@ -415,8 +443,178 @@
 }
 
 @media (max-width: 600px) {
-  .floral-banner { padding: 60px 16px; }
-  .floral-banner__paneel { padding: 56px 28px 44px; border-radius: 160px 160px 18px 18px; }
-  .floral-banner__paneel::after { border-radius: 152px 152px 12px 12px; }
-  .floral-banner__titel { font-size: 38px; }
+  .floral-banner {
+    padding: 60px 16px;
+  }
+  .floral-banner__paneel {
+    padding: 56px 28px 44px;
+    border-radius: 160px 160px 18px 18px;
+  }
+  .floral-banner__paneel::after {
+    border-radius: 152px 152px 12px 12px;
+  }
+  .floral-banner__titel {
+    font-size: 38px;
+  }
+}
+
+.events-teaser {
+  background: var(--warm-paper);
+  padding: 96px 0 24px;
+}
+.events-teaser__inner {
+  max-width: var(--max-breedte);
+  margin: 0 auto;
+  padding-inline: var(--padding-zij);
+}
+.events-teaser__kaart {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: clamp(28px, 4vw, 56px);
+  align-items: center;
+  padding: clamp(28px, 4vw, 52px);
+  background: var(--canyon-rust);
+  border-radius: var(--afgerond);
+  border-bottom: 8px solid var(--glacier-teal);
+  color: var(--warm-paper);
+}
+
+.events-teaser__kicker {
+  font-family: var(--font-accent);
+  font-size: 18px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--trail-amber);
+}
+.events-teaser__titel {
+  font-family: var(--font-heading-outline);
+  font-size: clamp(44px, 5vw, 64px);
+  font-weight: 400;
+  line-height: 0.95;
+  color: var(--warm-paper);
+  margin: 10px 0 18px;
+}
+.events-teaser__intro p {
+  max-width: 44ch;
+  margin: 0 0 26px;
+  line-height: 1.55;
+  color: color-mix(in srgb, var(--warm-paper) 88%, transparent);
+}
+
+.events-teaser__lijst {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 12px;
+}
+
+.teaser-trip {
+  --trip-kleur: var(--deep-teal);
+  display: grid;
+  grid-template-columns: 64px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 16px;
+  padding: 10px 16px 10px 10px;
+  background: var(--warm-paper);
+  border: var(--rand) solid var(--warm-paper);
+  border-radius: var(--afgerond);
+  color: var(--charcoal-ink);
+  text-decoration: none;
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease;
+}
+.teaser-trip--boulderen {
+  --trip-kleur: var(--canyon-rust);
+}
+.teaser-trip--hike {
+  --trip-kleur: var(--forest-green);
+}
+
+.teaser-trip:hover,
+.teaser-trip:focus-visible {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 0 0 color-mix(in oklab, var(--trail-amber) 60%, var(--charcoal-ink));
+}
+.teaser-trip:focus-visible {
+  outline: 2px solid var(--trail-amber);
+  outline-offset: 3px;
+}
+
+.teaser-trip__datum {
+  display: grid;
+  place-items: center;
+  height: 64px;
+  border-radius: var(--afgerond);
+  background: var(--trip-kleur);
+  color: var(--warm-paper);
+  font-family: var(--font-accent);
+  text-transform: uppercase;
+  line-height: 1;
+}
+.teaser-trip__datum strong {
+  font-size: 30px;
+  font-weight: 400;
+}
+.teaser-trip__datum span {
+  font-size: 15px;
+  letter-spacing: 0.08em;
+  color: var(--trail-amber);
+}
+
+.teaser-trip__tekst {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+.teaser-trip__titel {
+  font-family: var(--font-display);
+  font-size: 19px;
+  font-weight: 800;
+  color: var(--trip-kleur);
+}
+.teaser-trip__meta {
+  font-size: 15px;
+  color: var(--charcoal-ink);
+}
+
+.teaser-trip__plekken {
+  flex: none;
+  font-family: var(--font-accent);
+  font-size: 15px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: var(--dusk-plum);
+  color: var(--warm-paper);
+}
+
+.teaser-trip__plekken--krap {
+  background: var(--trail-amber);
+  color: var(--charcoal-ink);
+}
+
+@media (max-width: 900px) {
+  .events-teaser__kaart {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 480px) {
+  .events-teaser {
+    padding-top: 64px;
+  }
+  .teaser-trip {
+    grid-template-columns: 56px minmax(0, 1fr);
+  }
+  .teaser-trip__datum {
+    height: 56px;
+  }
+  .teaser-trip__plekken {
+    grid-column: 2;
+    justify-self: start;
+  }
 }

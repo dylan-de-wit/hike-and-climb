@@ -8,11 +8,11 @@ interface TermKaart {
   label: string;
   term: string;
   definitie: string;
-  /** Routerpad naar de pagina waar deze term wordt uitgelegd/gebruikt. */
+
   link: string;
-  /** Optioneel anker binnen die pagina. */
+
   fragment?: string;
-  /** Leesbaar "Pagina · Sectie" label, getoond op de kaart. */
+
   paginaLabel: string;
 }
 
@@ -34,13 +34,11 @@ export class KennisTerminologie {
     { id: 'natuur', label: 'Natuur' },
   ];
 
-  /** Alleen filter-chips tonen voor thema's die daadwerkelijk termen hebben. */
   get themas(): { id: Thema; label: string }[] {
     return this.alleThemas.filter((thema) => this.termen.some((term) => term.thema === thema.id));
   }
 
   readonly termen: TermKaart[] = [
-    // ═══ A ═══
     {
       thema: 'klimmen',
       label: 'Klimmen',
@@ -95,7 +93,6 @@ export class KennisTerminologie {
       paginaLabel: 'Multipitch · De naklimmer zekeren',
     },
 
-    // ═══ B ═══
     {
       thema: 'klimmen',
       label: 'Klimmen',
@@ -140,7 +137,6 @@ export class KennisTerminologie {
       paginaLabel: 'Multipitch · Afdalen en zelfredding',
     },
 
-    // ═══ C ═══
     {
       thema: 'klimmen',
       label: 'Klimmen',
@@ -192,7 +188,6 @@ export class KennisTerminologie {
       paginaLabel: 'Boulderen · Techniek',
     },
 
-    // ═══ D ═══
     {
       thema: 'boulderen',
       label: 'Boulderen',
@@ -254,7 +249,6 @@ export class KennisTerminologie {
       paginaLabel: 'Boulderen · Techniek',
     },
 
-    // ═══ E ═══
     {
       thema: 'klimmen',
       label: 'Klimmen',
@@ -283,7 +277,6 @@ export class KennisTerminologie {
       paginaLabel: 'Multipitch · Afdalen en zelfredding',
     },
 
-    // ═══ F ═══
     {
       thema: 'boulderen',
       label: 'Boulderen',
@@ -293,7 +286,6 @@ export class KennisTerminologie {
       paginaLabel: 'Boulderen · Training & progressie',
     },
 
-    // ═══ G ═══
     {
       thema: 'boulderen',
       label: 'Boulderen',
@@ -330,7 +322,6 @@ export class KennisTerminologie {
       paginaLabel: 'Multipitch · De naklimmer zekeren',
     },
 
-    // ═══ H ═══
     {
       thema: 'klimmen',
       label: 'Klimmen',
@@ -367,7 +358,6 @@ export class KennisTerminologie {
       paginaLabel: 'Multipitch · De naklimmer zekeren',
     },
 
-    // ═══ I ═══
     {
       thema: 'klimmen',
       label: 'Klimmen',
@@ -378,7 +368,6 @@ export class KennisTerminologie {
       paginaLabel: 'Single-pitch · Standplaats maken',
     },
 
-    // ═══ J ═══
     {
       thema: 'boulderen',
       label: 'Boulderen',
@@ -388,7 +377,6 @@ export class KennisTerminologie {
       paginaLabel: 'Boulderen · Techniek',
     },
 
-    // ═══ K ═══
     {
       thema: 'klimmen',
       label: 'Klimmen',
@@ -426,7 +414,6 @@ export class KennisTerminologie {
       paginaLabel: 'Klimgebieden · Waar kun je klimmen?',
     },
 
-    // ═══ L ═══
     {
       thema: 'klimmen',
       label: 'Klimmen',
@@ -446,7 +433,6 @@ export class KennisTerminologie {
       paginaLabel: 'Single-pitch · Standplaats maken',
     },
 
-    // ═══ M ═══
     {
       thema: 'klimmen',
       label: 'Klimmen',
@@ -482,7 +468,6 @@ export class KennisTerminologie {
       paginaLabel: 'Klimgebieden · Waar kun je klimmen?',
     },
 
-    // ═══ N ═══
     {
       thema: 'klimmen',
       label: 'Klimmen',
@@ -493,7 +478,6 @@ export class KennisTerminologie {
       paginaLabel: 'Multipitch · De naklimmer zekeren',
     },
 
-    // ═══ O ═══
     {
       thema: 'klimmen',
       label: 'Klimmen',
@@ -538,7 +522,6 @@ export class KennisTerminologie {
       paginaLabel: 'Boulderen · Techniek',
     },
 
-    // ═══ P ═══
     {
       thema: 'klimmen',
       label: 'Klimmen',
@@ -607,7 +590,6 @@ export class KennisTerminologie {
       paginaLabel: 'Boulderen · Training & progressie',
     },
 
-    // ═══ Q ═══
     {
       thema: 'klimmen',
       label: 'Klimmen',
@@ -618,7 +600,6 @@ export class KennisTerminologie {
       paginaLabel: 'Materiaal · Karabiners en zekeringsapparaten',
     },
 
-    // ═══ R ═══
     {
       thema: 'klimmen',
       label: 'Klimmen',
@@ -656,7 +637,6 @@ export class KennisTerminologie {
       paginaLabel: 'Single-pitch · Afdalen in bijzondere situaties',
     },
 
-    // ═══ S ═══
     {
       thema: 'boulderen',
       label: 'Boulderen',
@@ -735,7 +715,6 @@ export class KennisTerminologie {
       paginaLabel: 'Materiaal · Touwen',
     },
 
-    // ═══ T ═══
     {
       thema: 'klimmen',
       label: 'Klimmen',
@@ -798,7 +777,6 @@ export class KennisTerminologie {
       paginaLabel: 'Materiaal · Touwen',
     },
 
-    // ═══ V ═══
     {
       thema: 'klimmen',
       label: 'Klimmen',
@@ -835,7 +813,6 @@ export class KennisTerminologie {
       paginaLabel: 'Multipitch · De standplaats',
     },
 
-    // ═══ Z ═══
     {
       thema: 'klimmen',
       label: 'Klimmen',
@@ -864,7 +841,6 @@ export class KennisTerminologie {
       paginaLabel: 'Single-pitch · Standplaats maken',
     },
 
-    // ═══ HIKEN ═══
     {
       thema: 'hiken',
       label: 'Hiken',
@@ -954,7 +930,6 @@ export class KennisTerminologie {
       paginaLabel: 'Hiken · Routes & gebieden',
     },
 
-    // ═══ NATUUR — Astronavigatie ═══
     {
       thema: 'natuur',
       label: 'Natuur',
@@ -1004,7 +979,6 @@ export class KennisTerminologie {
       paginaLabel: 'Natuur · Astronavigatie',
     },
 
-    // ═══ NATUUR — Weer lezen ═══
     {
       thema: 'natuur',
       label: 'Natuur',
@@ -1054,7 +1028,6 @@ export class KennisTerminologie {
       paginaLabel: 'Natuur · Bushcraft',
     },
 
-    // ═══ NATUUR — Wildplukken ═══
     {
       thema: 'natuur',
       label: 'Natuur',
@@ -1112,7 +1085,6 @@ export class KennisTerminologie {
       paginaLabel: 'Natuur · Wildplukken',
     },
 
-    // ═══ NATUUR — Geologie ═══
     {
       thema: 'natuur',
       label: 'Natuur',
@@ -1186,7 +1158,6 @@ export class KennisTerminologie {
       paginaLabel: 'Natuur · Gesteenten & geologie',
     },
 
-    // ═══ NATUUR — Bushcraft ═══
     {
       thema: 'natuur',
       label: 'Natuur',
@@ -1220,7 +1191,6 @@ export class KennisTerminologie {
       paginaLabel: 'Natuur · Bushcraft',
     },
 
-    // ═══ KLIMMEN — Knopen ═══
     {
       thema: 'klimmen',
       label: 'Klimmen',
@@ -1283,7 +1253,6 @@ export class KennisTerminologie {
     this.actiefThema = this.actiefThema === thema ? null : thema;
   }
 
-  /** URL-veilig anker voor een term, bv. "HMS-karabiner" → "hms-karabiner". */
   slugVan(term: string): string {
     return term
       .toLowerCase()

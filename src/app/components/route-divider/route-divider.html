@@ -10,7 +10,8 @@
       class="route-divider__lijn"
       [attr.viewBox]="'0 0 ' + vbW + ' ' + vbH"
       preserveAspectRatio="none"
-      aria-hidden="true">
+      aria-hidden="true"
+    >
       <path [attr.d]="pad()" fill="none" />
     </svg>
 
@@ -22,14 +23,16 @@
           [style.left.%]="pct(p.x)"
           [style.top.px]="p.y"
           [routerLink]="p.link"
-          [attr.aria-label]="p.naam"></a>
+          [attr.aria-label]="p.naam"
+        ></a>
 
         <a
           class="route-divider__stop"
           [class.is-actief]="p.i === actief()"
           [style.left.%]="pct(p.x)"
           [style.top.px]="p.y + 28"
-          [routerLink]="p.link">
+          [routerLink]="p.link"
+        >
           <span class="route-divider__naam">{{ p.naam }}</span>
           <span class="route-divider__index">
             {{ p.i === actief() && p.label ? p.label : p.nummer }}
@@ -43,7 +46,8 @@
           [style.left.%]="pct(p.x)"
           [style.top.px]="p.y"
           (click)="kies(p.i, p.anchor)"
-          [attr.aria-label]="p.naam"></button>
+          [attr.aria-label]="p.naam"
+        ></button>
 
         <button
           type="button"
@@ -51,7 +55,8 @@
           [class.is-actief]="p.i === actief()"
           [style.left.%]="pct(p.x)"
           [style.top.px]="p.y + 28"
-          (click)="kies(p.i, p.anchor)">
+          (click)="kies(p.i, p.anchor)"
+        >
           <span class="route-divider__naam">{{ p.naam }}</span>
           <span class="route-divider__index">
             {{ p.i === actief() && p.label ? p.label : p.nummer }}

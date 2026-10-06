@@ -7,7 +7,6 @@ import { HIKEN_ETAPPES } from '../hiken-etappes';
   host: { class: 'thema-hiken' },
   imports: [RouteDivider],
   templateUrl: './routes-gebieden.html',
-  styleUrl: './routes-gebieden.scss',
 })
 export class RoutesGebieden {
   readonly etappes = HIKEN_ETAPPES;

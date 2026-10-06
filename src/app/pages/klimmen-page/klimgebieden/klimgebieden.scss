@@ -50,7 +50,7 @@
 }
 
 .klimgebied-filter__icoon::after {
-  content: "";
+  content: '';
   position: absolute;
   right: -5px;
   bottom: -4px;
@@ -97,7 +97,7 @@
 
 .klimgebied-filter__select {
   --filter-color: var(--amber);
-  --filter-bg: #FBEFD6;
+  --filter-bg: #fbefd6;
 
   position: relative;
   display: block;
@@ -107,22 +107,22 @@
 
 .klimgebied-filter__select--rots {
   --filter-color: var(--terra-licht);
-  --filter-bg: #F3E9E4;
+  --filter-bg: #f3e9e4;
 }
 
 .klimgebied-filter__select--stijl {
   --filter-color: var(--glacier-teal);
-  --filter-bg: #E5F0F0;
+  --filter-bg: #e5f0f0;
 }
 
 .klimgebied-filter__select--land {
   --filter-color: var(--forest-green);
-  --filter-bg: #E8F0E8;
+  --filter-bg: #e8f0e8;
 }
 
 .klimgebied-filter__select--trip {
   --filter-color: var(--amber);
-  --filter-bg: #FBEFD6;
+  --filter-bg: #fbefd6;
 }
 
 .klimgebied-filter__label {
@@ -145,7 +145,7 @@
 }
 
 .klimgebied-filter__dropdown summary::after {
-  content: "";
+  content: '';
   position: absolute;
   right: 18px;
   top: 17px;
@@ -293,10 +293,6 @@
   gap: clamp(24px, 3vw, 40px);
 }
 
-/* De kaart had dezelfde vulling als de paginaondergrond en geen rand, waardoor
-   hij wegviel. Nu een harde themarand met een amber accentbalk erboven, plus
-   dezelfde hover-lift als .kaart-thema, en een getinte kopzone zodat er ook
-   bínnen de kaart contrast zit. */
 .klimmuur-kaart {
   min-width: 0;
   background: var(--papier-licht);
@@ -327,7 +323,9 @@
   border-bottom: var(--rand) solid var(--deep-teal);
 }
 
-.klimmuur-kaart h3 { color: var(--deep-teal); }
+.klimmuur-kaart h3 {
+  color: var(--deep-teal);
+}
 
 .klimmuur-kaart__top img {
   flex: none;
@@ -367,7 +365,7 @@
 
 .klimmuur-kaart__kenmerken li {
   --kenmerk-color: var(--terra-licht);
-  --kenmerk-bg: #F3E9E4;
+  --kenmerk-bg: #f3e9e4;
 
   font-family: var(--font-accent);
   font-size: 13px;
@@ -381,22 +379,22 @@
 
 .klimmuur-kaart__kenmerken .klimmuur-kaart__kenmerk--rots {
   --kenmerk-color: var(--terra-licht);
-  --kenmerk-bg: #F3E9E4;
+  --kenmerk-bg: #f3e9e4;
 }
 
 .klimmuur-kaart__kenmerken .klimmuur-kaart__kenmerk--stijl {
   --kenmerk-color: var(--glacier-teal);
-  --kenmerk-bg: #E5F0F0;
+  --kenmerk-bg: #e5f0f0;
 }
 
 .klimmuur-kaart__kenmerken .klimmuur-kaart__kenmerk--land {
   --kenmerk-color: var(--forest-green);
-  --kenmerk-bg: #E8F0E8;
+  --kenmerk-bg: #e8f0e8;
 }
 
 .klimmuur-kaart__kenmerken .klimmuur-kaart__kenmerk--trip {
   --kenmerk-color: var(--amber);
-  --kenmerk-bg: #FBEFD6;
+  --kenmerk-bg: #fbefd6;
 }
 
 .klimmuur-kaart__kaart {
@@ -518,7 +516,6 @@
   }
 }
 
-
 .statistiek {
   background: var(--papier-creme);
   padding: 64px 20px;
@@ -540,7 +537,7 @@
   font-family: var(--font-heading);
   font-size: 52px;
   line-height: 1;
-  color: var(--kleur-accent);     /* de kleur-pop */
+  color: var(--kleur-accent);
 }
 .statistiek__label {
   font-family: var(--font-accent);
@@ -550,6 +547,11 @@
   color: var(--kleur-tekst-licht);
 }
 @media (max-width: 768px) {
-  .statistiek__inner { grid-template-columns: repeat(2, 1fr); gap: 28px; }
-  .statistiek__getal { font-size: 40px; }
+  .statistiek__inner {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px;
+  }
+  .statistiek__getal {
+    font-size: 40px;
+  }
 }

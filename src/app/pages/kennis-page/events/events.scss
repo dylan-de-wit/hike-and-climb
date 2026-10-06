@@ -1,58 +1,586 @@
-.events-layout {
-  display: grid;
-  gap: 48px;
+.events {
+  --kleur-accent: var(--canyon-rust);
 }
 
-.event-lijst {
-  display: grid;
-  gap: 18px;
+.events-kop {
+  max-width: var(--tekst-maat);
+  margin-bottom: 28px;
+}
+.events-kop__eyebrow {
+  font-family: var(--font-accent);
+  font-size: 18px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--canyon-rust);
+}
+.events-kop h2 {
+  color: var(--deep-teal);
+  margin: 0.5rem 0 12px;
+}
+.events-kop p {
+  margin: 0;
+  color: color-mix(in srgb, var(--deep-teal) 78%, transparent);
 }
 
-.event-kaart {
-  display: grid;
-  grid-template-columns: 112px minmax(0, 1fr);
-  gap: 28px;
-  align-items: start;
-  background: var(--papier-creme);
-  border-left: 6px solid var(--kleur-accent);
-  padding: 28px;
+.events-filter {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px 32px;
+  padding: 20px;
+  margin-bottom: 36px;
+  background: var(--alpine-sky);
+  border: var(--rand) solid var(--deep-teal);
+  border-radius: var(--afgerond);
+}
+.events-filter__groep {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.events-filter__sort {
+  width: min(100%, 280px);
+}
+.events-filter__label {
+  font-family: var(--font-accent);
+  font-size: 18px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--deep-teal);
+}
+.events-filter__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
 }
 
-.event-kaart__datum {
+.label-chip {
+  height: 36px;
+  padding: 0 16px;
+  font-family: var(--font-accent);
+  font-size: 16px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--deep-teal);
+  background: var(--warm-paper);
+  border: var(--rand) solid var(--deep-teal);
+  border-radius: 999px;
+  cursor: pointer;
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease,
+    background-color 180ms ease,
+    color 180ms ease;
+}
+.label-chip:hover,
+.label-chip:focus-visible {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 0 0 color-mix(in oklab, var(--deep-teal) 60%, var(--charcoal-ink));
+}
+.label-chip:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 0 0 var(--deep-teal);
+}
+.label-chip--actief {
+  background: var(--canyon-rust);
+  border-color: var(--canyon-rust);
+  color: var(--warm-paper);
+}
+.label-chip:focus-visible {
+  outline: 2px solid var(--trail-amber);
+  outline-offset: 2px;
+}
+
+.trip-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr));
+  gap: clamp(20px, 2.5vw, 32px);
+}
+.trip-leeg {
+  color: var(--deep-teal);
+}
+
+.trip-kaart {
+  --kaart-vlak: var(--deep-teal);
+  --kaart-band: var(--trail-amber);
+  display: flex;
+  flex-direction: column;
+  background: var(--kaart-vlak);
+  border-radius: var(--afgerond);
+  border-bottom: 8px solid var(--kaart-band);
+  overflow: hidden;
+  color: var(--warm-paper);
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease;
+}
+.trip-kaart--boulderen {
+  --kaart-vlak: var(--canyon-rust);
+  --kaart-band: var(--glacier-teal);
+}
+.trip-kaart--hike {
+  --kaart-vlak: var(--forest-green);
+  --kaart-band: var(--dusk-plum);
+}
+.trip-kaart:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 0 0 color-mix(in oklab, var(--kaart-vlak) 60%, var(--charcoal-ink));
+}
+
+.trip-kaart__foto {
+  position: relative;
+  flex: none;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: color-mix(in srgb, var(--kaart-vlak) 70%, var(--warm-paper));
+}
+
+.trip-kaart__foto img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.trip-kaart__datum,
+.trip-kaart__status {
+  position: absolute;
+  top: 14px;
+  font-family: var(--font-accent);
+  font-size: 18px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 5px 12px;
+}
+.trip-kaart__datum {
+  left: 14px;
+  background: var(--trail-amber);
+  color: var(--charcoal-ink);
+  border-radius: var(--afgerond);
+}
+
+.trip-kaart__status {
+  right: 14px;
+  background: var(--dusk-plum);
+  color: var(--warm-paper);
+  border-radius: 999px;
+}
+
+.trip-kaart__body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 22px 24px 24px;
+}
+.trip-kaart__kicker {
+  font-family: var(--font-accent);
+  font-size: 16px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--trail-amber);
+}
+.trip-kaart h3 {
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--warm-paper);
+  margin: 6px 0 10px;
+}
+.trip-kaart__meta {
+  margin: 0 0 18px;
+  line-height: 1.5;
+  color: color-mix(in srgb, var(--warm-paper) 86%, transparent);
+}
+
+.plekken {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: auto 0 20px;
+}
+.plekken__balk {
+  flex: 1;
+  height: 14px;
+  border: var(--rand) solid var(--warm-paper);
+  border-radius: 999px;
+  overflow: hidden;
+  background: color-mix(in srgb, var(--warm-paper) 18%, transparent);
+}
+.plekken__balk span {
+  display: block;
+  height: 100%;
+  background: var(--trail-amber);
+  transition: width 400ms ease;
+}
+.trip-kaart--vol .plekken__balk span {
+  background: var(--dusk-plum);
+}
+.plekken__tekst {
+  flex: none;
+  font-family: var(--font-accent);
+  font-size: 18px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--warm-paper);
+}
+
+.trip-kaart__acties {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 10px;
+}
+
+.trip-kaart__wacht {
+  border-color: var(--warm-paper);
+}
+
+.trip-modal {
+  width: min(1100px, calc(100% - 32px));
+  max-height: calc(100dvh - 48px);
+  padding: 0;
+  border: var(--rand) solid var(--deep-teal);
+  border-radius: var(--afgerond);
+  background: var(--warm-paper);
+  color: var(--charcoal-ink);
+  overflow: auto;
+}
+.trip-modal::backdrop {
+  background: color-mix(in srgb, var(--deep-teal) 72%, transparent);
+}
+.trip-modal[open] {
+  animation: modal-in 220ms ease;
+}
+@keyframes modal-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .trip-modal[open] {
+    animation: none;
+  }
+}
+
+.trip-modal__sluit {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 1;
+  width: 44px;
+  height: 44px;
   display: grid;
   place-items: center;
-  min-height: 92px;
-  background: var(--kleur-hero);
-  color: var(--kleur-hero-ink);
-  font-family: var(--font-accent);
-  text-transform: uppercase;
+  font-size: 24px;
+  line-height: 1;
+  color: var(--deep-teal);
+  background: var(--warm-paper);
+  border: var(--rand) solid var(--deep-teal);
+  border-radius: 999px;
+  cursor: pointer;
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease;
+}
+.trip-modal__sluit:hover,
+.trip-modal__sluit:focus-visible {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 0 0 color-mix(in oklab, var(--deep-teal) 60%, var(--charcoal-ink));
 }
 
-.event-kaart__datum span {
-  font-size: 28px;
+.trip-modal__foto {
+  height: clamp(160px, 24vh, 240px);
+  border-bottom: 8px solid var(--trail-amber);
+}
+.trip-modal__foto img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
-.event-kaart__datum strong {
-  font-size: 18px;
+.trip-modal__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(300px, 1fr);
+}
+
+.trip-modal__info {
+  padding: clamp(24px, 3vw, 40px);
+}
+.trip-modal__info h2 {
+  font-family: var(--font-h2);
+  font-size: clamp(28px, 3vw, 36px);
   font-weight: 400;
-  letter-spacing: 0.12em;
+  color: var(--deep-teal);
+  margin: 0 0 8px;
+}
+.trip-modal__meta {
+  margin: 0 0 18px;
+  color: color-mix(in srgb, var(--deep-teal) 78%, transparent);
+}
+.trip-modal__tekst {
+  line-height: 1.55;
+  margin: 18px 0;
+  color: var(--charcoal-ink);
 }
 
-.event-kaart h3 {
-  margin: 0 0 10px;
-}
-
-.event-kaart p {
+.trip-tags {
+  list-style: none;
   margin: 0;
-  color: var(--kleur-tekst-licht);
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.trip-tag {
+  font-family: var(--font-accent);
+  font-size: 15px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--warm-paper);
+  border-radius: 999px;
+  padding: 5px 14px;
+}
+.trip-tag--sport {
+  background: var(--deep-teal);
+}
+.trip-tag--boulderen {
+  background: var(--canyon-rust);
+}
+.trip-tag--hike {
+  background: var(--forest-green);
+}
+.trip-tag--plum {
+  background: var(--dusk-plum);
+}
+.trip-tag--amber {
+  background: var(--trail-amber);
+  color: var(--charcoal-ink);
 }
 
-@media (max-width: 620px) {
-  .event-kaart {
-    grid-template-columns: 1fr;
-  }
+.trip-feiten {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  margin: 0 0 22px;
+  border: var(--rand) solid var(--deep-teal);
+  border-radius: var(--afgerond);
+  overflow: hidden;
+  background: var(--alpine-sky);
+}
+.trip-feiten div {
+  padding: 10px 14px;
+}
+.trip-feiten div + div {
+  border-left: var(--rand) solid var(--deep-teal);
+}
+.trip-feiten dt {
+  font-family: var(--font-accent);
+  font-size: 15px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--deep-teal);
+}
+.trip-feiten dd {
+  margin: 2px 0 0;
+  font-weight: 600;
+  color: var(--deep-teal);
+}
 
-  .event-kaart__datum {
-    width: 112px;
+.trip-modal__link {
+  font-weight: 700;
+  color: var(--canyon-rust);
+  transition: color 0.15s ease;
+}
+
+.trip-modal__link:hover,
+.trip-modal__link:focus-visible {
+  color: var(--deep-teal);
+}
+
+.trip-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: clamp(24px, 3vw, 40px);
+  background: var(--canyon-rust);
+  color: var(--warm-paper);
+}
+.trip-form__kop,
+.trip-form__label {
+  font-family: var(--font-accent);
+  font-size: 18px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--trail-amber);
+}
+.trip-form__kop {
+  font-size: 22px;
+}
+.trip-form__groep {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  min-width: 0;
+}
+.trip-form__groep legend {
+  padding: 0;
+  margin-bottom: 8px;
+}
+.trip-form__hint {
+  font-size: 14px;
+  color: color-mix(in srgb, var(--warm-paper) 85%, transparent);
+}
+
+.veld {
+  width: 100%;
+  height: 48px;
+  font: inherit;
+  font-size: 16px;
+  color: var(--charcoal-ink);
+  background: var(--warm-paper);
+  border: var(--rand) solid var(--trail-amber);
+  border-radius: var(--afgerond);
+  padding: 0 16px;
+}
+.veld::placeholder {
+  color: color-mix(in srgb, var(--canyon-rust) 75%, transparent);
+}
+.veld:focus-visible,
+.keuze-chip input:focus-visible + span,
+.akkoord input:focus-visible {
+  outline: 2px solid var(--glacier-teal);
+  outline-offset: 2px;
+}
+
+.keuze-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.keuze-chip input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+.keuze-chip span {
+  display: inline-flex;
+  align-items: center;
+  height: 36px;
+  padding: 0 16px;
+  font-family: var(--font-accent);
+  font-size: 16px;
+  letter-spacing: 0.04em;
+  color: var(--warm-paper);
+  border: var(--rand) solid var(--warm-paper);
+  border-radius: 999px;
+  cursor: pointer;
+  transition:
+    background-color 180ms ease,
+    color 180ms ease,
+    border-color 180ms ease;
+}
+.keuze-chip span:hover {
+  background: color-mix(in srgb, var(--warm-paper) 15%, transparent);
+}
+.keuze-chip input:checked + span {
+  background: var(--trail-amber);
+  border-color: var(--trail-amber);
+  color: var(--charcoal-ink);
+}
+
+.akkoord {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+.akkoord input {
+  width: 20px;
+  height: 20px;
+  margin: 0;
+  accent-color: var(--trail-amber);
+}
+.trip-form__knop {
+  width: 100%;
+  min-height: 48px;
+  margin-top: 4px;
+  font-size: 18px;
+}
+
+.trip-klaar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 14px;
+  max-width: 620px;
+  margin: 0 auto;
+  padding: clamp(40px, 6vw, 72px) clamp(24px, 4vw, 48px);
+}
+.trip-klaar__kop {
+  font-family: var(--font-accent);
+  font-size: 18px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--canyon-rust);
+}
+.trip-klaar__vinkje {
+  width: 76px;
+  height: 76px;
+  display: grid;
+  place-items: center;
+  border: var(--rand) solid var(--forest-green);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--forest-green) 12%, var(--warm-paper));
+}
+.trip-klaar__vinkje svg {
+  width: 36px;
+  height: 36px;
+  fill: none;
+  stroke: var(--forest-green);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.trip-klaar h2 {
+  font-family: var(--font-h2);
+  font-size: clamp(28px, 3.5vw, 38px);
+  font-weight: 400;
+  color: var(--deep-teal);
+  margin: 0;
+}
+.trip-klaar p {
+  margin: 0;
+  line-height: 1.55;
+  color: var(--charcoal-ink);
+}
+.trip-klaar p.trip-klaar__gear {
+  padding: 10px 16px;
+  background: var(--alpine-sky);
+  border: var(--rand) solid var(--deep-teal);
+  border-radius: var(--afgerond);
+  color: var(--deep-teal);
+}
+.trip-modal h2 {
+  letter-spacing: normal;
+  font-weight: 400;
+}
+.trip-klaar__acties {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+@media (max-width: 760px) {
+  .trip-modal__grid {
+    grid-template-columns: 1fr;
   }
 }

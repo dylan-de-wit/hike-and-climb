@@ -3,8 +3,19 @@
   <div class="sp-nav__inner">
     <span class="sp-nav__merk">Materiaal & voorbereiding</span>
     <ul class="sp-nav__links">
-      <li><a href="#" [class.mat-actief]="tab() === 'materiaal'" (click)="setTab('materiaal', $event)">Materiaal</a></li>
-      <li><a href="#" [class.mat-actief]="tab() === 'voorbereiding'" (click)="setTab('voorbereiding', $event)">Voorbereiding</a></li>
+      <li>
+        <a href="#" [class.mat-actief]="tab() === 'materiaal'" (click)="setTab('materiaal', $event)"
+          >Materiaal</a
+        >
+      </li>
+      <li>
+        <a
+          href="#"
+          [class.mat-actief]="tab() === 'voorbereiding'"
+          (click)="setTab('voorbereiding', $event)"
+          >Voorbereiding</a
+        >
+      </li>
     </ul>
   </div>
 </nav>
@@ -14,7 +25,7 @@
   <img class="sp-hero__media" src="images/touwen.jpg" alt="" aria-hidden="true" />
   <div class="sp-hero__inner">
     <span class="content-eyebrow">Klimmen · Materiaal & voorbereiding</span>
-    <h1>Materiaal &<br>voorbereiding</h1>
+    <h1>Materiaal &<br />voorbereiding</h1>
     <p class="sp-hero__intro">
       Stel je klimset samen, ken elk stuk materiaal van etiket tot levensduur, en check jezelf, je
       partner en de route voordat je aan de wand begint.
@@ -33,843 +44,1115 @@
     type="button"
     class="mat-tabs__btn"
     [class.mat-tabs__btn--actief]="tab() === 'materiaal'"
-    (click)="setTab('materiaal')">
+    (click)="setTab('materiaal')"
+  >
     Materiaal <span class="mat-tabs__aantal">11 items</span>
   </button>
   <button
     type="button"
     class="mat-tabs__btn"
     [class.mat-tabs__btn--actief]="tab() === 'voorbereiding'"
-    (click)="setTab('voorbereiding')">
+    (click)="setTab('voorbereiding')"
+  >
     Voorbereiding <span class="mat-tabs__aantal">9 stappen</span>
   </button>
 </div>
 
 @if (tab() === 'materiaal') {
+  <!-- ═══ TAB 1 — MATERIAAL ═══ -->
+  <section class="sectie" id="materiaal-tab">
+    <div class="sectie-inner tekst-blok">
+      <p>
+        Elk stuk materiaal hieronder volgt hetzelfde patroon: waarvoor je het gebruikt, welke
+        soorten er zijn, wat er op het etiket staat, hoe je het keurt en hoe je het bewaart. Klap
+        een item open voor het volledige verhaal.
+      </p>
+    </div>
+    <nav class="mat-chips" aria-label="Snel naar een materiaal-item">
+      <a href="#touw" (click)="springNaarItem('touw', $event)">Touw</a>
+      <a href="#gordel" (click)="springNaarItem('gordel', $event)">Gordel</a>
+      <a href="#helm" (click)="springNaarItem('helm', $event)">Helm</a>
+      <a href="#zekeringsapparaat" (click)="springNaarItem('zekeringsapparaat', $event)"
+        >Zekeringsapparaat</a
+      >
+      <a href="#karabiners" (click)="springNaarItem('karabiners', $event)">Karabiners</a>
+      <a href="#quickdraws" (click)="springNaarItem('quickdraws', $event)">Quickdraws</a>
+      <a href="#slings" (click)="springNaarItem('slings', $event)">Slings</a>
+      <a href="#prusiktouwtjes" (click)="springNaarItem('prusiktouwtjes', $event)"
+        >Prusiktouwtjes</a
+      >
+      <a href="#klimschoenen" (click)="springNaarItem('klimschoenen', $event)">Klimschoenen</a>
+      <a href="#magnesium" (click)="springNaarItem('magnesium', $event)">Magnesium</a>
+      <a href="#overig" (click)="springNaarItem('overig', $event)">Overig</a>
+    </nav>
 
-<!-- ═══ TAB 1 — MATERIAAL ═══ -->
-<section class="sectie" id="materiaal-tab">
-  <div class="sectie-inner tekst-blok">
-    <p>
-      Elk stuk materiaal hieronder volgt hetzelfde patroon: waarvoor je het gebruikt, welke soorten er
-      zijn, wat er op het etiket staat, hoe je het keurt en hoe je het bewaart. Klap een item open voor
-      het volledige verhaal.
-    </p>
-  </div>
-
-  <!-- Chips: snel naar een item -->
-  <nav class="mat-chips" aria-label="Snel naar een materiaal-item">
-    <a href="#touw" (click)="springNaarItem('touw', $event)">Touw</a>
-    <a href="#gordel" (click)="springNaarItem('gordel', $event)">Gordel</a>
-    <a href="#helm" (click)="springNaarItem('helm', $event)">Helm</a>
-    <a href="#zekeringsapparaat" (click)="springNaarItem('zekeringsapparaat', $event)">Zekeringsapparaat</a>
-    <a href="#karabiners" (click)="springNaarItem('karabiners', $event)">Karabiners</a>
-    <a href="#quickdraws" (click)="springNaarItem('quickdraws', $event)">Quickdraws</a>
-    <a href="#slings" (click)="springNaarItem('slings', $event)">Slings</a>
-    <a href="#prusiktouwtjes" (click)="springNaarItem('prusiktouwtjes', $event)">Prusiktouwtjes</a>
-    <a href="#klimschoenen" (click)="springNaarItem('klimschoenen', $event)">Klimschoenen</a>
-    <a href="#magnesium" (click)="springNaarItem('magnesium', $event)">Magnesium</a>
-    <a href="#overig" (click)="springNaarItem('overig', $event)">Overig</a>
-  </nav>
-
-  <div class="sectie-inner sp-blok">
-    <div class="accordions mat-items" [class.mat-items--springen]="springActief()">
-
-      <!-- ─── 1. TOUW ─── -->
-      <details id="touw" class="accordion mat-item" [open]="isOpen('touw')" (toggle)="onToggle('touw', $any($event.target).open)">
-        <summary>
-          <span class="mat-item__naam">Touw</span>
-          <span class="mat-item__meta">EN 892 · levensduur 10 jaar</span>
-        </summary>
-        <div class="accordion__body">
-
-          <p class="mat-substap mat-substap--eerste">1. Waarvoor & hoe het werkt</p>
-          <div class="accordion__media">
-            <div class="accordion__tekst">
-              <p>
-                Klimtouwen zijn <strong>dynamisch</strong>: ze rekken tot 40% bij een val om de
-                schokbelasting over een groot traject te spreiden. <strong>Statische</strong> touwen
-                hebben nauwelijks rek en zijn nooit geschikt om een voorklimval mee op te vangen.
-                Gebruik statisch touw alleen voor abseilen of als werktouw.
-              </p>
-              <p>
-                Er zijn drie soorten dynamisch klimtouw. Het verschil zit niet alleen in de dikte, maar
-                vooral in hoe je ze gebruikt: hoeveel touwen je meeneemt en hoe je ze door de quickdraws
-                clipt.
-              </p>
-            </div>
-            <div class="foto-plsh foto-plsh--kaart accordion__foto"><span>foto — touw rekt door tijdens een val</span></div>
-          </div>
-
-          <p class="mat-substap">2. Soorten — het keuzetabel</p>
-          <div class="tabel-wrap">
-            <div class="tabel-kop">
-              <div class="tabel-kop__tekst">
-                <span class="tabel-kop__kicker">Soorten</span>
-                <h4 class="tabel-kop__titel">Enkel, half of tweeling</h4>
+    <div class="sectie-inner sp-blok">
+      <div class="accordions mat-items" [class.mat-items--springen]="springActief()">
+        <details
+          id="touw"
+          class="accordion mat-item"
+          [open]="isOpen('touw')"
+          (toggle)="onToggle('touw', $any($event.target).open)"
+        >
+          <summary>
+            <span class="mat-item__naam">Touw</span>
+            <span class="mat-item__meta">EN 892 · levensduur 10 jaar</span>
+          </summary>
+          <div class="accordion__body">
+            <p class="mat-substap mat-substap--eerste">1. Waarvoor & hoe het werkt</p>
+            <div class="accordion__media">
+              <div class="accordion__tekst">
+                <p>
+                  Klimtouwen zijn <strong>dynamisch</strong>: ze rekken tot 40% bij een val om de
+                  schokbelasting over een groot traject te spreiden.
+                  <strong>Statische</strong> touwen hebben nauwelijks rek en zijn nooit geschikt om
+                  een voorklimval mee op te vangen. Gebruik statisch touw alleen voor abseilen of
+                  als werktouw.
+                </p>
+                <p>
+                  Er zijn drie soorten dynamisch klimtouw. Het verschil zit niet alleen in de dikte,
+                  maar vooral in hoe je ze gebruikt: hoeveel touwen je meeneemt en hoe je ze door de
+                  quickdraws clipt.
+                </p>
               </div>
-              <span class="tabel-kop__badge">3 soorten</span>
+              <div class="foto-plsh foto-plsh--kaart accordion__foto">
+                <span>foto — touw rekt door tijdens een val</span>
+              </div>
             </div>
-            <table class="sp-tabel">
-              <thead>
-                <tr><th>Soort</th><th>Diameter</th><th>Hoe clippen</th><th>Wanneer gebruiken</th><th>Symbool</th></tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td data-label="Soort">Enkeltouw</td>
-                  <td data-label="Diameter">8,5–10 mm (meestal 9,5 mm)</td>
-                  <td data-label="Hoe clippen">Elke quickdraw</td>
-                  <td data-label="Wanneer">Standaard voor single pitch, min. 60 m, bij voorkeur 70–80 m</td>
-                  <td data-label="Symbool"><span class="status status--teal">Enkel (cirkel)</span></td>
-                </tr>
-                <tr>
-                  <td data-label="Soort">Halftouw</td>
-                  <td data-label="Diameter">7,5–9 mm</td>
-                  <td data-label="Hoe clippen">Beurtelings, elk touw een eigen lijn</td>
-                  <td data-label="Wanneer">Multipitch met bochten, 3 klimmers, grote haakafstanden</td>
-                  <td data-label="Symbool"><span class="status status--groen">½</span></td>
-                </tr>
-                <tr>
-                  <td data-label="Soort">Tweelingtouw</td>
-                  <td data-label="Diameter">6,9–7,8 mm</td>
-                  <td data-label="Hoe clippen">Samen, beide touwen door elke quickdraw</td>
-                  <td data-label="Wanneer">Lichtgewicht alpiene routes, ingebouwde back-up</td>
-                  <td data-label="Symbool"><span class="status status--plum">∞</span></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
 
-          <div class="sp-kaarten sp-kaarten--3 mat-soorten">
-            <article class="sp-kaart kaart-thema">
-              <h4>Enkeltouw</h4>
-              <div class="foto-plsh foto-plsh--kaart"><span>foto — enkeltouw, elke quickdraw geclipt</span></div>
-              <p>
-                Eén touw, sterk genoeg om een val alleen op te vangen. De makkelijkste en meest
-                gebruikte optie. Nadeel: veel wrijving bij een zigzagroute. Lengte minimaal het
-                dubbele van de routelengte.
-              </p>
-            </article>
-            <article class="sp-kaart kaart-thema">
-              <h4>Halftouw</h4>
-              <div class="foto-plsh foto-plsh--kaart"><span>foto — twee touwen, elk een eigen lijn</span></div>
-              <p>
-                Twee touwen die je apart inclipt, elk zijn eigen rechte lijn — minder wrijving bij
-                bochten. Bij een val vangen beide touwen samen de schok op.
-              </p>
-            </article>
-            <article class="sp-kaart kaart-thema">
-              <h4>Tweelingtouw</h4>
-              <div class="foto-plsh foto-plsh--kaart"><span>foto — twee touwen samen door één quickdraw</span></div>
-              <p>
-                Werkt als een enkeltouw, maar met een ingebouwde back-up bij randschade. Nadeel: altijd
-                het gewicht van twee touwen, en hetzelfde wrijvingsprobleem als enkeltouw.
-              </p>
-            </article>
-          </div>
-
-          <p class="mat-substap">3. Specificaties van het etiket</p>
-          <div class="accordion__media">
+            <p class="mat-substap">2. Soorten — het keuzetabel</p>
             <div class="tabel-wrap">
               <div class="tabel-kop">
                 <div class="tabel-kop__tekst">
-                  <span class="tabel-kop__kicker">Etiket</span>
-                  <h4 class="tabel-kop__titel">Specificaties</h4>
+                  <span class="tabel-kop__kicker">Soorten</span>
+                  <h4 class="tabel-kop__titel">Enkel, half of tweeling</h4>
                 </div>
+                <span class="tabel-kop__badge">3 soorten</span>
               </div>
-              <table class="sp-tabel sp-tabel--specs">
+              <table class="sp-tabel">
+                <thead>
+                  <tr>
+                    <th>Soort</th>
+                    <th>Diameter</th>
+                    <th>Hoe clippen</th>
+                    <th>Wanneer gebruiken</th>
+                    <th>Symbool</th>
+                  </tr>
+                </thead>
                 <tbody>
-                  <tr><td data-label="Kenmerk">Vangstoot</td><td data-label="Waarde">28–35% dynamische rek — hoe lager, hoe zachter de val</td></tr>
-                  <tr><td data-label="Kenmerk">Normvallen</td><td data-label="Waarde">Aantal testvallen dat het touw kan opvangen voor het faalt</td></tr>
-                  <tr><td data-label="Kenmerk">Norm</td><td data-label="Waarde">EN 892 — verplicht voor alle dynamische klimtouwen</td></tr>
+                  <tr>
+                    <td data-label="Soort">Enkeltouw</td>
+                    <td data-label="Diameter">8,5–10 mm (meestal 9,5 mm)</td>
+                    <td data-label="Hoe clippen">Elke quickdraw</td>
+                    <td data-label="Wanneer">
+                      Standaard voor single pitch, min. 60 m, bij voorkeur 70–80 m
+                    </td>
+                    <td data-label="Symbool">
+                      <span class="status status--teal">Enkel (cirkel)</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td data-label="Soort">Halftouw</td>
+                    <td data-label="Diameter">7,5–9 mm</td>
+                    <td data-label="Hoe clippen">Beurtelings, elk touw een eigen lijn</td>
+                    <td data-label="Wanneer">
+                      Multipitch met bochten, 3 klimmers, grote haakafstanden
+                    </td>
+                    <td data-label="Symbool"><span class="status status--groen">½</span></td>
+                  </tr>
+                  <tr>
+                    <td data-label="Soort">Tweelingtouw</td>
+                    <td data-label="Diameter">6,9–7,8 mm</td>
+                    <td data-label="Hoe clippen">Samen, beide touwen door elke quickdraw</td>
+                    <td data-label="Wanneer">Lichtgewicht alpiene routes, ingebouwde back-up</td>
+                    <td data-label="Symbool"><span class="status status--plum">∞</span></td>
+                  </tr>
                 </tbody>
               </table>
             </div>
-            <div class="foto-plsh foto-plsh--kaart accordion__foto"><span>foto — vangstoot/normvallen op het touwetiket</span></div>
-          </div>
-          <p>
-            Na een zware val in de praktijk kan de structuur van het touw beschadigd zijn, ook als er
-            uiterlijk niets zichtbaar is.
-          </p>
 
-          <p class="mat-substap">4. Keuren</p>
-          <div class="accordion__media">
-            <div class="accordion__tekst">
-              <p>
-                Een touw bestaat uit een kern (vangt de krachten) en een mantel (beschermt tegen
-                slijtage, vuil en UV). Controleer voor en na elk gebruik door het langzaam door je
-                handen te laten glijden. Voel op platte plekken, verdikkingen, verhardingen of plekken
-                waar de mantel over de kern verschuift.
-              </p>
+            <div class="sp-kaarten sp-kaarten--3 mat-soorten">
+              <article class="sp-kaart kaart-thema">
+                <h4>Enkeltouw</h4>
+                <div class="foto-plsh foto-plsh--kaart">
+                  <span>foto — enkeltouw, elke quickdraw geclipt</span>
+                </div>
+                <p>
+                  Eén touw, sterk genoeg om een val alleen op te vangen. De makkelijkste en meest
+                  gebruikte optie. Nadeel: veel wrijving bij een zigzagroute. Lengte minimaal het
+                  dubbele van de routelengte.
+                </p>
+              </article>
+              <article class="sp-kaart kaart-thema">
+                <h4>Halftouw</h4>
+                <div class="foto-plsh foto-plsh--kaart">
+                  <span>foto — twee touwen, elk een eigen lijn</span>
+                </div>
+                <p>
+                  Twee touwen die je apart inclipt, elk zijn eigen rechte lijn — minder wrijving bij
+                  bochten. Bij een val vangen beide touwen samen de schok op.
+                </p>
+              </article>
+              <article class="sp-kaart kaart-thema">
+                <h4>Tweelingtouw</h4>
+                <div class="foto-plsh foto-plsh--kaart">
+                  <span>foto — twee touwen samen door één quickdraw</span>
+                </div>
+                <p>
+                  Werkt als een enkeltouw, maar met een ingebouwde back-up bij randschade. Nadeel:
+                  altijd het gewicht van twee touwen, en hetzelfde wrijvingsprobleem als enkeltouw.
+                </p>
+              </article>
             </div>
-            <div class="foto-plsh foto-plsh--kaart accordion__foto"><span>foto — touw door de handen laten glijden</span></div>
-          </div>
-          <aside class="callout callout--let">
-            <span class="callout__label">Let op</span>
-            <p>Zichtbare kerndraden, snijschade of sterke vervorming: het touw wordt direct afgekeurd.</p>
-          </aside>
 
-          <p class="mat-substap">5. Opslag & onderhoud</p>
-          <p>
-            Berg je touw op in een touwtas, koel, droog en donker, uit direct zonlicht — UV breekt het
-            nylon af, ook onzichtbaar. Leg het nooit direct in zand of op vuile grond: vuil werkt als
-            schuurpapier. Was het zo nodig lauwwarm met alkalivrij wasmiddel, op de fijnwas zonder
-            centrifuge, en laat het drogen uit de zon.
-          </p>
-          <p class="mat-levensduur">Levensduur: max. 10 jaar vanaf productiedatum · praktisch 3–5 jaar bij regelmatig gebruik</p>
-        </div>
-      </details>
-
-      <!-- ─── 2. GORDEL ─── -->
-      <details id="gordel" class="accordion mat-item" [open]="isOpen('gordel')" (toggle)="onToggle('gordel', $any($event.target).open)">
-        <summary>
-          <span class="mat-item__naam">Gordel</span>
-          <span class="mat-item__meta">pasvorm · keuren · 5–7 jaar</span>
-        </summary>
-        <div class="accordion__body">
-          <div class="accordion__media">
-            <div class="accordion__tekst">
-              <p>
-                De sportklimgordel bestaat uit een heupband en twee beenlussen. De heupband hoort
-                strak boven je heupbeenderen te zitten. Beenlussen horen zo strak te zitten dat je er
-                een vlakke hand tussen kunt steken — te los kunnen ze bij een val omhoog schieten en je
-                uit balans brengen.
-              </p>
-              <p>
-                De <strong>inbindlus</strong> op de voorkant is het centrale verbindingspunt voor je
-                inbindknoop en zelfzekering. De <strong>belaylus</strong> eronder is voor het
-                zekeringsapparaat. De twee tot vier <strong>materiaallussen</strong> aan de zijkant zijn
-                niet ontworpen om lichaamskracht op te vangen — alleen voor setjes en slings.
-              </p>
-            </div>
-            <div class="foto-plsh foto-plsh--kaart accordion__foto"><span>foto — gordel aangetrokken, inbindlus en belaylus zichtbaar</span></div>
-          </div>
-          <p class="mat-substap">Keuren</p>
-          <p>
-            Controleer voor elk gebruik de stiksels, verbleking van het weefsel (UV-degradatie),
-            beschadigde gespen en rafelige randen rond de inbindlus.
-          </p>
-          <p class="mat-levensduur">Levensduur: gemiddeld 5–7 jaar bij regelmatig gebruik · max. 10 jaar vanaf productiedatum, ook bij minimaal gebruik</p>
-        </div>
-      </details>
-
-      <!-- ─── 3. HELM ─── -->
-      <details id="helm" class="accordion mat-item" [open]="isOpen('helm')" (toggle)="onToggle('helm', $any($event.target).open)">
-        <summary>
-          <span class="mat-item__naam">Helm</span>
-          <span class="mat-item__meta">schaal vs. hybride · EN 12492 · 10 jaar</span>
-        </summary>
-        <div class="accordion__body">
-          <p>
-            Een klimhelm is verplicht bij buitenklimmen: hij beschermt tegen vallende stenen, loskomend
-            puin en een klap tegen de rotswand. Ook als zekeraar draag je een helm — stenen die de
-            klimmer lostrekt kunnen recht naar beneden komen.
-          </p>
-          <p class="mat-substap">Soorten</p>
-          <div class="tabel-wrap">
-            <div class="tabel-kop">
-              <div class="tabel-kop__tekst">
-                <span class="tabel-kop__kicker">Soorten</span>
-                <h4 class="tabel-kop__titel">Schaal of hybride</h4>
+            <p class="mat-substap">3. Specificaties van het etiket</p>
+            <div class="accordion__media">
+              <div class="tabel-wrap">
+                <div class="tabel-kop">
+                  <div class="tabel-kop__tekst">
+                    <span class="tabel-kop__kicker">Etiket</span>
+                    <h4 class="tabel-kop__titel">Specificaties</h4>
+                  </div>
+                </div>
+                <table class="sp-tabel sp-tabel--specs">
+                  <tbody>
+                    <tr>
+                      <td data-label="Kenmerk">Vangstoot</td>
+                      <td data-label="Waarde">
+                        28–35% dynamische rek — hoe lager, hoe zachter de val
+                      </td>
+                    </tr>
+                    <tr>
+                      <td data-label="Kenmerk">Normvallen</td>
+                      <td data-label="Waarde">
+                        Aantal testvallen dat het touw kan opvangen voor het faalt
+                      </td>
+                    </tr>
+                    <tr>
+                      <td data-label="Kenmerk">Norm</td>
+                      <td data-label="Waarde">
+                        EN 892 — verplicht voor alle dynamische klimtouwen
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
-              <span class="tabel-kop__badge">2 typen</span>
+              <div class="foto-plsh foto-plsh--kaart accordion__foto">
+                <span>foto — vangstoot/normvallen op het touwetiket</span>
+              </div>
             </div>
-            <table class="sp-tabel">
-              <thead><tr><th>Type</th><th>Werking</th><th>Eigenschap</th></tr></thead>
-              <tbody>
-                <tr>
-                  <td data-label="Type">Schaalhelm</td>
-                  <td data-label="Werking">Absorbeert energie door vervorming (meestal EPS)</td>
-                  <td data-label="Eigenschap">Licht, maar kan na één klap zijn werking verliezen</td>
-                </tr>
-                <tr>
-                  <td data-label="Type">Hybride helm</td>
-                  <td data-label="Werking">Harde buitenschaal + schuimlaag</td>
-                  <td data-label="Eigenschap">Robuuster bij herhaalde lichte impacts</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <p style="margin-top: 12px;">Beide typen voldoen aan dezelfde norm: EN 12492 voor bergsport.</p>
-          <p class="mat-substap">Keuren & opslag</p>
-          <p>
-            Controleer voor elk gebruik op scheuren, deuken, krassen en verkleuring, en inspecteer het
-            binnenwerk en de kinband. Bewaar de helm koel, droog en uit direct zonlicht — UV verzwakt
-            het materiaal.
-          </p>
-          <aside class="callout callout--let">
-            <span class="callout__label">Let op</span>
-            <p>Na een zware klap vervang je de helm direct, ook zonder zichtbare schade — interne barsten zie je niet met het blote oog.</p>
-          </aside>
-          <p class="mat-levensduur">Levensduur: max. 10 jaar vanaf productiedatum</p>
-        </div>
-      </details>
+            <p>
+              Na een zware val in de praktijk kan de structuur van het touw beschadigd zijn, ook als
+              er uiterlijk niets zichtbaar is.
+            </p>
 
-      <!-- ─── 4. ZEKERINGSAPPARAAT ─── -->
-      <details id="zekeringsapparaat" class="accordion mat-item" [open]="isOpen('zekeringsapparaat')" (toggle)="onToggle('zekeringsapparaat', $any($event.target).open)">
-        <summary>
-          <span class="mat-item__naam">Zekeringsapparaat</span>
-          <span class="mat-item__meta">tuber vs. halfautomaat</span>
-        </summary>
-        <div class="accordion__body">
-          <div class="accordion__media">
-            <div class="accordion__tekst">
-              <p>
-                Een <strong>tuber</strong> (ATC Guide, Reverso, Mega Jul, Pivot) is de standaard voor
-                single- en multi-pitch. In normale modus hang je hem aan je gordel om de voorklimmer te
-                zekeren; in guide-modus hang je hem aan het centrale punt van de standplaats, zodat het
-                systeem bij een val automatisch blokkeert.
-              </p>
-              <p>
-                Een <strong>halfautomaat</strong> (Petzl GriGri, Edelrid Giga Jul, Camp Smart) blokkeert
-                volledig automatisch bij een val, zonder dat de zekeraar het remtouw hoeft vast te
-                houden. Touw uitgeven gaat wel minder soepel dan bij een tuber. Ook met een halfautomaat
-                houd je altijd je remhand aan het touw.
-              </p>
+            <p class="mat-substap">4. Keuren</p>
+            <div class="accordion__media">
+              <div class="accordion__tekst">
+                <p>
+                  Een touw bestaat uit een kern (vangt de krachten) en een mantel (beschermt tegen
+                  slijtage, vuil en UV). Controleer voor en na elk gebruik door het langzaam door je
+                  handen te laten glijden. Voel op platte plekken, verdikkingen, verhardingen of
+                  plekken waar de mantel over de kern verschuift.
+                </p>
+              </div>
+              <div class="foto-plsh foto-plsh--kaart accordion__foto">
+                <span>foto — touw door de handen laten glijden</span>
+              </div>
             </div>
-            <div class="foto-plsh foto-plsh--kaart accordion__foto"><span>foto — tuber in guide-modus aan het centrale punt</span></div>
-          </div>
-          <p class="mat-substap">Keuren</p>
-          <p>
-            Controleer de sleuven van de tuber op slijtage. Worden de randen dun en scherp door vuil
-            touw, vervang dan het apparaat.
-          </p>
-        </div>
-      </details>
-
-      <!-- ─── 5. KARABINERS ─── -->
-      <details id="karabiners" class="accordion mat-item" [open]="isOpen('karabiners')" (toggle)="onToggle('karabiners', $any($event.target).open)">
-        <summary>
-          <span class="mat-item__naam">Karabiners</span>
-          <span class="mat-item__meta">3 sluitingsklassen · HMS</span>
-        </summary>
-        <div class="accordion__body">
-          <p>Niet elke karabiner is geschikt voor elke positie — het verschil zit in het sluitingsmechanisme.</p>
-
-          <p class="mat-substap">Soorten</p>
-          <div class="sp-kaarten sp-kaarten--3 mat-soorten">
-            <article class="sp-kaart kaart-thema">
-              <h4>Snapper</h4>
-              <p>Open met één drukbeweging. Alleen voor setjes en quickdraws — nooit op levensdragende posities zoals zelfzekering of zekeringsapparaat.</p>
-            </article>
-            <article class="sp-kaart kaart-thema">
-              <h4>Beveiligd</h4>
-              <p>Schroef- of twistlock, minimaal twee bewegingen om te openen. Geschikt voor zekeringsapparaat en standplaatsinrichting. Schroef altijd volledig dichtdraaien en dubbel checken.</p>
-            </article>
-            <article class="sp-kaart kaart-thema">
-              <h4>Extra beveiligd</h4>
-              <p>Safebiner, minimaal drie handelingen. Verplicht voor zelfzekering, centraal punt en zekeringskarabiner op de standplaats. Check compatibiliteit met je zekeringsapparaat.</p>
-            </article>
-          </div>
-
-          <div class="accordion__media">
-            <div class="accordion__tekst">
+            <aside class="callout callout--let">
+              <span class="callout__label">Let op</span>
               <p>
-                Gebruik voor de halve mastworp altijd een <strong>HMS-karabiner</strong> — herkenbaar aan
-                de omcirkelde H. De peervorm zorgt dat de knoop correct omdraait bij het wisselen van
-                touw inhalen naar uitgeven. Kies bij voorkeur een safebiner-variant.
+                Zichtbare kerndraden, snijschade of sterke vervorming: het touw wordt direct
+                afgekeurd.
               </p>
+            </aside>
+
+            <p class="mat-substap">5. Opslag & onderhoud</p>
+            <p>
+              Berg je touw op in een touwtas, koel, droog en donker, uit direct zonlicht — UV breekt
+              het nylon af, ook onzichtbaar. Leg het nooit direct in zand of op vuile grond: vuil
+              werkt als schuurpapier. Was het zo nodig lauwwarm met alkalivrij wasmiddel, op de
+              fijnwas zonder centrifuge, en laat het drogen uit de zon.
+            </p>
+            <p class="mat-levensduur">
+              Levensduur: max. 10 jaar vanaf productiedatum · praktisch 3–5 jaar bij regelmatig
+              gebruik
+            </p>
+          </div>
+        </details>
+        <details
+          id="gordel"
+          class="accordion mat-item"
+          [open]="isOpen('gordel')"
+          (toggle)="onToggle('gordel', $any($event.target).open)"
+        >
+          <summary>
+            <span class="mat-item__naam">Gordel</span>
+            <span class="mat-item__meta">pasvorm · keuren · 5–7 jaar</span>
+          </summary>
+          <div class="accordion__body">
+            <div class="accordion__media">
+              <div class="accordion__tekst">
+                <p>
+                  De sportklimgordel bestaat uit een heupband en twee beenlussen. De heupband hoort
+                  strak boven je heupbeenderen te zitten. Beenlussen horen zo strak te zitten dat je
+                  er een vlakke hand tussen kunt steken — te los kunnen ze bij een val omhoog
+                  schieten en je uit balans brengen.
+                </p>
+                <p>
+                  De <strong>inbindlus</strong> op de voorkant is het centrale verbindingspunt voor
+                  je inbindknoop en zelfzekering. De <strong>belaylus</strong> eronder is voor het
+                  zekeringsapparaat. De twee tot vier <strong>materiaallussen</strong> aan de
+                  zijkant zijn niet ontworpen om lichaamskracht op te vangen — alleen voor setjes en
+                  slings.
+                </p>
+              </div>
+              <div class="foto-plsh foto-plsh--kaart accordion__foto">
+                <span>foto — gordel aangetrokken, inbindlus en belaylus zichtbaar</span>
+              </div>
             </div>
-            <div class="foto-plsh foto-plsh--kaart accordion__foto"><span>foto — HMS-karabiner met halve mastworp</span></div>
+            <p class="mat-substap">Keuren</p>
+            <p>
+              Controleer voor elk gebruik de stiksels, verbleking van het weefsel (UV-degradatie),
+              beschadigde gespen en rafelige randen rond de inbindlus.
+            </p>
+            <p class="mat-levensduur">
+              Levensduur: gemiddeld 5–7 jaar bij regelmatig gebruik · max. 10 jaar vanaf
+              productiedatum, ook bij minimaal gebruik
+            </p>
           </div>
-
-          <p class="mat-substap">Keuren</p>
-          <p>
-            Inspecteer op groeven van touwslijtage, vervormingen en een goed sluitend gate. Een
-            karabiner met een slecht sluitende gate of zichtbare vervorming na een val keur je af. Hang
-            karabiners altijd met de schroef naar beneden (gravity loaded) en van de wand af.
-          </p>
-        </div>
-      </details>
-
-      <!-- ─── 6. QUICKDRAWS ─── -->
-      <details id="quickdraws" class="accordion mat-item" [open]="isOpen('quickdraws')" (toggle)="onToggle('quickdraws', $any($event.target).open)">
-        <summary>
-          <span class="mat-item__naam">Quickdraws (setjes)</span>
-          <span class="mat-item__meta">12/18/25 cm · min. 10 setjes</span>
-        </summary>
-        <div class="accordion__body">
-          <div class="accordion__media">
-            <div class="accordion__tekst">
-              <p>
-                Een quickdraw bestaat uit twee karabiners verbonden door een korte slinge, waarmee je
-                het klimtouw door de tussenhaken clipt. Neem per persoon minimaal <strong>tien
-                setjes</strong> mee, of meer als je routes wilt projecten. Check vooraf in de topo
-                hoeveel haken de langste route heeft.
-              </p>
-              <p>
-                Standaardsetjes zijn 12 cm. Langere setjes (18 of 25 cm) zijn handig bij haken die niet
-                recht boven elkaar zitten of diep in een nis zitten — ze verminderen touwwrijving. Neem
-                altijd een paar langere setjes mee.
-              </p>
+        </details>
+        <details
+          id="helm"
+          class="accordion mat-item"
+          [open]="isOpen('helm')"
+          (toggle)="onToggle('helm', $any($event.target).open)"
+        >
+          <summary>
+            <span class="mat-item__naam">Helm</span>
+            <span class="mat-item__meta">schaal vs. hybride · EN 12492 · 10 jaar</span>
+          </summary>
+          <div class="accordion__body">
+            <p>
+              Een klimhelm is verplicht bij buitenklimmen: hij beschermt tegen vallende stenen,
+              loskomend puin en een klap tegen de rotswand. Ook als zekeraar draag je een helm —
+              stenen die de klimmer lostrekt kunnen recht naar beneden komen.
+            </p>
+            <p class="mat-substap">Soorten</p>
+            <div class="tabel-wrap">
+              <div class="tabel-kop">
+                <div class="tabel-kop__tekst">
+                  <span class="tabel-kop__kicker">Soorten</span>
+                  <h4 class="tabel-kop__titel">Schaal of hybride</h4>
+                </div>
+                <span class="tabel-kop__badge">2 typen</span>
+              </div>
+              <table class="sp-tabel">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Werking</th>
+                    <th>Eigenschap</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td data-label="Type">Schaalhelm</td>
+                    <td data-label="Werking">Absorbeert energie door vervorming (meestal EPS)</td>
+                    <td data-label="Eigenschap">
+                      Licht, maar kan na één klap zijn werking verliezen
+                    </td>
+                  </tr>
+                  <tr>
+                    <td data-label="Type">Hybride helm</td>
+                    <td data-label="Werking">Harde buitenschaal + schuimlaag</td>
+                    <td data-label="Eigenschap">Robuuster bij herhaalde lichte impacts</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
-            <div class="foto-plsh foto-plsh--kaart accordion__foto"><span>foto — standaard setje naast een 18 cm setje</span></div>
+            <p style="margin-top: 12px">
+              Beide typen voldoen aan dezelfde norm: EN 12492 voor bergsport.
+            </p>
+            <p class="mat-substap">Keuren & opslag</p>
+            <p>
+              Controleer voor elk gebruik op scheuren, deuken, krassen en verkleuring, en inspecteer
+              het binnenwerk en de kinband. Bewaar de helm koel, droog en uit direct zonlicht — UV
+              verzwakt het materiaal.
+            </p>
+            <aside class="callout callout--let">
+              <span class="callout__label">Let op</span>
+              <p>
+                Na een zware klap vervang je de helm direct, ook zonder zichtbare schade — interne
+                barsten zie je niet met het blote oog.
+              </p>
+            </aside>
+            <p class="mat-levensduur">Levensduur: max. 10 jaar vanaf productiedatum</p>
           </div>
-          <p class="mat-substap">Keuren</p>
-          <p>
-            Controleer de slinges op slijtage, verbleking en rafelige draden, en de karabiners op een
-            soepel sluitend gate en groeven. Beschadigd? Vervang het setje direct.
-          </p>
-        </div>
-      </details>
-
-      <!-- ─── 7. SLINGS ─── -->
-      <details id="slings" class="accordion mat-item" [open]="isOpen('slings')" (toggle)="onToggle('slings', $any($event.target).open)">
-        <summary>
-          <span class="mat-item__naam">Slings (bandschlingen)</span>
-          <span class="mat-item__meta">60 cm · 120 cm · min. 22 kN</span>
-        </summary>
-        <div class="accordion__body">
-          <div class="accordion__media">
-            <div class="accordion__tekst">
-              <p>
-                Neem minimaal twee slings mee. Een sling van <strong>60 cm</strong> gebruik je voor de
-                zelfzekering bij single pitch: bevestig hem met een ankersteek aan je inbindlus en hang
-                het andere einde met een extra beveiligde karabiner in de standhaak. Een sling van
-                <strong>120 cm</strong> gebruik je voor de rijverankering en het centrale punt bij
-                multi-pitch.
-              </p>
-              <p>
-                Gebruik alleen gestikte bandlussen met een breeksterkte van minimaal <strong>22
-                kN</strong>. Een geknoopte bandlus verliest tot 50% van zijn sterkte op het knooppunt.
-              </p>
-              <p>
-                Een <strong>alpinesetje</strong> is een dunne, lange sling verbonden aan twee karabiners
-                of snappers — handig om twee haken te verbinden of als verlengde tussenzekering.
-              </p>
+        </details>
+        <details
+          id="zekeringsapparaat"
+          class="accordion mat-item"
+          [open]="isOpen('zekeringsapparaat')"
+          (toggle)="onToggle('zekeringsapparaat', $any($event.target).open)"
+        >
+          <summary>
+            <span class="mat-item__naam">Zekeringsapparaat</span>
+            <span class="mat-item__meta">tuber vs. halfautomaat</span>
+          </summary>
+          <div class="accordion__body">
+            <div class="accordion__media">
+              <div class="accordion__tekst">
+                <p>
+                  Een <strong>tuber</strong> (ATC Guide, Reverso, Mega Jul, Pivot) is de standaard
+                  voor single- en multi-pitch. In normale modus hang je hem aan je gordel om de
+                  voorklimmer te zekeren; in guide-modus hang je hem aan het centrale punt van de
+                  standplaats, zodat het systeem bij een val automatisch blokkeert.
+                </p>
+                <p>
+                  Een <strong>halfautomaat</strong> (Petzl GriGri, Edelrid Giga Jul, Camp Smart)
+                  blokkeert volledig automatisch bij een val, zonder dat de zekeraar het remtouw
+                  hoeft vast te houden. Touw uitgeven gaat wel minder soepel dan bij een tuber. Ook
+                  met een halfautomaat houd je altijd je remhand aan het touw.
+                </p>
+              </div>
+              <div class="foto-plsh foto-plsh--kaart accordion__foto">
+                <span>foto — tuber in guide-modus aan het centrale punt</span>
+              </div>
             </div>
-            <div class="foto-plsh foto-plsh--kaart accordion__foto"><span>foto — 60 cm sling met ankersteek aan de inbindlus</span></div>
+            <p class="mat-substap">Keuren</p>
+            <p>
+              Controleer de sleuven van de tuber op slijtage. Worden de randen dun en scherp door
+              vuil touw, vervang dan het apparaat.
+            </p>
           </div>
-          <p class="mat-substap">Keuren</p>
-          <p>
-            Controleer op slijtage aan het stiksel, verbleking en pluizigheid. Slings die zijn
-            blootgesteld aan scherpe randen, chemicaliën of langdurig UV-licht vervang je eerder.
-          </p>
-        </div>
-      </details>
+        </details>
+        <details
+          id="karabiners"
+          class="accordion mat-item"
+          [open]="isOpen('karabiners')"
+          (toggle)="onToggle('karabiners', $any($event.target).open)"
+        >
+          <summary>
+            <span class="mat-item__naam">Karabiners</span>
+            <span class="mat-item__meta">3 sluitingsklassen · HMS</span>
+          </summary>
+          <div class="accordion__body">
+            <p>
+              Niet elke karabiner is geschikt voor elke positie — het verschil zit in het
+              sluitingsmechanisme.
+            </p>
 
-      <!-- ─── 8. PRUSIKTOUWTJES ─── -->
-      <details id="prusiktouwtjes" class="accordion mat-item" [open]="isOpen('prusiktouwtjes')" (toggle)="onToggle('prusiktouwtjes', $any($event.target).open)">
-        <summary>
-          <span class="mat-item__naam">Prusiktouwtjes</span>
-          <span class="mat-item__meta">2× 5–6 mm · kort + lang</span>
-        </summary>
-        <div class="accordion__body">
-          <div class="accordion__media">
-            <div class="accordion__tekst">
-              <p>
-                Neem minimaal twee prusiktouwtjes mee van 5 tot 6 mm diameter — dunner heeft
-                onvoldoende breeksterkte, dikker klemt niet goed genoeg op het hoofdtouw. Eén kort
-                touwtje (40–60 cm) en één lang touwtje of sling (120–150 cm) is de standaard.
-              </p>
-              <p>
-                Je hebt ze nodig als back-up bij abseilen, voor zelfredding (omhoog prusikken) en bij
-                noodsituaties op de standplaats.
-              </p>
+            <p class="mat-substap">Soorten</p>
+            <div class="sp-kaarten sp-kaarten--3 mat-soorten">
+              <article class="sp-kaart kaart-thema">
+                <h4>Snapper</h4>
+                <p>
+                  Open met één drukbeweging. Alleen voor setjes en quickdraws — nooit op
+                  levensdragende posities zoals zelfzekering of zekeringsapparaat.
+                </p>
+              </article>
+              <article class="sp-kaart kaart-thema">
+                <h4>Beveiligd</h4>
+                <p>
+                  Schroef- of twistlock, minimaal twee bewegingen om te openen. Geschikt voor
+                  zekeringsapparaat en standplaatsinrichting. Schroef altijd volledig dichtdraaien
+                  en dubbel checken.
+                </p>
+              </article>
+              <article class="sp-kaart kaart-thema">
+                <h4>Extra beveiligd</h4>
+                <p>
+                  Safebiner, minimaal drie handelingen. Verplicht voor zelfzekering, centraal punt
+                  en zekeringskarabiner op de standplaats. Check compatibiliteit met je
+                  zekeringsapparaat.
+                </p>
+              </article>
             </div>
-            <div class="foto-plsh foto-plsh--kaart accordion__foto"><span>foto — prusikknoop op het hoofdtouw</span></div>
-          </div>
-        </div>
-      </details>
 
-      <!-- ─── 9. KLIMSCHOENEN ─── -->
-      <details id="klimschoenen" class="accordion mat-item" [open]="isOpen('klimschoenen')" (toggle)="onToggle('klimschoenen', $any($event.target).open)">
-        <summary>
-          <span class="mat-item__naam">Klimschoenen</span>
-          <span class="mat-item__meta">rubber per rotstype · pasvorm</span>
-        </summary>
-        <div class="accordion__body">
-          <div class="accordion__media">
-            <div class="accordion__tekst">
-              <p>
-                Klimschoenen zijn het belangrijkste prestatiemateriaal. Bij buitenklimmen kies je een
-                rubbersamenstelling die goed hecht op het rotstype dat je gaat klimmen — kalksteen
-                vraagt ander rubber dan graniet. Stijvere schoenen zijn beter op verticale routes met
-                kleine treedjes, zachtere schoenen geven meer gevoel op platen en overhangend terrein.
-              </p>
-              <p>
-                Zorg dat de schoen strak zit zonder dode ruimte in de teen, maar niet zo strak dat je na
-                tien minuten niet meer kunt staan.
-              </p>
+            <div class="accordion__media">
+              <div class="accordion__tekst">
+                <p>
+                  Gebruik voor de halve mastworp altijd een <strong>HMS-karabiner</strong> —
+                  herkenbaar aan de omcirkelde H. De peervorm zorgt dat de knoop correct omdraait
+                  bij het wisselen van touw inhalen naar uitgeven. Kies bij voorkeur een
+                  safebiner-variant.
+                </p>
+              </div>
+              <div class="foto-plsh foto-plsh--kaart accordion__foto">
+                <span>foto — HMS-karabiner met halve mastworp</span>
+              </div>
             </div>
-            <div class="foto-plsh foto-plsh--kaart accordion__foto"><span>foto — klimschoen op een klein treedje</span></div>
+
+            <p class="mat-substap">Keuren</p>
+            <p>
+              Inspecteer op groeven van touwslijtage, vervormingen en een goed sluitend gate. Een
+              karabiner met een slecht sluitende gate of zichtbare vervorming na een val keur je af.
+              Hang karabiners altijd met de schroef naar beneden (gravity loaded) en van de wand af.
+            </p>
           </div>
-        </div>
-      </details>
-
-      <!-- ─── 10. POFZAK & MAGNESIUM ─── -->
-      <details id="magnesium" class="accordion mat-item" [open]="isOpen('magnesium')" (toggle)="onToggle('magnesium', $any($event.target).open)">
-        <summary>
-          <span class="mat-item__naam">Pofzak & magnesium</span>
-          <span class="mat-item__meta">liquid chalk · borsteltje</span>
-        </summary>
-        <div class="accordion__body">
-          <p>
-            Magnesium houdt je handen droog en geeft grip. Neem een pofzak mee die je aan je gordel
-            hangt, plus een voorraadzak of extra blok voor de dag. Liquid chalk is handig als basislaag
-            en veroorzaakt minder stof. Neem een borsteltje mee om grepen schoon te maken voor de
-            volgende klimmer.
-          </p>
-        </div>
-      </details>
-
-      <!-- ─── 11. OVERIG MATERIAAL ─── -->
-      <details id="overig" class="accordion mat-item" [open]="isOpen('overig')" (toggle)="onToggle('overig', $any($event.target).open)">
-        <summary>
-          <span class="mat-item__naam">Overig materiaal</span>
-          <span class="mat-item__meta">6 items</span>
-        </summary>
-        <div class="accordion__body">
-          <div class="mat-overig">
-            <article class="mat-overig__kaart">
-              <h4>Touwtas</h4>
-              <p>Beschermt je touw tegen vuil, zand en vocht. Leg je touw altijd uit op de touwtas en berg het na gebruik weer op.</p>
-            </article>
-            <article class="mat-overig__kaart">
-              <h4>Clipstick</h4>
-              <p>Uitschuifbare stok om de eerste haak van de grond af te inclippen, zodat je niet valt voordat het touw in de eerste haak zit.</p>
-            </article>
-            <article class="mat-overig__kaart">
-              <h4>Edelrid Ohm</h4>
-              <p>Weerstandsapparaat in de eerste haak, verlaagt de valkracht op de zekeraar. Aanbevolen als de voorklimmer &gt;30% zwaarder is.</p>
-            </article>
-            <article class="mat-overig__kaart">
-              <h4>Lifeline</h4>
-              <p>Verstelbare sling als zelfzekering (bv. Petzl Connect Adjust). Bij de Dual Connect Adjust dient één arm als zelfzekering, de andere voor abseilen.</p>
-            </article>
-            <article class="mat-overig__kaart">
-              <h4>Tape</h4>
-              <p>Voor open huidwondjes of pijnlijke gewrichten. Neem ook een aansteker mee om touweinden af te branden.</p>
-            </article>
-            <article class="mat-overig__kaart">
-              <h4>EHBO-set</h4>
-              <p>Pleisters, desinfecterend middel, verband en een reddingsdeken zijn voldoende voor de meeste situaties.</p>
-            </article>
+        </details>
+        <details
+          id="quickdraws"
+          class="accordion mat-item"
+          [open]="isOpen('quickdraws')"
+          (toggle)="onToggle('quickdraws', $any($event.target).open)"
+        >
+          <summary>
+            <span class="mat-item__naam">Quickdraws (setjes)</span>
+            <span class="mat-item__meta">12/18/25 cm · min. 10 setjes</span>
+          </summary>
+          <div class="accordion__body">
+            <div class="accordion__media">
+              <div class="accordion__tekst">
+                <p>
+                  Een quickdraw bestaat uit twee karabiners verbonden door een korte slinge, waarmee
+                  je het klimtouw door de tussenhaken clipt. Neem per persoon minimaal
+                  <strong>tien setjes</strong> mee, of meer als je routes wilt projecten. Check
+                  vooraf in de topo hoeveel haken de langste route heeft.
+                </p>
+                <p>
+                  Standaardsetjes zijn 12 cm. Langere setjes (18 of 25 cm) zijn handig bij haken die
+                  niet recht boven elkaar zitten of diep in een nis zitten — ze verminderen
+                  touwwrijving. Neem altijd een paar langere setjes mee.
+                </p>
+              </div>
+              <div class="foto-plsh foto-plsh--kaart accordion__foto">
+                <span>foto — standaard setje naast een 18 cm setje</span>
+              </div>
+            </div>
+            <p class="mat-substap">Keuren</p>
+            <p>
+              Controleer de slinges op slijtage, verbleking en rafelige draden, en de karabiners op
+              een soepel sluitend gate en groeven. Beschadigd? Vervang het setje direct.
+            </p>
           </div>
-        </div>
-      </details>
-
+        </details>
+        <details
+          id="slings"
+          class="accordion mat-item"
+          [open]="isOpen('slings')"
+          (toggle)="onToggle('slings', $any($event.target).open)"
+        >
+          <summary>
+            <span class="mat-item__naam">Slings (bandschlingen)</span>
+            <span class="mat-item__meta">60 cm · 120 cm · min. 22 kN</span>
+          </summary>
+          <div class="accordion__body">
+            <div class="accordion__media">
+              <div class="accordion__tekst">
+                <p>
+                  Neem minimaal twee slings mee. Een sling van <strong>60 cm</strong> gebruik je
+                  voor de zelfzekering bij single pitch: bevestig hem met een ankersteek aan je
+                  inbindlus en hang het andere einde met een extra beveiligde karabiner in de
+                  standhaak. Een sling van <strong>120 cm</strong> gebruik je voor de rijverankering
+                  en het centrale punt bij multi-pitch.
+                </p>
+                <p>
+                  Gebruik alleen gestikte bandlussen met een breeksterkte van minimaal
+                  <strong>22 kN</strong>. Een geknoopte bandlus verliest tot 50% van zijn sterkte op
+                  het knooppunt.
+                </p>
+                <p>
+                  Een <strong>alpinesetje</strong> is een dunne, lange sling verbonden aan twee
+                  karabiners of snappers — handig om twee haken te verbinden of als verlengde
+                  tussenzekering.
+                </p>
+              </div>
+              <div class="foto-plsh foto-plsh--kaart accordion__foto">
+                <span>foto — 60 cm sling met ankersteek aan de inbindlus</span>
+              </div>
+            </div>
+            <p class="mat-substap">Keuren</p>
+            <p>
+              Controleer op slijtage aan het stiksel, verbleking en pluizigheid. Slings die zijn
+              blootgesteld aan scherpe randen, chemicaliën of langdurig UV-licht vervang je eerder.
+            </p>
+          </div>
+        </details>
+        <details
+          id="prusiktouwtjes"
+          class="accordion mat-item"
+          [open]="isOpen('prusiktouwtjes')"
+          (toggle)="onToggle('prusiktouwtjes', $any($event.target).open)"
+        >
+          <summary>
+            <span class="mat-item__naam">Prusiktouwtjes</span>
+            <span class="mat-item__meta">2× 5–6 mm · kort + lang</span>
+          </summary>
+          <div class="accordion__body">
+            <div class="accordion__media">
+              <div class="accordion__tekst">
+                <p>
+                  Neem minimaal twee prusiktouwtjes mee van 5 tot 6 mm diameter — dunner heeft
+                  onvoldoende breeksterkte, dikker klemt niet goed genoeg op het hoofdtouw. Eén kort
+                  touwtje (40–60 cm) en één lang touwtje of sling (120–150 cm) is de standaard.
+                </p>
+                <p>
+                  Je hebt ze nodig als back-up bij abseilen, voor zelfredding (omhoog prusikken) en
+                  bij noodsituaties op de standplaats.
+                </p>
+              </div>
+              <div class="foto-plsh foto-plsh--kaart accordion__foto">
+                <span>foto — prusikknoop op het hoofdtouw</span>
+              </div>
+            </div>
+          </div>
+        </details>
+        <details
+          id="klimschoenen"
+          class="accordion mat-item"
+          [open]="isOpen('klimschoenen')"
+          (toggle)="onToggle('klimschoenen', $any($event.target).open)"
+        >
+          <summary>
+            <span class="mat-item__naam">Klimschoenen</span>
+            <span class="mat-item__meta">rubber per rotstype · pasvorm</span>
+          </summary>
+          <div class="accordion__body">
+            <div class="accordion__media">
+              <div class="accordion__tekst">
+                <p>
+                  Klimschoenen zijn het belangrijkste prestatiemateriaal. Bij buitenklimmen kies je
+                  een rubbersamenstelling die goed hecht op het rotstype dat je gaat klimmen —
+                  kalksteen vraagt ander rubber dan graniet. Stijvere schoenen zijn beter op
+                  verticale routes met kleine treedjes, zachtere schoenen geven meer gevoel op
+                  platen en overhangend terrein.
+                </p>
+                <p>
+                  Zorg dat de schoen strak zit zonder dode ruimte in de teen, maar niet zo strak dat
+                  je na tien minuten niet meer kunt staan.
+                </p>
+              </div>
+              <div class="foto-plsh foto-plsh--kaart accordion__foto">
+                <span>foto — klimschoen op een klein treedje</span>
+              </div>
+            </div>
+          </div>
+        </details>
+        <details
+          id="magnesium"
+          class="accordion mat-item"
+          [open]="isOpen('magnesium')"
+          (toggle)="onToggle('magnesium', $any($event.target).open)"
+        >
+          <summary>
+            <span class="mat-item__naam">Pofzak & magnesium</span>
+            <span class="mat-item__meta">liquid chalk · borsteltje</span>
+          </summary>
+          <div class="accordion__body">
+            <p>
+              Magnesium houdt je handen droog en geeft grip. Neem een pofzak mee die je aan je
+              gordel hangt, plus een voorraadzak of extra blok voor de dag. Liquid chalk is handig
+              als basislaag en veroorzaakt minder stof. Neem een borsteltje mee om grepen schoon te
+              maken voor de volgende klimmer.
+            </p>
+          </div>
+        </details>
+        <details
+          id="overig"
+          class="accordion mat-item"
+          [open]="isOpen('overig')"
+          (toggle)="onToggle('overig', $any($event.target).open)"
+        >
+          <summary>
+            <span class="mat-item__naam">Overig materiaal</span>
+            <span class="mat-item__meta">6 items</span>
+          </summary>
+          <div class="accordion__body">
+            <div class="mat-overig">
+              <article class="mat-overig__kaart">
+                <h4>Touwtas</h4>
+                <p>
+                  Beschermt je touw tegen vuil, zand en vocht. Leg je touw altijd uit op de touwtas
+                  en berg het na gebruik weer op.
+                </p>
+              </article>
+              <article class="mat-overig__kaart">
+                <h4>Clipstick</h4>
+                <p>
+                  Uitschuifbare stok om de eerste haak van de grond af te inclippen, zodat je niet
+                  valt voordat het touw in de eerste haak zit.
+                </p>
+              </article>
+              <article class="mat-overig__kaart">
+                <h4>Edelrid Ohm</h4>
+                <p>
+                  Weerstandsapparaat in de eerste haak, verlaagt de valkracht op de zekeraar.
+                  Aanbevolen als de voorklimmer &gt;30% zwaarder is.
+                </p>
+              </article>
+              <article class="mat-overig__kaart">
+                <h4>Lifeline</h4>
+                <p>
+                  Verstelbare sling als zelfzekering (bv. Petzl Connect Adjust). Bij de Dual Connect
+                  Adjust dient één arm als zelfzekering, de andere voor abseilen.
+                </p>
+              </article>
+              <article class="mat-overig__kaart">
+                <h4>Tape</h4>
+                <p>
+                  Voor open huidwondjes of pijnlijke gewrichten. Neem ook een aansteker mee om
+                  touweinden af te branden.
+                </p>
+              </article>
+              <article class="mat-overig__kaart">
+                <h4>EHBO-set</h4>
+                <p>
+                  Pleisters, desinfecterend middel, verband en een reddingsdeken zijn voldoende voor
+                  de meeste situaties.
+                </p>
+              </article>
+            </div>
+          </div>
+        </details>
+      </div>
     </div>
-  </div>
-</section>
-
+  </section>
 } @else {
-
-<!-- ═══ TAB 2 — VOORBEREIDING ═══ -->
-<section class="sectie" id="voorbereiding-tab">
-  <div class="sectie-inner tekst-blok">
-    <p>
-      Een geslaagde klimdag begint thuis. Negen stappen, chronologisch — van route kiezen tot
-      opwarmen onder de wand.
-    </p>
-  </div>
-
-  <div class="sectie-inner sp-blok">
-    <div class="mat-stappen">
-
-      <!-- 1. Topo -->
-      <div class="mat-stap" id="topo">
-        <span class="mat-stap__nr">1</span>
-        <div class="mat-stap__inhoud">
-          <h3>Route kiezen & topo lezen</h3>
-          <p>
-            Een klimtopo is een gids met alle informatie over het klimgebied: parkeerplaats, paden,
-            klimverboden, gedragsregels, routeverloop, moeilijkheidsgraad, haakafstanden, benodigde
-            touwlengte en setjes, en hoe je de hulpdiensten bereikt. Lees de topo voordat je naar het
-            gebied gaat, niet pas onder de wand.
-          </p>
-          <p>
-            Check hoeveel haken de route heeft en of je genoeg setjes hebt. Kijk waar de route
-            zigzagt, waar de cruxpassages zitten en waar je kunt uitrusten. Controleer of de
-            standplaats ronde haken of plaquettes (scherpe haken) heeft — dat bepaalt de
-            ombouwmethode en of je extra materiaal meeneemt.
-          </p>
-          <p>
-            In de meeste Europese landen geldt de Franse schaal, in Duitsland de UIAA-schaal. De
-            waardering is subjectief en verschilt per gebied — begin altijd minstens twee graden onder
-            je maximale binnenniveau. Buiten is de rots onregelmatiger en de afstand tot de haken
-            groter dan in de hal.
-          </p>
-          <div class="tabel-wrap">
-            <div class="tabel-kop">
-              <div class="tabel-kop__tekst">
-                <span class="tabel-kop__kicker">Topo</span>
-                <h4 class="tabel-kop__titel">Wat je vooraf checkt</h4>
-              </div>
-              <span class="tabel-kop__badge">4 punten</span>
-            </div>
-            <table class="sp-tabel">
-              <thead><tr><th>Wat staat er in een topo</th><th>Waarom je het checkt</th></tr></thead>
-              <tbody>
-                <tr><td data-label="Onderdeel">Parkeerplaats, paden & toegang</td><td data-label="Waarom">Je komt er zonder te verdwalen of terrein af te sluiten</td></tr>
-                <tr><td data-label="Onderdeel">Routeverloop & haakafstanden</td><td data-label="Waarom">Bepaalt hoeveel setjes je nodig hebt</td></tr>
-                <tr><td data-label="Onderdeel">Moeilijkheidsgraad (Frans/UIAA)</td><td data-label="Waarom">Kies een route die past bij je niveau</td></tr>
-                <tr><td data-label="Onderdeel">Benodigde touwlengte</td><td data-label="Waarom">Minimaal het dubbele van de routelengte</td></tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-
-      <!-- 2. Weer -->
-      <div class="mat-stap" id="weer">
-        <span class="mat-stap__nr">2</span>
-        <div class="mat-stap__inhoud">
-          <h3>Weer & omstandigheden</h3>
-          <p>
-            Check het weer voordat je vertrekt. Natte rots is glad en gevaarlijk. Controleer ook op
-            onweer: in de bergen ontstaan buien snel en ben je op de wand een makkelijk doelwit voor
-            bliksem.
-          </p>
-          <div class="tabel-wrap">
-            <div class="tabel-kop">
-              <div class="tabel-kop__tekst">
-                <span class="tabel-kop__kicker">Omstandigheden</span>
-                <h4 class="tabel-kop__titel">Rots na regen</h4>
-              </div>
-              <span class="tabel-kop__badge">3 rotstypes</span>
-            </div>
-            <table class="sp-tabel">
-              <thead><tr><th>Rotstype</th><th>Na regen</th><th>Risico</th></tr></thead>
-              <tbody>
-                <tr><td data-label="Rotstype">Kalksteen</td><td data-label="Na regen">Extreem glibberig</td><td data-label="Risico">Wacht tot de rots weer droog is</td></tr>
-                <tr><td data-label="Rotstype">Zandsteen</td><td data-label="Na regen">Fragiel, beschadigt door te klimmen</td><td class="cel-accent cel-accent--rust" data-label="Risico">Niet klimmen — helemaal niet</td></tr>
-                <tr><td data-label="Rotstype">Overig</td><td data-label="Na regen">Verschilt per gebied</td><td data-label="Risico">Check lokale info in de topo</td></tr>
-              </tbody>
-            </table>
-          </div>
-          <p style="margin-top: 12px;">
-            Houd ook rekening met temperatuur: bij hitte wordt rubber zachter (invloed op je
-            footwork), bij kou worden vingers stijf en je greepkracht minder. Wind speelt een rol bij
-            het abseilen en bij het gooien van touwen.
-          </p>
-        </div>
-      </div>
-
-      <!-- 3. Toegang -->
-      <div class="mat-stap" id="toegang">
-        <span class="mat-stap__nr">3</span>
-        <div class="mat-stap__inhoud">
-          <h3>Toegang en regelgeving</h3>
-          <p>
-            In België heb je voor de meeste klimgebieden een klimjaarkaart nodig, beschikbaar via het
-            NKBV-lidmaatschap en geldig voor bijna 40 klimgebieden. Zonder deze kaart word je bij
-            controle weggestuurd.
-          </p>
-          <p>
-            Elk klimgebied heeft eigen regels: soms is magnesia verboden of beperkt, of gelden
-            specifieke toegangstijden en seizoensgebonden afsluitingen (bijvoorbeeld vanwege broedende
-            roofvogels in het voorjaar). Lees vooraf de gedragsregels — je bent te gast in de natuur en
-            in het klimgebied.
-          </p>
-        </div>
-      </div>
-
-      <!-- 4. Materiaal checken en inpakken -->
-      <div class="mat-stap" id="inpakken">
-        <span class="mat-stap__nr">4</span>
-        <div class="mat-stap__inhoud">
-          <h3>Materiaal checken en inpakken</h3>
-          <p>
-            Controleer al je materiaal voordat je het inpakt: voel je touw op onregelmatigheden,
-            inspecteer de stiksels van gordel en slings, check of karabiners soepel sluiten, kijk naar
-            de sleuven van je tuber en controleer je helm op barsten of deuken.
-          </p>
-          <p>
-            Spreek met je klimpartner af wie wat meeneemt — je hoeft niet alles dubbel mee te nemen.
-          </p>
-          <div class="mat-paklijst">
-            <div class="paneel-checklist paneel-checklist--teal">
-              <span class="paneel-checklist__rand" aria-hidden="true"></span>
-              <div class="paneel-checklist__inhoud">
-                <h4>Gedeeld</h4>
-                <ul class="sp-checklist sp-checklist--interactief" style="grid-template-columns: 1fr;">
-                  <li><label><input type="checkbox" checked /> <span>Eén touw</span></label></li>
-                  <li><label><input type="checkbox" checked /> <span>Eén touwtas</span></label></li>
-                  <li><label><input type="checkbox" checked /> <span>Extra slings & prusiktouwtjes</span></label></li>
-                </ul>
-              </div>
-            </div>
-            <div class="paneel-checklist">
-              <span class="paneel-checklist__rand" aria-hidden="true"></span>
-              <div class="paneel-checklist__inhoud">
-                <h4>Eigen</h4>
-                <ul class="sp-checklist sp-checklist--interactief" style="grid-template-columns: 1fr;">
-                  <li><label><input type="checkbox" checked /> <span>Gordel & helm</span></label></li>
-                  <li><label><input type="checkbox" checked /> <span>Zekeringsapparaat</span></label></li>
-                  <li><label><input type="checkbox" checked /> <span>Pofzak & klimschoenen</span></label></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- 5. Touw uitleggen -->
-      <div class="mat-stap" id="touw-uitleggen">
-        <span class="mat-stap__nr">5</span>
-        <div class="mat-stap__inhoud">
-          <h3>Touw uitleggen</h3>
-          <div class="accordion__media">
-            <div class="accordion__tekst">
-              <p>
-                Leg het touw bij de start van de route in korte lussen op de touwtas, vrij van knopen
-                en verwikkelingen. Leg in het touweinde dat onderop ligt een stevig aangetrokken
-                stopknoop of dubbele achtknoop, zodat het touw niet door je zekeringsapparaat kan
-                schieten als het te kort blijkt. De voorklimmer bindt zich in aan het touweinde dat
-                bovenop ligt.
-              </p>
-              <p>Een slordig uitgelegd touw levert knopen op bij het zekeren, en die kosten tijd op het moment dat je moet vangen.</p>
-            </div>
-            <div class="foto-plsh foto-plsh--kaart accordion__foto"><span>foto — touw netjes in lussen op de touwtas</span></div>
-          </div>
-          <div class="foto-plsh foto-plsh--kaart"><span>foto — stopknoop in het onderste touweinde</span></div>
-        </div>
-      </div>
-
-      <!-- 6. Partnercheck -->
-      <div class="mat-stap" id="partnercheck">
-        <span class="mat-stap__nr">6</span>
-        <div class="mat-stap__inhoud">
-          <h3>Partnercheck</h3>
-          <p>
-            Doe de partnercheck voor elke klim — een wederzijdse veiligheidscontrole die alleen goed
-            werkt als je niet alleen kijkt, maar ook met je handen voelt. Bij multi-pitch doe je hem
-            ook op elke standplaats, voordat de voorklimmer zijn zelfzekering losmaakt.
-          </p>
-          <div class="mat-partnercheck">
-            <div class="paneel-checklist paneel-checklist--teal">
-              <span class="paneel-checklist__rand" aria-hidden="true"></span>
-              <div class="paneel-checklist__inhoud">
-                <h4>Voorklimmer checkt bij de zekeraar</h4>
-                <ul class="sp-checklist sp-checklist--interactief" style="grid-template-columns: 1fr;">
-                  <li><label><input type="checkbox" checked /> <span>Gordel & gesp correct gesloten</span></label></li>
-                  <li><label><input type="checkbox" checked /> <span>Touw goed in het zekeringsapparaat</span></label></li>
-                  <li><label><input type="checkbox" checked /> <span>Karabiner dicht en vergrendeld</span></label></li>
-                  <li><label><input type="checkbox" checked /> <span>Voldoende ruimte, niet te dicht bij de wand</span></label></li>
-                </ul>
-              </div>
-            </div>
-            <div class="paneel-checklist">
-              <span class="paneel-checklist__rand" aria-hidden="true"></span>
-              <div class="paneel-checklist__inhoud">
-                <h4>Zekeraar checkt bij de klimmer</h4>
-                <ul class="sp-checklist sp-checklist--interactief" style="grid-template-columns: 1fr;">
-                  <li><label><input type="checkbox" checked /> <span>Gordel & gesp correct gesloten</span></label></li>
-                  <li><label><input type="checkbox" checked /> <span>Achtknoop parallel, werkeinde min. 10 cm</span></label></li>
-                  <li><label><input type="checkbox" checked /> <span>Voldoende setjes voor de route</span></label></li>
-                  <li><label><input type="checkbox" checked /> <span>Helm zit goed</span></label></li>
-                </ul>
-              </div>
-            </div>
-            <div class="paneel-checklist paneel-checklist--rust">
-              <span class="paneel-checklist__rand" aria-hidden="true"></span>
-              <div class="paneel-checklist__inhoud">
-                <h4>Samen</h4>
-                <ul class="sp-checklist sp-checklist--interactief" style="grid-template-columns: 1fr;">
-                  <li><label><input type="checkbox" checked /> <span>Touw lang genoeg voor de route</span></label></li>
-                  <li><label><input type="checkbox" checked /> <span>Knoop in het touweinde</span></label></li>
-                  <li><label><input type="checkbox" checked /> <span>Beide dragen een helm</span></label></li>
-                  <li><label><input type="checkbox" checked /> <span>De route is vrij om te klimmen</span></label></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div class="mat-partnercheck-fotos">
-            <div class="foto-plsh foto-plsh--kaart"><span>foto — achtknoop, strengen parallel</span></div>
-            <div class="foto-plsh foto-plsh--kaart"><span>foto — gesp van de gordel, correct gesloten</span></div>
-          </div>
-        </div>
-      </div>
-
-      <!-- 7. Route verkennen -->
-      <div class="mat-stap" id="verkennen">
-        <span class="mat-stap__nr">7</span>
-        <div class="mat-stap__inhoud">
-          <h3>Route verkennen</h3>
-          <p>
-            Bestudeer de route samen met je zekeraar voordat je begint. Kijk waar de eerste haak zit
-            en of je er veilig kunt komen. Identificeer passages die extra aandacht vragen: grote
-            haakafstanden, overhang, zigzagstukken of plekken waar een val gevaarlijk kan zijn — dicht
-            bij de grond, boven een richel of terras. Kijk waar het eindpunt zit en of daar een veilig
-            omlooppunt is met ronde haken of maillons.
-          </p>
-          <p>
-            Spreek af hoe je communiceert als je elkaar niet meer kunt zien of horen. Gebruik de
-            standaard touwcommando's en spreek af welke taal je gebruikt als er andere klimmers in de
-            buurt zijn.
-          </p>
-        </div>
-      </div>
-
-      <!-- 8. Spotten en eerste haken -->
-      <div class="mat-stap" id="spotten">
-        <span class="mat-stap__nr">8</span>
-        <div class="mat-stap__inhoud">
-          <h3>Spotten en de eerste haken</h3>
-          <div class="accordion__media">
-            <div class="accordion__tekst">
-              <p>
-                De eerste meters zijn het gevaarlijkst: voordat het touw in de eerste haak zit, val je
-                op de grond. De zekeraar spot de klimmer door hem bij een val richting een veilige
-                landing te sturen — <strong>spotten is sturen, niet opvangen</strong>. Doe dit alleen
-                als het daadwerkelijk mogelijk is.
-              </p>
-              <p>
-                Na de eerste haak zeker je kort en statisch tot de derde of vierde haak — de valfactor
-                is dan het hoogst omdat er nog weinig touw uit is. Pas daarna ga je verder van de wand
-                staan en dynamischer zekeren.
-              </p>
-            </div>
-            <div class="foto-plsh foto-plsh--kaart accordion__foto"><span>foto — zekeraar spot de klimmer bij de eerste meters</span></div>
-          </div>
-          <div class="foto-plsh foto-plsh--kaart"><span>foto — eerste haak inclippen met een clipstick</span></div>
-          <p>
-            Overweeg een clipstick als de eerste haak hoog zit of de grond ongelijk is — zo clip je de
-            eerste haak van de grond af in en verklein je het risico op een groundfall.
-          </p>
-        </div>
-      </div>
-
-      <!-- 9. Opwarmen -->
-      <div class="mat-stap" id="opwarmen">
-        <span class="mat-stap__nr">9</span>
-        <div class="mat-stap__inhoud">
-          <h3>Opwarmen</h3>
-          <p>
-            Warm op voordat je je project klimt. Begin met een makkelijke route, minstens twee tot
-            drie graden onder je niveau — dit brengt je lichaam op temperatuur, activeert de spieren
-            in onderarmen en vingers, en laat je wennen aan het rotstype en de grip.
-          </p>
-          <p>
-            Klim je even niet, blijf dan in beweging en trek warme kleding aan. Afgekoelde spieren en
-            stijve vingers verhogen het risico op blessures en maken je techniek slordig.
-          </p>
-        </div>
-      </div>
-
+  <!-- ═══ TAB 2 — VOORBEREIDING ═══ -->
+  <section class="sectie" id="voorbereiding-tab">
+    <div class="sectie-inner tekst-blok">
+      <p>
+        Een geslaagde klimdag begint thuis. Negen stappen, chronologisch — van route kiezen tot
+        opwarmen onder de wand.
+      </p>
     </div>
-  </div>
 
-  <div class="sectie-inner sp-blok">
-    <aside class="callout callout--tip">
-      <span class="callout__label">Tip</span>
-      <p>Kijken én voelen bij de partnercheck. Doe hem bij multi-pitch op elke standplaats opnieuw.</p>
-    </aside>
-  </div>
-</section>
+    <div class="sectie-inner sp-blok">
+      <div class="mat-stappen">
+        <div class="mat-stap" id="topo">
+          <span class="mat-stap__nr">1</span>
+          <div class="mat-stap__inhoud">
+            <h3>Route kiezen & topo lezen</h3>
+            <p>
+              Een klimtopo is een gids met alle informatie over het klimgebied: parkeerplaats,
+              paden, klimverboden, gedragsregels, routeverloop, moeilijkheidsgraad, haakafstanden,
+              benodigde touwlengte en setjes, en hoe je de hulpdiensten bereikt. Lees de topo
+              voordat je naar het gebied gaat, niet pas onder de wand.
+            </p>
+            <p>
+              Check hoeveel haken de route heeft en of je genoeg setjes hebt. Kijk waar de route
+              zigzagt, waar de cruxpassages zitten en waar je kunt uitrusten. Controleer of de
+              standplaats ronde haken of plaquettes (scherpe haken) heeft — dat bepaalt de
+              ombouwmethode en of je extra materiaal meeneemt.
+            </p>
+            <p>
+              In de meeste Europese landen geldt de Franse schaal, in Duitsland de UIAA-schaal. De
+              waardering is subjectief en verschilt per gebied — begin altijd minstens twee graden
+              onder je maximale binnenniveau. Buiten is de rots onregelmatiger en de afstand tot de
+              haken groter dan in de hal.
+            </p>
+            <div class="tabel-wrap">
+              <div class="tabel-kop">
+                <div class="tabel-kop__tekst">
+                  <span class="tabel-kop__kicker">Topo</span>
+                  <h4 class="tabel-kop__titel">Wat je vooraf checkt</h4>
+                </div>
+                <span class="tabel-kop__badge">4 punten</span>
+              </div>
+              <table class="sp-tabel">
+                <thead>
+                  <tr>
+                    <th>Wat staat er in een topo</th>
+                    <th>Waarom je het checkt</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td data-label="Onderdeel">Parkeerplaats, paden & toegang</td>
+                    <td data-label="Waarom">
+                      Je komt er zonder te verdwalen of terrein af te sluiten
+                    </td>
+                  </tr>
+                  <tr>
+                    <td data-label="Onderdeel">Routeverloop & haakafstanden</td>
+                    <td data-label="Waarom">Bepaalt hoeveel setjes je nodig hebt</td>
+                  </tr>
+                  <tr>
+                    <td data-label="Onderdeel">Moeilijkheidsgraad (Frans/UIAA)</td>
+                    <td data-label="Waarom">Kies een route die past bij je niveau</td>
+                  </tr>
+                  <tr>
+                    <td data-label="Onderdeel">Benodigde touwlengte</td>
+                    <td data-label="Waarom">Minimaal het dubbele van de routelengte</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="mat-stap" id="weer">
+          <span class="mat-stap__nr">2</span>
+          <div class="mat-stap__inhoud">
+            <h3>Weer & omstandigheden</h3>
+            <p>
+              Check het weer voordat je vertrekt. Natte rots is glad en gevaarlijk. Controleer ook
+              op onweer: in de bergen ontstaan buien snel en ben je op de wand een makkelijk doelwit
+              voor bliksem.
+            </p>
+            <div class="tabel-wrap">
+              <div class="tabel-kop">
+                <div class="tabel-kop__tekst">
+                  <span class="tabel-kop__kicker">Omstandigheden</span>
+                  <h4 class="tabel-kop__titel">Rots na regen</h4>
+                </div>
+                <span class="tabel-kop__badge">3 rotstypes</span>
+              </div>
+              <table class="sp-tabel">
+                <thead>
+                  <tr>
+                    <th>Rotstype</th>
+                    <th>Na regen</th>
+                    <th>Risico</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td data-label="Rotstype">Kalksteen</td>
+                    <td data-label="Na regen">Extreem glibberig</td>
+                    <td data-label="Risico">Wacht tot de rots weer droog is</td>
+                  </tr>
+                  <tr>
+                    <td data-label="Rotstype">Zandsteen</td>
+                    <td data-label="Na regen">Fragiel, beschadigt door te klimmen</td>
+                    <td class="cel-accent cel-accent--rust" data-label="Risico">
+                      Niet klimmen — helemaal niet
+                    </td>
+                  </tr>
+                  <tr>
+                    <td data-label="Rotstype">Overig</td>
+                    <td data-label="Na regen">Verschilt per gebied</td>
+                    <td data-label="Risico">Check lokale info in de topo</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p style="margin-top: 12px">
+              Houd ook rekening met temperatuur: bij hitte wordt rubber zachter (invloed op je
+              footwork), bij kou worden vingers stijf en je greepkracht minder. Wind speelt een rol
+              bij het abseilen en bij het gooien van touwen.
+            </p>
+          </div>
+        </div>
+        <div class="mat-stap" id="toegang">
+          <span class="mat-stap__nr">3</span>
+          <div class="mat-stap__inhoud">
+            <h3>Toegang en regelgeving</h3>
+            <p>
+              In België heb je voor de meeste klimgebieden een klimjaarkaart nodig, beschikbaar via
+              het NKBV-lidmaatschap en geldig voor bijna 40 klimgebieden. Zonder deze kaart word je
+              bij controle weggestuurd.
+            </p>
+            <p>
+              Elk klimgebied heeft eigen regels: soms is magnesia verboden of beperkt, of gelden
+              specifieke toegangstijden en seizoensgebonden afsluitingen (bijvoorbeeld vanwege
+              broedende roofvogels in het voorjaar). Lees vooraf de gedragsregels — je bent te gast
+              in de natuur en in het klimgebied.
+            </p>
+          </div>
+        </div>
+        <div class="mat-stap" id="inpakken">
+          <span class="mat-stap__nr">4</span>
+          <div class="mat-stap__inhoud">
+            <h3>Materiaal checken en inpakken</h3>
+            <p>
+              Controleer al je materiaal voordat je het inpakt: voel je touw op onregelmatigheden,
+              inspecteer de stiksels van gordel en slings, check of karabiners soepel sluiten, kijk
+              naar de sleuven van je tuber en controleer je helm op barsten of deuken.
+            </p>
+            <p>
+              Spreek met je klimpartner af wie wat meeneemt — je hoeft niet alles dubbel mee te
+              nemen.
+            </p>
+            <div class="mat-paklijst">
+              <div class="paneel-checklist paneel-checklist--teal">
+                <span class="paneel-checklist__rand" aria-hidden="true"></span>
+                <div class="paneel-checklist__inhoud">
+                  <h4>Gedeeld</h4>
+                  <ul
+                    class="sp-checklist sp-checklist--interactief"
+                    style="grid-template-columns: 1fr"
+                  >
+                    <li>
+                      <label><input type="checkbox" checked /> <span>Eén touw</span></label>
+                    </li>
+                    <li>
+                      <label><input type="checkbox" checked /> <span>Eén touwtas</span></label>
+                    </li>
+                    <li>
+                      <label
+                        ><input type="checkbox" checked />
+                        <span>Extra slings & prusiktouwtjes</span></label
+                      >
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="paneel-checklist">
+                <span class="paneel-checklist__rand" aria-hidden="true"></span>
+                <div class="paneel-checklist__inhoud">
+                  <h4>Eigen</h4>
+                  <ul
+                    class="sp-checklist sp-checklist--interactief"
+                    style="grid-template-columns: 1fr"
+                  >
+                    <li>
+                      <label><input type="checkbox" checked /> <span>Gordel & helm</span></label>
+                    </li>
+                    <li>
+                      <label
+                        ><input type="checkbox" checked /> <span>Zekeringsapparaat</span></label
+                      >
+                    </li>
+                    <li>
+                      <label
+                        ><input type="checkbox" checked /> <span>Pofzak & klimschoenen</span></label
+                      >
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="mat-stap" id="touw-uitleggen">
+          <span class="mat-stap__nr">5</span>
+          <div class="mat-stap__inhoud">
+            <h3>Touw uitleggen</h3>
+            <div class="accordion__media">
+              <div class="accordion__tekst">
+                <p>
+                  Leg het touw bij de start van de route in korte lussen op de touwtas, vrij van
+                  knopen en verwikkelingen. Leg in het touweinde dat onderop ligt een stevig
+                  aangetrokken stopknoop of dubbele achtknoop, zodat het touw niet door je
+                  zekeringsapparaat kan schieten als het te kort blijkt. De voorklimmer bindt zich
+                  in aan het touweinde dat bovenop ligt.
+                </p>
+                <p>
+                  Een slordig uitgelegd touw levert knopen op bij het zekeren, en die kosten tijd op
+                  het moment dat je moet vangen.
+                </p>
+              </div>
+              <div class="foto-plsh foto-plsh--kaart accordion__foto">
+                <span>foto — touw netjes in lussen op de touwtas</span>
+              </div>
+            </div>
+            <div class="foto-plsh foto-plsh--kaart">
+              <span>foto — stopknoop in het onderste touweinde</span>
+            </div>
+          </div>
+        </div>
+        <div class="mat-stap" id="partnercheck">
+          <span class="mat-stap__nr">6</span>
+          <div class="mat-stap__inhoud">
+            <h3>Partnercheck</h3>
+            <p>
+              Doe de partnercheck voor elke klim — een wederzijdse veiligheidscontrole die alleen
+              goed werkt als je niet alleen kijkt, maar ook met je handen voelt. Bij multi-pitch doe
+              je hem ook op elke standplaats, voordat de voorklimmer zijn zelfzekering losmaakt.
+            </p>
+            <div class="mat-partnercheck">
+              <div class="paneel-checklist paneel-checklist--teal">
+                <span class="paneel-checklist__rand" aria-hidden="true"></span>
+                <div class="paneel-checklist__inhoud">
+                  <h4>Voorklimmer checkt bij de zekeraar</h4>
+                  <ul
+                    class="sp-checklist sp-checklist--interactief"
+                    style="grid-template-columns: 1fr"
+                  >
+                    <li>
+                      <label
+                        ><input type="checkbox" checked />
+                        <span>Gordel & gesp correct gesloten</span></label
+                      >
+                    </li>
+                    <li>
+                      <label
+                        ><input type="checkbox" checked />
+                        <span>Touw goed in het zekeringsapparaat</span></label
+                      >
+                    </li>
+                    <li>
+                      <label
+                        ><input type="checkbox" checked />
+                        <span>Karabiner dicht en vergrendeld</span></label
+                      >
+                    </li>
+                    <li>
+                      <label
+                        ><input type="checkbox" checked />
+                        <span>Voldoende ruimte, niet te dicht bij de wand</span></label
+                      >
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="paneel-checklist">
+                <span class="paneel-checklist__rand" aria-hidden="true"></span>
+                <div class="paneel-checklist__inhoud">
+                  <h4>Zekeraar checkt bij de klimmer</h4>
+                  <ul
+                    class="sp-checklist sp-checklist--interactief"
+                    style="grid-template-columns: 1fr"
+                  >
+                    <li>
+                      <label
+                        ><input type="checkbox" checked />
+                        <span>Gordel & gesp correct gesloten</span></label
+                      >
+                    </li>
+                    <li>
+                      <label
+                        ><input type="checkbox" checked />
+                        <span>Achtknoop parallel, werkeinde min. 10 cm</span></label
+                      >
+                    </li>
+                    <li>
+                      <label
+                        ><input type="checkbox" checked />
+                        <span>Voldoende setjes voor de route</span></label
+                      >
+                    </li>
+                    <li>
+                      <label><input type="checkbox" checked /> <span>Helm zit goed</span></label>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="paneel-checklist paneel-checklist--rust">
+                <span class="paneel-checklist__rand" aria-hidden="true"></span>
+                <div class="paneel-checklist__inhoud">
+                  <h4>Samen</h4>
+                  <ul
+                    class="sp-checklist sp-checklist--interactief"
+                    style="grid-template-columns: 1fr"
+                  >
+                    <li>
+                      <label
+                        ><input type="checkbox" checked />
+                        <span>Touw lang genoeg voor de route</span></label
+                      >
+                    </li>
+                    <li>
+                      <label
+                        ><input type="checkbox" checked />
+                        <span>Knoop in het touweinde</span></label
+                      >
+                    </li>
+                    <li>
+                      <label
+                        ><input type="checkbox" checked /> <span>Beide dragen een helm</span></label
+                      >
+                    </li>
+                    <li>
+                      <label
+                        ><input type="checkbox" checked />
+                        <span>De route is vrij om te klimmen</span></label
+                      >
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="mat-partnercheck-fotos">
+              <div class="foto-plsh foto-plsh--kaart">
+                <span>foto — achtknoop, strengen parallel</span>
+              </div>
+              <div class="foto-plsh foto-plsh--kaart">
+                <span>foto — gesp van de gordel, correct gesloten</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="mat-stap" id="verkennen">
+          <span class="mat-stap__nr">7</span>
+          <div class="mat-stap__inhoud">
+            <h3>Route verkennen</h3>
+            <p>
+              Bestudeer de route samen met je zekeraar voordat je begint. Kijk waar de eerste haak
+              zit en of je er veilig kunt komen. Identificeer passages die extra aandacht vragen:
+              grote haakafstanden, overhang, zigzagstukken of plekken waar een val gevaarlijk kan
+              zijn — dicht bij de grond, boven een richel of terras. Kijk waar het eindpunt zit en
+              of daar een veilig omlooppunt is met ronde haken of maillons.
+            </p>
+            <p>
+              Spreek af hoe je communiceert als je elkaar niet meer kunt zien of horen. Gebruik de
+              standaard touwcommando's en spreek af welke taal je gebruikt als er andere klimmers in
+              de buurt zijn.
+            </p>
+          </div>
+        </div>
+        <div class="mat-stap" id="spotten">
+          <span class="mat-stap__nr">8</span>
+          <div class="mat-stap__inhoud">
+            <h3>Spotten en de eerste haken</h3>
+            <div class="accordion__media">
+              <div class="accordion__tekst">
+                <p>
+                  De eerste meters zijn het gevaarlijkst: voordat het touw in de eerste haak zit,
+                  val je op de grond. De zekeraar spot de klimmer door hem bij een val richting een
+                  veilige landing te sturen — <strong>spotten is sturen, niet opvangen</strong>. Doe
+                  dit alleen als het daadwerkelijk mogelijk is.
+                </p>
+                <p>
+                  Na de eerste haak zeker je kort en statisch tot de derde of vierde haak — de
+                  valfactor is dan het hoogst omdat er nog weinig touw uit is. Pas daarna ga je
+                  verder van de wand staan en dynamischer zekeren.
+                </p>
+              </div>
+              <div class="foto-plsh foto-plsh--kaart accordion__foto">
+                <span>foto — zekeraar spot de klimmer bij de eerste meters</span>
+              </div>
+            </div>
+            <div class="foto-plsh foto-plsh--kaart">
+              <span>foto — eerste haak inclippen met een clipstick</span>
+            </div>
+            <p>
+              Overweeg een clipstick als de eerste haak hoog zit of de grond ongelijk is — zo clip
+              je de eerste haak van de grond af in en verklein je het risico op een groundfall.
+            </p>
+          </div>
+        </div>
+        <div class="mat-stap" id="opwarmen">
+          <span class="mat-stap__nr">9</span>
+          <div class="mat-stap__inhoud">
+            <h3>Opwarmen</h3>
+            <p>
+              Warm op voordat je je project klimt. Begin met een makkelijke route, minstens twee tot
+              drie graden onder je niveau — dit brengt je lichaam op temperatuur, activeert de
+              spieren in onderarmen en vingers, en laat je wennen aan het rotstype en de grip.
+            </p>
+            <p>
+              Klim je even niet, blijf dan in beweging en trek warme kleding aan. Afgekoelde spieren
+              en stijve vingers verhogen het risico op blessures en maken je techniek slordig.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
 
-<!-- ═══ VERDER LEZEN ═══ -->
-<section class="verder-lezen">
-  <div class="verder-lezen__inner">
-    <span class="verder-lezen__label">Verder lezen</span>
-    <ul class="verder-lezen__lijst">
-      <li><a routerLink="/kennis/knopen">Knopen</a></li>
-      <li><a routerLink="/kennis/terminologie">Terminologie</a></li>
-      <li><a routerLink="/klimmen/multi-pitch">Multipitch klimmen</a></li>
-      <li><a routerLink="/klimmen/klimgebieden">Klimgebieden</a></li>
-    </ul>
-  </div>
-</section>
+    <div class="sectie-inner sp-blok">
+      <aside class="callout callout--tip">
+        <span class="callout__label">Tip</span>
+        <p>
+          Kijken én voelen bij de partnercheck. Doe hem bij multi-pitch op elke standplaats opnieuw.
+        </p>
+      </aside>
+    </div>
+  </section>
 
+  <!-- ═══ VERDER LEZEN ═══ -->
+  <section class="verder-lezen">
+    <div class="verder-lezen__inner">
+      <span class="verder-lezen__label">Verder lezen</span>
+      <ul class="verder-lezen__lijst">
+        <li><a routerLink="/kennis/knopen">Knopen</a></li>
+        <li><a routerLink="/kennis/terminologie">Terminologie</a></li>
+        <li><a routerLink="/klimmen/multi-pitch">Multipitch klimmen</a></li>
+        <li><a routerLink="/klimmen/klimgebieden">Klimgebieden</a></li>
+      </ul>
+    </div>
+  </section>
 }

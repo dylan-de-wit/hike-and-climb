@@ -47,7 +47,11 @@
           <span class="content-eyebrow">Gebruik</span>
           @for (optie of gebruikOpties; track optie) {
             <label class="knopen-checkbox">
-              <input type="checkbox" [checked]="actieveGebruik().has(optie)" (change)="toggleGebruik(optie)" />
+              <input
+                type="checkbox"
+                [checked]="actieveGebruik().has(optie)"
+                (change)="toggleGebruik(optie)"
+              />
               <span>{{ optie }}</span>
             </label>
           }
@@ -106,7 +110,10 @@
                 [class.knoop-kaart--open]="isUitgeklapt(knoop.slug)"
               >
                 <div class="knoop-kaart__kop" (click)="toggleUitgeklapt(knoop.slug)">
-                  <div class="knoop-kaart__foto" [class.knoop-kaart__foto--echt]="knoop.fotos?.length">
+                  <div
+                    class="knoop-kaart__foto"
+                    [class.knoop-kaart__foto--echt]="knoop.fotos?.length"
+                  >
                     @if (knoop.fotos?.length) {
                       <img [src]="knoop.fotos![0]" [alt]="knoop.naam" />
                     } @else {
@@ -118,7 +125,9 @@
                     <h3>{{ knoop.naam }}</h3>
                     <p class="knoop-kaart__samenvatting">{{ knoop.samenvatting }}</p>
                     <div class="knoop-kaart__meta">
-                      <span class="knopen-badge knopen-badge--{{ knoop.familie.toLowerCase() }}">{{ knoop.familie }}</span>
+                      <span class="knopen-badge knopen-badge--{{ knoop.familie.toLowerCase() }}">{{
+                        knoop.familie
+                      }}</span>
                     </div>
                   </div>
                   <div class="knoop-kaart__acties">
@@ -126,7 +135,9 @@
                       type="button"
                       class="knoop-kaart__opslaan"
                       [class.is-actief]="isOpgeslagen(knoop.slug)"
-                      [attr.aria-label]="isOpgeslagen(knoop.slug) ? 'Verwijder uit opgeslagen' : 'Bewaar deze knoop'"
+                      [attr.aria-label]="
+                        isOpgeslagen(knoop.slug) ? 'Verwijder uit opgeslagen' : 'Bewaar deze knoop'
+                      "
                       (click)="toggleOpgeslagen(knoop.slug, $event)"
                     >
                       ★
@@ -137,12 +148,35 @@
                 <div class="knoop-kaart__detail-wrap" [class.is-open]="isUitgeklapt(knoop.slug)">
                   <div class="knoop-kaart__detail-inner">
                     <div class="knoop-kaart__detail">
-                    @if (knoop.fotos?.length === 1) {
-                      <div class="knoop-kaart__specs-met-foto">
-                        <div class="knoop-kaart__specs knoop-kaart__specs--stack">
+                      @if (knoop.fotos?.length === 1) {
+                        <div class="knoop-kaart__specs-met-foto">
+                          <div class="knoop-kaart__specs knoop-kaart__specs--stack">
+                            <div class="knoop-spec">
+                              <span class="knoop-spec__label">Engelse naam</span>
+                              <span class="knoop-spec__waarde">{{
+                                knoop.engelseNaam.join(' / ')
+                              }}</span>
+                            </div>
+                            <div class="knoop-spec">
+                              <span class="knoop-spec__label">Type knoop</span>
+                              <span class="knoop-spec__waarde">{{ knoop.typeKnoop }}</span>
+                            </div>
+                            <div class="knoop-spec">
+                              <span class="knoop-spec__label">Gebruik bij</span>
+                              <span class="knoop-spec__waarde">{{ knoop.gebruikBij }}</span>
+                            </div>
+                          </div>
+                          <div class="knoop-kaart__foto-groot">
+                            <img [src]="knoop.fotos![0]" [alt]="knoop.naam" />
+                          </div>
+                        </div>
+                      } @else {
+                        <div class="knoop-kaart__specs">
                           <div class="knoop-spec">
                             <span class="knoop-spec__label">Engelse naam</span>
-                            <span class="knoop-spec__waarde">{{ knoop.engelseNaam.join(' / ') }}</span>
+                            <span class="knoop-spec__waarde">{{
+                              knoop.engelseNaam.join(' / ')
+                            }}</span>
                           </div>
                           <div class="knoop-spec">
                             <span class="knoop-spec__label">Type knoop</span>
@@ -153,86 +187,69 @@
                             <span class="knoop-spec__waarde">{{ knoop.gebruikBij }}</span>
                           </div>
                         </div>
-                        <div class="knoop-kaart__foto-groot">
-                          <img [src]="knoop.fotos![0]" [alt]="knoop.naam" />
-                        </div>
+
+                        @if (knoop.fotos?.length) {
+                          <div class="knoop-kaart__fotos">
+                            <div class="knoop-kaart__fotos-grid">
+                              @for (foto of knoop.fotos; track foto) {
+                                <img [src]="foto" [alt]="knoop.naam" />
+                              }
+                            </div>
+                          </div>
+                        }
+                      }
+
+                      <div class="knoop-kaart__toepassingen">
+                        <span class="content-eyebrow">Toepassingen</span>
+                        <ul>
+                          @for (item of knoop.toepassingen; track item) {
+                            <li>{{ item }}</li>
+                          }
+                        </ul>
                       </div>
-                    } @else {
-                      <div class="knoop-kaart__specs">
-                        <div class="knoop-spec">
-                          <span class="knoop-spec__label">Engelse naam</span>
-                          <span class="knoop-spec__waarde">{{ knoop.engelseNaam.join(' / ') }}</span>
-                        </div>
-                        <div class="knoop-spec">
-                          <span class="knoop-spec__label">Type knoop</span>
-                          <span class="knoop-spec__waarde">{{ knoop.typeKnoop }}</span>
-                        </div>
-                        <div class="knoop-spec">
-                          <span class="knoop-spec__label">Gebruik bij</span>
-                          <span class="knoop-spec__waarde">{{ knoop.gebruikBij }}</span>
+
+                      <div class="knoop-kaart__veld">
+                        <div class="knoop-kaart__balans">
+                          <div>
+                            <h4>Goed</h4>
+                            <ul class="knoop-plus">
+                              @for (item of knoop.goed; track item) {
+                                <li>{{ item }}</li>
+                              }
+                            </ul>
+                          </div>
+                          <div>
+                            <h4>Let op</h4>
+                            <ul class="knoop-min">
+                              @for (item of knoop.letOp; track item) {
+                                <li>{{ item }}</li>
+                              }
+                            </ul>
+                          </div>
                         </div>
                       </div>
 
-                      @if (knoop.fotos?.length) {
-                        <div class="knoop-kaart__fotos">
-                          <div class="knoop-kaart__fotos-grid">
-                            @for (foto of knoop.fotos; track foto) {
-                              <img [src]="foto" [alt]="knoop.naam" />
+                      @if (knoop.alternatieven.length > 0) {
+                        <div class="knoop-kaart__alternatieven">
+                          <span class="content-eyebrow">Bekijk ook</span>
+                          <div class="knopen-filters__chips">
+                            @for (alt of knoop.alternatieven; track alt) {
+                              @if (vindKnoop(alt); as altKnoop) {
+                                <button
+                                  type="button"
+                                  class="knopen-pil knopen-pil--klein knopen-pil--fam-{{
+                                    altKnoop.familie.toLowerCase()
+                                  }}"
+                                  (click)="springNaarKnoop(alt)"
+                                >
+                                  {{ altKnoop.naam }}
+                                </button>
+                              }
                             }
                           </div>
                         </div>
                       }
-                    }
-
-                    <div class="knoop-kaart__toepassingen">
-                      <span class="content-eyebrow">Toepassingen</span>
-                      <ul>
-                        @for (item of knoop.toepassingen; track item) {
-                          <li>{{ item }}</li>
-                        }
-                      </ul>
                     </div>
-
-                    <div class="knoop-kaart__veld">
-                      <div class="knoop-kaart__balans">
-                        <div>
-                          <h4>Goed</h4>
-                          <ul class="knoop-plus">
-                            @for (item of knoop.goed; track item) {
-                              <li>{{ item }}</li>
-                            }
-                          </ul>
-                        </div>
-                        <div>
-                          <h4>Let op</h4>
-                          <ul class="knoop-min">
-                            @for (item of knoop.letOp; track item) {
-                              <li>{{ item }}</li>
-                            }
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-
-                    @if (knoop.alternatieven.length > 0) {
-                      <div class="knoop-kaart__alternatieven">
-                        <span class="content-eyebrow">Bekijk ook</span>
-                        <div class="knopen-filters__chips">
-                          @for (alt of knoop.alternatieven; track alt) {
-                            @if (vindKnoop(alt); as altKnoop) {
-                              <button
-                                type="button"
-                                class="knopen-pil knopen-pil--klein knopen-pil--fam-{{ altKnoop.familie.toLowerCase() }}"
-                                (click)="springNaarKnoop(alt)"
-                              >
-                                {{ altKnoop.naam }}
-                              </button>
-                            }
-                          }
-                        </div>
-                      </div>
-                    }
-                  </div>
                   </div>
                 </div>
               </article>

@@ -2,7 +2,6 @@
   display: block;
 }
 
-/* Balk met hairlines boven en onder, net als de "snel naar"-strip. */
 .hoofdstuk-nav {
   background: var(--papier-licht);
   border-block: 1px solid rgba(38, 28, 21, 0.12);
@@ -18,7 +17,6 @@
   flex-wrap: wrap;
 }
 
-/* Label + kort stippellijntje, als aanloop van een routelijn. */
 .hoofdstuk-nav__label {
   display: inline-flex;
   align-items: center;
@@ -73,7 +71,6 @@
   letter-spacing: 0.05em;
 }
 
-/* Onderstreping die bij hover vanaf links inschuift. */
 .hoofdstuk-nav__link::after {
   content: '';
   position: absolute;
@@ -106,7 +103,6 @@
   transform: translateY(0);
 }
 
-/* Smal scherm: één rij die horizontaal scrollt, label erboven. */
 @media (max-width: 760px) {
   .hoofdstuk-nav__inner {
     display: block;

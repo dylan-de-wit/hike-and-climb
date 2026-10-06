@@ -4,10 +4,14 @@ import {
   ElementRef,
   NgZone,
   OnDestroy,
+  computed,
+  inject,
   signal,
   viewChild,
 } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Meta, Title } from '@angular/platform-browser';
+import { ActivatedRoute, RouterLink } from '@angular/router';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { Hoofdstuk, HoofdstukNav } from '../../../components/hoofdstuk-nav/hoofdstuk-nav';
 
 @Component({
@@ -18,15 +22,23 @@ import { Hoofdstuk, HoofdstukNav } from '../../../components/hoofdstuk-nav/hoofd
   styleUrl: './single-pitch.scss',
 })
 export class SinglePitch implements AfterViewInit, OnDestroy {
-  /** Hoofdstukken van de pagina: gebruikt in de balk onder de hero én in de meescrollende balk. */
+  private readonly route = inject(ActivatedRoute);
+  private readonly title = inject(Title);
+  private readonly meta = inject(Meta);
+  private readonly vorigeTitel = this.title.getTitle();
+  private readonly routeData = toSignal(this.route.data, {
+    initialValue: this.route.snapshot.data,
+  });
+
+  readonly paginaNaam = computed(() => this.routeData()['paginaNaam'] ?? 'Single pitch');
+
   readonly hoofdstukken: Hoofdstuk[] = [
     { naam: 'Standplaats maken', kort: 'Standplaats', anchor: 'standplaats' },
-    { naam: 'Ombouwen naar toprope', kort: 'Ombouwen', anchor: 'ombouwen' },
+    { naam: 'Ombouwen en laten zakken', kort: 'Ombouwen', anchor: 'ombouwen' },
     { naam: 'Bijzondere situaties', kort: 'Bijzonder', anchor: 'bijzonder' },
     { naam: "Touwcommando's", kort: "Commando's", anchor: 'commandos' },
   ];
 
-  /** Toont de vaste balk zodra de hero voorbij gescrold is. */
   readonly navZichtbaar = signal(false);
 
   private readonly sentinel = viewChild<ElementRef<HTMLElement>>('sentinel');
@@ -46,7 +58,14 @@ export class SinglePitch implements AfterViewInit, OnDestroy {
     });
   };
 
-  constructor(private readonly zone: NgZone) {}
+  constructor(private readonly zone: NgZone) {
+    this.title.setTitle('Standplaats maken en ombouwen bij single pitch | Wildline');
+    this.meta.updateTag({
+      name: 'description',
+      content:
+        'Ombouwen bij single pitch: zo maak je een standplaats, kies je een ombouwmethode en daal je af bij een scherpe of enkele haak.',
+    });
+  }
 
   ngAfterViewInit(): void {
     this.zone.runOutsideAngular(() => {
@@ -57,11 +76,12 @@ export class SinglePitch implements AfterViewInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    this.title.setTitle(this.vorigeTitel);
+    this.meta.removeTag("name='description'");
     window.removeEventListener('scroll', this.onScroll, { capture: true });
     window.removeEventListener('resize', this.onScroll);
   }
 
-  /** Zachte scroll naar een sectie-anker. */
   scrollNaar(anchor: string, event: Event): void {
     event.preventDefault();
     document.getElementById(anchor)?.scrollIntoView({ behavior: 'smooth', block: 'start' });

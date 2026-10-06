@@ -25,11 +25,6 @@ export class App {
       });
   }
 
-  /**
-   * Handmatige anker-scroll: deze app draait zonder zone.js, waardoor Angular's
-   * ingebouwde anchorScrolling (die op zone-stabilisatie leunt) niet betrouwbaar
-   * scrolt. Zelfde rAF/timeout-retrypatroon als scrollToTop hieronder.
-   */
   private scrollNaarAnker(id: string): void {
     const ga = () => {
       document.getElementById(id)?.scrollIntoView({ behavior: 'auto', block: 'start' });

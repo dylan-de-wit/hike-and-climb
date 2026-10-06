@@ -6,25 +6,22 @@ import { BoulderenPage } from './pages/boulderen-page/boulderen-page';
 import { KennisPage } from './pages/kennis-page/kennis-page';
 import { NatuurPage } from './pages/natuur-page/natuur-page';
 
-// Klimmen sub-pagina's
 import { SinglePitch } from './pages/klimmen-page/single-pitch/single-pitch';
+import { Sportklimmen } from './pages/klimmen-page/sportklimmen/sportklimmen';
 import { MultiPitch } from './pages/klimmen-page/multi-pitch/multi-pitch';
 import { KlimmenMateriaal } from './pages/klimmen-page/materiaal/materiaal';
 import { Klimgebieden } from './pages/klimmen-page/klimgebieden/klimgebieden';
 
-// Hiken sub-pagina's
 import { RoutesGebieden } from './pages/hiken-page/routes-gebieden/routes-gebieden';
 import { NavigatiePlanning } from './pages/hiken-page/navigatie-planning/navigatie-planning';
 import { HikenUitrusting } from './pages/hiken-page/uitrusting/uitrusting';
 import { MultidayHikes } from './pages/hiken-page/multiday-hikes/multiday-hikes';
 
-// Boulderen sub-pagina's
 import { BoulderenTechniek } from './pages/boulderen-page/techniek/techniek';
 import { Boulderlocaties } from './pages/boulderen-page/boulderlocaties/boulderlocaties';
 import { BoulderenMateriaal } from './pages/boulderen-page/materiaal/materiaal';
 import { BoulderenTraining } from './pages/boulderen-page/training/training';
 
-// Kennis sub-pagina's
 import { KennisKnopen } from './pages/kennis-page/knopen/knopen';
 import { KennisTechnieken } from './pages/kennis-page/technieken/technieken';
 import { KennisTerminologie } from './pages/kennis-page/terminologie/terminologie';
@@ -32,7 +29,6 @@ import { KennisEvents } from './pages/kennis-page/events/events';
 import { KennisReisverhalen } from './pages/kennis-page/artikelen/artikelen';
 import { KennisGidsen } from './pages/kennis-page/gidsen/gidsen';
 
-// Natuur sub-pagina's
 import { Astronavigatie } from './pages/natuur-page/astronavigatie/astronavigatie';
 import { Wildplukken } from './pages/natuur-page/wildplukken/wildplukken';
 import { Bushcraft } from './pages/natuur-page/bushcraft/bushcraft';
@@ -43,7 +39,8 @@ export const routes: Routes = [
   { path: 'home', component: HomePage },
 
   { path: 'klimmen', component: KlimmenPage },
-  { path: 'klimmen/single-pitch', component: SinglePitch },
+  { path: 'klimmen/sportklimmen', component: Sportklimmen },
+  { path: 'klimmen/single-pitch', component: SinglePitch, data: { paginaNaam: 'Single pitch' } },
   { path: 'klimmen/multi-pitch', component: MultiPitch },
   { path: 'klimmen/materiaal', component: KlimmenMateriaal },
   { path: 'klimmen/klimgebieden', component: Klimgebieden },

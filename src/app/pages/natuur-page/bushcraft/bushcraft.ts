@@ -7,7 +7,6 @@ import { NATUUR_ETAPPES } from '../natuur-etappes';
   host: { class: 'thema-natuur' },
   imports: [RouteDivider],
   templateUrl: './bushcraft.html',
-  styleUrl: './bushcraft.scss',
 })
 export class Bushcraft {
   readonly etappes = NATUUR_ETAPPES;

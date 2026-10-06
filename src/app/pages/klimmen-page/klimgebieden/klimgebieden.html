@@ -1,4 +1,3 @@
-
 <!-- ═══ HERO ═══ -->
 <header class="sp-hero sp-hero--met-foto klimgebieden-hero">
   <img class="sp-hero__media" src="images/dinant.jpg" alt="" aria-hidden="true" />
@@ -98,7 +97,9 @@
 
           <ul class="klimmuur-kaart__kenmerken" aria-label="Kenmerken">
             @for (kenmerk of muur.kenmerken; track kenmerk) {
-              <li class="klimmuur-kaart__kenmerk--{{ categorieVoorKenmerk(kenmerk) }}">{{ kenmerk }}</li>
+              <li class="klimmuur-kaart__kenmerk--{{ categorieVoorKenmerk(kenmerk) }}">
+                {{ kenmerk }}
+              </li>
             }
           </ul>
 
@@ -109,7 +110,8 @@
               [src]="muur.kaartUrl"
               [title]="'Terrain kaart van ' + muur.naam"
               loading="lazy"
-              referrerpolicy="no-referrer-when-downgrade"></iframe>
+              referrerpolicy="no-referrer-when-downgrade"
+            ></iframe>
             <span class="klimmuur-kaart__marker" aria-hidden="true"></span>
           </div>
 
@@ -154,17 +156,23 @@
   <div class="sectie-inner tekst-blok">
     <span class="content-eyebrow">Goed voorbereid</span>
     <h2>Wat je per gebied moet weten</h2>
-    <p>Voordat je vertrekt, check deze vier dingen — ze bepalen of je dag slaagt en of je de natuur respecteert.</p>
+    <p>
+      Voordat je vertrekt, check deze vier dingen — ze bepalen of je dag slaagt en of je de natuur
+      respecteert.
+    </p>
   </div>
-  <div class="sectie-inner" style="margin-top: 48px;">
-    <div class="icon-grid" style="grid-template-columns: repeat(2, 1fr);">
+  <div class="sectie-inner" style="margin-top: 48px">
+    <div class="icon-grid" style="grid-template-columns: repeat(2, 1fr)">
       <div class="icon-kaart">
         <div class="icon-kaart__icon icon-kaart__icon--beeld">
           <img src="pictogrammen/house.svg" alt="" />
         </div>
         <div>
           <h3>Toegang</h3>
-          <p>Waar parkeer je, hoe lang is de aanloop en is het gebied vrij toegankelijk? Soms loopt de route over privéterrein.</p>
+          <p>
+            Waar parkeer je, hoe lang is de aanloop en is het gebied vrij toegankelijk? Soms loopt
+            de route over privéterrein.
+          </p>
         </div>
       </div>
       <div class="icon-kaart">
@@ -173,7 +181,10 @@
         </div>
         <div>
           <h3>Seizoen</h3>
-          <p>Veel kalkgebieden zijn ideaal in voor- en najaar. 's Zomers te warm, 's winters nat — check de oriëntatie van de wand.</p>
+          <p>
+            Veel kalkgebieden zijn ideaal in voor- en najaar. 's Zomers te warm, 's winters nat —
+            check de oriëntatie van de wand.
+          </p>
         </div>
       </div>
       <div class="icon-kaart">
@@ -182,7 +193,10 @@
         </div>
         <div>
           <h3>Niveau</h3>
-          <p>Raadpleeg de topo voor de graden in het gebied. Zijn er genoeg routes binnen jouw niveau om de dag te vullen?</p>
+          <p>
+            Raadpleeg de topo voor de graden in het gebied. Zijn er genoeg routes binnen jouw niveau
+            om de dag te vullen?
+          </p>
         </div>
       </div>
       <div class="icon-kaart">
@@ -191,7 +205,10 @@
         </div>
         <div>
           <h3>Lokale regels</h3>
-          <p>Broedseizoen-sluitingen, verboden zones en afspraken met grondeigenaren. Respecteer ze — ze houden gebieden open.</p>
+          <p>
+            Broedseizoen-sluitingen, verboden zones en afspraken met grondeigenaren. Respecteer ze —
+            ze houden gebieden open.
+          </p>
         </div>
       </div>
     </div>
@@ -202,6 +219,6 @@
 <section class="uitgelicht">
   <div class="uitgelicht__inner">
     <p>Klaar om te gaan? Check eerst je materiaal en partner.</p>
-    <a href="/klimmen/materiaal" class="btn-thema" style="margin-top: 28px;">Naar materiaal →</a>
+    <a href="/klimmen/materiaal" class="btn-thema" style="margin-top: 28px">Naar materiaal →</a>
   </div>
 </section>

@@ -1,102 +1,91 @@
-/* ══════════════════════════════════════
-   VARIABELEN
-   ══════════════════════════════════════ */
 :root {
-  /* ── Hike & Climb kleurenpalet ── */
-  --deep-teal:     #175F5C;  /* primaire acties, randen, koppen           */
-  --glacier-teal:  #008D8F;  /* felle accenten, tags, links, highlights   */
-  --trail-amber:   #E9AD21;  /* highlights, nummering, actieve staat      */
-  --canyon-rust:   #A9572E;  /* redactioneel accent, warm contrast        */
-  --forest-green:  #2E6F3A;  /* natuursecties, diepe achtergronden        */
-  --dusk-plum:     #5C4A6B;  /* zeldzame redactionele/avond-momenten      */
-  --alpine-sky:    #A9CDD5;  /* instructiepanelen, rustige banden         */
-  --warm-paper:    #F5F2EA;  /* primaire pagina-achtergrond               */
-  --charcoal-ink:  #382C27;  /* hoofdtekst, sterk contrast                */
-  --morning-fog:   #E2E7E5;  /* secundaire vlakken en scheidingen         */
+  --deep-teal: #175f5c;
+  --glacier-teal: #008d8f;
+  --trail-amber: #e9ad21;
+  --canyon-rust: #a9572e;
+  --forest-green: #2e6f3a;
+  --dusk-plum: #5c4a6b;
+  --alpine-sky: #a9cdd5;
+  --warm-paper: #f5f2ea;
+  --charcoal-ink: #221C14;
+  --morning-fog: #e2e7e5;
 
-  /* ── Oude kleurnamen —*/
-  --teal-diep:       var(--deep-teal);
-  --teal-licht:      var(--glacier-teal);
-  --amber:           var(--trail-amber);
-  --terra-licht:     var(--canyon-rust);
-  --lentegroen:      var(--forest-green);
-  --mos-donker:      var(--forest-green);
-  --groen-donker:    var(--forest-green);
-  --groen-mos:       var(--forest-green);
-  --groen-licht:     var(--forest-green);
-  --autumn-leaf:     var(--canyon-rust);
-  --teal-donker:     var(--forest-green);
-  --teal-zacht:      var(--glacier-teal);
+  --teal-diep: var(--deep-teal);
+  --teal-licht: var(--glacier-teal);
+  --amber: var(--trail-amber);
+  --terra-licht: var(--canyon-rust);
+  --lentegroen: var(--forest-green);
+  --mos-donker: var(--forest-green);
+  --groen-donker: var(--forest-green);
+  --groen-mos: var(--forest-green);
+  --groen-licht: var(--forest-green);
+  --autumn-leaf: var(--canyon-rust);
+  --teal-donker: var(--forest-green);
+  --teal-zacht: var(--glacier-teal);
 
-  /* ── Papier — wijzen nu naar warm paper / morning fog ── */
-  --papier-licht:    var(--warm-paper);
-  --papier-creme:    var(--morning-fog);
+  --papier-licht: var(--warm-paper);
+  --papier-creme: var(--morning-fog);
 
-  /* ── Algemeen ── */
   --kleur-achtergrond: var(--warm-paper);
-  --kleur-wit:         var(--warm-paper);
-  --kleur-tekst:       var(--charcoal-ink);  /* inkt             — hoofdtekst          */
-  --kleur-tekst-licht: color-mix(in srgb, var(--charcoal-ink) 74%, transparent);  /* inkt licht — subtekst */
-  --kleur-hero:        var(--deep-teal);
-  --kleur-accent:      var(--trail-amber);
-  --kleur-highlight:   var(--trail-amber);
-  --kleur-hero-ink:    var(--warm-paper);  /* hero titel/tekst — licht of donker per thema */
-  --bullet:            url('/bulletpoints/orangegreenarrow.svg');  /* opsommingsteken — per thema anders */
+  --kleur-wit: var(--warm-paper);
+  --kleur-tekst: var(--charcoal-ink);
+  --kleur-tekst-licht: color-mix(in srgb, var(--charcoal-ink) 74%, transparent);
+  --kleur-hero: var(--deep-teal);
+  --kleur-accent: var(--trail-amber);
+  --kleur-highlight: var(--trail-amber);
+  --kleur-link-hover: var(--canyon-rust);
+  --kleur-hero-ink: var(--warm-paper);
+  --bullet: url('/bulletpoints/orangegreenarrow.svg');
 
-  /* ── Fonts ── */
-  --font-heading: 'Bricolage Grotesque', sans-serif;     /* h1, h2            */
-  --font-heading-outline: 'Londrina Outline', var(--font-heading);
-  --font-accent:  'Bebas Neue', sans-serif;              /* labels, kickers, nav */
-  --font:         'Barlow', sans-serif;                  /* body              */
-  --font-display: 'Bricolage Grotesque', sans-serif;     /* h3/h4 + uitgelicht */
+  --font-heading: 'Bricolage Grotesque', sans-serif;
+  --font-h2: 'Londrina Outline', var(--font-heading);
+  --font-heading-outline: var(--font-h2);
+  --font-accent: 'Bebas Neue', sans-serif;
+  --font: 'Barlow', sans-serif;
+  --font-display: 'Bricolage Grotesque', sans-serif;
 
-  /* ── Afmetingen ── */
-  --max-breedte:    1360px;
-  --tekst-maat:     68ch;
-  --padding-zij:    clamp(24px, 3.5vw, 72px);
-  --afgerond:       4px;    /* standaard hoekronding */
+  --max-breedte: 1360px;
+  --tekst-maat: 68ch;
+  --padding-zij: clamp(24px, 3.5vw, 72px);
+  --afgerond: 4px;
   --afgerond-groot: 4px;
-  --rand:           2px;    /* "2px confident" — structurele randen */
+  --rand: 2px;
 }
 
-/* ══════════════════════════════════════
-   KLEURTHEMA'S PER SECTIE
-   ══════════════════════════════════════ */
-
 .thema-klimmen {
-  --kleur-hero:     var(--deep-teal);
-  --kleur-accent:   var(--trail-amber);
+  --kleur-hero: var(--deep-teal);
+  --kleur-accent: var(--trail-amber);
   --kleur-highlight: var(--trail-amber);
-  --kleur-hero-ink: var(--warm-paper); /* witte titel */
+  --kleur-hero-ink: var(--warm-paper);
   --bullet: url('/bulletpoints/orangegreenarrow.svg');
 }
 .thema-hiken {
-  --kleur-hero:     var(--deep-teal);
-  --kleur-accent:   var(--trail-amber);
+  --kleur-hero: var(--deep-teal);
+  --kleur-accent: var(--trail-amber);
   --kleur-hero-ink: var(--warm-paper);
   --bullet: url('/bulletpoints/blueyellowarrow.svg');
 }
 .thema-boulderen {
-  --kleur-hero:     var(--canyon-rust);   /* warm redactioneel accent */
-  --kleur-accent:   var(--glacier-teal);
+  --kleur-hero: var(--canyon-rust);
+  --kleur-accent: var(--glacier-teal);
   --kleur-hero-ink: var(--warm-paper);
   --bullet: url('/bulletpoints/orangearrow.svg');
 }
 .thema-kennis {
-  --kleur-hero:     var(--alpine-sky);     /* rustig instructiepaneel */
-  --kleur-accent:   var(--deep-teal);
-  --kleur-hero-ink: var(--charcoal-ink);   /* donkere tekst op licht blauw */
+  --kleur-hero: var(--alpine-sky);
+  --kleur-accent: var(--deep-teal);
+  --kleur-hero-ink: var(--charcoal-ink);
   --bullet: url('/bulletpoints/greenbluearrow.svg');
 }
 .thema-natuur {
-  --kleur-hero:     var(--forest-green);
-  --kleur-accent:   var(--trail-amber);
+  --kleur-hero: var(--forest-green);
+  --kleur-accent: var(--trail-amber);
   --kleur-hero-ink: var(--warm-paper);
   --bullet: url('/bulletpoints/lightgreenarrow.svg');
 }
 
-/* ─── Reset & basis ─── */
-html, body {
+html,
+body {
   height: 100%;
   width: 100%;
   max-width: 100%;
@@ -121,7 +110,6 @@ body {
   overflow-x: hidden;
 }
 
-/* ─── Hero sectie ─── */
 .hero-section {
   position: relative;
   width: 100%;
@@ -136,7 +124,6 @@ body {
   min-height: 85vh;
 }
 
-/* Grain overlay */
 .hero-section::after {
   content: '';
   position: absolute;
@@ -149,7 +136,6 @@ body {
   z-index: 2;
 }
 
-/* Hero titel */
 .hero-title {
   font-size: 80px;
   font-weight: 400;
@@ -160,7 +146,6 @@ body {
   z-index: 1;
 }
 
-/* Eyebrow — kleine accenttekst boven koppen (per thema gekleurd) */
 .content-eyebrow {
   font-family: var(--font-accent);
   font-size: 18px;
@@ -168,7 +153,6 @@ body {
   color: var(--kleur-accent);
 }
 
-/* ─── Gedeelde foto-hero's (alle pagina's behalve home) ─── */
 .hero-overlap,
 .subhero {
   position: relative;
@@ -303,7 +287,6 @@ body {
   }
 }
 
-/* ─── Algemene typografie ─── */
 h1 {
   font-family: var(--font-heading);
   font-size: 78px;
@@ -313,17 +296,21 @@ h1 {
   margin: 0;
 }
 
+.thema-klimmen h1 {
+  font-family: 'Londrina Outline', var(--font-heading);
+  font-weight: 400;
+}
+
 h2 {
-  font-family: var(--font-heading-outline);
+  font-family: var(--font-h2);
   font-size: 46px;
-  font-weight: 400; /* Londrina Outline heeft alleen deze variant */
+  font-weight: 400;
   line-height: 90%;
   color: var(--kleur-hero);
   text-transform: uppercase;
   margin: 0.5rem 0 1.5rem;
 }
 
-/* h3/h4 + uitgelichte tekst — speels display-font */
 h3 {
   font-family: var(--font-display);
   font-weight: 600;
@@ -331,6 +318,7 @@ h3 {
   line-height: 1.15;
   margin: 0 0 0.4rem;
 }
+
 h4 {
   font-family: var(--font-display);
   font-weight: 600;
@@ -341,26 +329,45 @@ h4 {
 
 p {
   font-family: var(--font);
-  font-size: 20px;
+  font-size: 17px;
   font-weight: 300;
-  line-height: 120%;
+  line-height: 150%;
   color: var(--kleur-tekst-licht);
   margin: 0 0 1rem;
 }
 
-/* ─── Knop — stijlgids "Interface kit": gevuld, 6px hoeken, hoofdletters ───
-   Gebruik: <a class="btn-thema" routerLink="…">Tekst →</a>  (primair, kleur-hero)
-            <a class="btn-thema btn-thema--accent" …>…</a>   (secundair, kleur-accent)
-            <a class="btn-thema btn-thema--outline" …>…</a>  (tertiair, outline)
-   Kleuren komen uit var(--kleur-hero)/var(--kleur-accent), die per pagina al
-   gezet worden door de .thema-klimmen / .thema-hiken / … klasse op de
-   hostcomponent — dus elke variant volgt automatisch het paginathema. */
+a {
+  text-decoration: none;
+}
+
+.tekst-link,
+.begrippen__link,
+.verder-lezen__lijst a,
+.sp-hero__verwijzing a,
+.kaart-waarschuwing__voet a {
+  transition: color 0.15s ease;
+}
+.tekst-link:hover,
+.begrippen__link:hover,
+.verder-lezen__lijst a:hover,
+.sp-hero__verwijzing a:hover,
+.kaart-waarschuwing__voet a:hover,
+.tekst-link:focus-visible,
+.begrippen__link:focus-visible,
+.verder-lezen__lijst a:focus-visible,
+.sp-hero__verwijzing a:focus-visible,
+.kaart-waarschuwing__voet a:focus-visible {
+  color: var(--kleur-link-hover);
+}
+
 .btn-thema {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  min-height: 44px;
+
+  --knop-pop: var(--kleur-hero);
+  min-height: 36px;
   border: var(--rand) solid var(--kleur-hero);
   border-radius: var(--afgerond);
   background: var(--kleur-hero);
@@ -368,48 +375,37 @@ p {
   cursor: pointer;
   font-family: var(--font-accent);
   font-size: 16px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  line-height: 1;
   text-transform: uppercase;
-  padding: 0 26px;
+  padding: 0 16px;
   text-decoration: none;
   transition:
-    background-color 200ms ease,
-    color 200ms ease,
-    box-shadow 200ms ease,
-    transform 200ms ease;
+    background-color 180ms ease,
+    color 180ms ease,
+    box-shadow 180ms ease,
+    transform 180ms ease;
 }
 
 .btn-thema:hover,
 .btn-thema:focus-visible {
-  background: color-mix(in srgb, var(--kleur-hero) 82%, black);
-  border-color: color-mix(in srgb, var(--kleur-hero) 82%, black);
-  box-shadow: 0 4px 0 0 color-mix(in srgb, var(--kleur-hero) 45%, var(--kleur-tekst));
-  transform: translateY(-2px);
+  box-shadow: 0 5px 0 0 color-mix(in oklab, var(--knop-pop) 60%, var(--charcoal-ink));
+  transform: translateY(-3px);
 }
 
 .btn-thema:active {
   transform: translateY(0);
-  box-shadow: 0 2px 0 0 color-mix(in srgb, var(--kleur-hero) 45%, var(--kleur-tekst));
+  box-shadow: 0 2px 0 0 color-mix(in oklab, var(--knop-pop) 60%, var(--charcoal-ink));
 }
 
-/* Secundair — gevuld met de accentkleur i.p.v. de heroskleur (bv. amber op klimpagina's) */
 .btn-thema--accent {
+  --knop-pop: var(--kleur-accent);
   border-color: var(--kleur-accent);
   background: var(--kleur-accent);
   color: var(--charcoal-ink);
 }
-.btn-thema--accent:hover,
-.btn-thema--accent:focus-visible {
-  background: color-mix(in srgb, var(--kleur-accent) 82%, black);
-  border-color: color-mix(in srgb, var(--kleur-accent) 82%, black);
-  box-shadow: 0 4px 0 0 color-mix(in srgb, var(--kleur-accent) 45%, var(--kleur-tekst));
-}
-.btn-thema--accent:active {
-  box-shadow: 0 2px 0 0 color-mix(in srgb, var(--kleur-accent) 45%, var(--kleur-tekst));
-}
 
-/* Tertiair — outline, transparante vulling */
 .btn-thema--outline {
   background: transparent;
   border-color: var(--kleur-hero);
@@ -419,22 +415,44 @@ p {
 .btn-thema--outline:focus-visible {
   background: var(--kleur-hero);
   color: var(--kleur-hero-ink);
-  box-shadow: 0 4px 0 0 color-mix(in srgb, var(--kleur-hero) 45%, var(--kleur-tekst));
-}
-.btn-thema--outline:active {
-  box-shadow: 0 2px 0 0 color-mix(in srgb, var(--kleur-hero) 45%, var(--kleur-tekst));
 }
 
-/* ══════════════════════════════════════
-   HERBRUIKBARE CONTENTBLOKKEn
-   ══════════════════════════════════════ */
+.btn-thema--rust {
+  --kleur-hero: var(--canyon-rust);
+  --kleur-hero-ink: var(--warm-paper);
+}
+.btn-thema--teal {
+  --kleur-hero: var(--deep-teal);
+  --kleur-hero-ink: var(--warm-paper);
+}
+.btn-thema--plum {
+  --kleur-hero: var(--dusk-plum);
+  --kleur-hero-ink: var(--warm-paper);
+}
+.btn-thema--amber {
+  --kleur-hero: var(--trail-amber);
+  --kleur-hero-ink: var(--charcoal-ink);
+}
 
-/* Gedeelde sectie-wrapper: ruimte + gecentreerde inhoud */
-.sectie        { padding: 80px 0; }
-.sectie-inner  { width: 100%; max-width: var(--max-breedte); margin: 0 auto; padding-inline: var(--padding-zij); }
-.sectie--creme { background: var(--papier-creme); }
+.btn-thema--licht {
+  --kleur-hero: var(--warm-paper);
+  --kleur-hero-ink: var(--charcoal-ink);
+  --knop-pop: var(--trail-amber);
+}
 
-/* Sectie-achtergronden voor afwisseling tussen de blokken. */
+.sectie {
+  padding: 80px 0;
+}
+.sectie-inner {
+  width: 100%;
+  max-width: var(--max-breedte);
+  margin: 0 auto;
+  padding-inline: var(--padding-zij);
+}
+.sectie--creme {
+  background: var(--papier-creme);
+}
+
 .sectie--getint {
   background: var(--papier-creme);
   background: color-mix(in srgb, var(--kleur-hero) 20%, var(--papier-licht));
@@ -442,11 +460,47 @@ p {
 }
 
 .sectie--zand {
-background: color-mix(in srgb, var(--forest-green) 12%, var(--papier-licht));
-border: var(--rand) solid color-mix(in srgb, var(--forest-green) 30%, transparent);
+  background: color-mix(in srgb, var(--forest-green) 12%, var(--papier-licht));
+  border: var(--rand) solid color-mix(in srgb, var(--forest-green) 30%, transparent);
 }
 
-/* Zelfde tinten als los paneel, voor blokken bínnen een kolom*/
+.sectie--mist {
+  background: var(--morning-fog);
+}
+.sectie--lucht {
+  background: var(--alpine-sky);
+}
+
+.sectie--amber {
+  background: var(--morning-fog);
+}
+
+.sectie--amber .tekst-link {
+  color: var(--charcoal-ink);
+  font-weight: 700;
+}
+.sectie--amber {
+  --kleur-link-hover: var(--deep-teal);
+}
+
+.sectie--lucht .tabel-wrap {
+  --tabel-kolomkop: var(--morning-fog);
+}
+
+.accent--teal {
+  --kleur-accent: var(--deep-teal);
+}
+.accent--glacier {
+  --kleur-accent: var(--glacier-teal);
+}
+.accent--rust {
+  --kleur-accent: var(--canyon-rust);
+  --kleur-link-hover: var(--deep-teal);
+}
+.accent--plum {
+  --kleur-accent: var(--dusk-plum);
+}
+
 .paneel-getint,
 .paneel-zand {
   padding: clamp(20px, 3vw, 32px);
@@ -460,7 +514,6 @@ border: var(--rand) solid color-mix(in srgb, var(--forest-green) 30%, transparen
   background: color-mix(in srgb, var(--kleur-accent) 14%, var(--papier-licht));
 }
 
-/* ─── Checklist-band*/
 .paneel-checklist {
   display: grid;
   grid-template-columns: 1rem 1fr auto;
@@ -502,17 +555,36 @@ border: var(--rand) solid color-mix(in srgb, var(--forest-green) 30%, transparen
 .paneel-checklist p {
   color: var(--teal-diep);
 }
-/* Kleurvarianten voor kolom 1, voor meerdere checklist-panelen naast elkaar */
-.paneel-checklist--teal .paneel-checklist__rand { background: var(--deep-teal); }
-.paneel-checklist--rust .paneel-checklist__rand { background: var(--canyon-rust); }
 
-/* 1) Tekstblok — kop + alinea's */
-.tekst-blok    { max-width: var(--tekst-maat); }
-.tekst-blok h2 { color: var(--kleur-hero); margin: 0.75rem 0 16px; }
-.tekst-blok p  { max-width: var(--tekst-maat); margin: 0 0 16px; }
+.paneel-checklist--teal .paneel-checklist__rand {
+  background: var(--deep-teal);
+}
+.paneel-checklist--rust .paneel-checklist__rand {
+  background: var(--canyon-rust);
+}
 
-/* Opsommingslijst met eigen pijl-bullet (kleur volgt het thema) */
-.lijst    { list-style: none; padding: 0; margin: 0; max-width: 760px; }
+.paneel-checklist--amber .paneel-checklist__rand {
+  background: var(--trail-amber);
+}
+
+.tekst-blok {
+  max-width: var(--tekst-maat);
+}
+.tekst-blok h2 {
+  color: var(--kleur-hero);
+  margin: 0.75rem 0 16px;
+}
+.tekst-blok p {
+  max-width: var(--tekst-maat);
+  margin: 0 0 16px;
+}
+
+.lijst {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  max-width: 760px;
+}
 .lijst li {
   position: relative;
   padding-left: 58px;
@@ -532,7 +604,6 @@ border: var(--rand) solid color-mix(in srgb, var(--forest-green) 30%, transparen
   background: var(--bullet) center / contain no-repeat;
 }
 
-/* ─── Genummerde blok-lijst (origineel) ─── */
 .blok-lijst {
   background: var(--kleur-wit);
   padding: 100px 0;
@@ -576,10 +647,18 @@ border: var(--rand) solid color-mix(in srgb, var(--forest-green) 30%, transparen
   min-width: 48px;
 }
 
-/* 2) Tekst + afbeelding (twee kolommen, --flip draait om) */
-.media-blok          { display: flex; align-items: center; gap: 56px; width: 100%; max-width: var(--max-breedte); margin: 0 auto; }
-.media-blok--flip    { flex-direction: row-reverse; }
-.media-blok__media   {
+.media-blok {
+  display: flex;
+  align-items: center;
+  gap: 56px;
+  width: 100%;
+  max-width: var(--max-breedte);
+  margin: 0 auto;
+}
+.media-blok--flip {
+  flex-direction: row-reverse;
+}
+.media-blok__media {
   position: relative;
   flex: 1;
   min-width: 0;
@@ -587,27 +666,45 @@ border: var(--rand) solid color-mix(in srgb, var(--forest-green) 30%, transparen
   border-radius: var(--afgerond);
   overflow: hidden;
   background: var(--papier-creme);
-  border: 8px solid var(--papier-creme);        /* fotolijst om de buitenkant */
-  box-shadow: 0 0 0 1px rgba(56, 44, 39, 0.16); /* dunne rand zodat het frame altijd afsteekt */
-  display: flex; align-items: center; justify-content: center;
+  border: 8px solid var(--papier-creme);
+  box-shadow: 0 0 0 1px rgba(56, 44, 39, 0.16);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: var(--kleur-tekst-licht);
 }
-.media-blok__media img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.media-blok__tekst   { flex: 1; min-width: 0; max-width: var(--tekst-maat); }
-.media-blok__tekst h2 { margin: 12px 0 16px; }
+.media-blok__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.media-blok__tekst {
+  flex: 1;
+  min-width: 0;
+  max-width: var(--tekst-maat);
+}
+.media-blok__tekst h2 {
+  margin: 12px 0 16px;
+}
 
-/* 5) Uitgelicht — gekleurde band (volgt herokleur) */
-.uitgelicht        { background: var(--kleur-hero); padding: 72px 20px; text-align: center; }
-.uitgelicht__inner { max-width: 820px; margin: 0 auto; }
-.uitgelicht p      {
+.uitgelicht {
+  background: var(--kleur-hero);
+  padding: 72px 20px;
+  text-align: center;
+}
+.uitgelicht__inner {
+  max-width: 820px;
+  margin: 0 auto;
+}
+.uitgelicht p {
   font-family: var(--font-display);
   font-size: 34px;
   line-height: 1.25;
   color: var(--kleur-hero-ink);
   margin: 0;
 }
-/* Op een volledig hero-gekleurde band zou een gevulde .btn-thema
-   onzichtbaar wegvallen tegen dezelfde kleur — hier dus omgekeerd. */
+
 .uitgelicht .btn-thema {
   background: var(--kleur-hero-ink);
   border-color: var(--kleur-hero-ink);
@@ -623,10 +720,15 @@ border: var(--rand) solid color-mix(in srgb, var(--forest-green) 30%, transparen
   box-shadow: 0 2px 0 0 color-mix(in srgb, var(--kleur-hero-ink) 45%, var(--kleur-hero));
 }
 
-/* 7) Icon-kaarten — 6 stuks, 3 per rij, icoon links */
-.icon-grid  { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(24px, 3vw, 40px); }
+.icon-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(24px, 3vw, 40px);
+}
 .icon-kaart {
-  display: flex; gap: 16px; align-items: flex-start;
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
   min-width: 0;
   background: var(--papier-creme);
   border: var(--rand) solid var(--deep-teal);
@@ -638,8 +740,10 @@ border: var(--rand) solid color-mix(in srgb, var(--forest-green) 30%, transparen
 }
 .icon-kaart__icon {
   flex: none;
-  width: 78px; height: 78px;
-  display: grid; place-items: center;
+  width: 78px;
+  height: 78px;
+  display: grid;
+  place-items: center;
   border-radius: var(--afgerond);
   background: var(--kleur-accent);
   color: var(--papier-licht);
@@ -647,14 +751,26 @@ border: var(--rand) solid color-mix(in srgb, var(--forest-green) 30%, transparen
 .icon-kaart__icon--beeld {
   background: transparent;
 }
-.icon-kaart__icon svg { width: 30px; height: 30px; }
-.icon-kaart__icon img { width: 100%; height: 100%; display: block; object-fit: cover; }
+.icon-kaart__icon svg {
+  width: 30px;
+  height: 30px;
+}
+.icon-kaart__icon img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
 .icon-kaart h3 {
   color: var(--deep-teal);
   font-size: 26px;
   transition: color 200ms ease;
 }
-.icon-kaart p  { margin: 0; font-size: 15px; line-height: 1.45; }
+.icon-kaart p {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.45;
+}
 
 .icon-kaart:hover {
   transform: translateY(-4px);
@@ -669,44 +785,69 @@ a.icon-kaart {
   text-decoration: none;
   color: inherit;
 }
-/* 8) Asymmetrisch — één groot vlak + kolom met kleine */
-.asym        { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 24px; }
+
+.asym {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+  gap: 24px;
+}
 .asym__groot {
   background: var(--papier-creme);
   border-radius: var(--afgerond);
   padding: 40px;
 }
-.asym__kolom { display: flex; flex-direction: column; gap: 24px; }
+.asym__kolom {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
 .asym__klein {
   background: var(--papier-creme);
   border-radius: var(--afgerond);
   padding: 28px;
   border-left: var(--rand) solid var(--kleur-accent);
 }
-.asym__klein h3 { color: var(--kleur-tekst); }
-.asym__klein p  { margin: 0; font-size: 16px; }
+.asym__klein h3 {
+  color: var(--kleur-tekst);
+}
+.asym__klein p {
+  margin: 0;
+  font-size: 16px;
+}
 
-/* Responsive voor de blokken */
 @media (max-width: 1024px) {
-  .icon-grid { grid-template-columns: repeat(2, 1fr); }
+  .icon-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 @media (max-width: 768px) {
-  .sectie            { padding: 48px 0; }
+  .sectie {
+    padding: 48px 0;
+  }
   .media-blok,
-  .media-blok--flip  { flex-direction: column; gap: 28px; }
-  .media-blok__media { width: 100%; min-height: 220px; }
-  .uitgelicht p      { font-size: 24px; }
+  .media-blok--flip {
+    flex-direction: column;
+    gap: 28px;
+  }
+  .media-blok__media {
+    width: 100%;
+    min-height: 220px;
+  }
+  .uitgelicht p {
+    font-size: 24px;
+  }
 
-  .icon-grid         { grid-template-columns: 1fr; }
-  .asym              { grid-template-columns: 1fr; }
-  .asym__groot       { padding: 28px; }
+  .icon-grid {
+    grid-template-columns: 1fr;
+  }
+  .asym {
+    grid-template-columns: 1fr;
+  }
+  .asym__groot {
+    padding: 28px;
+  }
 }
 
-/* ══════════════════════════════════════
-   BADGE-BLOKKEN
-   ══════════════════════════════════════ */
-
-/* A) Galerij — raster met label onder elke badge */
 .badge-galerij {
   list-style: none;
   padding: 0;
@@ -739,7 +880,6 @@ a.icon-kaart {
   color: var(--kleur-tekst-licht);
 }
 
-/* B) Kaarten — badge + kop + tekst in een crème vlak */
 .badge-kaarten {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -765,7 +905,6 @@ a.icon-kaart {
   font-size: 16px;
 }
 
-/* C) Lijst — badge naast tekst, als checklist/rij */
 .badge-lijst {
   list-style: none;
   padding: 0;
@@ -811,26 +950,29 @@ a.icon-kaart {
     grid-template-columns: repeat(auto-fill, minmax(92px, 1fr));
     gap: 24px 14px;
   }
-  .badge-tegel img { width: 78px; height: 78px; }
-  .badge-lijst__item { gap: 16px; padding: 14px 18px; }
+  .badge-tegel img {
+    width: 78px;
+    height: 78px;
+  }
+  .badge-lijst__item {
+    gap: 16px;
+    padding: 14px 18px;
+  }
 }
 
-/* ══════════════════════════════════════
-   POSTER-KAARTGRID
-   ══════════════════════════════════════ */
 .poster-sectie {
-  --paper-haver:  var(--morning-fog);
-  --inkt:         var(--charcoal-ink);
-  --oker:         var(--trail-amber);
-  --terra:        var(--canyon-rust);
-  --mos:          var(--forest-green);
+  --paper-haver: var(--morning-fog);
+  --inkt: var(--charcoal-ink);
+  --oker: var(--trail-amber);
+  --terra: var(--canyon-rust);
+  --mos: var(--forest-green);
 
   position: relative;
   background: var(--paper-haver);
   padding: 88px 0;
   overflow: hidden;
 }
-/* papierkorrel over het hele blok */
+
 .poster-sectie::before {
   content: '';
   position: absolute;
@@ -872,7 +1014,6 @@ a.icon-kaart {
   gap: 22px;
 }
 
-/* De kaart — gedrukt vlak met dubbele kaderlijn */
 .poster-kaart {
   display: block;
   background: var(--warm-paper);
@@ -881,13 +1022,15 @@ a.icon-kaart {
   padding: 10px 10px 4px;
   text-decoration: none;
   color: var(--inkt);
-  transition: transform 0.18s ease, border-color 0.18s ease;
+  transition:
+    transform 0.18s ease,
+    border-color 0.18s ease;
 }
 .poster-kaart:hover {
   transform: translateY(-5px);
   border-color: var(--terra);
 }
-/* binnenframe = tweede keyline rond het beeld */
+
 .poster-kaart__beeld {
   position: relative;
   aspect-ratio: 4 / 5;
@@ -902,7 +1045,7 @@ a.icon-kaart {
   object-fit: cover;
   display: block;
 }
-/* klein oker hoekmerk linksboven op het beeld */
+
 .poster-kaart__merk {
   position: absolute;
   top: 8px;
@@ -915,7 +1058,7 @@ a.icon-kaart {
   padding: 2px 8px;
   border-radius: 999px;
 }
-/* banner-kop onder het beeld */
+
 .poster-kaart__banner {
   padding: 10px 2px 8px;
 }
@@ -938,14 +1081,19 @@ a.icon-kaart {
 }
 
 @media (max-width: 1024px) {
-  .poster-grid { grid-template-columns: repeat(2, 1fr); }
+  .poster-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 @media (max-width: 560px) {
-  .poster-sectie { padding: 56px 0; }
-  .poster-grid   { grid-template-columns: 1fr; }
+  .poster-sectie {
+    padding: 56px 0;
+  }
+  .poster-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
-/* Script-subtitel in de home-hero. */
 .kop-script__sub {
   display: block;
   font-family: var(--font-accent);
@@ -965,26 +1113,34 @@ a.icon-kaart {
   position: relative;
 }
 
-/* ══════════════════════════════════════
-   RESPONSIVE
-   ══════════════════════════════════════ */
-
 @media (max-width: 1024px) {
   .hero-section {
     padding: 80px 40px;
     gap: 32px;
   }
 
-  .hero-title { font-size: 56px; }
+  .hero-title {
+    font-size: 56px;
+  }
 
-  h1 { font-size: 58px; }
-  h2 { font-size: 36px; }
-  h3 { font-size: 27px; }
-  h4 { font-size: 21px; }
+  h1 {
+    font-size: 58px;
+  }
+  h2 {
+    font-size: 36px;
+  }
+  h3 {
+    font-size: 27px;
+  }
+  h4 {
+    font-size: 21px;
+  }
 }
 
 @media (max-width: 768px) {
-  body { padding: 0; }
+  body {
+    padding: 0;
+  }
 
   .hero-section {
     padding: 60px 20px;
@@ -992,26 +1148,33 @@ a.icon-kaart {
     min-height: 80vh;
   }
 
-  .hero-title { font-size: 48px; }
+  .hero-title {
+    font-size: 48px;
+  }
 
-  h1 { font-size: 44px; }
-  h2 { font-size: 30px; }
-  h3 { font-size: 25px; }
-  h4 { font-size: 20px; }
+  h1 {
+    font-size: 44px;
+  }
+  h2 {
+    font-size: 30px;
+  }
+  h3 {
+    font-size: 25px;
+  }
+  h4 {
+    font-size: 20px;
+  }
 
-  p  { font-size: 16px; }
+  p {
+    font-size: 16px;
+  }
 
-  .btn-thema { font-size: 15px; padding: 0 22px; }
+  .btn-thema {
+    font-size: 15px;
+    padding: 0 22px;
+  }
 }
 
-/* ══════════════════════════════════════
-   GEDEELDE PAGINA-COMPONENTEN
-   (single-pitch, multi-pitch, …)
-   Ankerbalk, callouts, tabellen, accordions,
-   checklist, begrippen, foto-placeholders.
-   ══════════════════════════════════════ */
-
-/* ─── Meescrollende ankerbalk ─── */
 .sp-nav {
   position: fixed;
   top: 0;
@@ -1023,7 +1186,9 @@ a.icon-kaart {
   transition: transform 0.35s ease;
   box-shadow: 0 2px 14px rgba(20, 24, 16, 0.28);
 }
-.sp-nav--zichtbaar { transform: translateY(0); }
+.sp-nav--zichtbaar {
+  transform: translateY(0);
+}
 .sp-nav__inner {
   max-width: var(--max-breedte);
   margin: 0 auto;
@@ -1055,10 +1220,13 @@ a.icon-kaart {
   text-decoration: none;
   transition: color 0.2s ease;
 }
-.sp-nav__links a:hover { color: var(--kleur-accent); }
+.sp-nav__links a:hover {
+  color: var(--kleur-accent);
+}
 
-/* ─── Sub-hero (titel + intro) ─── */
-.sp-hero { padding: clamp(56px, 8vw, 104px) 0 clamp(32px, 4vw, 56px); }
+.sp-hero {
+  padding: clamp(56px, 8vw, 104px) 0 clamp(32px, 4vw, 56px);
+}
 .sp-hero__inner {
   max-width: min(100%, 1280px);
   margin: 0 auto;
@@ -1076,7 +1244,9 @@ a.icon-kaart {
   color: var(--kleur-tekst-licht);
   max-width: 50ch;
 }
-.sp-hero__intro + .sp-hero__intro { margin-top: 16px; }
+.sp-hero__intro + .sp-hero__intro {
+  margin-top: 16px;
+}
 .sp-hero__verwijzing {
   margin-top: 20px;
   font-family: var(--font-accent);
@@ -1084,11 +1254,15 @@ a.icon-kaart {
   letter-spacing: 0.03em;
   color: var(--kleur-tekst-licht);
 }
-.sp-hero__verwijzing a { color: var(--kleur-accent); text-decoration: none; }
-.sp-hero__verwijzing a:hover { text-decoration: underline; }
-.sp-sentinel { display: block; height: 0; }
+.sp-hero__verwijzing a {
+  color: var(--kleur-accent);
+  text-decoration: none;
+}
+.sp-sentinel {
+  display: block;
+  height: 0;
+}
 
-/* Hero mét achtergrondfoto  */
 .sp-hero--met-foto {
   position: relative;
   overflow: hidden;
@@ -1103,6 +1277,8 @@ a.icon-kaart {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: var(--hero-foto-pos, center);
+  transform: translateX(var(--hero-foto-x, 0)) scale(var(--hero-foto-schaal, 1));
   z-index: 0;
 }
 .sp-hero--met-foto::after {
@@ -1155,7 +1331,9 @@ a.icon-kaart {
   color: var(--amber);
   padding: 0.2em 0.46em;
   margin-left: -0.46em;
-  text-shadow: 0 2px 10px rgba(15, 10, 6, 0.74), 0 1px 2px rgba(15, 10, 6, 0.9);
+  text-shadow:
+    0 2px 10px rgba(15, 10, 6, 0.74),
+    0 1px 2px rgba(15, 10, 6, 0.9);
 }
 
 .sp-hero--met-foto .content-eyebrow::before {
@@ -1183,8 +1361,10 @@ a.icon-kaart {
 .sp-hero--met-foto .sp-hero__verwijzing a {
   color: var(--amber);
 }
+.sp-hero--met-foto {
+  --kleur-link-hover: var(--warm-paper);
+}
 
-/* ─── Vaste foto-sectie ─── */
 .foto-fixed {
   position: relative;
   padding: 50px 0;
@@ -1209,9 +1389,9 @@ a.icon-kaart {
 }
 .foto-fixed h2 {
   color: var(--papier-licht);
-  font-family: var(--font-heading-outline);
+  font-family: var(--font-h2);
   font-size: 56px;
-  font-weight: 600;
+  font-weight: 400;
   text-shadow: 0 2px 14px rgba(255, 255, 255, 0.825);
 }
 .foto-fixed p {
@@ -1222,7 +1402,6 @@ a.icon-kaart {
     0 2px 12px rgba(15, 10, 6, 0.4);
 }
 
-/* ─── Snel naar ─── */
 .sp-snelnaar {
   max-width: var(--max-breedte);
   margin: 0 auto;
@@ -1248,16 +1427,26 @@ a.icon-kaart {
   text-decoration: none;
   border-bottom: 2px solid transparent;
   padding-bottom: 2px;
-  transition: border-color 0.2s ease, color 0.2s ease;
+  transition:
+    border-color 0.2s ease,
+    color 0.2s ease;
 }
-.sp-snelnaar a:hover { color: var(--kleur-accent); border-color: var(--kleur-accent); }
+.sp-snelnaar a:hover {
+  color: var(--kleur-accent);
+  border-color: var(--kleur-accent);
+}
 
-/* ─── Blok- en kopruimte ─── */
-.sp-blok { margin-top: 48px; margin-bottom: 48px; }
-.sp-kop { margin-bottom: 28px; }
-.sp-kop h3 { margin: 8px 0 0; }
+.sp-blok {
+  margin-top: 48px;
+  margin-bottom: 48px;
+}
+.sp-kop {
+  margin-bottom: 28px;
+}
+.sp-kop h3 {
+  margin: 8px 0 0;
+}
 
-/* ─── Foto-placeholder ─── */
 .foto-plsh {
   width: 100%;
   min-height: 260px;
@@ -1280,36 +1469,41 @@ a.icon-kaart {
     transparent 20px
   );
 }
-.foto-plsh span { max-width: 34ch; }
-.foto-plsh--kaart { min-height: 180px; margin: 4px 0 16px; }
+.foto-plsh span {
+  max-width: 34ch;
+}
+.foto-plsh--kaart {
+  min-height: 180px;
+  margin: 4px 0 16px;
+}
 
-/* ─── Keuzekaarten ─── */
 .sp-kaarten {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: clamp(24px, 3vw, 40px);
 }
-/* Drie kaarten per rij i.p.v. twee. */
+
 .sp-kaarten--3 {
   grid-template-columns: repeat(3, 1fr);
 }
 @media (max-width: 1024px) {
-  .sp-kaarten--3 { grid-template-columns: repeat(2, 1fr); }
+  .sp-kaarten--3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 .sp-kaart {
+  display: block;
   position: relative;
   background: var(--papier-creme);
   padding: 28px 28px 32px;
+  color: inherit;
+  text-decoration: none;
 }
-/* ─── Kaart mét kopband — stijlgids "Technical gear guide": een gekleurde
-   band met kicker en nummer bovenop een papieren body, i.p.v. één vlak vlak.
-   Opt-in, dus bestaande .sp-kaart-markup verandert niet:
-   <article class="sp-kaart kaart-thema sp-kaart--band">
-     <div class="sp-kaart__band"><span class="sp-kaart__kicker">…</span>
-                                 <span class="sp-kaart__band-nr">01</span></div>
-     <div class="sp-kaart__body"> … </div>
-   </article> ─── */
-.sp-kaart--band { padding: 0; overflow: hidden; }
+
+.sp-kaart--band {
+  padding: 0;
+  overflow: hidden;
+}
 .sp-kaart__band {
   display: flex;
   align-items: center;
@@ -1327,11 +1521,19 @@ a.icon-kaart {
   text-transform: uppercase;
   color: var(--trail-amber);
 }
-.sp-kaart--band .sp-kaart__body { padding: 24px 22px 28px; }
-/* Bandkleur-varianten, zodat naast elkaar staande kaarten verschillen. */
-.sp-kaart__band--teal  { background: var(--deep-teal); }
-.sp-kaart__band--groen { background: var(--forest-green); }
-.sp-kaart__band--plum  { background: var(--dusk-plum); }
+.sp-kaart--band .sp-kaart__body {
+  padding: 24px 22px 28px;
+}
+
+.sp-kaart__band--teal {
+  background: var(--deep-teal);
+}
+.sp-kaart__band--groen {
+  background: var(--forest-green);
+}
+.sp-kaart__band--plum {
+  background: var(--dusk-plum);
+}
 
 .sp-kaart__nr {
   font-family: var(--font-accent);
@@ -1344,14 +1546,14 @@ a.icon-kaart {
   font-size: 22px;
   margin: 4px 0 0;
 }
-.sp-kaart p { margin: 0; font-size: 16px; }
-.sp-kaart p + p { margin-top: 12px; }
+.sp-kaart p {
+  margin: 0;
+  font-size: 16px;
+}
+.sp-kaart p + p {
+  margin-top: 12px;
+}
 
-/* ─── Kaart — thema-gekleurde rand, titel & hover; herbruikbaar ───
-   Voeg toe náást een bestaande kaart-klasse, bv. class="sp-kaart kaart-thema".
-   Rand- en titelkleur komen uit var(--kleur-accent), dus die volgen het
-   thema van de pagina. Werkt op elke h3/h4 + p erin; verder bemoeit deze
-   klasse zich niet met layout, achtergrond of padding van de kaart zelf. */
 .kaart-thema {
   border: var(--rand) solid var(--deep-teal);
   border-radius: var(--afgerond);
@@ -1382,7 +1584,6 @@ a.icon-kaart {
   box-shadow: 0 4px 0 0 var(--kleur-accent);
 }
 
-/* ─── Callouts ─── */
 .callout {
   display: flex;
   flex-direction: column;
@@ -1405,7 +1606,10 @@ a.icon-kaart {
   border-radius: 999px;
   padding: 5px 14px;
 }
-.callout p { margin: 0; color: var(--papier-licht); }
+.callout p {
+  margin: 0;
+  color: var(--papier-licht);
+}
 .callout--tip {
   background: var(--forest-green);
   border-color: color-mix(in srgb, var(--forest-green) 70%, black);
@@ -1417,20 +1621,6 @@ a.icon-kaart {
   border-left-color: var(--amber);
 }
 
-/* ─── Waarschuwingskaart — stijlgids "CRAG ALERT": kopzone (badge + titel +
-   tekst) mét een aparte, donkere voetband (status + link) — voor route-
-   condities/waarschuwingen met een vervolgactie. Voor een korte losse
-   tip/waarschuwing zónder voet blijft .callout het juiste component.
-   Gebruik:
-   <article class="kaart-waarschuwing">
-     <span class="kaart-waarschuwing__label">⚠ Waarschuwing</span>
-     <h4 class="kaart-waarschuwing__titel">Titel</h4>
-     <p>Beschrijving…</p>
-     <div class="kaart-waarschuwing__voet">
-       <span>Conditie · Ernstig</span>
-       <a routerLink="…">Lees meer →</a>
-     </div>
-   </article> ─── */
 .kaart-waarschuwing {
   display: flex;
   flex-direction: column;
@@ -1482,13 +1672,10 @@ a.icon-kaart {
   text-decoration: none;
   font-weight: 700;
 }
-.kaart-waarschuwing__voet a:hover { text-decoration: underline; }
+.kaart-waarschuwing__voet {
+  --kleur-link-hover: var(--warm-paper);
+}
 
-/* ─── Onderschrift met lijn — stijlgids "Use for: …": een dun streepje
-   links, tekst in de ruimte ernaast. Voor korte toelichting onder een
-   kaart/container, bv. wanneer je uitlegt waar een patroon voor dient.
-   Gebruik: <p class="tekst-met-lijn"><strong>Gebruik voor:</strong> …</p>
-   De lijn is een ::before, dus geen extra element nodig in de HTML. ─── */
 .tekst-met-lijn {
   position: relative;
   padding-left: 16px;
@@ -1497,7 +1684,7 @@ a.icon-kaart {
   color: var(--kleur-tekst-licht);
 }
 .tekst-met-lijn::before {
-  content: "";
+  content: '';
   position: absolute;
   left: 0;
   top: 2px;
@@ -1509,7 +1696,6 @@ a.icon-kaart {
   color: var(--kleur-tekst);
 }
 
-/* ─── Begrippenstrip ─── */
 .begrippen {
   margin-top: 28px;
   margin-left: 35px;
@@ -1543,7 +1729,7 @@ a.icon-kaart {
   background: var(--papier-creme);
   border: 1px solid rgba(56, 44, 39, 0.14);
   border-radius: 999px;
-  padding: 5px 12px;
+  padding: 5px 12px 7px;
   text-decoration: none;
   cursor: pointer;
   transition:
@@ -1571,19 +1757,7 @@ a.icon-kaart {
   color: var(--kleur-accent);
   text-decoration: none;
 }
-.begrippen__link:hover { text-decoration: underline; }
 
-/* ─── Tabellen — stijlgids "Data & selection".
-   Een tabel is géén vlak vlak: hij bestaat uit zones die in kleur van elkaar
-   verschillen, met harde lijnen ertussen.
-
-     ┌─ .tabel-kop      donkere band (--kleur-hero) + amber kicker + titel
-     ├─ thead           lichte kolomkop (alpine-sky) + hero-tekst
-     ├─ tbody           papier, mét verticale kolomscheidingen
-     └─ .tabel-voet     rustige band voor een noot
-
-   Alle zones zijn optioneel: een kale <div class="tabel-wrap"><table
-   class="sp-tabel"> werkt gewoon. ─── */
 .tabel-wrap {
   --tabel-kolomkop: var(--alpine-sky);
   --tabel-lijn: color-mix(in srgb, var(--kleur-hero) 22%, transparent);
@@ -1593,10 +1767,11 @@ a.icon-kaart {
   border-radius: var(--afgerond);
   background: var(--papier-licht);
 }
-/* Scrollen gebeurt om de tabel heen, zodat de kop/voet blijven staan. */
-.tabel-wrap__scroll { overflow-x: auto; }
 
-/* ─── Kopband — donker, met kicker, titel en optioneel een badge ─── */
+.tabel-wrap__scroll {
+  overflow-x: auto;
+}
+
 .tabel-kop {
   display: flex;
   align-items: center;
@@ -1606,7 +1781,10 @@ a.icon-kaart {
   background: var(--kleur-hero);
   border-bottom: var(--rand) solid var(--kleur-hero);
 }
-.tabel-kop__tekst { flex: 1; min-width: 0; }
+.tabel-kop__tekst {
+  flex: 1;
+  min-width: 0;
+}
 .tabel-kop__kicker {
   display: block;
   font-family: var(--font-accent);
@@ -1640,8 +1818,9 @@ a.icon-kaart {
   background: var(--papier-licht);
 }
 
-/* ─── Kolomkop — licht vlak tégen de donkere band, niet nóg een donkere ─── */
-.sp-tabel thead tr { background: var(--tabel-kolomkop); }
+.sp-tabel thead tr {
+  background: var(--tabel-kolomkop);
+}
 .sp-tabel th {
   text-align: left;
   font-family: var(--font-accent);
@@ -1654,7 +1833,6 @@ a.icon-kaart {
   border-bottom: var(--rand) solid var(--kleur-hero);
 }
 
-/* ─── Cellen — verticale én horizontale scheiding, dat geeft de raster-look ─── */
 .sp-tabel td {
   padding: 16px 18px;
   border-bottom: 1px solid var(--tabel-lijn);
@@ -1662,10 +1840,13 @@ a.icon-kaart {
   color: var(--kleur-tekst);
 }
 .sp-tabel th + th,
-.sp-tabel td + td { border-left: 1px solid var(--tabel-lijn); }
-.sp-tabel tbody tr:last-child td { border-bottom: 0; }
+.sp-tabel td + td {
+  border-left: 1px solid var(--tabel-lijn);
+}
+.sp-tabel tbody tr:last-child td {
+  border-bottom: 0;
+}
 
-/* Sleutelkolom: zwaarder en in themakleur. */
 .sp-tabel td:first-child {
   font-weight: 700;
   color: var(--kleur-hero);
@@ -1674,14 +1855,11 @@ a.icon-kaart {
   background: color-mix(in srgb, var(--kleur-hero) 7%, transparent);
 }
 
-/* ─── Specificatie-variant — labelkolom krijgt een eigen tint,
-   voor label/waarde-tabellen waar beide kolommen even zwaar wegen ─── */
 .sp-tabel--specs td:first-child {
   background: color-mix(in srgb, var(--kleur-hero) 10%, var(--papier-licht));
   width: 45%;
 }
 
-/* ─── Accentcel — één waarde die eruit moet springen, vlak gevuld ─── */
 .sp-tabel td.cel-accent,
 .sp-tabel tbody tr:hover td.cel-accent {
   background: var(--trail-amber);
@@ -1689,14 +1867,12 @@ a.icon-kaart {
   font-weight: 700;
 }
 
-/* Rust-variant voor een waarde die niet alleen opvalt maar afraadt. */
 .sp-tabel td.cel-accent--rust,
 .sp-tabel tbody tr:hover td.cel-accent--rust {
   background: var(--canyon-rust);
   color: var(--warm-paper);
 }
 
-/* ─── Voetband — rustige noot onder de data ─── */
 .tabel-voet {
   margin: 0;
   padding: 14px 20px;
@@ -1706,7 +1882,6 @@ a.icon-kaart {
   color: var(--kleur-tekst-licht);
 }
 
-/* ─── Statuspil — kleur draagt betekenis, in een cel of los ─── */
 .status {
   display: inline-block;
   font-family: var(--font-accent);
@@ -1719,20 +1894,34 @@ a.icon-kaart {
   padding: 5px 13px;
   white-space: nowrap;
 }
-.status--rust  { background: var(--canyon-rust); }
-.status--groen { background: var(--forest-green); }
-.status--plum  { background: var(--dusk-plum); }
-.status--teal  { background: var(--deep-teal); }
-.status--amber { background: var(--trail-amber); color: var(--charcoal-ink); }
+.status--rust {
+  background: var(--canyon-rust);
+}
+.status--groen {
+  background: var(--forest-green);
+}
+.status--plum {
+  background: var(--dusk-plum);
+}
+.status--teal {
+  background: var(--deep-teal);
+}
+.status--amber {
+  background: var(--trail-amber);
+  color: var(--charcoal-ink);
+}
 
-.commando { font-weight: 700; color: var(--kleur-accent); }
+.commando {
+  font-weight: 700;
+  color: var(--kleur-accent);
+}
 
-/* ─── Accordions ─── */
-.accordions { display: flex; flex-direction: column; gap: 12px; }
-/* Harde themarand i.p.v. een neutrale grijze lijn, en een samenvouwbalk die
-   in kleur verschilt van het tekstvlak eronder — dicht = lichte tint, open =
-   volle themaband. Zo blijft een open item ook binnen een andere container
-   herkenbaar als eigen blok. */
+.accordions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
 .accordion {
   border: var(--rand) solid var(--kleur-hero);
   border-radius: var(--afgerond);
@@ -1751,7 +1940,9 @@ a.icon-kaart {
   font-size: 18px;
   color: var(--kleur-hero);
   background: color-mix(in srgb, var(--kleur-hero) 9%, var(--papier-licht));
-  transition: background-color 200ms ease, color 200ms ease;
+  transition:
+    background-color 200ms ease,
+    color 200ms ease;
 }
 .accordion summary:hover,
 .accordion summary:focus-visible {
@@ -1765,14 +1956,17 @@ a.icon-kaart {
 .accordion[open] summary::after {
   border-color: var(--trail-amber);
 }
-/* Tekst in de open balk volgt de bandkleur; alleen het nummerblokje houdt
-   zijn eigen kleur (anders valt donkere kaarttekst weg op de donkere band). */
-.accordion[open] summary :not(.accordion__nr) { color: inherit; }
+
+.accordion[open] summary :not(.accordion__nr) {
+  color: inherit;
+}
 .accordion[open] .accordion__nr {
   background: var(--trail-amber);
   color: var(--charcoal-ink);
 }
-.accordion summary::-webkit-details-marker { display: none; }
+.accordion summary::-webkit-details-marker {
+  display: none;
+}
 .accordion summary::after {
   content: '';
   margin-left: auto;
@@ -1783,7 +1977,9 @@ a.icon-kaart {
   transform: rotate(45deg);
   transition: transform 0.3s ease;
 }
-.accordion[open] summary::after { transform: rotate(-135deg); }
+.accordion[open] summary::after {
+  transform: rotate(-135deg);
+}
 .accordion::details-content {
   block-size: 0;
   overflow: hidden;
@@ -1806,12 +2002,17 @@ a.icon-kaart {
   color: var(--papier-licht);
   background: var(--kleur-accent);
 }
-.accordion__titel { min-width: 0; }
+.accordion__titel {
+  min-width: 0;
+}
 .accordion__body {
   padding: 16px 20px 20px;
   background: var(--papier-licht);
 }
-.accordion__body p { margin: 14px 0 0; color: var(--kleur-tekst-licht); }
+.accordion__body p {
+  margin: 14px 0 0;
+  color: var(--kleur-tekst-licht);
+}
 
 @media (prefers-reduced-motion: reduce) {
   .accordion::details-content,
@@ -1820,7 +2021,6 @@ a.icon-kaart {
   }
 }
 
-/* ─── Checklist ─── */
 .sp-checklist {
   list-style: none;
   margin: 0 auto;
@@ -1918,15 +2118,62 @@ a.icon-kaart {
   display: block;
 }
 
-/* ─── Inline tekstlink ─── */
-.tekst-link {
-  color: var(--kleur-accent);
-  text-decoration: underline;
-  text-underline-offset: 2px;
+.checklist-kaart {
+  --kleur-accent: var(--trail-amber);
+  --kleur-highlight: var(--trail-amber);
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: clamp(22px, 3vw, 36px);
+  background: var(--forest-green);
+  border: var(--rand) solid color-mix(in srgb, var(--forest-green) 70%, black);
+  border-radius: var(--afgerond);
+  color: var(--warm-paper);
+}
+.checklist-kaart__kop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid color-mix(in srgb, var(--warm-paper) 25%, transparent);
+}
+.checklist-kaart__kicker {
+  font-family: var(--font-accent);
+  font-size: 16px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--trail-amber);
+}
+.checklist-kaart__badge {
+  flex: none;
+  font-family: var(--font-accent);
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--warm-paper);
+  background: var(--dusk-plum);
+  border-radius: 999px;
+  padding: 5px 13px;
+}
+.checklist-kaart .sp-checklist li {
+  color: var(--warm-paper);
+}
+.checklist-kaart .sp-checklist--interactief input {
+  background: transparent;
+}
+.checklist-kaart .sp-checklist--interactief input:checked {
+  background: var(--trail-amber);
 }
 
-/* ─── Verder lezen ─── */
-.verder-lezen { margin-top: 24px; border-top: 1px solid rgba(38, 28, 21, 0.12); }
+.tekst-link {
+  color: var(--kleur-accent);
+}
+
+.verder-lezen {
+  margin-top: 24px;
+  border-top: 1px solid rgba(38, 28, 21, 0.12);
+}
 .verder-lezen__inner {
   max-width: var(--max-breedte);
   margin: 0 auto;
@@ -1951,38 +2198,73 @@ a.icon-kaart {
   gap: 10px 20px;
   flex-wrap: wrap;
 }
-.verder-lezen__lijst li { position: relative; }
+.verder-lezen__lijst li {
+  position: relative;
+}
 .verder-lezen__lijst li:not(:last-child)::after {
   content: '·';
   position: absolute;
   right: -12px;
   color: var(--kleur-tekst-licht);
 }
-.verder-lezen__lijst a { color: var(--kleur-accent); text-decoration: none; font-size: 17px; }
-.verder-lezen__lijst a:hover { text-decoration: underline; }
+.verder-lezen__lijst a {
+  color: var(--kleur-accent);
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.verder-lezen--licht {
+  margin-top: 0;
+  background: var(--warm-paper);
+  border-top: var(--rand) solid var(--deep-teal);
+}
+.verder-lezen--licht .verder-lezen__lijst a {
+  font-weight: 700;
+}
 
 @media (max-width: 768px) {
-  .sp-kaarten { grid-template-columns: 1fr; }
-  .sp-checklist { grid-template-columns: 1fr; }
+  .sp-kaarten {
+    grid-template-columns: 1fr;
+  }
+  .sp-checklist {
+    grid-template-columns: 1fr;
+  }
 
-  .sp-tabel thead { display: none; }
-  .sp-tabel, .sp-tabel tbody, .sp-tabel tr, .sp-tabel td { display: block; width: 100%; }
-  /* Elke rij wordt een eigen blok met een harde themarand links. */
+  .sp-tabel thead {
+    display: none;
+  }
+  .sp-tabel,
+  .sp-tabel tbody,
+  .sp-tabel tr,
+  .sp-tabel td {
+    display: block;
+    width: 100%;
+  }
+
   .sp-tabel tr {
     border-left: 4px solid var(--kleur-hero);
     border-bottom: var(--rand) solid var(--kleur-hero);
   }
-  .sp-tabel tbody tr:last-child { border-bottom: 0; }
-  .sp-tabel tbody tr:hover td { background: transparent; }
-  /* Verticale scheidingen vervallen; de labelkolom wordt een tint. */
+  .sp-tabel tbody tr:last-child {
+    border-bottom: 0;
+  }
+  .sp-tabel tbody tr:hover td {
+    background: transparent;
+  }
+
   .sp-tabel th + th,
-  .sp-tabel td + td { border-left: 0; }
+  .sp-tabel td + td {
+    border-left: 0;
+  }
   .sp-tabel td {
     border-bottom: 1px solid var(--tabel-lijn);
     padding-left: 42%;
     position: relative;
   }
-  .sp-tabel--specs td:first-child { width: auto; background: transparent; }
+  .sp-tabel--specs td:first-child {
+    width: auto;
+    background: transparent;
+  }
   .sp-tabel td::before {
     content: attr(data-label);
     position: absolute;
@@ -1995,5 +2277,7 @@ a.icon-kaart {
     text-transform: uppercase;
     color: var(--kleur-hero);
   }
-  .tabel-kop__titel { font-size: 21px; }
+  .tabel-kop__titel {
+    font-size: 21px;
+  }
 }

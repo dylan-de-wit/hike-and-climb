@@ -7,7 +7,6 @@ import { BOULDEREN_ETAPPES } from './boulderen-etappes';
   host: { class: 'thema-boulderen' },
   imports: [RouteDivider],
   templateUrl: './boulderen-page.html',
-  styleUrl: './boulderen-page.scss',
 })
 export class BoulderenPage {
   readonly etappes = BOULDEREN_ETAPPES;

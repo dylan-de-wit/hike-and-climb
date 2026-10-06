@@ -1,0 +1,61 @@
+<button
+  type="button"
+  class="keuzelijst__trigger"
+  role="combobox"
+  aria-haspopup="listbox"
+  [attr.aria-expanded]="open()"
+  [attr.aria-controls]="id + '-lijst'"
+  [attr.aria-activedescendant]="open() ? id + '-optie-' + actief() : null"
+  [attr.aria-label]="ariaLabel()"
+  [attr.aria-labelledby]="labelId()"
+  (click)="wissel()"
+  (keydown)="toets($event)"
+>
+  <span class="keuzelijst__waarde" [class.keuzelijst__waarde--leeg]="!weergave()">
+    {{ weergave() || placeholder() }}
+  </span>
+  @if (meervoud() && gekozen().length) {
+    <span class="keuzelijst__teller">{{ gekozen().length }}</span>
+  }
+  <svg class="keuzelijst__pijl" viewBox="0 0 24 24" aria-hidden="true">
+    <path d="m6 9 6 6 6-6" />
+  </svg>
+</button>
+
+@if (open()) {
+  <ul
+    class="keuzelijst__lijst"
+    role="listbox"
+    [id]="id + '-lijst'"
+    [attr.aria-multiselectable]="meervoud() || null"
+    [attr.aria-label]="ariaLabel()"
+    [attr.aria-labelledby]="labelId()"
+  >
+    @for (o of opties(); track o.waarde; let i = $index) {
+      @if (nieuweGroep(i); as groep) {
+        <li class="keuzelijst__groep" role="presentation">{{ groep }}</li>
+      }
+      <li
+        class="keuzelijst__optie"
+        role="option"
+        [id]="id + '-optie-' + i"
+        [class.keuzelijst__optie--actief]="i === actief()"
+        [class.keuzelijst__optie--gekozen]="isGekozen(o)"
+        [attr.aria-selected]="isGekozen(o)"
+        (pointerenter)="actief.set(i)"
+        (mousedown)="$event.preventDefault()"
+        (click)="kies(o)"
+      >
+        @if (meervoud()) {
+          <span class="keuzelijst__vak" aria-hidden="true"></span>
+        }
+        <span>{{ o.label }}</span>
+        @if (isGekozen(o) && !meervoud()) {
+          <svg class="keuzelijst__vink" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M20 6 9 17l-5-5" />
+          </svg>
+        }
+      </li>
+    }
+  </ul>
+}

@@ -1,4 +1,4 @@
-# HikeAndClimb
+# Wildline
 
 ## How to start
 1. Zorg dat je npm en node hebt geinstalleerd

@@ -7,7 +7,6 @@ import { NATUUR_ETAPPES } from '../natuur-etappes';
   host: { class: 'thema-natuur' },
   imports: [RouteDivider],
   templateUrl: './wildplukken.html',
-  styleUrl: './wildplukken.scss',
 })
 export class Wildplukken {
   readonly etappes = NATUUR_ETAPPES;

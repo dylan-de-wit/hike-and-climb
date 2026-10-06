@@ -5,7 +5,9 @@
     <ul class="sp-nav__links">
       @for (h of hoofdstukken; track h.anchor) {
         <li>
-          <a [attr.href]="'#' + h.anchor" (click)="scrollNaar(h.anchor, $event)">{{ h.kort ?? h.naam }}</a>
+          <a [attr.href]="'#' + h.anchor" (click)="scrollNaar(h.anchor, $event)">{{
+            h.kort ?? h.naam
+          }}</a>
         </li>
       }
     </ul>
@@ -14,16 +16,18 @@
 
 <!-- ═══ BLOK 1 — HERO ═══ -->
 <header class="sp-hero sp-hero--met-foto">
-  <!-- Achtergrondfoto — vervang de src door je eigen afbeelding in public/images/ -->
   <img class="sp-hero__media" src="images/ropelonger.jpg" alt="" aria-hidden="true" />
   <div class="sp-hero__inner">
     <span class="content-eyebrow">Klimmen · Multi-pitch</span>
-    <h1>Multi-pitch klimmen, standplaats maken <br> en zekeren</h1>
+    <h1>
+      Multi-pitch klimmen, standplaats maken <br />
+      en zekeren
+    </h1>
     <p class="sp-hero__intro">
-      In multi-pitch klim je meerdere pitches achter elkaar en is de standplaats je werkplek. Je zekert
-      daar niet alleen jezelf, maar ook je naklimmer, en je wisselt materiaal en rollen. Op deze pagina
-      lees je hoe je een standplaats inricht rond één centraal punt en hoe je de naklimmer zekert met een
-      halve mastworp of met een tuber.
+      In multi-pitch klim je meerdere pitches achter elkaar en is de standplaats je werkplek. Je
+      zekert daar niet alleen jezelf, maar ook je naklimmer, en je wisselt materiaal en rollen. Op
+      deze pagina lees je hoe je een standplaats inricht rond één centraal punt en hoe je de
+      naklimmer zekert met een halve mastworp of met een tuber.
     </p>
     <p class="sp-hero__verwijzing">
       Ombouwen naar toprope en afdalen aan het einde van één pitch →
@@ -39,37 +43,34 @@
 <!-- ═══ TWEE-KOLOMS: HOOFDKOLOM + STICKY ZIJKOLOM ═══ -->
 <div class="mp-layout">
   <div class="mp-main">
-    <!-- BLOK 3 — DE STANDPLAATS -->
     <section class="sectie" id="standplaats">
       <div class="sectie-inner tekst-blok">
         <span class="content-eyebrow">Techniek</span>
         <h2>De standplaats met één centraal punt</h2>
         <p>
-          Op elke standplaats richt je een centraal punt in, zodat je beter overzicht hebt en er genoeg
-          werkruimte is voor alle karabiners. Dat centrale punt is een extra beveiligde karabiner, of een
-          vooraf geknoopte lus in een sling van 120 cm. Aan dit punt hang je zowel je zelfzekering als de
-          zekering van de naklimmer.
+          Op elke standplaats richt je een centraal punt in, zodat je beter overzicht hebt en er
+          genoeg werkruimte is voor alle karabiners. Dat centrale punt is een extra beveiligde
+          karabiner, of een vooraf geknoopte lus in een sling van 120 cm. Aan dit punt hang je zowel
+          je zelfzekering als de zekering van de naklimmer.
         </p>
       </div>
-
-      <!-- 3a — zelfzekering (foto + tekst) -->
       <div class="sectie-inner sp-blok">
         <div class="media-blok">
           <div class="media-blok__media">
-            <div class="foto-plsh"><span>foto — hele mastworp in extra beveiligde karabiner</span></div>
+            <div class="foto-plsh">
+              <span>foto — hele mastworp in extra beveiligde karabiner</span>
+            </div>
           </div>
           <div class="media-blok__tekst">
             <h3>Je zelfzekering maken</h3>
             <p>
               Je zelfzekering maak je met het hoofdtouw. Hang een extra beveiligde karabiner in de
-              standplaats en leg daarin een <strong>hele mastworp</strong>. Pas de lengte aan naar de
-              situatie.
+              standplaats en leg daarin een <strong>hele mastworp</strong>. Pas de lengte aan naar
+              de situatie.
             </p>
           </div>
         </div>
       </div>
-
-      <!-- 3b — verwijzing naar zijkolom -->
       <div class="sectie-inner sp-blok">
         <div class="sp-kop">
           <span class="content-eyebrow">Keuze</span>
@@ -80,25 +81,27 @@
           <span class="mp-verwijzing__pijl">Bekijk de kaarten hiernaast →</span>
         </p>
       </div>
-
-      <!-- 3c — tip -->
       <div class="sectie-inner sp-blok">
         <aside class="callout callout--tip">
           <span class="callout__label">Tip</span>
           <p>
-            De onderste haak draagt honderd procent van de belasting en de bovenste is de back-up. Bij
-            rijverankering wil je zo min mogelijk speling in het systeem, zodat de andere haak zo min
-            mogelijk schokbelasting krijgt als een haak faalt.
+            De onderste haak draagt honderd procent van de belasting en de bovenste is de back-up.
+            Bij rijverankering wil je zo min mogelijk speling in het systeem, zodat de andere haak
+            zo min mogelijk schokbelasting krijgt als een haak faalt.
           </p>
         </aside>
-
-        <!-- 3d — begrippenstrip -->
         <div class="begrippen">
           <span class="begrippen__label">Begrippen</span>
           <ul class="begrippen__lijst">
             <li><a routerLink="/kennis/terminologie" fragment="centraal-punt">centraal punt</a></li>
-            <li><a routerLink="/kennis/terminologie" fragment="rijverankering">rijverankering</a></li>
-            <li><a routerLink="/kennis/terminologie" fragment="dubbele-paalsteek">dubbele paalsteek</a></li>
+            <li>
+              <a routerLink="/kennis/terminologie" fragment="rijverankering">rijverankering</a>
+            </li>
+            <li>
+              <a routerLink="/kennis/terminologie" fragment="dubbele-paalsteek"
+                >dubbele paalsteek</a
+              >
+            </li>
             <li><a routerLink="/kennis/terminologie" fragment="hms-karabiner">HMS-karabiner</a></li>
             <li><a routerLink="/kennis/terminologie" fragment="hele-mastworp">hele mastworp</a></li>
           </ul>
@@ -106,19 +109,15 @@
         </div>
       </div>
     </section>
-
-    <!-- BLOK 4 — DE NAKLIMMER ZEKEREN -->
     <section class="sectie" id="naklimmer">
       <div class="sectie-inner tekst-blok">
         <span class="content-eyebrow">Techniek</span>
         <h2>De naklimmer zekeren</h2>
         <p>
-          Vanaf de standplaats zeker je de naklimmer met een halve mastworp of met een tuber. Welke je
-          kiest hangt af van wat je bij je hebt en hoe de standplaats eruitziet.
+          Vanaf de standplaats zeker je de naklimmer met een halve mastworp of met een tuber. Welke
+          je kiest hangt af van wat je bij je hebt en hoe de standplaats eruitziet.
         </p>
       </div>
-
-      <!-- 4a — halve mastworp (foto + tekst) -->
       <div class="sectie-inner sp-blok">
         <div class="media-blok">
           <div class="media-blok__media">
@@ -127,45 +126,43 @@
           <div class="media-blok__tekst">
             <h3>Zekeren met de halve mastworp</h3>
             <p>
-              De halve mastworp leg je altijd in een HMS-karabiner, bij voorkeur een safebiner. De peervorm
-              van de karabiner zorgt ervoor dat de knoop zich omdraait als je wisselt van touw inhalen naar
-              touw uitgeven, en zo ook blokkeert. Je kunt er zowel over het lichaam als over de standplaats
-              mee zekeren.
+              De halve mastworp leg je altijd in een HMS-karabiner, bij voorkeur een safebiner. De
+              peervorm van de karabiner zorgt ervoor dat de knoop zich omdraait als je wisselt van
+              touw inhalen naar touw uitgeven, en zo ook blokkeert. Je kunt er zowel over het
+              lichaam als over de standplaats mee zekeren.
             </p>
           </div>
         </div>
       </div>
-
-      <!-- 4b — tip -->
       <div class="sectie-inner sp-blok">
         <aside class="callout callout--tip">
           <span class="callout__label">Tip</span>
           <p>Of een karabiner een HMS is, herken je aan de omcirkelde H op de karabiner.</p>
         </aside>
       </div>
-
-      <!-- 4c — tuber (foto + tekst, gespiegeld) -->
       <div class="sectie-inner sp-blok">
         <div class="media-blok media-blok--flip">
           <div class="media-blok__media">
-            <div class="foto-plsh"><span>foto — tuber in laagsthangende karabiner aan centraal punt</span></div>
+            <div class="foto-plsh">
+              <span>foto — tuber in laagsthangende karabiner aan centraal punt</span>
+            </div>
           </div>
           <div class="media-blok__tekst">
             <h3>Zekeren met een tuber</h3>
             <p>
-              Je kunt de naklimmer ook zekeren met een tuber, zoals een Reverso of ATC Guide. Bij zekeren
-              over de standplaats hangt het zekeringsapparaat in de laagst hangende karabiner. Hoe je zekert
-              hangt af van de positie van de naklimmer.
+              Je kunt de naklimmer ook zekeren met een tuber, zoals een Reverso of ATC Guide. Bij
+              zekeren over de standplaats hangt het zekeringsapparaat in de laagst hangende
+              karabiner. Hoe je zekert hangt af van de positie van de naklimmer.
             </p>
             <p class="mp-verwijzing">
-              <span class="mp-verwijzing__pijl">Onder of boven jou? Zie de kaarten hiernaast →</span>
+              <span class="mp-verwijzing__pijl"
+                >Onder of boven jou? Zie de kaarten hiernaast →</span
+              >
             </p>
           </div>
         </div>
       </div>
     </section>
-
-    <!-- BLOK 7 — AFDALEN EN ZELFREDDING (in de hoofdkolom) -->
     <section class="sectie" id="afdalen">
       <div class="sectie-inner tekst-blok">
         <span class="content-eyebrow">Veiligheid</span>
@@ -177,8 +174,8 @@
           <article class="mp-linkkaart">
             <h3>Abseilen</h3>
             <p>
-              Touw doorhalen, de set-up met een Dual Connect Adjust of met een schlinge, de abseiltechniek
-              en abseilen met een slachtoffer.
+              Touw doorhalen, de set-up met een Dual Connect Adjust of met een schlinge, de
+              abseiltechniek en abseilen met een slachtoffer.
             </p>
             <a class="mp-linkkaart__link" routerLink="/kennis/technieken">Lees meer →</a>
           </article>
@@ -189,18 +186,18 @@
           </article>
           <article class="mp-linkkaart">
             <h3>Omhoog prusikken</h3>
-            <p>De klassieke manier met twee prusiktouwtjes en de methode met een tuber na abseilen.</p>
+            <p>
+              De klassieke manier met twee prusiktouwtjes en de methode met een tuber na abseilen.
+            </p>
             <a class="mp-linkkaart__link" routerLink="/kennis/technieken">Lees meer →</a>
           </article>
         </div>
       </div>
     </section>
-
-    <!-- BLOK 8 — VOLGORDE (in de hoofdkolom) -->
     <section class="sectie" id="volgorde">
       <div class="sectie-inner tekst-blok">
-            <span class="content-eyebrow">Volgorde</span>
-            <h2>De volgorde als je boven komt</h2>
+        <span class="content-eyebrow">Volgorde</span>
+        <h2>De volgorde als je boven komt</h2>
       </div>
       <div class="sectie-inner sp-blok">
         <div class="paneel-zand">
@@ -220,7 +217,6 @@
 
   <!-- ═══ STICKY ZIJKOLOM ═══ -->
   <aside class="mp-side">
-    <!-- Twee haken verbinden -->
     <div class="mp-side__blok">
       <h3 class="mp-side__titel">De twee haken verbinden</h3>
       <div class="mp-side__stapel">
@@ -238,54 +234,55 @@
           <h4>Aan twee haken zonder ketting</h4>
           <div class="foto-plsh foto-plsh--kaart"><span>foto — rijverankering</span></div>
           <p>
-            Als er geen ketting aanwezig is, verbind je de haken zelf met een rijverankering via een sling.
-            Leg daarin een dubbele paalsteek van drie vingers breed, direct tegen het stiksel aan. Aan het
-            centrale punt en de zelfzekering hang je HMS-karabiners.
+            Als er geen ketting aanwezig is, verbind je de haken zelf met een rijverankering via een
+            sling. Leg daarin een dubbele paalsteek van drie vingers breed, direct tegen het stiksel
+            aan. Aan het centrale punt en de zelfzekering hang je HMS-karabiners.
           </p>
           <p>
-            Op de standplaats clip je de lus in de laagsthangende haak, want dat wordt het centrale punt.
-            Onder aan de lus hang je een derde karabiner voor de zekering. De bovenste haak verbind je via
-            een hele mastworp in een karabiner, net niet op spanning. De losse lus achter de mastworp clip
-            je ook in die karabiner.
+            Op de standplaats clip je de lus in de laagsthangende haak, want dat wordt het centrale
+            punt. Onder aan de lus hang je een derde karabiner voor de zekering. De bovenste haak
+            verbind je via een hele mastworp in een karabiner, net niet op spanning. De losse lus
+            achter de mastworp clip je ook in die karabiner.
           </p>
         </article>
       </div>
     </div>
-
-    <!-- Positie naklimmer -->
     <div class="mp-side__blok">
       <h3 class="mp-side__titel">Positie van de naklimmer</h3>
       <div class="mp-side__stapel">
         <article class="sp-kaart kaart-thema">
           <span class="sp-kaart__nr">01</span>
           <h4>De naklimmer is onder jou</h4>
-          <div class="foto-plsh foto-plsh--kaart"><span>foto — tuber aan centraal punt, autoblokkering</span></div>
+          <div class="foto-plsh foto-plsh--kaart">
+            <span>foto — tuber aan centraal punt, autoblokkering</span>
+          </div>
           <p>
-            De naklimmer klimt omhoog terwijl jij boven vanaf de standplaats zekert. In plaats van de tuber
-            aan je gordel te hangen, hang je hem aan het centrale punt met een extra beveiligde karabiner
-            door zowel de tuber als het touw. Die combinatie zorgt voor autoblokkering, want bij een val
-            blokkeert het systeem vanzelf. Touw inhalen doe je precies zoals je gewend bent.
+            De naklimmer klimt omhoog terwijl jij boven vanaf de standplaats zekert. In plaats van
+            de tuber aan je gordel te hangen, hang je hem aan het centrale punt met een extra
+            beveiligde karabiner door zowel de tuber als het touw. Die combinatie zorgt voor
+            autoblokkering, want bij een val blokkeert het systeem vanzelf. Touw inhalen doe je
+            precies zoals je gewend bent.
           </p>
         </article>
         <article class="sp-kaart kaart-thema">
           <span class="sp-kaart__nr">02</span>
           <h4>De naklimmer is boven jou</h4>
-          <div class="foto-plsh foto-plsh--kaart"><span>foto — extra karabiner, remtouw voor de knik</span></div>
+          <div class="foto-plsh foto-plsh--kaart">
+            <span>foto — extra karabiner, remtouw voor de knik</span>
+          </div>
           <p>
-            Als de naklimmer boven je hangt, blokkeert de tuber minder goed bij een val. Hang daarom een
-            extra, kleinere karabiner naast de tuberkarabiner in het centrale punt en haal het remtouw
-            daardoorheen. De knik in het touw zorgt ervoor dat de tuber goed blokkeert.
+            Als de naklimmer boven je hangt, blokkeert de tuber minder goed bij een val. Hang daarom
+            een extra, kleinere karabiner naast de tuberkarabiner in het centrale punt en haal het
+            remtouw daardoorheen. De knik in het touw zorgt ervoor dat de tuber goed blokkeert.
           </p>
           <p>
-            Je kunt makkelijker touw doorhalen door een lus tussen het remtouw en de karabiner te trekken,
-            voordat je het door de tuber haalt. Zodra de voorklimmer de tweede quickdraw heeft ingeclipt,
-            haal je het remtouw eruit, zodat je weer normaal zekert.
+            Je kunt makkelijker touw doorhalen door een lus tussen het remtouw en de karabiner te
+            trekken, voordat je het door de tuber haalt. Zodra de voorklimmer de tweede quickdraw
+            heeft ingeclipt, haal je het remtouw eruit, zodat je weer normaal zekert.
           </p>
         </article>
       </div>
     </div>
-
-    <!-- Touwcommando's — compact -->
     <div class="mp-side__blok paneel-getint" id="commandos">
       <h3 class="mp-side__titel">Touwcommando's</h3>
       <p class="mp-side__intro">
@@ -338,13 +335,11 @@
         <a class="tekst-link" routerLink="/kennis/technieken">touwcommando's</a>.
       </p>
     </div>
-
-    <!-- Welk touw — compact -->
     <div class="mp-side__blok" id="touw">
       <h3 class="mp-side__titel">Welk touw neem je mee</h3>
       <p class="mp-side__intro">
-        Klimtouwen zijn dynamisch en rekken tot 40% bij een val. Welk soort je meeneemt hangt af van de
-        route.
+        Klimtouwen zijn dynamisch en rekken tot 40% bij een val. Welk soort je meeneemt hangt af van
+        de route.
       </p>
       <ul class="mp-touwlijst">
         <li><strong>Enkeltouw</strong> — 1 touw, in elke quickdraw. Meest gebruikt.</li>
@@ -365,46 +360,67 @@
   <div class="sectie-inner sp-blok">
     <div class="accordions accordions--faq">
       <details class="accordion" name="multi-pitch-faq">
-        <summary><span class="accordion__titel">Wat is het verschil tussen een hele en een halve mastworp?</span></summary>
+        <summary>
+          <span class="accordion__titel"
+            >Wat is het verschil tussen een hele en een halve mastworp?</span
+          >
+        </summary>
         <div class="accordion__body">
           <p>
-            De hele mastworp gebruik je om jezelf vast te maken aan de standplaats, met een instelbare
-            lengte. De halve mastworp gebruik je om te zekeren, altijd in een HMS-karabiner.
+            De hele mastworp gebruik je om jezelf vast te maken aan de standplaats, met een
+            instelbare lengte. De halve mastworp gebruik je om te zekeren, altijd in een
+            HMS-karabiner.
           </p>
         </div>
       </details>
       <details class="accordion" name="multi-pitch-faq">
-        <summary><span class="accordion__titel">Waarom hang ik in de onderste haak en niet in de bovenste?</span></summary>
+        <summary>
+          <span class="accordion__titel"
+            >Waarom hang ik in de onderste haak en niet in de bovenste?</span
+          >
+        </summary>
         <div class="accordion__body">
           <p>
             Bij een rijverankering draagt de onderste haak honderd procent van de belasting en is de
-            bovenste de back-up. Door de lus in de laagsthangende haak te clippen, houd je de speling in het
-            systeem klein.
+            bovenste de back-up. Door de lus in de laagsthangende haak te clippen, houd je de
+            speling in het systeem klein.
           </p>
         </div>
       </details>
       <details class="accordion" name="multi-pitch-faq">
-        <summary><span class="accordion__titel">Waarom blokkeert mijn tuber slecht als de naklimmer boven me hangt?</span></summary>
+        <summary>
+          <span class="accordion__titel"
+            >Waarom blokkeert mijn tuber slecht als de naklimmer boven me hangt?</span
+          >
+        </summary>
         <div class="accordion__body">
           <p>
-            De autoblokkering werkt op de knik die het touw maakt in het apparaat. Hangt de naklimmer boven
-            je, dan is die knik te klein. Hang een extra kleinere karabiner naast de tuberkarabiner en haal
-            het remtouw daardoorheen, dan blokkeert de tuber weer goed.
+            De autoblokkering werkt op de knik die het touw maakt in het apparaat. Hangt de
+            naklimmer boven je, dan is die knik te klein. Hang een extra kleinere karabiner naast de
+            tuberkarabiner en haal het remtouw daardoorheen, dan blokkeert de tuber weer goed.
           </p>
         </div>
       </details>
       <details class="accordion" name="multi-pitch-faq">
-        <summary><span class="accordion__titel">Kan ik met een halve mastworp ook over het lichaam zekeren?</span></summary>
+        <summary>
+          <span class="accordion__titel"
+            >Kan ik met een halve mastworp ook over het lichaam zekeren?</span
+          >
+        </summary>
         <div class="accordion__body">
           <p>Ja. Je kunt er zowel over het lichaam als over de standplaats mee zekeren.</p>
         </div>
       </details>
       <details class="accordion" name="multi-pitch-faq">
-        <summary><span class="accordion__titel">Wanneer neem ik halftouw mee in plaats van enkeltouw?</span></summary>
+        <summary>
+          <span class="accordion__titel"
+            >Wanneer neem ik halftouw mee in plaats van enkeltouw?</span
+          >
+        </summary>
         <div class="accordion__body">
           <p>
-            Bij routes die zigzaggen, bij grote haakafstanden, als je met drie klimmers klimt, of als je de
-            volledige touwlengte wilt kunnen abseilen.
+            Bij routes die zigzaggen, bij grote haakafstanden, als je met drie klimmers klimt, of
+            als je de volledige touwlengte wilt kunnen abseilen.
           </p>
         </div>
       </details>

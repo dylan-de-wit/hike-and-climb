@@ -4,103 +4,220 @@
     <span class="sp-nav__merk">Klimmen</span>
     <ul class="sp-nav__links">
       @for (h of hoofdstukken; track h.anchor) {
-        <li><a [routerLink]="h.link">{{ h.kort ?? h.naam }}</a></li>
+        <li>
+          <a [attr.href]="'#' + h.anchor" (click)="scrollNaar(h.anchor, $event)">{{
+            h.kort ?? h.naam
+          }}</a>
+        </li>
       }
     </ul>
   </div>
 </nav>
 
-<!-- ═══ BLOK 1 — HERO ═══ -->
+<!-- ═══ HERO ═══ -->
 <header class="sp-hero sp-hero--met-foto klimmen-hero">
   <img class="sp-hero__media" src="images/single-pitch.png" alt="" aria-hidden="true" />
   <div class="sp-hero__inner">
     <span class="content-eyebrow">Routes · Techniek · Materiaal</span>
     <h1>Klimmen</h1>
     <p class="sp-hero__intro">
-      Kriebelen jouw handen om de rotswand weer aan te raken? Hier lees je alles over rotsklimmen, de voorbereidingen en de gear!
+      Kriebelen je handen om buiten te klimmen? Hier lees je over klimtechniek, voorbereiding,
+      materiaal en klimgebieden, zodat je goed voorbereid van de klimhal naar buiten gaat.
     </p>
   </div>
 </header>
 <span #sentinel class="sp-sentinel" aria-hidden="true"></span>
 
-<!-- ═══ BLOK 2 — CHIPS NAAR DE SUBPAGINA'S ═══ -->
+<!-- ═══ CHIPS — ANKERS NAAR SECTIES ═══ -->
 <app-hoofdstuk-nav [hoofdstukken]="hoofdstukken" label="Waar wil je beginnen?" />
 
-<!-- ═══ BLOK 3 — BASISTECHNIEKEN ═══ -->
-<section class="sectie" id="basistechnieken">
-  <div class="sectie-inner tekst-blok">
-    <span class="content-eyebrow">Techniek</span>
-    <h2>Basistechnieken</h2>
-    <p>De drie vaardigheden waar elke buitenklimmer mee begint: een standplaats maken, zekeren en communiceren.</p>
-  </div>
-  <div class="sectie-inner sp-blok">
-    <div class="sp-kaarten sp-kaarten--3">
-      <a class="sp-kaart kaart-thema" routerLink="/klimmen/single-pitch">
-        <span class="sp-kaart__nr">01</span>
-        <h4>Single pitch</h4>
-        <p>Standplaats maken, ombouwen naar toprope en afdalen.</p>
-      </a>
-      <a class="sp-kaart kaart-thema" routerLink="/klimmen/multi-pitch">
-        <span class="sp-kaart__nr">02</span>
-        <h4>Multipitch</h4>
-        <p>Een centraal punt inrichten en je naklimmer zekeren.</p>
-      </a>
-      <a class="sp-kaart kaart-thema" routerLink="/kennis/technieken">
-        <span class="sp-kaart__nr">03</span>
-        <h4>Touwcommando's</h4>
-        <p>De termen die je iedereen hoort schreeuwen op de wand.</p>
-      </a>
+<!-- ═══ INTRO ═══ -->
+<section class="sectie kl-intro">
+  <div class="sectie-inner kl-kop kl-kop--intro">
+    <div>
+      <span class="kl-kicker">Buiten klimmen</span>
+      <h2 class="kl-h2">The rocks are <span class="kl-outline">calling</span></h2>
+    </div>
+    <div class="kl-kop__tekst">
+      <p>
+        Buiten klimmen voelt anders dan klimmen in de hal. Er zijn geen gekleurde grepen die je de
+        weg wijzen, dus je kunt creatiever zijn in hoe je een route klimt. Je voelt de steen onder
+        je vingers, koud, ruw en soms scherp, en de zon op je rug. Je hoort de setjes in de haak
+        klikken en de wind door de bladeren ruisen. Bovenaan draai je je altijd even om, want dat
+        uitzicht wil je niet missen.
+      </p>
+      <p>
+        Om deze redenen, en nog veel meer, klimmen wij graag buiten. Het voelt elke keer als een
+        avontuur. Dat betekent ook dat je zelf meer moet doen. Je plant de route, checkt materiaal,
+        herhaalt technieken, houdt het weer in de gaten en zorgt dat iedereen veilig blijft. Hoe
+        beter je weet wat er bij jouw manier van klimmen hoort, hoe meer je ervan geniet.
+      </p>
     </div>
   </div>
 </section>
 
-<!-- ═══ BLOK 4 — VOORBEREIDING ═══ -->
-<section class="sectie sectie--getint" id="voorbereiding">
-  <div class="sectie-inner tekst-blok">
-    <span class="content-eyebrow">Voorbereiding</span>
-    <h2>Het halve werk</h2>
-    <p>Wat je thuis of op de camping regelt voordat je onderaan de wand staat.</p>
+<!-- ═══ STIJGENDE TREDEN — SPORTKLIMMEN / SINGLE PITCH / MULTIPITCH ═══ -->
+<section class="sectie kl-treden-sectie" aria-label="Vormen van klimmen">
+  <div class="sectie-inner">
+    <ol class="kl-treden">
+      <li class="kl-trede kl-trede--1" id="sportklimmen">
+        <div class="kl-meta">
+          <span class="kl-meta__nr">01</span>
+          <span class="kl-meta__label">Sportklimmen</span>
+        </div>
+        <div class="kl-trede__body">
+          <h3>In de hal</h3>
+          <p>
+            Hoe hoger je klimt, hoe fijner het is om vast te zitten aan een touw en een zekeraar
+            onder je te hebben. Maar wat valt er allemaal onder sportklimmen? Dat lees je hier.
+          </p>
+          <a class="btn-thema" routerLink="/klimmen/sportklimmen">Alles over sportklimmen</a>
+        </div>
+      </li>
+
+      <li class="kl-trede kl-trede--2" id="single-pitch">
+        <div class="kl-meta">
+          <span class="kl-meta__nr">02</span>
+          <span class="kl-meta__label">Single pitch</span>
+        </div>
+        <div class="kl-trede__body">
+          <h3>Eén touwlengte</h3>
+          <p>
+            Bij single pitch klim je een route van één touwlengte. Boven aan de route gebruik je de
+            standplaats om jezelf te zekeren, om te bouwen en daarna weer af te dalen.
+          </p>
+          <p>
+            Op deze pagina lees je hoe je een standplaats bouwt en schoonmaakt, welke ombouwmethodes
+            er zijn en wat je doet in bijzondere situaties.
+          </p>
+          <a class="btn-thema" routerLink="/klimmen/single-pitch">Alles over single pitch</a>
+        </div>
+      </li>
+
+      <li class="kl-trede kl-trede--3" id="multi-pitch">
+        <div class="kl-meta">
+          <span class="kl-meta__nr">03</span>
+          <span class="kl-meta__label">Multipitch</span>
+        </div>
+        <img
+          class="kl-trede__foto"
+          src="images/mountainclimb.jpg"
+          alt="Klimmer hoog op een lange rotswand"
+        />
+        <div class="kl-trede__body">
+          <h3>Meerdere touwlengtes</h3>
+          <p>
+            Wil je hoger klimmen dan één touwlengte? Bij multipitch klim je meerdere touwlengtes
+            achter elkaar en maak je onderweg standplaatsen voor je klimmaatje.
+          </p>
+          <a class="btn-thema btn-thema--amber" routerLink="/klimmen/multi-pitch"
+            >Alles over multipitch</a
+          >
+        </div>
+      </li>
+    </ol>
+
+    <!-- ═══ UITGELICHT — BOULDEREN (rust + glacier colourway) ═══ -->
+    <aside class="kl-boulder">
+      <div>
+        <span class="kl-kicker">Klimmen of boulderen?</span>
+        <h3>Wat is het verschil tussen klimmen en boulderen?</h3>
+      </div>
+      <div>
+        <p>
+          Sportklimmen is klimmen met een touw, binnen in de klimhal of buiten op de rots. Het is
+          net anders dan boulderen, waarbij je korte routes klimt zonder touw, maar dat kan net zo
+          goed ook binnen en buiten (en is net zo leuk!)
+        </p>
+        <p class="kl-boulder__vraag">Wil je meer weten over boulderen?</p>
+        <a class="btn-thema btn-thema--licht" routerLink="/boulderen">Alles over boulderen</a>
+      </div>
+    </aside>
   </div>
-  <div class="sectie-inner sp-blok">
-    <div class="sp-kaarten sp-kaarten--3">
-      <a class="sp-kaart kaart-thema" routerLink="/klimmen/materiaal">
-        <span class="sp-kaart__nr">01</span>
-        <h4>Materiaal & voorbereiding</h4>
-        <p>Karabiners, slings, uitrusting en de partnercheck.</p>
-      </a>
-      <a class="sp-kaart kaart-thema" routerLink="/kennis/knopen">
-        <span class="sp-kaart__nr">02</span>
-        <h4>Knopen</h4>
-        <p>De knopen die je moet kennen en niet wilt vergeten.</p>
-      </a>
-      <a class="sp-kaart kaart-thema" routerLink="/kennis/terminologie">
-        <span class="sp-kaart__nr">03</span>
-        <h4>Terminologie</h4>
-        <p>Klimjargon en hun betekenissen.</p>
-      </a>
+</section>
+
+<!-- ═══ GOED VOORBEREID DE ROTS IN ═══ -->
+<section class="sectie sectie--mist kl-voorbereid">
+  <div class="sectie-inner">
+    <div class="kl-kop">
+      <div>
+        <span class="kl-kicker">Voorbereiding</span>
+        <h2 class="kl-h2">Goed voorbereid <span class="kl-outline">de rots in</span></h2>
+      </div>
+    </div>
+
+    <div class="kl-rij" id="materiaal">
+      <img class="kl-rij__foto" src="images/gordelmetgear.jpg" alt="Klimgordel met materiaal" />
+      <div class="kl-rij__tekst">
+        <div class="kl-meta">
+          <span class="kl-meta__nr">04</span>
+          <span class="kl-meta__label">Materiaal &amp; voorbereiding</span>
+        </div>
+        <h3>Wat neem je mee?</h3>
+        <p>
+          Hier vind je alles van touw, gordel en helm tot setjes, karabiners en zelfzekeringen.
+          Bekijk welk materiaal je voor buitenklimmen nodig hebt en wat je checkt voordat je aan een
+          route begint.
+        </p>
+        <a class="btn-thema" routerLink="/klimmen/materiaal"
+          >Naar materiaal &amp; voorbereiding</a
+        >
+      </div>
+    </div>
+
+    <div class="kl-rij kl-rij--flip" id="knopen">
+      <img class="kl-rij__foto" src="images/knopenleggen.jpg" alt="Knopen leggen in een klimtouw" />
+      <div class="kl-rij__tekst">
+        <div class="kl-meta">
+          <span class="kl-meta__nr">05</span>
+          <span class="kl-meta__label">Knopen</span>
+        </div>
+        <h3>De belangrijkste klimknopen</h3>
+        <p>
+          Natuurlijk ga je niet klimmen tot je de teruggestoken achtknoop in de vingers hebt. Maar
+          ken je ook al de halve mastworp, de alpine vlinderknoop of de dubbele vissersknoop?
+        </p>
+        <a class="btn-thema" routerLink="/kennis/knopen">Naar alle knopen</a>
+      </div>
+    </div>
+
+    <div class="kl-rij" id="klimgebieden">
+      <img class="kl-rij__foto" src="images/dinant.jpg" alt="Rotsen bij Dinant aan de Maas" />
+      <div class="kl-rij__tekst">
+        <div class="kl-meta">
+          <span class="kl-meta__nr">06</span>
+          <span class="kl-meta__label">Klimgebieden</span>
+        </div>
+        <h3>Ardennen of Alpen?</h3>
+        <p>
+          Het ene klimgebied is het andere niet en dat maakt het juist leuk! Bekijk hier welke
+          gebieden passen bij jouw ervaring en wat je vooraf moet weten.
+        </p>
+        <a class="btn-thema" routerLink="/klimmen/klimgebieden">Ontdek de klimgebieden</a>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ═══ BLOK 5 — OP DE ROTS ═══ -->
-<section class="sectie" id="op-de-rots">
-  <div class="sectie-inner tekst-blok">
-    <span class="content-eyebrow">Eindelijk naar buiten</span>
-    <h2>Op de rots</h2>
-    <p>Waar je gaat klimmen en wat je controleert voordat je vertrekt.</p>
-  </div>
-  <div class="sectie-inner sp-blok">
-    <div class="sp-kaarten">
-      <a class="sp-kaart kaart-thema" routerLink="/klimmen/klimgebieden">
-        <span class="sp-kaart__nr">01</span>
-        <h4>Klimgebieden</h4>
-        <p>Per land en regio, met praktische info per gebied.</p>
-      </a>
-      <a class="sp-kaart kaart-thema" routerLink="/klimmen/materiaal" fragment="partnercheck">
-        <span class="sp-kaart__nr">02</span>
-        <h4>Checklist voor vertrek</h4>
-        <p>Wat je controleert voordat je aan een route begint.</p>
-      </a>
+<!-- ═══ VEILIGHEID — CURSUSSEN ═══ -->
+<section class="sectie kl-veiligheid-sectie">
+  <div class="sectie-inner">
+    <div class="kl-veiligheid">
+      <div class="kl-veiligheid__tekst">
+        <span class="kl-kicker">Veiligheid, certificaten en cursussen</span>
+        <h2 class="kl-h2">Klimtechniek leer je <span class="kl-outline">in de praktijk</span></h2>
+        <p>
+          Klimtechnieken en goed kunnen klimmen wil je niet alleen lezen, maar vooral oefenen. En
+          het liefst zoveel mogelijk! Maar dat wil je altijd wel veilig doen. Ontdek hier welke
+          cursussen en certificaten je kunt halen om door te groeien tot een klimveteraan.
+        </p>
+        <a class="btn-thema btn-thema--amber" routerLink="/kennis/events">Lees meer</a>
+      </div>
+      <img
+        class="kl-veiligheid__foto"
+        src="images/zekeren.jpg"
+        alt="Instructeur legt zekeren uit"
+      />
     </div>
   </div>
 </section>

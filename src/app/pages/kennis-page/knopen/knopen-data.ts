@@ -7,7 +7,7 @@ export interface Knoop {
   gebruik: string[];
   moeilijkheid: 1 | 2 | 3 | 4 | 5;
   samenvatting: string;
-  /** Een of meer Engelse namen/synoniemen. */
+
   engelseNaam: string[];
   typeKnoop: string;
   gebruikBij: string;
@@ -15,7 +15,7 @@ export interface Knoop {
   goed: string[];
   letOp: string[];
   alternatieven: string[];
-  /** Eigen foto's (optioneel) — als deze ontbreken toont de kaart de dashed placeholder. */
+
   fotos?: string[];
 }
 
@@ -46,7 +46,10 @@ export const KNOPEN: Knoop[] = [
       'Een fender of lijn snel vastmaken aan een reling',
     ],
     goed: ['Razendsnel te leggen', 'Bijstelbaar onder spanning', 'Weinig touw nodig'],
-    letOp: ['Kan doorschuiven bij wisselende trekrichting', 'Nooit als enige zekering op één ankerpunt'],
+    letOp: [
+      'Kan doorschuiven bij wisselende trekrichting',
+      'Nooit als enige zekering op één ankerpunt',
+    ],
     alternatieven: ['ankersteek', 'hele-mastworp'],
   },
   {
@@ -55,7 +58,8 @@ export const KNOPEN: Knoop[] = [
     familie: 'Wrijvingsknoop',
     gebruik: ['Klimmen & abseilen', 'Redden & EHBO'],
     moeilijkheid: 2,
-    samenvatting: 'Een wrijvingsknoop op een brede vergrendelbare (HMS-)karabiner waarmee je iemand kunt zekeren of laten afdalen zonder zekeringsapparaat.',
+    samenvatting:
+      'Een wrijvingsknoop op een brede vergrendelbare (HMS-)karabiner waarmee je iemand kunt zekeren of laten afdalen zonder zekeringsapparaat.',
     engelseNaam: ['Munter hitch', 'Italian hitch', 'HMS knot', 'Crossing hitch'],
     typeKnoop: 'Wrijvingsknoop (op een karabiner)',
     gebruikBij: 'Klimmen, bergredding, alpinisme',
@@ -64,8 +68,14 @@ export const KNOPEN: Knoop[] = [
       'Touwspanning beheersen bij een redding',
       'Een noodabseil opzetten als je zekeringsapparaat kwijt bent',
     ],
-    goed: ['Werkt met alleen een HMS-karabiner, geen extra materiaal nodig', 'Werkt in beide richtingen'],
-    letOp: ['Draait het touw flink op, wat kink kan geven', 'Vraagt een brede vergrendelbare (HMS-)karabiner'],
+    goed: [
+      'Werkt met alleen een HMS-karabiner, geen extra materiaal nodig',
+      'Werkt in beide richtingen',
+    ],
+    letOp: [
+      'Draait het touw flink op, wat kink kan geven',
+      'Vraagt een brede vergrendelbare (HMS-)karabiner',
+    ],
     alternatieven: ['hele-mastworp', 'prusik'],
     fotos: ['Knopen/halvemastworp.png'],
   },
@@ -85,7 +95,10 @@ export const KNOPEN: Knoop[] = [
       'Restjes touw hergebruiken bij het bouwen van een sjorconstructie',
     ],
     goed: ['Werkt ook bij ongelijke diktes', 'Vlot te leggen zonder geheugensteuntje'],
-    letOp: ['Kan losschieten als beide touwen helemaal slap hangen', 'Niet geschikt voor lastdragend klimwerk'],
+    letOp: [
+      'Kan losschieten als beide touwen helemaal slap hangen',
+      'Niet geschikt voor lastdragend klimwerk',
+    ],
     alternatieven: ['dubbele-vissersknoop'],
   },
   {
@@ -94,7 +107,8 @@ export const KNOPEN: Knoop[] = [
     familie: 'Steek',
     gebruik: ['Onderdak & tarp', 'Hijsen & belasten'],
     moeilijkheid: 1,
-    samenvatting: 'Snelle steek om een gesloten lus direct te verankeren aan paaltjes, bomen, rotsen of uitrusting.',
+    samenvatting:
+      'Snelle steek om een gesloten lus direct te verankeren aan paaltjes, bomen, rotsen of uitrusting.',
     engelseNaam: ['Girth hitch', "Lark's foot", 'Cow hitch'],
     typeKnoop: 'Steek',
     gebruikBij: 'Bergbeklimmen, varen, bushcraften',
@@ -104,7 +118,10 @@ export const KNOPEN: Knoop[] = [
       'Materiaal ophangen aan de standplaats',
     ],
     goed: ['Zeer stabiel onder langdurige trek', 'Makkelijk te leggen en te controleren'],
-    letOp: ['Vermindert de breeksterkte van de lus met 30% tot 50%', 'Geld niet als inbindlus of klemknoop'],
+    letOp: [
+      'Vermindert de breeksterkte van de lus met 30% tot 50%',
+      'Geld niet als inbindlus of klemknoop',
+    ],
     alternatieven: ['mastworp', 'prusik'],
     fotos: ['Knopen/ankersteek1.jpeg', 'Knopen/ankersteek2.jpeg'],
   },
@@ -114,7 +131,8 @@ export const KNOPEN: Knoop[] = [
     familie: 'Steek',
     gebruik: ['Klimmen & abseilen', 'Onderdak & tarp'],
     moeilijkheid: 2,
-    samenvatting: 'Dezelfde mastworp, maar gelegd met twee losse lussen in het midden van het touw — handig als je niet bij de uiteinden kunt.',
+    samenvatting:
+      'Dezelfde mastworp, maar gelegd met twee losse lussen in het midden van het touw — handig als je niet bij de uiteinden kunt.',
     engelseNaam: ['Clove hitch in the bight', 'Clove hitch (two loop)', "Builder's knot"],
     typeKnoop: 'Steek (aanslagknoop, in de bocht gelegd)',
     gebruikBij: 'Klimmen, brandweer & redding, speleologie',
@@ -123,8 +141,14 @@ export const KNOPEN: Knoop[] = [
       'Inhaken op een ankerpunt en zelfzekering aanpassen op de standplaats',
       'Materiaal aan een lijn hangen zonder de uiteinden los te maken',
     ],
-    goed: ['Ook te leggen zonder bij de touwuiteinden te kunnen', 'Nog bijstelbaar nadat hij vastzit'],
-    letOp: ['Zelfde beperking als de gewone mastworp: kan doorschuiven', 'Nooit als enige zekering op één ankerpunt'],
+    goed: [
+      'Ook te leggen zonder bij de touwuiteinden te kunnen',
+      'Nog bijstelbaar nadat hij vastzit',
+    ],
+    letOp: [
+      'Zelfde beperking als de gewone mastworp: kan doorschuiven',
+      'Nooit als enige zekering op één ankerpunt',
+    ],
     alternatieven: ['mastworp', 'halve-mastworp'],
     fotos: ['Knopen/helemastworp.png'],
   },
@@ -134,7 +158,8 @@ export const KNOPEN: Knoop[] = [
     familie: 'Lus',
     gebruik: ['Klimmen & abseilen', 'Redden & EHBO'],
     moeilijkheid: 2,
-    samenvatting: 'Een vaste lus die nooit strakker trekt dan je hem legt en na belasting nog los te maken is.',
+    samenvatting:
+      'Een vaste lus die nooit strakker trekt dan je hem legt en na belasting nog los te maken is.',
     engelseNaam: ['Bowline'],
     typeKnoop: 'Lus (vaste lus)',
     gebruikBij: 'Klimmen, redden, zeilen',
@@ -144,7 +169,10 @@ export const KNOPEN: Knoop[] = [
       'Een schoot bevestigen aan het zeil',
     ],
     goed: ['Blijft losmaakbaar na zware belasting', 'Snel te leggen zodra je de beweging kent'],
-    letOp: ['Kan onbelast losschudden zonder achterzetknoop', 'Niet als enige knoop bij levensbelangrijke borging'],
+    letOp: [
+      'Kan onbelast losschudden zonder achterzetknoop',
+      'Niet als enige knoop bij levensbelangrijke borging',
+    ],
     alternatieven: ['teruggestoken-achtknoop'],
   },
   {
@@ -153,8 +181,13 @@ export const KNOPEN: Knoop[] = [
     familie: 'Lus',
     gebruik: ['Klimmen & abseilen'],
     moeilijkheid: 2,
-    samenvatting: 'De knoop waarmee je jezelf in het gordel lijnt: een achtknoop die je terugvlecht door het gordel. Sterk, visueel te checken, lastig fout te leggen.',
-    engelseNaam: ['Figure-eight follow-through', 'Figure eight retrace', 'Rerouted figure eight loop'],
+    samenvatting:
+      'De knoop waarmee je jezelf in het gordel lijnt: een achtknoop die je terugvlecht door het gordel. Sterk, visueel te checken, lastig fout te leggen.',
+    engelseNaam: [
+      'Figure-eight follow-through',
+      'Figure eight retrace',
+      'Rerouted figure eight loop',
+    ],
     typeKnoop: 'Lus (teruggestoken aanlijnknoop)',
     gebruikBij: 'Sportklimmen, alpinisme, abseilen',
     toepassingen: [
@@ -163,7 +196,10 @@ export const KNOPEN: Knoop[] = [
       'Een abseiltouw verankeren aan een vast ankerpunt',
     ],
     goed: ['Visueel goed te controleren', 'Erg sterk', 'Vergevingsgezind bij kleine afwijkingen'],
-    letOp: ['Loopt na een val vast — lastig weer los te maken', 'Neemt relatief veel touw in beslag'],
+    letOp: [
+      'Loopt na een val vast — lastig weer los te maken',
+      'Neemt relatief veel touw in beslag',
+    ],
     alternatieven: ['paalsteek', 'alpine-vlinderknoop'],
     fotos: ['Knopen/teruggestokenachtknoop.png'],
   },
@@ -173,7 +209,8 @@ export const KNOPEN: Knoop[] = [
     familie: 'Wrijvingsknoop',
     gebruik: ['Klimmen & abseilen', 'Hijsen & belasten'],
     moeilijkheid: 2,
-    samenvatting: 'Een lus die vastgrijpt zodra je hem belast, maar zonder last met de hand te verschuiven blijft.',
+    samenvatting:
+      'Een lus die vastgrijpt zodra je hem belast, maar zonder last met de hand te verschuiven blijft.',
     engelseNaam: ['Prusik knot'],
     typeKnoop: 'Wrijvingsknoop',
     gebruikBij: 'Klimmen, abseilen, boomklimmen',
@@ -192,7 +229,8 @@ export const KNOPEN: Knoop[] = [
     familie: 'Lus',
     gebruik: ['Klimmen & abseilen', 'Hijsen & belasten'],
     moeilijkheid: 3,
-    samenvatting: 'Een lus in het midden van een touw die vanuit drie richtingen belast kan worden zonder te verzwakken.',
+    samenvatting:
+      'Een lus in het midden van een touw die vanuit drie richtingen belast kan worden zonder te verzwakken.',
     engelseNaam: ['Alpine butterfly loop'],
     typeKnoop: 'Lus (middenlus)',
     gebruikBij: 'Alpinisme, gletsjertochten, hijswerk',
@@ -202,7 +240,10 @@ export const KNOPEN: Knoop[] = [
       'Een vast aanslagpunt maken midden op een lijn',
     ],
     goed: ['Blijft sterk bij belasting uit elke richting', 'Ook na een val nog los te maken'],
-    letOp: ['Kost even oefening om de handbeweging te onthouden', 'Niet zelf-checkend als hij verkeerd wordt afgewerkt'],
+    letOp: [
+      'Kost even oefening om de handbeweging te onthouden',
+      'Niet zelf-checkend als hij verkeerd wordt afgewerkt',
+    ],
     alternatieven: ['teruggestoken-achtknoop'],
   },
   {
@@ -211,7 +252,8 @@ export const KNOPEN: Knoop[] = [
     familie: 'Verbinding',
     gebruik: ['Klimmen & abseilen'],
     moeilijkheid: 1,
-    samenvatting: 'De simpelste manier om twee abseiltouwen aan elkaar te knopen, plat genoeg om over een rand te halen.',
+    samenvatting:
+      'De simpelste manier om twee abseiltouwen aan elkaar te knopen, plat genoeg om over een rand te halen.',
     engelseNaam: ['Flat overhand bend (EDK)'],
     typeKnoop: 'Verbindingsknoop',
     gebruikBij: 'Abseilen, sportklimmen',
@@ -221,7 +263,10 @@ export const KNOPEN: Knoop[] = [
       'Snel en tijdelijk twee lijnen verbinden',
     ],
     goed: ['Rolt soepel over de rotsrand', 'Supersnel te leggen en te checken'],
-    letOp: ['Altijd minstens 30 cm staart laten', 'Alleen bedoeld om over te halen, niet als algemene verbindingsknoop'],
+    letOp: [
+      'Altijd minstens 30 cm staart laten',
+      'Alleen bedoeld om over te halen, niet als algemene verbindingsknoop',
+    ],
     alternatieven: ['dubbele-vissersknoop'],
   },
   {
@@ -230,7 +275,8 @@ export const KNOPEN: Knoop[] = [
     familie: 'Verbinding',
     gebruik: ['Klimmen & abseilen'],
     moeilijkheid: 3,
-    samenvatting: 'Verbindt twee touwuiteinden (of sluit een prusiklus) met een knoop die niet meer loslaat.',
+    samenvatting:
+      'Verbindt twee touwuiteinden (of sluit een prusiklus) met een knoop die niet meer loslaat.',
     engelseNaam: ["Double fisherman's knot"],
     typeKnoop: 'Verbindingsknoop',
     gebruikBij: 'Klimmen, prusiklussen maken',
@@ -240,7 +286,10 @@ export const KNOPEN: Knoop[] = [
       'Een noodlijn maken die niet meer loslaat',
     ],
     goed: ['Blijft potdicht onder belasting', 'Compact genoeg om door een ring te halen'],
-    letOp: ['Bijna onmogelijk los te maken na zware belasting', 'Kost wat oefening om vlot te leggen'],
+    letOp: [
+      'Bijna onmogelijk los te maken na zware belasting',
+      'Kost wat oefening om vlot te leggen',
+    ],
     alternatieven: ['platte-overhandse'],
   },
 ];

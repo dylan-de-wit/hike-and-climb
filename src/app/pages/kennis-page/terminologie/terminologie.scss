@@ -43,7 +43,7 @@
 }
 
 .termen-filter__icoon::after {
-  content: "";
+  content: '';
   position: absolute;
   right: -5px;
   bottom: -4px;
@@ -121,22 +121,22 @@
 
 .thema-filter--klimmen {
   --thema-filter-color: var(--terra-licht);
-  --thema-filter-bg: #F3E9E4;
+  --thema-filter-bg: #f3e9e4;
 }
 
 .thema-filter--boulderen {
   --thema-filter-color: var(--glacier-teal);
-  --thema-filter-bg: #E5F0F0;
+  --thema-filter-bg: #e5f0f0;
 }
 
 .thema-filter--hiken {
   --thema-filter-color: var(--amber);
-  --thema-filter-bg: #FBEFD6;
+  --thema-filter-bg: #fbefd6;
 }
 
 .thema-filter--natuur {
   --thema-filter-color: var(--forest-green);
-  --thema-filter-bg: #E8F0E8;
+  --thema-filter-bg: #e8f0e8;
 }
 
 .termen-leeg {
@@ -177,7 +177,7 @@
 }
 
 .term-kaart::before {
-  content: "";
+  content: '';
   position: absolute;
   z-index: 1;
   top: 26px;
@@ -203,26 +203,26 @@
 
 .term-kaart--klimmen {
   --term-label-color: var(--terra-licht);
-  --term-label-hover: #E85F1B;
-  --term-label-bg: #F3E9E4;
+  --term-label-hover: #e85f1b;
+  --term-label-bg: #f3e9e4;
 }
 
 .term-kaart--boulderen {
   --term-label-color: var(--glacier-teal);
-  --term-label-hover: #00AEB1;
-  --term-label-bg: #E5F0F0;
+  --term-label-hover: #00aeb1;
+  --term-label-bg: #e5f0f0;
 }
 
 .term-kaart--hiken {
   --term-label-color: var(--amber);
-  --term-label-hover: #C98600;
-  --term-label-bg: #FBEFD6;
+  --term-label-hover: #c98600;
+  --term-label-bg: #fbefd6;
 }
 
 .term-kaart--natuur {
   --term-label-color: var(--forest-green);
-  --term-label-hover: #4E9F45;
-  --term-label-bg: #E8F0E8;
+  --term-label-hover: #4e9f45;
+  --term-label-bg: #e8f0e8;
 }
 
 .term-kaart__label {
@@ -278,7 +278,9 @@
   font-size: 14px;
   font-weight: 700;
   letter-spacing: 0.03em;
-  transition: color 200ms ease, transform 200ms ease;
+  transition:
+    color 200ms ease,
+    transform 200ms ease;
 }
 
 .term-kaart:hover .term-kaart__meer {

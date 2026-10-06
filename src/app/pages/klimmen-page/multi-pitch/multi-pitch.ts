@@ -18,7 +18,6 @@ import { Hoofdstuk, HoofdstukNav } from '../../../components/hoofdstuk-nav/hoofd
   styleUrl: './multi-pitch.scss',
 })
 export class MultiPitch implements AfterViewInit, OnDestroy {
-  /** Hoofdstukken van de pagina: gebruikt in de balk onder de hero én in de meescrollende balk. */
   readonly hoofdstukken: Hoofdstuk[] = [
     { naam: 'De standplaats', kort: 'Standplaats', anchor: 'standplaats' },
     { naam: 'Naklimmer zekeren', kort: 'Naklimmer', anchor: 'naklimmer' },
@@ -27,7 +26,6 @@ export class MultiPitch implements AfterViewInit, OnDestroy {
     { naam: 'Afdalen', anchor: 'afdalen' },
   ];
 
-  /** Toont de vaste balk zodra de hero voorbij gescrold is. */
   readonly navZichtbaar = signal(false);
 
   private readonly sentinel = viewChild<ElementRef<HTMLElement>>('sentinel');
@@ -62,7 +60,6 @@ export class MultiPitch implements AfterViewInit, OnDestroy {
     window.removeEventListener('resize', this.onScroll);
   }
 
-  /** Zachte scroll naar een sectie-anker. */
   scrollNaar(anchor: string, event: Event): void {
     event.preventDefault();
     document.getElementById(anchor)?.scrollIntoView({ behavior: 'smooth', block: 'start' });

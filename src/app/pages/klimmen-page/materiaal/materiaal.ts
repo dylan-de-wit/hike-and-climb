@@ -45,17 +45,12 @@ const VOORBEREIDING_IDS = [
   styleUrl: './materiaal.scss',
 })
 export class KlimmenMateriaal implements AfterViewInit, OnDestroy {
-  /** Actieve tab: materiaal (11 items) of voorbereiding (9 stappen). */
   readonly tab = signal<Tab>('materiaal');
 
-  /** Id van het materiaal-item dat momenteel uitgeklapt is — steeds maximaal één tegelijk. Touw staat standaard open. */
   readonly openItem = signal<string | null>('touw');
 
-  /** Kort actief tijdens een programmatische sprong: schakelt de open/dicht-animatie uit,
-   *  zodat scrollIntoView een stabiele (al voltooide) lay-out target heeft. */
   readonly springActief = signal(false);
 
-  /** Toont de vaste balk zodra de hero voorbij gescrold is. */
   readonly navZichtbaar = signal(false);
 
   private readonly sentinel = viewChild<ElementRef<HTMLElement>>('sentinel');
@@ -107,24 +102,17 @@ export class KlimmenMateriaal implements AfterViewInit, OnDestroy {
     return this.openItem() === id;
   }
 
-  /** Houdt de open-state bij (native toggle-event) — openen van één item sluit het vorige automatisch. */
   onToggle(id: string, opened: boolean): void {
     if (opened) this.openItem.set(id);
     else if (this.openItem() === id) this.openItem.set(null);
   }
 
-  /** Klik op een chip: item openklappen (sluit het vorige) en er zacht naartoe scrollen. */
   springNaarItem(id: string, event: Event): void {
     event.preventDefault();
     this.openItem.set(id);
     this.scrollNaId(id);
   }
 
-  /** Schakelt de open/dicht-transitie heel even uit zodat het vorige item (dat dichtklapt) en het
-   *  nieuwe item (dat openklapt) meteen hun definitieve hoogte hebben — anders rekent scrollIntoView
-   *  zich lek op de nog lopende animatie en land je te vroeg. De transitie blijft uit tot de
-   *  scroll-animatie zelf ook klaar is: zet je 'm eerder terug aan, dan telt de browser de
-   *  layout-wijziging als een interventie en breekt de lopende smooth scroll voortijdig af. */
   private scrollNaId(id: string): void {
     this.springActief.set(true);
     requestAnimationFrame(() => {
@@ -135,7 +123,6 @@ export class KlimmenMateriaal implements AfterViewInit, OnDestroy {
     });
   }
 
-  /** Zet de juiste tab (en klapt het item open, indien van toepassing) op basis van een binnenkomend anker. */
   private gaNaarFragment(id: string): void {
     if (VOORBEREIDING_IDS.includes(id)) {
       this.tab.set('voorbereiding');

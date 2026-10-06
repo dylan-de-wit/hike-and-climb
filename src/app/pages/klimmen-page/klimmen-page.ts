@@ -2,11 +2,13 @@ import {
   AfterViewInit,
   Component,
   ElementRef,
+  inject,
   NgZone,
   OnDestroy,
   signal,
   viewChild,
 } from '@angular/core';
+import { Meta, Title } from '@angular/platform-browser';
 import { RouterLink } from '@angular/router';
 import { Hoofdstuk, HoofdstukNav } from '../../components/hoofdstuk-nav/hoofdstuk-nav';
 
@@ -18,18 +20,20 @@ import { Hoofdstuk, HoofdstukNav } from '../../components/hoofdstuk-nav/hoofdstu
   styleUrl: './klimmen-page.scss',
 })
 export class KlimmenPage implements AfterViewInit, OnDestroy {
-  /** Overzicht van de klim-subpagina's: gebruikt in de meescrollende balk én de chips onder de hero. */
   readonly hoofdstukken: Hoofdstuk[] = [
-    { naam: 'Single pitch', kort: 'Single pitch', anchor: 'single-pitch', link: '/klimmen/single-pitch' },
-    { naam: 'Multipitch', kort: 'Multipitch', anchor: 'multi-pitch', link: '/klimmen/multi-pitch' },
-    { naam: 'Materiaal', kort: 'Materiaal', anchor: 'materiaal', link: '/klimmen/materiaal' },
-    { naam: 'Klimgebieden', kort: 'Klimgebieden', anchor: 'klimgebieden', link: '/klimmen/klimgebieden' },
-    { naam: "Touwcommando's", kort: "Commando's", anchor: 'commandos', link: '/kennis/technieken' },
-    { naam: 'Knopen', kort: 'Knopen', anchor: 'knopen', link: '/kennis/knopen' },
+    { naam: 'Sportklimmen', anchor: 'sportklimmen' },
+    { naam: 'Single pitch', anchor: 'single-pitch' },
+    { naam: 'Multipitch', anchor: 'multi-pitch' },
+    { naam: 'Materiaal & voorbereiding', kort: 'Materiaal', anchor: 'materiaal' },
+    { naam: 'Klimgebieden', anchor: 'klimgebieden' },
+    { naam: 'Knopen', anchor: 'knopen' },
   ];
 
-  /** Toont de vaste balk zodra de hero voorbij gescrold is. */
   readonly navZichtbaar = signal(false);
+
+  private readonly title = inject(Title);
+  private readonly meta = inject(Meta);
+  private readonly vorigeTitel = this.title.getTitle();
 
   private readonly sentinel = viewChild<ElementRef<HTMLElement>>('sentinel');
   private ticking = false;
@@ -48,7 +52,19 @@ export class KlimmenPage implements AfterViewInit, OnDestroy {
     });
   };
 
-  constructor(private readonly zone: NgZone) {}
+  constructor(private readonly zone: NgZone) {
+    this.title.setTitle('Buiten klimmen: techniek, materiaal en gebieden | Wildline');
+    this.meta.updateTag({
+      name: 'description',
+      content:
+        'Lees alles over sportklimmen, single pitch, multipitch, materiaal, knopen en klimgebieden en bereid je goed voor.',
+    });
+  }
+
+  scrollNaar(anchor: string, event: Event): void {
+    event.preventDefault();
+    document.getElementById(anchor)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
 
   ngAfterViewInit(): void {
     this.zone.runOutsideAngular(() => {
@@ -59,6 +75,8 @@ export class KlimmenPage implements AfterViewInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    this.title.setTitle(this.vorigeTitel);
+    this.meta.removeTag("name='description'");
     window.removeEventListener('scroll', this.onScroll, { capture: true });
     window.removeEventListener('resize', this.onScroll);
   }

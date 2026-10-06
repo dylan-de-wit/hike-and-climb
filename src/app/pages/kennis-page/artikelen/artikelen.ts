@@ -7,7 +7,6 @@ import { KENNIS_ETAPPES } from '../kennis-etappes';
   host: { class: 'thema-kennis' },
   imports: [RouteDivider],
   templateUrl: './artikelen.html',
-  styleUrl: './artikelen.scss',
 })
 export class KennisReisverhalen {
   readonly etappes = KENNIS_ETAPPES;

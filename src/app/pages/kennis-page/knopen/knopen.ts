@@ -1,6 +1,4 @@
 import { Component, computed, effect, signal } from '@angular/core';
-import { RouteDivider } from '../../../components/route-divider/route-divider';
-import { KENNIS_ETAPPES } from '../kennis-etappes';
 import { FAMILIE_VOLGORDE, GEBRUIK_VOLGORDE, KNOPEN, Knoop, KnoopFamilie } from './knopen-data';
 
 type Sortering = 'standaard' | 'moeilijkheid';
@@ -10,19 +8,19 @@ const OPGESLAGEN_KEY = 'knopen-opgeslagen-v1';
 @Component({
   selector: 'app-kennis-knopen',
   host: { class: 'thema-kennis' },
-  imports: [RouteDivider],
   templateUrl: './knopen.html',
   styleUrl: './knopen.scss',
 })
 export class KennisKnopen {
-  readonly etappes = KENNIS_ETAPPES;
-  readonly actief = 0;
   readonly knopen = KNOPEN;
   readonly difficultyReeks = [1, 2, 3, 4, 5] as const;
 
-  /** Alleen facetten tonen waar minstens één knoop bij hoort. */
-  readonly gebruikOpties = GEBRUIK_VOLGORDE.filter((g) => KNOPEN.some((k) => k.gebruik.includes(g)));
-  readonly familieOpties: KnoopFamilie[] = FAMILIE_VOLGORDE.filter((f) => KNOPEN.some((k) => k.familie === f));
+  readonly gebruikOpties = GEBRUIK_VOLGORDE.filter((g) =>
+    KNOPEN.some((k) => k.gebruik.includes(g)),
+  );
+  readonly familieOpties: KnoopFamilie[] = FAMILIE_VOLGORDE.filter((f) =>
+    KNOPEN.some((k) => k.familie === f),
+  );
 
   readonly zoekterm = signal('');
   readonly actieveGebruik = signal<ReadonlySet<string>>(new Set());
@@ -62,9 +60,7 @@ export class KennisKnopen {
       const slugs = Array.from(this.opgeslagen());
       try {
         localStorage.setItem(OPGESLAGEN_KEY, JSON.stringify(slugs));
-      } catch {
-        /* privénavigatie of volle opslag — bewaren mislukt, niet erg */
-      }
+      } catch {}
     });
   }
 
@@ -120,15 +116,14 @@ export class KennisKnopen {
     this.sortering.set(this.sortering() === 'standaard' ? 'moeilijkheid' : 'standaard');
   }
 
-  /** Klik op een alternatief-chip: eventuele filters die de knoop verbergen wissen,
-   *  de bijbehorende kaart openklappen en er zacht naartoe scrollen (twee rAF's
-   *  wachten tot de zoneless change-detection de nieuwe kaart daadwerkelijk rendert). */
   springNaarKnoop(slug: string): void {
     this.wisFilters();
     this.uitgeklapt.set(slug);
     requestAnimationFrame(() => {
       requestAnimationFrame(() => {
-        document.getElementById(`knoop-${slug}`)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        document
+          .getElementById(`knoop-${slug}`)
+          ?.scrollIntoView({ behavior: 'smooth', block: 'start' });
       });
     });
   }
