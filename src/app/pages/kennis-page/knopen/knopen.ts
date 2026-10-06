@@ -29,6 +29,7 @@ export class KennisKnopen {
   readonly alleenOpgeslagen = signal(false);
   readonly sortering = signal<Sortering>('standaard');
   readonly uitgeklapt = signal<string | null>(null);
+  readonly actieveSlides = signal<Record<string, number>>({});
 
   readonly opgeslagen = signal<ReadonlySet<string>>(this.laadOpgeslagen());
 
@@ -126,6 +127,46 @@ export class KennisKnopen {
           ?.scrollIntoView({ behavior: 'smooth', block: 'start' });
       });
     });
+  }
+
+  afkorting(knoop: Knoop): string {
+    return knoop.naam
+      .split(/\s+/)
+      .map((deel) => deel[0])
+      .join('')
+      .slice(0, 2)
+      .toUpperCase();
+  }
+
+  stappen(knoop: Knoop): number[] {
+    return Array.from({ length: this.aantalSlides(knoop) }, (_, index) => index);
+  }
+
+  aantalSlides(knoop: Knoop): number {
+    return Math.max(knoop.fotos?.length ?? 0, 4);
+  }
+
+  actieveSlide(knoop: Knoop): number {
+    const slide = this.actieveSlides()[knoop.slug] ?? 0;
+    return Math.min(Math.max(slide, 0), this.aantalSlides(knoop) - 1);
+  }
+
+  zetSlide(knoop: Knoop, slide: number): void {
+    this.actieveSlides.update((huidig) => ({
+      ...huidig,
+      [knoop.slug]: Math.min(Math.max(slide, 0), this.aantalSlides(knoop) - 1),
+    }));
+  }
+
+  verschuifSlide(knoop: Knoop, richting: -1 | 1): void {
+    const aantal = this.aantalSlides(knoop);
+    const volgende = (this.actieveSlide(knoop) + richting + aantal) % aantal;
+    this.zetSlide(knoop, volgende);
+  }
+
+  slideTitel(knoop: Knoop): string {
+    const nummer = this.actieveSlide(knoop) + 1;
+    return `${nummer.toString().padStart(2, '0')} / ${nummer === 1 ? 'Het begin' : `Stap ${nummer}`}`;
   }
 
   private doorzoekbareTekst(knoop: Knoop): string {

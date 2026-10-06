@@ -8,74 +8,8 @@
   scroll-margin-top: 80px;
 }
 
-// ═══ GEDEELDE BOUWSTENEN ═══
-
-.kl-kicker {
-  display: block;
-  font-family: var(--font-accent);
-  font-size: 17px;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--canyon-rust);
-}
-
-
-.kl-h2 {
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-size: clamp(38px, 4.6vw, 60px);
-  line-height: 0.95;
-  letter-spacing: -0.01em;
-  text-transform: none;
-  color: var(--deep-teal);
-  margin: 6px 0 0;
-}
-.kl-outline {
-  display: block;
-  font-family: var(--font-heading-outline);
-  font-weight: 400;
-}
-
-
-.kl-kop {
-  display: grid;
-  grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
-  gap: 24px clamp(32px, 4vw, 56px);
-  align-items: start;
-  padding-top: 20px;
-  margin-bottom: clamp(40px, 5vw, 64px);
-}
-
-
-.kl-meta {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 16px;
-  font-family: var(--font-accent);
-  text-transform: uppercase;
-}
-.kl-meta__nr {
-  font-family: var(--font-accent);
-  font-size: 25px;
-  letter-spacing: 0.04em;
-  color: var(--trail-amber);
-}
-.kl-meta__label {
-  font-size: 25px;
-  letter-spacing: 0.06em;
-  color: var(--canyon-rust);
-}
-
-@media (max-width: 760px) {
-  .kl-kop {
-    grid-template-columns: 1fr;
-  }
-}
-
-
 .kl-intro {
-  padding-bottom: 8px;
+  padding-bottom: 35px;
 
   .kl-kop {
     margin-bottom: 0;

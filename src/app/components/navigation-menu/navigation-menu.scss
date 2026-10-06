@@ -5,7 +5,7 @@
   transform: translateX(-50%);
   z-index: 100;
   display: block;
-  width: min(900px, calc(100vw - 2rem));
+  width: min(1180px, calc(100vw - 2rem));
   max-width: calc(100vw - 2rem);
 }
 
@@ -42,7 +42,7 @@
   align-items: stretch;
   gap: 2px;
   min-width: 0;
-  padding: 20px 10px 16px;
+  padding: 22px 18px 18px;
   text-align: center;
   border-right: 1px solid rgba(0, 0, 0, 0.07);
 
@@ -63,6 +63,8 @@
   font-weight: 700;
   color: var(--lentegroen);
   margin-bottom: 10px;
+  padding: 0.32rem 0.7rem;
+  text-align: left;
   text-decoration: none;
   transition: color 0.15s ease;
 
@@ -80,15 +82,15 @@
   min-width: 0;
   text-decoration: none;
   color: var(--kleur-tekst-licht);
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   font-weight: 400;
-  padding: 0.28rem 0.6rem;
+  padding: 0.32rem 0.7rem;
   border-radius: var(--afgerond);
   text-align: left;
   transition:
     background 0.15s ease,
     color 0.15s ease;
-  overflow-wrap: anywhere;
+  overflow-wrap: normal;
   white-space: normal;
 
   &:hover {
@@ -106,7 +108,7 @@
   display: grid;
   grid-template-columns: repeat(6, minmax(0, 1fr));
   align-items: center;
-  padding: 0.6rem 0;
+  padding: 0.7rem 0.7rem;
   max-height: 76px;
   opacity: 1;
   overflow: hidden;
@@ -154,6 +156,7 @@
   }
   .subnav-item {
     white-space: normal;
+    overflow-wrap: anywhere;
     font-size: 0.82rem;
   }
   .dock-col {
@@ -169,6 +172,8 @@
     row-gap: 0.2rem;
   }
   .dock-item {
+    overflow-wrap: anywhere;
+    white-space: normal;
     font-size: 0.78rem;
     padding: 0.35rem 0.35rem;
   }
@@ -177,14 +182,14 @@
 .dock-item {
   min-width: 0;
   max-width: 100%;
-  overflow-wrap: anywhere;
-  white-space: normal;
+  overflow-wrap: normal;
+  white-space: nowrap;
   text-decoration: none;
   color: var(--kleur-tekst-licht);
   font-size: 1.05rem;
   line-height: 1.1;
   font-weight: 500;
-  padding: 0.4rem 1rem;
+  padding: 0.45rem 1.2rem;
   border-radius: 999px;
   text-align: center;
   justify-self: center;

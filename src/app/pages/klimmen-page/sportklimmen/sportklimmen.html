@@ -1,0 +1,647 @@
+<nav class="sp-nav" [class.sp-nav--zichtbaar]="navZichtbaar()" aria-label="Op deze pagina">
+  <div class="sp-nav__inner">
+    <span class="sp-nav__merk">Sportklimmen</span>
+    <ul class="sp-nav__links">
+      @for (h of hoofdstukken; track h.anchor) {
+        <li>
+          <a [attr.href]="'#' + h.anchor" (click)="scrollNaar(h.anchor, $event)">{{
+            h.kort ?? h.naam
+          }}</a>
+        </li>
+      }
+    </ul>
+  </div>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<header class="sp-hero sp-hero--met-foto sport-hero">
+  <img class="sp-hero__media" src="images/sportklimmen.jpg" alt="" aria-hidden="true" />
+  <div class="sp-hero__inner">
+    <span class="content-eyebrow">Klimmen · Sportklimmen</span>
+    <h1>Sportklimmen in de hal en op de rots</h1>
+    <p class="sp-hero__intro">
+      Bij sportklimmen bind je je in, doe je een partnercheck en klim je aan een touw omhoog langs
+      vaste haken. Hier lees je hoe je in de hal begint, hoe je veilig klimt en valt, en hoe
+      klimmers over graden, stijlen en de sport zelf praten.
+    </p>
+    <div class="sp-hero__cta">
+      <p class="sp-hero__verwijzing">Klim je buiten aan het einde van een route?</p>
+      <a class="btn-thema btn-thema--amber" routerLink="/klimmen/single-pitch"
+        >Lees verder bij Single pitch</a
+      >
+    </div>
+  </div>
+</header>
+<span #sentinel class="sp-sentinel" aria-hidden="true"></span>
+
+<!-- ═══ HOOFDSTUKKEN OP DEZE PAGINA ═══ -->
+<app-hoofdstuk-nav [hoofdstukken]="hoofdstukken" />
+
+<!-- ═══ BEGINNEN ═══ -->
+<section class="sectie sk-beginnen" id="beginnen">
+  <div class="sectie-inner kl-kop">
+    <div>
+      <span class="kl-kicker">Beginnen</span>
+      <h2 class="kl-h2">Wat is <span class="kl-outline">sportklimmen?</span></h2>
+    </div>
+    <div class="kl-kop__tekst">
+      <p>
+        Sportklimmen is klimmen met een touw langs vaste haken die in de wand of de rots zijn
+        geboord. Je zekeraar staat onder je en houdt je vast als je valt. Bij trad klimmen plaats je
+        je zekeringen zelf, zoals nuts en friends. Bij sportklimmen zitten de haken er al, en dat
+        scheelt een hoop gepuzzel.
+      </p>
+      <p>
+        Nederland heeft veel klimhallen en geen natuurlijke rotsen. De meeste klimmers beginnen dus
+        binnen. Buiten klim je bijna altijd voor, want daar hangt nog geen touw in de route.
+      </p>
+    </div>
+  </div>
+
+  <div class="sectie-inner">
+    <ul class="sk-vormen">
+      @for (vorm of klimvormen; track vorm.naam) {
+        <li>
+          <a
+            class="sk-kaart sk-kaart--link sk-vorm"
+            href="#veilig-klimmen"
+            (click)="naarTab(vorm.tab, $event)"
+          >
+            <span class="kl-kicker">{{ vorm.label }}</span>
+            <h3>{{ vorm.naam }}</h3>
+            <p>{{ vorm.tekst }}</p>
+            <span class="sk-kaart__meer">Veilig {{ vorm.naam.toLowerCase() }} →</span>
+          </a>
+        </li>
+      }
+    </ul>
+  </div>
+
+  <div class="sectie-inner kl-kop sk-kop--ruimte">
+    <div>
+      <span class="kl-kicker">In de hal</span>
+      <h2 class="kl-h2">Zo begin je in de <span class="kl-outline">klimhal</span></h2>
+    </div>
+    <div class="kl-kop__tekst">
+      <p>
+        Wil je zelfstandig klimmen in de hal? Dan volg je eerst een cursus. Je sluit af met een toets
+        en krijgt een klimvaardigheidsbewijs (KVB) van de NKBV. Cursussen volg je bij klimhallen,
+        NKBV-regio's en klimverenigingen.
+      </p>
+    </div>
+  </div>
+
+  <div class="sectie-inner">
+    <ol class="sk-ladder" aria-label="Cursussen van auto belay naar buiten klimmen">
+      @for (cursus of cursussen; track cursus.naam) {
+        <li class="sk-trede">
+          @if (cursus.route) {
+            <a class="sk-kaart sk-kaart--link" [routerLink]="cursus.route">
+              <h3>{{ cursus.naam }}</h3>
+              <p class="sk-trede__meta">{{ cursus.waardeDrie }} · {{ cursus.waardeTwee }}</p>
+              <p>{{ cursus.waardeEen }}</p>
+              <span class="sk-kaart__meer">Single pitch →</span>
+            </a>
+          } @else {
+            <a
+              class="sk-kaart sk-kaart--link"
+              href="#veilig-klimmen"
+              (click)="naarTab(cursus.tab!, $event)"
+            >
+              <h3>{{ cursus.naam }}</h3>
+              <p class="sk-trede__meta">{{ cursus.waardeDrie }} · {{ cursus.waardeTwee }}</p>
+              <p>{{ cursus.waardeEen }}</p>
+              <span class="sk-kaart__meer">Veiligheidsregels →</span>
+            </a>
+          }
+        </li>
+      }
+    </ol>
+    <p class="sk-voet">
+      Je KVB laat zien dat je het kon op de dag van de toets. Klim je een tijd niet? Dan is een
+      opfriscursus een goed idee.
+    </p>
+    <a class="btn-thema btn-thema--amber sk-voet__knop" routerLink="/kennis/events"
+      >Bekijk cursussen en events</a
+    >
+  </div>
+
+  <div class="sectie-inner sport-huisregels">
+    <div class="paneel-checklist paneel-checklist--amber">
+      <span class="paneel-checklist__rand" aria-hidden="true"></span>
+      <div class="paneel-checklist__inhoud">
+        <h3>Huisregels</h3>
+        <p>
+          Elke hal heeft eigen huisregels, dus check ze voordat je gaat. Deze regels kom je in veel
+          hallen tegen.
+        </p>
+        <ul class="sp-checklist sp-checklist--interactief sport-checklist">
+          <li>
+            <label
+              ><input type="checkbox" checked />
+              <span>Je doet voor elke klim een partnercheck.</span></label
+            >
+          </li>
+          <li>
+            <label
+              ><input type="checkbox" checked />
+              <span>Je bindt je in met een teruggestoken achtknoop.</span></label
+            >
+          </li>
+          <li>
+            <label
+              ><input type="checkbox" checked />
+              <span>Je laat het remtouw nooit los, ook niet met een halfautomaat.</span></label
+            >
+          </li>
+          <li>
+            <label
+              ><input type="checkbox" checked />
+              <span
+                >Je hangt geen materiaal aan je gordel en hebt niets in je broekzakken.</span
+              ></label
+            >
+          </li>
+          <li>
+            <label
+              ><input type="checkbox" checked />
+              <span
+                >Je klimt niet boven een ander en loopt niet onder een klimmer door.</span
+              ></label
+            >
+          </li>
+          <li>
+            <label
+              ><input type="checkbox" checked />
+              <span>Zie je iemand een fout maken? Zeg het vriendelijk en meteen.</span></label
+            >
+          </li>
+        </ul>
+      </div>
+      <a class="paneel-checklist__actie" routerLink="/klimmen/materiaal" fragment="partnercheck"
+        >Partnercheck →</a
+      >
+    </div>
+  </div>
+</section>
+
+<!-- ═══ VEILIG KLIMMEN ═══ -->
+<section class="sectie sk-veilig" id="veilig-klimmen">
+  <div class="sectie-inner kl-kop">
+    <div>
+      <span class="kl-kicker">Veilig klimmen</span>
+      <h2 class="kl-h2">Klim veilig, <span class="kl-outline">van toprope tot val</span></h2>
+    </div>
+    <div class="kl-kop__tekst">
+      <p>
+        Veilig klimmen draait om vaste gewoontes. Kies een onderwerp en lees eerst de kernregels,
+        dan de uitleg en onderaan waar het vandaan komt.
+      </p>
+    </div>
+  </div>
+
+  <div class="sectie-inner">
+    <div class="sk-tabs" role="tablist" aria-label="Onderwerpen veilig klimmen">
+      @for (t of tabs; track t.id) {
+        <button
+          type="button"
+          role="tab"
+          class="sk-tab"
+          [id]="'tab-' + t.id"
+          [attr.aria-selected]="tab() === t.id"
+          [attr.aria-controls]="'paneel-' + t.id"
+          [attr.tabindex]="tab() === t.id ? 0 : -1"
+          (click)="kiesTab(t.id)"
+          (keydown)="kiesTab(t.id, $event)"
+        >
+          {{ t.naam }}
+        </button>
+      }
+    </div>
+
+    @switch (tab()) {
+      @case ('toprope') {
+        <div
+          class="sk-paneel"
+          id="paneel-toprope"
+          role="tabpanel"
+          aria-labelledby="tab-toprope"
+        >
+          <div class="sk-paneel__kop">
+            <span class="kl-kicker">Toprope</span>
+            <h3>Topropen in de hal</h3>
+          </div>
+          <ul class="sk-regels">
+            @for (regel of toproperegels; track regel.kop; let i = $index) {
+              <li>
+                <span class="sk-regels__nr" aria-hidden="true">{{ i + 1 }}</span>
+                <div>
+                  <strong>{{ regel.kop }}</strong>
+                  <p>{{ regel.tekst }}</p>
+                </div>
+              </li>
+            }
+          </ul>
+          <ul class="sk-apparaten">
+            @for (apparaat of zekeringsapparaten; track apparaat.naam) {
+              <li class="sk-kaart">
+                <span class="kl-kicker">{{ apparaat.naam }}</span>
+                <p class="sk-apparaten__remt">{{ apparaat.waardeEen }}</p>
+                <p class="sk-apparaten__vb">{{ apparaat.waardeTwee }}</p>
+              </li>
+            }
+          </ul>
+          <a class="sk-tekstlink" routerLink="/klimmen/materiaal" fragment="zekeringsapparaat"
+            >Meer over zekeringsapparaten →</a
+          >
+          <div class="sk-paneel__meer">
+            <details class="accordion" name="sportklimmen-toprope">
+              <summary>
+                <span class="accordion__titel">Setjes in een toprope-route</span>
+              </summary>
+              <div class="accordion__body">
+                <p>
+                  In een schuine of overhangende route loopt het touw ook door setjes, zodat je bij
+                  een val niet ver opzij zwaait. Kom je bij zo'n setje, dan haal je het touw uit de
+                  onderste karabiner en klim je verder.
+                </p>
+              </div>
+            </details>
+            <details class="accordion" name="sportklimmen-toprope">
+              <summary>
+                <span class="accordion__titel">Even praten</span>
+              </summary>
+              <div class="accordion__body">
+                <p>
+                  Voor je begint vraag je "Kan ik gaan?" en je zekeraar zegt "Oké, ga maar". Ben je
+                  boven, dan zeg je "Blok", wacht je op reactie en zeg je daarna "Laat maar zakken".
+                </p>
+              </div>
+            </details>
+          </div>
+          <p class="tekst-met-lijn">
+            Bron: NKBV, cursusboek Indoor Toprope. Deze tekst vervangt geen cursus.
+          </p>
+        </div>
+      }
+
+      @case ('voorklimmen') {
+        <div
+          class="sk-paneel sk-paneel--duo"
+          id="paneel-voorklimmen"
+          role="tabpanel"
+          aria-labelledby="tab-voorklimmen"
+        >
+          <div>
+            <div class="sk-paneel__kop">
+              <span class="kl-kicker">Voorklimmen</span>
+              <h3>Voorklimmen in de hal</h3>
+            </div>
+            <p>
+              Bij voorklimmen ligt veel bij de zekeraar. Als zekeraar ben je ook een extra paar
+              ogen voor je klimpartner.
+            </p>
+            <ul class="sp-checklist sp-checklist--interactief sport-checklist">
+              <li>
+                <label
+                  ><input type="checkbox" checked />
+                  <span
+                    >Clip pas als je stevig staat en de haak ongeveer tussen je heup en je kruin
+                    zit.</span
+                  ></label
+                >
+              </li>
+              <li>
+                <label
+                  ><input type="checkbox" checked />
+                  <span
+                    >Het touw gaat aan de wandkant de karabiner in en komt er aan jouw kant weer
+                    uit.</span
+                  ></label
+                >
+              </li>
+              <li>
+                <label
+                  ><input type="checkbox" checked />
+                  <span>Sla geen haken over, ook niet als ze dicht bij elkaar zitten.</span></label
+                >
+              </li>
+              <li>
+                <label
+                  ><input type="checkbox" checked />
+                  <span>Let erop dat het touw nooit achter je been of voet langs loopt.</span></label
+                >
+              </li>
+            </ul>
+          </div>
+          <img
+            class="sk-paneel__foto"
+            src="images/voorklimmen.jpg"
+            alt="Klimmer clipt het touw in een haak"
+          />
+        </div>
+      }
+
+      @case ('auto-belay') {
+        <div
+          class="sk-paneel sk-paneel--duo"
+          id="paneel-auto-belay"
+          role="tabpanel"
+          aria-labelledby="tab-auto-belay"
+        >
+          <div>
+            <div class="sk-paneel__kop">
+              <span class="kl-kicker">Auto belay</span>
+              <h3>Klimmen aan een auto belay</h3>
+            </div>
+            <p>
+              Een auto belay voelt makkelijk, en juist daardoor gaat het soms mis. Het grootste
+              risico is dat je vergeet je in te klippen. Doe daarom voor elke klim een zelfcheck.
+            </p>
+          </div>
+          <ul class="sp-checklist sp-checklist--interactief sport-checklist">
+            <li>
+              <label
+                ><input type="checkbox" checked />
+                <span>Je karabiner zit goed aan de belaylus van je gordel.</span></label
+              >
+            </li>
+            <li>
+              <label
+                ><input type="checkbox" checked />
+                <span
+                  >Je hebt aan het touw getrokken om te testen of de auto belay werkt.</span
+                ></label
+              >
+            </li>
+            <li>
+              <label
+                ><input type="checkbox" checked /> <span>Je gordel is helemaal dicht.</span></label
+              >
+            </li>
+            <li>
+              <label
+                ><input type="checkbox" checked />
+                <span>Er zit geen kleding of haar tussen de karabiner.</span></label
+              >
+            </li>
+            <li>
+              <label
+                ><input type="checkbox" checked />
+                <span>Je laat je gecontroleerd zakken.</span></label
+              >
+            </li>
+          </ul>
+        </div>
+      }
+
+      @case ('vallen') {
+        <div
+          class="sk-vallen"
+          id="paneel-vallen"
+          role="tabpanel"
+          aria-labelledby="tab-vallen"
+        >
+          <article class="sk-paneel">
+            <div class="sk-paneel__kop">
+              <span class="kl-kicker">In je hoofd</span>
+              <h3>Let it go</h3>
+            </div>
+            <p>
+              Vallen hoort bij klimmen, en toch vinden de meeste klimmers het spannend. Je kunt die
+              angst kleiner maken door vallen stap voor stap te oefenen.
+            </p>
+            <ol class="sk-stappen">
+              <li>Hupsen in toprope op een veilige hoogte.</li>
+              <li>Vallen in toprope, steeds een klein stukje langer.</li>
+              <li>Vallen bij voorklimmen, alleen als je al zelfstandig voorklimt.</li>
+            </ol>
+          </article>
+          <aside class="sk-valregel">
+            <strong>3×</strong>
+            <p>
+              Je val is ongeveer drie keer de afstand tot je laatste setje. Hang je 2 meter boven je
+              laatste setje, dan val je ongeveer 6 meter.
+            </p>
+          </aside>
+        </div>
+      }
+
+      @case ('opwarmen') {
+        <div
+          class="sk-paneel"
+          id="paneel-opwarmen"
+          role="tabpanel"
+          aria-labelledby="tab-opwarmen"
+        >
+          <div class="sk-paneel__kop">
+            <span class="kl-kicker">Gezond klimmen</span>
+            <h3>Opwarmen en afkoelen</h3>
+          </div>
+          <p>
+            Je spieren worden snel sterker, maar je pezen en banden doen daar veel langer over. Een
+            goede warming-up en cooling-down helpen.
+          </p>
+          <div class="sk-twee">
+            <div class="sk-kaart">
+              <span class="kl-kicker">Opwarmen</span>
+              <p>Begin met 5 tot 10 minuten bewegen en klim daarna 15 minuten in makkelijke routes.</p>
+            </div>
+            <div class="sk-kaart">
+              <span class="kl-kicker">Afkoelen</span>
+              <p>Klim 15 minuten makkelijk uit en rek daarna rustig, zonder te veren.</p>
+            </div>
+          </div>
+          <p class="tekst-met-lijn">
+            Pak een greep liever met hangende vingers dan met opstaande vingers. Bij opstaande
+            vingers komt er veel meer spanning op je pezen.
+          </p>
+        </div>
+      }
+    }
+  </div>
+</section>
+
+<!-- ═══ KLIMCULTUUR ═══ -->
+<section class="sectie sk-cultuur" id="klimcultuur">
+  <div class="sectie-inner kl-kop">
+    <div>
+      <span class="kl-kicker">Klimcultuur</span>
+      <h2 class="kl-h2">Graden en <span class="kl-outline">klimstijlen</span></h2>
+    </div>
+    <div class="kl-kop__tekst">
+      <p>
+        In Nederland en België gebruik je de Franse schaal, in de hal en op de rots. Een graad blijft
+        altijd een beetje een mening. Hoe je een route klimt, zegt vaak meer dan het cijfer.
+      </p>
+    </div>
+  </div>
+
+  <div class="sectie-inner sk-graden">
+    <div class="tabel-wrap">
+      <div class="tabel-kop">
+        <div class="tabel-kop__tekst">
+          <span class="tabel-kop__kicker">Omrekentabel</span>
+          <h3 class="tabel-kop__titel">Frans / UIAA / YDS</h3>
+        </div>
+      </div>
+      <table class="sp-tabel">
+        <thead>
+          <tr>
+            <th>Frans</th>
+            <th>UIAA</th>
+            <th>YDS</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (graad of graden; track graad[0]) {
+            <tr>
+              <td data-label="Frans">{{ graad[0] }}</td>
+              <td data-label="UIAA">{{ graad[1] }}</td>
+              <td data-label="YDS">{{ graad[2] }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+    <ul class="sk-stijlen">
+      <li class="sk-kaart">
+        <h3>Onsight</h3>
+        <p>Je klimt de route in één keer voor, zonder vallen, hangen of voorkennis.</p>
+      </li>
+      <li class="sk-kaart">
+        <h3>Flash</h3>
+        <p>Hetzelfde als onsight, maar je hebt iemand anders zien klimmen of tips gekregen.</p>
+      </li>
+      <li class="sk-kaart">
+        <h3>Rotpunkt</h3>
+        <p>Je hebt de route eerder geprobeerd en klimt hem nu voor zonder te vallen of te hangen.</p>
+      </li>
+      <li>
+        <a class="sk-tekstlink" routerLink="/kennis/terminologie">Alle klimbegrippen →</a>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- ═══ KLIMVERHALEN ═══ -->
+<section class="sectie sk-verhalen-sectie">
+  <div class="sectie-inner kl-kop">
+    <div>
+      <span class="kl-kicker">Klimverhalen</span>
+      <h2 class="kl-h2">Verhalen uit de <span class="kl-outline">klimwereld</span></h2>
+    </div>
+    <div class="kl-kop__tekst">
+      <p>
+        Van een rode stip in de Frankenjura tot Olympisch goud: zo groeide klimmen van training
+        voor de Alpen uit tot een sport op zich.
+      </p>
+    </div>
+  </div>
+
+  <div class="sectie-inner sk-verhalen">
+    <article class="sk-verhaal">
+      <div class="sk-verhaal__beeld">
+        <img src="images/dinant.jpg" alt="Rotsen bij Dinant aan de Maas" />
+        <span class="sk-verhaal__badge">Even terug in de tijd</span>
+      </div>
+      <div class="sk-verhaal__body">
+        <h3>Hoe sportklimmen ontstond</h3>
+        <p>
+          Tot de jaren tachtig was rotsklimmen voor de meeste Nederlanders en Belgen vooral
+          training voor de Alpen. Eind jaren zeventig veranderde dat: klimmers gebruikten de haken
+          voortaan alleen om zich te zekeren. Omhoog kwamen ze op eigen kracht.
+        </p>
+        <ol class="sk-tijdlijn">
+          <li>
+            <span class="sk-tijdlijn__jaar">1975</span>
+            <span
+              >Kurt Albert klimt in de Frankenjura een route helemaal vrij en schildert een rode
+              stip onder aan de route: een Rotpunkt.</span
+            >
+          </li>
+          <li>
+            <span class="sk-tijdlijn__jaar">1987</span>
+            <span>België krijgt de eerste klimhal: Terres Neuves in Brussel.</span>
+          </li>
+          <li>
+            <span class="sk-tijdlijn__jaar">1988</span>
+            <span>Nederland volgt met een hal in Roosendaal.</span>
+          </li>
+        </ol>
+        <a class="btn-thema btn-thema--amber" routerLink="/kennis/terminologie"
+          >Klimtaal opzoeken</a
+        >
+      </div>
+    </article>
+
+    <article class="sk-verhaal">
+      <div class="sk-verhaal__beeld">
+        <img
+          src="images/indoorclimbing.jpg"
+          alt="Klimmer op een overhangende klimwand in de hal"
+        />
+        <span class="sk-verhaal__badge">Op het podium</span>
+      </div>
+      <div class="sk-verhaal__body">
+        <h3>Wedstrijden en Olympische Spelen</h3>
+        <p>
+          Sinds Tokyo 2020 is sportklimmen een Olympische sport. Bij wedstrijden klim je in drie
+          disciplines: lead, boulder en speed.
+        </p>
+        <ol class="sk-tijdlijn">
+          <li>
+            <span class="sk-tijdlijn__jaar">2020</span>
+            <span>Tokyo: sportklimmen debuteert als Olympische sport.</span>
+          </li>
+          <li>
+            <span class="sk-tijdlijn__jaar">2024</span>
+            <span>Parijs: speed krijgt een eigen medaille, lead en boulder blijven samen.</span>
+          </li>
+          <li>
+            <span class="sk-tijdlijn__jaar">2028</span>
+            <span>Los Angeles: elke discipline krijgt voor het eerst een eigen medaille.</span>
+          </li>
+        </ol>
+        <p class="sk-verhaal__feit">
+          <strong>15 m · 5°</strong> De speedwand is overal hetzelfde: 15 meter hoog, 5 graden
+          overhangend, met dezelfde grepen op dezelfde plek.
+        </p>
+        <a class="btn-thema btn-thema--amber" routerLink="/boulderen">Alles over boulderen</a>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ═══ FAQ + VERDER LEZEN ═══ -->
+<section class="sectie sectie--mist sk-faq" id="faq">
+  <div class="sectie-inner">
+    <div>
+      <h2 class="kl-h2 faq-kop">Veelgestelde <span class="kl-outline">vragen</span></h2>
+      <div class="accordions accordions--faq sk-faq__lijst">
+        @for (faq of faqs; track faq.vraag) {
+          <details class="accordion" name="sportklimmen-faq">
+            <summary>
+              <span class="accordion__titel">{{ faq.vraag }}</span>
+            </summary>
+            <div class="accordion__body">
+              <p>{{ faq.antwoord }}</p>
+            </div>
+          </details>
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="verder-lezen verder-lezen--licht accent--teal">
+  <div class="verder-lezen__inner">
+    <span class="verder-lezen__label">Verder lezen</span>
+    <ul class="verder-lezen__lijst">
+      <li><a routerLink="/klimmen/single-pitch">Single pitch</a></li>
+      <li><a routerLink="/klimmen/materiaal">Materiaal &amp; voorbereiding</a></li>
+      <li><a routerLink="/boulderen">Boulderen</a></li>
+      <li><a routerLink="/kennis/terminologie">Terminologie</a></li>
+    </ul>
+  </div>
+</section>

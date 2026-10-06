@@ -1,9 +1,9 @@
 <section class="subhero">
   <div class="subhero__media">
-    <img src="images/achtknoop.jpg" alt="touwen" />
+    <img src="images/knopenleggen.jpg" alt="klimmer legt een knoop in een touw" />
   </div>
   <div class="subhero__content">
-    <span class="subhero__eyebrow">Kennis</span>
+    <span class="subhero__eyebrow">Kennis / Touwtechniek</span>
     <h1>Knopen</h1>
     <p>Leer betrouwbare knopen herkennen & leggen.</p>
   </div>
@@ -43,6 +43,7 @@
 
     <div class="knopen-layout">
       <aside class="knopen-filters">
+        <span class="knopen-filters__accent" aria-hidden="true"></span>
         <div class="knopen-filters__groep">
           <span class="content-eyebrow">Gebruik</span>
           @for (optie of gebruikOpties; track optie) {
@@ -94,7 +95,13 @@
       </aside>
 
       <div class="knopen-hoofd">
-        <p class="knopen-telling">{{ weergave().length }} van de {{ knopen.length }} knopen</p>
+        <div class="knopen-kopregel">
+          <div>
+            <span class="content-eyebrow">De knopenbibliotheek</span>
+            <p class="knopen-telling">{{ weergave().length }} van de {{ knopen.length }} knopen</p>
+          </div>
+          <p>Kies een knoop om verder te kijken -></p>
+        </div>
 
         @if (weergave().length === 0) {
           <p class="knopen-leeg">
@@ -112,16 +119,14 @@
                 <div class="knoop-kaart__kop" (click)="toggleUitgeklapt(knoop.slug)">
                   <div
                     class="knoop-kaart__foto"
-                    [class.knoop-kaart__foto--echt]="knoop.fotos?.length"
+                    [class.knoop-kaart__foto--echt]="false"
                   >
-                    @if (knoop.fotos?.length) {
-                      <img [src]="knoop.fotos![0]" [alt]="knoop.naam" />
-                    } @else {
-                      <span>Foto</span>
-                      <em>{{ knoop.naam }}</em>
-                    }
+                    <span>{{ afkorting(knoop) }}</span>
                   </div>
                   <div class="knoop-kaart__info">
+                    @if (isUitgeklapt(knoop.slug)) {
+                      <span class="knoop-kaart__eyebrow">{{ knoop.familie }} / {{ knoop.typeKnoop }}</span>
+                    }
                     <h3>{{ knoop.naam }}</h3>
                     <p class="knoop-kaart__samenvatting">{{ knoop.samenvatting }}</p>
                     <div class="knoop-kaart__meta">
@@ -140,7 +145,7 @@
                       "
                       (click)="toggleOpgeslagen(knoop.slug, $event)"
                     >
-                      ★
+                      ☆
                     </button>
                   </div>
                 </div>
@@ -148,55 +153,103 @@
                 <div class="knoop-kaart__detail-wrap" [class.is-open]="isUitgeklapt(knoop.slug)">
                   <div class="knoop-kaart__detail-inner">
                     <div class="knoop-kaart__detail">
-                      @if (knoop.fotos?.length === 1) {
-                        <div class="knoop-kaart__specs-met-foto">
-                          <div class="knoop-kaart__specs knoop-kaart__specs--stack">
-                            <div class="knoop-spec">
-                              <span class="knoop-spec__label">Engelse naam</span>
-                              <span class="knoop-spec__waarde">{{
-                                knoop.engelseNaam.join(' / ')
-                              }}</span>
-                            </div>
-                            <div class="knoop-spec">
-                              <span class="knoop-spec__label">Type knoop</span>
-                              <span class="knoop-spec__waarde">{{ knoop.typeKnoop }}</span>
-                            </div>
-                            <div class="knoop-spec">
-                              <span class="knoop-spec__label">Gebruik bij</span>
-                              <span class="knoop-spec__waarde">{{ knoop.gebruikBij }}</span>
-                            </div>
+                      <div class="knoop-kaart__specs">
+                        <div class="knoop-spec">
+                          <span class="knoop-spec__label">Engelse naam</span>
+                          <span class="knoop-spec__waarde">{{
+                            knoop.engelseNaam.join(' / ')
+                          }}</span>
+                        </div>
+                        <div class="knoop-spec">
+                          <span class="knoop-spec__label">Type knoop</span>
+                          <span class="knoop-spec__waarde">{{ knoop.typeKnoop }}</span>
+                        </div>
+                        <div class="knoop-spec">
+                          <span class="knoop-spec__label">Gebruik bij</span>
+                          <span class="knoop-spec__waarde">{{ knoop.gebruikBij }}</span>
+                        </div>
+                      </div>
+
+                      @if (knoop.fotos?.length) {
+                        <div class="knoop-kaart__beeldreeks">
+                          <div class="knoop-kaart__beeldkader knoop-kaart__beeldkader--foto">
+                            @if (knoop.fotos?.[actieveSlide(knoop)]; as foto) {
+                              <img [src]="foto" [alt]="knoop.naam + ' stap ' + (actieveSlide(knoop) + 1)" />
+                            } @else {
+                              <span class="knoop-kaart__beeldicoon" aria-hidden="true"></span>
+                              <strong>{{ slideTitel(knoop) }}</strong>
+                              <p>Ruimte voor de foto van deze stap</p>
+                            }
                           </div>
-                          <div class="knoop-kaart__foto-groot">
-                            <img [src]="knoop.fotos![0]" [alt]="knoop.naam" />
+                          <div class="knoop-kaart__sliderbar">
+                            <button
+                              type="button"
+                              class="knoop-kaart__pijl"
+                              aria-label="Vorige stap"
+                              (click)="verschuifSlide(knoop, -1)"
+                            >
+                              &lsaquo;
+                            </button>
+                            <div class="knoop-kaart__stappen" aria-label="Beeldreeks stappen">
+                              @for (stap of stappen(knoop); track stap) {
+                                <button
+                                  type="button"
+                                  [class.is-actief]="actieveSlide(knoop) === stap"
+                                  [attr.aria-label]="'Stap ' + (stap + 1)"
+                                  (click)="zetSlide(knoop, stap)"
+                                >
+                                  {{ stap + 1 }}
+                                </button>
+                              }
+                            </div>
+                            <button
+                              type="button"
+                              class="knoop-kaart__pijl"
+                              aria-label="Volgende stap"
+                              (click)="verschuifSlide(knoop, 1)"
+                            >
+                              &rsaquo;
+                            </button>
                           </div>
                         </div>
                       } @else {
-                        <div class="knoop-kaart__specs">
-                          <div class="knoop-spec">
-                            <span class="knoop-spec__label">Engelse naam</span>
-                            <span class="knoop-spec__waarde">{{
-                              knoop.engelseNaam.join(' / ')
-                            }}</span>
+                        <div class="knoop-kaart__beeldreeks">
+                          <div class="knoop-kaart__beeldkader">
+                            <span class="knoop-kaart__beeldicoon" aria-hidden="true"></span>
+                            <strong>{{ slideTitel(knoop) }}</strong>
+                            <p>Ruimte voor de foto van deze stap</p>
                           </div>
-                          <div class="knoop-spec">
-                            <span class="knoop-spec__label">Type knoop</span>
-                            <span class="knoop-spec__waarde">{{ knoop.typeKnoop }}</span>
-                          </div>
-                          <div class="knoop-spec">
-                            <span class="knoop-spec__label">Gebruik bij</span>
-                            <span class="knoop-spec__waarde">{{ knoop.gebruikBij }}</span>
-                          </div>
-                        </div>
-
-                        @if (knoop.fotos?.length) {
-                          <div class="knoop-kaart__fotos">
-                            <div class="knoop-kaart__fotos-grid">
-                              @for (foto of knoop.fotos; track foto) {
-                                <img [src]="foto" [alt]="knoop.naam" />
+                          <div class="knoop-kaart__sliderbar">
+                            <button
+                              type="button"
+                              class="knoop-kaart__pijl"
+                              aria-label="Vorige stap"
+                              (click)="verschuifSlide(knoop, -1)"
+                            >
+                              &lsaquo;
+                            </button>
+                            <div class="knoop-kaart__stappen" aria-label="Beeldreeks stappen">
+                              @for (stap of stappen(knoop); track stap) {
+                                <button
+                                  type="button"
+                                  [class.is-actief]="actieveSlide(knoop) === stap"
+                                  [attr.aria-label]="'Stap ' + (stap + 1)"
+                                  (click)="zetSlide(knoop, stap)"
+                                >
+                                  {{ stap + 1 }}
+                                </button>
                               }
                             </div>
+                            <button
+                              type="button"
+                              class="knoop-kaart__pijl"
+                              aria-label="Volgende stap"
+                              (click)="verschuifSlide(knoop, 1)"
+                            >
+                              &rsaquo;
+                            </button>
                           </div>
-                        }
+                        </div>
                       }
 
                       <div class="knoop-kaart__toepassingen">
